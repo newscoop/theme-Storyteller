@@ -1,5 +1,5 @@
         <div id="top" class="clearfix">
-            <h3>{{ #welcomeRockstar# }}</h3>
+            <h3>{{ #welcomeStoryTeller# }}</h3>
             <div class="top-menu">
                 <ul>
                 

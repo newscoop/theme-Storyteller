@@ -1,3 +1,4 @@
+{{ assign var="curVer" value = "1"}}
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -15,7 +16,6 @@
   <meta name="description" content="{{ if $gimme->article->defined }}{{ $gimme->article->deck|strip_tags:false|strip|escape:'html':'utf-8' }}{{ else }}{{ $siteinfo.description }}{{ /if }}">
   {{* if an article is active, meta-keywords will be generated of article keywords (defined on article edit screen), otherwise it will use site-wide keywords from System Preferences (/Configure/System Preferences) *}}
   <meta name="keywords" content="{{ if $gimme->article->defined }}{{ $gimme->article->keywords }}{{ else }}{{$siteinfo.keywords}}{{ /if }}" />
-  <meta name="generator" content="Bluefish 2.0.3" >  
 
   <!-- RSS & Pingback -->
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://{{ $gimme->publication->site }}/en/static/rss/">
@@ -35,8 +35,14 @@
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="touch-icon.png">
 
-    <link rel="stylesheet" href="{{ url static_file="assets/css/main.css" }}">
-    <link rel="stylesheet" href="{{ url static_file="assets/css/skin.css" }}">
+    <!-- longform styles  -->
+    {{ if $gimme->section->name == 'longform' }}
+      <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/longform.css?v=$curVer" }}' />
+    {{ else }}
+      <link rel="stylesheet" href='{{ url static_file="assets/css/main.css?v=$curVer" }}'>
+      <link rel="stylesheet" href='{{ url static_file="assets/css/skin.css?v=$curVer" }}'>
+    {{ /if }}
+    <!-- /longform -->
 
 {{ if $gimme->template->name == "article.tpl" }}  
   <!-- styles for fancybox, used on article page -->

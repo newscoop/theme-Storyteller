@@ -1,5 +1,4 @@
             <section class="grid-2">
-                
             	<article>
                 	<h2>{{ #mostRead# }}</h2>
                     <ul class="article-list">

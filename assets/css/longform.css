@@ -1,0 +1,51 @@
+@import "reset.css";
+/* longform */
+#titles {
+  position: absolute;
+  left: 0;
+  top: 0;
+  }
+  #titles small {
+    line-height: 30px;
+    text-indent: 60px;
+    display: block;
+    }
+    #titles small a {
+      text-decoration: none;
+      color: #666;
+      font-size: 20px;
+      }
+  #titles h2 {
+    color: #f0f0f0;
+    font-size: 60px;
+    line-height: 80px;
+    text-indent: 60px;
+    }
+  #titles h2:hover {
+    color: #fff;
+    }
+#leadImg img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  }
+.thumb-gallery .gall-box {
+  position: relative;
+  }
+  .thumb-gallery .gall-box img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    }
+  .thumb-gallery .gall-box small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    color: #fff;
+    line-height: 20px;
+    text-indent: 20px;
+    }

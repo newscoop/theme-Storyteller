@@ -36,8 +36,15 @@
     <link rel="apple-touch-icon" href="touch-icon.png">
 
     <!-- longform styles  -->
-    {{ if $gimme->section->name == 'longform' }}
+    {{ if $gimme->article->longform }}
       <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/longform.css?v=$curVer" }}' />
+      {{ if $gimme->article->saturn }}
+        <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/saturn.css?v=$curVer" }}' />
+      {{ elseif $gimme->article->aurora }}
+        <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/aurora.css?v=$curVer" }}' />
+      {{ elseif $gimme->article->cosmograd }}
+        <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/cosmograd.css?v=$curVer" }}' />
+      {{ /if }}
     {{ else }}
       <link rel="stylesheet" href='{{ url static_file="assets/css/main.css?v=$curVer" }}'>
       <link rel="stylesheet" href='{{ url static_file="assets/css/skin.css?v=$curVer" }}'>

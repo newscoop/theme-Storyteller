@@ -8,7 +8,7 @@
     {{ if $item->is_image }}
         <div id="tab-{{ $i }}" class="gall-box">
           <figure>
-            {{ if $gimme->section->number != 110 }}
+            {{ if not $gimme->article->longform }}
             <a href="{{ $gimme->url->scheme }}://{{ $gimme->publication->site }}/{{ $item->image->original }}" title="{{ $item->caption }} {{ if !(empty($item->image->photographer)) }}(Bild: {{ $item->image->photographer }}){{ /if }}" rel="fancybox-thumb" class="zoom fancybox-thumb">Zoom</a>
             {{ /if }}
             <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
@@ -25,7 +25,7 @@
     {{ /if }}
   {{ /foreach }} 
 
-  {{ if $gimme->section->number != "110" }}
+  {{ if not $gimme->article->longform }}
     {{ assign var="i" value=0 }}
     {{ foreach $slideshow->items as $item name=insideslideshow }}
       {{ if $smarty.foreach.insideslideshow.first }}

@@ -40,8 +40,9 @@
       {{ include file="_tpl/article-aside.tpl" }}
 
       <div class="divider"></div>
-
-      {{ include file="_tpl/all-sections.tpl" }}
+      {{ if not $gimme->article->longform }}
+        {{ include file="_tpl/all-sections.tpl" }}
+      {{ /if }}
 
     </div><!-- / Content -->
 

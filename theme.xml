@@ -16,6 +16,10 @@
 	</output>
 	
 	<renditions>
-		<rendition name="square" width="130" height="130" specs="crop"/>
+    <rendition name="artfull" width="723" height="362" specs="crop"/> 
+    <rendition name="arthalf" width="346" height="173" specs="crop"/>
+    <rendition name="artthumb" width="158" height="79" specs="crop"/>
+    <rendition name="quarter" width="252" height="141" specs="crop"/>
+    <rendition name="square" width="130" height="130" specs="crop"/>
 	</renditions>	
 </theme>

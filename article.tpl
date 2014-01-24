@@ -1,9 +1,6 @@
+{{ include file="_tpl/_html-head.tpl" }}
+  
   <div id="wrapper">
-  {{ if $gimme->section->number == 110 }}
-
-    {{ include file="_tpl/article-cont.tpl" }}
-
-  {{ else }}
 
     {{ include file="_tpl/header.tpl" }}
 
@@ -37,7 +34,9 @@
 
       </section><!-- / Entry -->
 
-      {{ include file="_tpl/article-aside.tpl" }}
+      {{ if not $gimme->article->longform }}
+        {{ include file="_tpl/article-aside.tpl" }}
+      {{ /if }}
 
       <div class="divider"></div>
       {{ if not $gimme->article->longform }}
@@ -48,11 +47,7 @@
 
     {{ include file="_tpl/footer.tpl" }}
 
-  {{ /if }}
-
-  {{ config_load file="{{ $gimme->language->english_name }}.conf" }}
-
-  {{ include file="_tpl/_html-head.tpl" }}
+    {{ config_load file="{{ $gimme->language->english_name }}.conf" }}
 
 
   </div><!-- / Wrapper -->

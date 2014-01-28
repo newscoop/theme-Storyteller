@@ -1,51 +1,90 @@
 @import "reset.css";
 /* longform */
-#titles {
-  position: absolute;
-  left: 0;
-  top: 0;
+body {
+  background: #333;
   }
-  #titles small {
-    line-height: 30px;
-    text-indent: 60px;
-    display: block;
-    }
-    #titles small a {
-      text-decoration: none;
-      color: #666;
-      font-size: 20px;
-      }
+#header,
+#top,
+#nav-bar,
+#footer {
+  display: none;
+  }
+
+#titles {
+  }
   #titles h2 {
-    color: #f0f0f0;
-    font-size: 60px;
-    line-height: 80px;
-    text-indent: 60px;
-    }
-  #titles h2:hover {
-    color: #fff;
+    color: #fefefe;
+    font-size: 80pt;
+    text-align: center;
+    text-shadow: 0 0 10px #000;
     }
 #leadImg img {
-  position: absolute;
-  left: 0;
+  position: fixed;
   top: 0;
+  z-index: -1;
   width: 100%;
   height: auto;
   }
-.thumb-gallery .gall-box {
-  position: relative;
+#cont {
+  background: rgba(255, 255, 255, .75);
+  color: #333;
+  height: auto;
+  font-size: 22pt;
+  font-family: "Times New Roman";
+  padding: 0 0 1px;
   }
-  .thumb-gallery .gall-box img {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  #cont h2 {
+    color: #fefefe;
+    line-height: 20pt;
+    margin: 0 40px 0;
+    }
+  #cont p {
+    margin: 0 auto 30px;
+    line-height: 1.5;
+    width: 50%;
+    min-width: 500px;
+    }
+  #cont blockquote {
+    background: rgba(255, 255, 255, .5);
+    border-radius: 3px;
+    margin: 0 auto 30px;
+    width: 50%;
+    padding: 40px;
+    min-width: 500px;
+    letter-spacing: .01rem;
+    font-weight: 400;
+    font-style: italic;
+    }
+    #cont blockquote p {
+      margin: 0 0 30px;
+      width: auto;
+      }
+    #cont blockquote cite {
+      }
+      #cont blockquote cite:before {
+        content: "— ";
+        }
+  .thumb-gallery {
+    overflow: hidden;
     height: auto;
     }
-  .thumb-gallery .gall-box small {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #000;
-    color: #fff;
-    line-height: 20px;
-    text-indent: 20px;
-    }
+    .thumb-gallery figure {
+      box-shadow: inset 0 -10px 20px #000;
+      overflow: hidden;
+      position: relative;
+      background: fixed 50% 50% no-repeat transparent;
+      background-size: cover;
+      }
+    .thumb-gallery small {
+      box-shadow: 0 -10px 20px #000;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 30px;
+      background: rgba(0, 0, 0, .75);
+      color: #fefefe;
+      height: auto;
+      font-size: 22pt;
+      font-family: "Times New Roman";
+      }

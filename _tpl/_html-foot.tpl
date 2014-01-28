@@ -8,7 +8,9 @@
   <script src="{{ url static_file='assets/js/article-rating.js' }}"></script>
 {{ /if }}
 
-{{ if not $gimme->article->longform }}
+{{ if $gimme->article->longform }}
+  <script src="{{ uri static_file="assets/js/longform.js" }}"></script>
+{{ else }}
   <script src="{{ uri static_file="assets/js/init.js" }}"></script>
 {{ /if }}
 

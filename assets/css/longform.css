@@ -42,9 +42,33 @@ body {
   padding: 0 0 1px;
   }
   #cont h2 {
-    color: #fefefe;
-    line-height: 20pt;
-    margin: 0 40px 0;
+    color: #333;
+    line-height: 2;
+    font-size: 30pt;
+    font-weight: lighter;
+    min-width: 500px;
+    margin: auto;
+    width: 50%;
+    text-shadow: 0 0 1px #000;
+    }
+  #cont h3 {
+    color: #333;
+    line-height: 1.5;
+    font-size: 28pt;
+    font-weight: lighter;
+    min-width: 500px;
+    margin: auto;
+    width: 50%;
+    text-shadow: 0 0 1px #000;
+    }
+  #cont h4 {
+    color: #333;
+    line-height: 1.5;
+    font-size: 26pt;
+    font-weight: lighter;
+    min-width: 500px;
+    margin: auto;
+    width: 50%;
     }
   #cont p {
     margin: 0 auto 30px;

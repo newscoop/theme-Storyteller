@@ -96,6 +96,40 @@ body {
       #cont blockquote cite:before {
         content: "— ";
         }
+    #cont .cs_img {
+      position: relative;
+      background: rgba(255, 255, 255, .75);
+      min-width: 500px;
+      padding: 3px;
+      margin: 0 auto;
+      }
+      #cont .cs_img > p {
+        padding: 0;
+        width: auto;
+        min-width: auto;
+        line-height: 0;
+        margin: 0;
+        }
+      #cont .cs_img .cs_img_caption {
+        font-size: 14px;
+        position: absolute;
+        left: -172px;
+        width: 150px;
+        min-width: 0;
+        top: 10px;
+        text-align: right;
+        margin-top: 0;
+        font-style: italic;
+        line-height: 1.4;
+        }
+        #cont .cs_img .cs_img_caption:before {
+          width: 25%;
+          margin: -10px 0 10px 75%;
+          border-top: 1px solid #666;
+          display: block;
+          content: "";
+          margin-bottom: 10px;
+        }
   .thumb-gallery {
     overflow: hidden;
     height: auto;

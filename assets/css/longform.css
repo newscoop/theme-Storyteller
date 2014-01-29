@@ -18,6 +18,14 @@ body {
     text-align: center;
     text-shadow: 0 0 10px #000;
     }
+  #titles .date {
+    position: absolute;
+    top: 140px;
+    text-align: center;
+    width: 100%;
+    color: #fefefe;
+    text-shadow: 0 0 2px #000;
+    }
 #leadImg img {
   position: fixed;
   top: 0;

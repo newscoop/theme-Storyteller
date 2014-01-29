@@ -20,15 +20,23 @@
 
       {{ if $gimme->article->type_name !== "page" }}
 
-        {{ if $gimme->article->type_name !== "debate" }}
-
-          {{ include file="_tpl/article-author-info.tpl" }}
-
+        {{ if $gimme->article->longform }}
+          <div id="longform-article-tools">
         {{ /if }}
 
-        {{ include file="_tpl/article-rating.tpl" }}
+          {{ if $gimme->article->type_name !== "debate" }}
 
-        {{ include file="_tpl/article-comments.tpl" }}
+            {{ include file="_tpl/article-author-info.tpl" }}
+
+          {{ /if }}
+
+          {{ include file="_tpl/article-rating.tpl" }}
+
+          {{ include file="_tpl/article-comments.tpl" }}
+        
+        {{ if $gimme->article->longform }}
+          </div>
+        {{ /if }}
 
       {{ /if }}
 

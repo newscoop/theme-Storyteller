@@ -153,7 +153,41 @@ body {
       height: auto;
       font-size: 22pt;
       font-family: "Times New Roman";
+/* added by JS */
+#miniMenu {
+  position: fixed;
+  top: 60px;
+  left: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 0 3px #000;
+  padding: 10px 20px 10px 0;
+  max-width: 250px;
+  }
+  #miniMenu li {
+    line-height: 1.4;
+    }
+    #miniMenu li.h2 {
+      padding-left: 20px;
       }
+    #miniMenu li.h3 {
+      padding-left: 30px;
+      }
+    #miniMenu li.h4 {
+      padding-left: 40px;
+      }
+    #miniMenu li a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      }
+      #miniMenu li a:hover {
+        text-decoration: underline;
+        }
+
 /* common */
 
 /* header */

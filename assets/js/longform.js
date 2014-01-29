@@ -1,14 +1,18 @@
 $(document).ready(function(){
   var winHeight = $(window).height();
+  var winWidth = $(window).width();
   $('#titles, .thumb-gallery > div figure').height(winHeight);
+  $('video').width(winWidth);
   $('#titles h2, #titles .date').css({
     'line-height': (winHeight - 140) + 'px'
   });
+
   // set up the main image for the background
   var leadImg = $('#leadImg').find('img');
   var leadImgSrc = leadImg.attr('src');
   leadImg.hide();
   $('body').attr('style', 'background-image: url(' + leadImgSrc + ');');
+
   // set up the galleries
   var i = 1;
   $('.thumb-gallery').each(function(){
@@ -23,10 +27,35 @@ $(document).ready(function(){
     });
     i = 1;
   });
+
+  // video stuff
+  // wishlist:
+  //    autoplay on focus - check
+  //    hide miniMenu - check
+  //    reshow miniMenu when above or below video - check
+  setInterval(function(){
+    var currViewportPos = window.pageYOffset;
+    $('video').each(function(){
+      var vidPos = $(this).position().top;
+      var vidName = $(this).attr('id');
+      if ( currViewportPos > vidPos ) {
+        $(this)[0].play();
+        $('#miniMenu').fadeOut();
+      } else {
+        $(this)[0].pause();
+        $('#miniMenu').fadeIn();
+      }
+      if ( currViewportPos > (vidPos + winHeight) ){
+        $(this)[0].pause();
+        $('#miniMenu').fadeIn();
+      }
+    });
+  }, 500);
+
   // make a min menu from the header elements in the document at root level
   setTimeout(function(){
     var miniMenu = "<ul id='miniMenu' style='display: none;'>"
-    miniMenu = miniMenu + "<li class='h2'><a href='#top'>Intro</a></li>";
+    miniMenu = miniMenu + "<li class='h2'><a href='#top'>Title</a></li>";
     $('#cont > h2, #cont h3, #cont h4').each(function(){
       var offsetY = $(this).position().top;
       var type;
@@ -56,7 +85,6 @@ $(document).ready(function(){
           currOffset = '0';
         }
         parseInt(currOffset);
-        console.log(currOffset);
         $('body').animate({
           scrollTop: currOffset
         });
@@ -64,5 +92,6 @@ $(document).ready(function(){
         return false;
       });
     }, 500);
-  }, 500);
+  }, 1000);
+
 });

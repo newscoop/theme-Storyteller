@@ -1,16 +1,17 @@
 $(document).ready(function(){
   var winHeight = $(window).height();
   var winWidth = $(window).width();
-  $('#titles, .thumb-gallery > div figure').height(winHeight);
-  $('video').width(winWidth);
+  $('#titles, .thumb-gallery > div figure, .video-attachment').height(winHeight);
+  $('.video-attachment video').width(winWidth);
   $('#titles h2, #titles .date').css({
     'line-height': (winHeight - 140) + 'px'
   });
 
   // set up the main image for the background
-  var leadImg = $('#leadImg').find('img');
+  var leadImg = $('#leadImg');
+  leadImg.remove();
+  leadImg = leadImg.find('img');
   var leadImgSrc = leadImg.attr('src');
-  leadImg.hide();
   $('body').attr('style', 'background-image: url(' + leadImgSrc + ');');
 
   // set up the galleries

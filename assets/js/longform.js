@@ -53,8 +53,15 @@ $(document).ready(function(){
     });
   }, 500);
 
-  // make a min menu from the header elements in the document at root level
+  // all this has to happen after the content has loaded or the offsets are incorrect
   setTimeout(function(){
+    // get some offset positions for use in scrolling
+    $('.gall-box, video').each(function(){
+      var offSetY;
+      offsetY = $(this).position().top;
+      $(this).addClass('skipTo');
+    });
+    // make a mini menu from the header elements in the document at root level
     var miniMenu = "<ul id='miniMenu' style='display: none;'>"
     miniMenu = miniMenu + "<li class='h2'><a href='#top'>Title</a></li>";
     $('#cont > h2, #cont h3, #cont h4').each(function(){

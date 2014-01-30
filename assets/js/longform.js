@@ -79,9 +79,6 @@ $(document).ready(function(){
       }
       miniMenu = miniMenu + "<li class='" + type + "'><a href='#" + offsetY + "'>" + $(this).html() + "</a></li>"
     });
-    $('#cont > h2, #cont h3, #cont h4').bind('click', function(){
-      console.log($(this).text());
-    });
     // is there a gallery? if so, add it
     if ($('.thumb-gallery')[0]){
       var gallPos = $('.thumb-gallery').position().top;

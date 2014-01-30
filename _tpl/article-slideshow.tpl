@@ -39,8 +39,8 @@
       {{ /if }}
       {{ if $smarty.foreach.insideslideshow.last }}
           </ul>
-        </div><!-- / Thumb gallery -->
       {{ /if }}
     {{ /foreach }}
   {{ /if }}
+        </div><!-- / Thumb gallery -->
 {{ /foreach }}

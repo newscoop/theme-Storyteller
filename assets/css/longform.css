@@ -161,6 +161,15 @@ body {
       color: #666665;
       padding: 10px 20px;
       }
+
+/* after article video */
+.video-attachment {
+  overflow: hidden;
+  }
+  .video-attachment video {
+    display: block;
+    }
+/* stuff for the article tools at the bottom of the article */
 #longform-article-tools {
   background: #fff;
   }

@@ -94,4 +94,58 @@ $(document).ready(function(){
     }, 500);
   }, 1000);
 
+  // make magic happen on position of viewport
+  setInterval(function(){
+    var currViewportPos = window.pageYOffset;
+    // not working yet
+    // $('.skipTo').each(function(){
+    //   if ($(this).position().top < currViewportPos) {
+    //     scrollTop: $(this).position().top
+    //   }
+    // });
+    $('.video-attachment video').each(function(){
+      // you want this play when the parent container comes into view, not the video as that's been offset
+      var vidPos = $(this).parent().position().top;
+      var vidName = $(this).attr('id');
+      if (currViewportPos > (vidPos - 10)) {
+        $(this)[0].play();
+      } else {
+        $(this)[0].pause();
+      }
+      if (currViewportPos > (vidPos + winHeight)){
+        $(this)[0].pause();
+      }
+    });
+  }, 500);
+
+  // keep full screen videos at 0 0 of viewport
+  // has to be outside the previous loop as the tick is much quicker
+  setInterval(function(){
+    var currViewportPos = window.pageYOffset;
+    var vidPos = $('.video-attachment').position().top;
+    var vidOffsetY = currViewportPos - vidPos;
+    if (vidOffsetY < 0) {
+      $('.video-attachment video').css({
+        '-webkit-transform': 'translate(0, ' + vidOffsetY + 'px)',
+           '-moz-transform': 'translate(0, ' + vidOffsetY + 'px)',
+            '-ms-transform': 'translate(0, ' + vidOffsetY + 'px)',
+             '-o-transform': 'translate(0, ' + vidOffsetY + 'px)',
+                'transform': 'translate(0, ' + vidOffsetY + 'px)'
+      });
+    }
+    // if the video isn't about to be played, hide it
+    $('.video-attachment video').each(function(){
+      var vidPos = $(this).parent().position().top;
+      if ((currViewportPos - (winHeight)) > vidPos){
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+      if ((currViewportPos + (winHeight)) > vidPos){
+        $(this).show();
+      }
+    });
+  }, 10);
+
+
 });

@@ -29,30 +29,6 @@ $(document).ready(function(){
     i = 1;
   });
 
-  // video stuff
-  // wishlist:
-  //    autoplay on focus - check
-  //    hide miniMenu - check
-  //    reshow miniMenu when above or below video - check
-  setInterval(function(){
-    var currViewportPos = window.pageYOffset;
-    $('video').each(function(){
-      var vidPos = $(this).position().top;
-      var vidName = $(this).attr('id');
-      if ( currViewportPos > vidPos ) {
-        $(this)[0].play();
-        $('#miniMenu').fadeOut();
-      } else {
-        $(this)[0].pause();
-        $('#miniMenu').fadeIn();
-      }
-      if ( currViewportPos > (vidPos + winHeight) ){
-        $(this)[0].pause();
-        $('#miniMenu').fadeIn();
-      }
-    });
-  }, 500);
-
   // all this has to happen after the content has loaded or the offsets are incorrect
   setTimeout(function(){
     // get some offset positions for use in scrolling

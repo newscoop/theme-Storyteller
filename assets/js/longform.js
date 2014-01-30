@@ -75,6 +75,12 @@ $(document).ready(function(){
     $('#cont > h2, #cont h3, #cont h4').bind('click', function(){
       console.log($(this).text());
     });
+    // is there a gallery? if so, add it
+    if ($('.thumb-gallery')[0]){
+      var gallPos = $('.thumb-gallery').position().top;
+      $('.thumb-gallery').attr('id', gallPos);
+      miniMenu = miniMenu + "<li class='h2'><a href='" + gallPos + "'>Gallery</a></li>";
+    }
     miniMenu = miniMenu + "</ul>"
     $('#top').append(miniMenu);
     $('#miniMenu').fadeIn(1000);

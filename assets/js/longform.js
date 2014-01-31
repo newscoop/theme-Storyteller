@@ -32,11 +32,11 @@ $(document).ready(function(){
   // all this has to happen after the content has loaded or the offsets are incorrect
   setTimeout(function(){
     // get some offset positions for use in scrolling
-    $('.gall-box, video').each(function(){
-      var offSetY;
-      offsetY = $(this).position().top;
-      $(this).addClass('skipTo');
-    });
+    // $('.gall-box, video').each(function(){
+    //   var offSetY;
+    //   offsetY = $(this).position().top;
+    //   $(this).addClass('skipTo');
+    // });
     // make a mini menu from the header elements in the document at root level
     var miniMenu = "<ul id='miniMenu' style='display: none;'>"
     miniMenu = miniMenu + "<li class='h2'><a href='#top'>Title</a></li>";
@@ -61,6 +61,15 @@ $(document).ready(function(){
       $('.thumb-gallery').attr('id', gallPos);
       miniMenu = miniMenu + "<li class='h2'><a href='" + gallPos + "'>Gallery</a></li>";
     }
+    // are there videos if so, add them
+    // if ($('.video-attachment')[0]){
+    //   var vidContPos = $('.video-attachment').position().top;
+    //   miniMenu = miniMenu + "<li class='h2'><a href='" + vidContPos + "'>Videos</a></li>";
+    //   $('.video-attachment video').each(function(){
+    //     var vidPos = ($(this).attr('id', $(this).position().top));
+    //     miniMenu = miniMenu + "<li class='h2'><a href='" + vidPos + "'>" + $(this).attr('src') + "</a></li>";
+    //   });
+    // }
     miniMenu = miniMenu + "</ul>"
     $('#top').append(miniMenu);
     $('#miniMenu').fadeIn(1000);
@@ -111,15 +120,13 @@ $(document).ready(function(){
     var currViewportPos = window.pageYOffset;
     var vidPos = $('.video-attachment').position().top;
     var vidOffsetY = currViewportPos - vidPos;
-    if (vidOffsetY < 0) {
-      $('.video-attachment video').css({
-        '-webkit-transform': 'translate(0, ' + vidOffsetY + 'px)',
-           '-moz-transform': 'translate(0, ' + vidOffsetY + 'px)',
-            '-ms-transform': 'translate(0, ' + vidOffsetY + 'px)',
-             '-o-transform': 'translate(0, ' + vidOffsetY + 'px)',
-                'transform': 'translate(0, ' + vidOffsetY + 'px)'
-      });
-    }
+    $('.video-attachment video').css({
+      '-webkit-transform': 'translate(0, ' + vidOffsetY + 'px)',
+         '-moz-transform': 'translate(0, ' + vidOffsetY + 'px)',
+          '-ms-transform': 'translate(0, ' + vidOffsetY + 'px)',
+           '-o-transform': 'translate(0, ' + vidOffsetY + 'px)',
+              'transform': 'translate(0, ' + vidOffsetY + 'px)'
+    });
     // if the video isn't about to be played, hide it
     $('.video-attachment video').each(function(){
       var vidPos = $(this).parent().position().top;
@@ -132,7 +139,7 @@ $(document).ready(function(){
         $(this).show();
       }
     });
-  }, 10);
+  }, 30);
 
 
 });

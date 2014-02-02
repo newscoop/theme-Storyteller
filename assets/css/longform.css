@@ -134,6 +134,12 @@ body {
           content: "";
           margin-bottom: 10px;
         }
+  #cont video {
+    background: rgba(255, 255, 255, .75);
+    padding: 3px;
+    height: auto!important;
+    box-shadow: 0 0 1px #000;
+    }
   .thumb-gallery {
     overflow: hidden;
     height: auto;

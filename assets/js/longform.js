@@ -14,9 +14,8 @@ $(document).ready(function(){
   var leadImgSrc = leadImg.attr('src');
   $('body').attr('style', 'background-image: url(' + leadImgSrc + ');');
 
-  // change the videos in the body
+  // change the videos in the body to native objects
   $('#cont video').each(function(){
-    $(this).attr('preload','true').attr('controls','true');
     $(this).find('object').remove();
   });
 

@@ -150,11 +150,13 @@ $(document).ready(function(){
     $('#cont video').each(function(){
       var vidPos = $(this).position().top;
       var vidHeight = $(this).height();
-      if ((currViewportPos + (winHeight - vidHeight) / 2) > vidPos){
+      if (vidPos < (currViewportPos + (winHeight - vidHeight) / 2)){
         $(this)[0].play();
+        $(this).attr('muted', false);
       }
-      if ((currViewportPos - vidHeight) > vidPos){
-        $(this)[0].pause(); 
+      if (vidPos < currViewportPos || (vidPos > (currViewportPos + winHeight))){
+        $(this)[0].pause();
+        $(this).attr('muted', true);
       }
     });
 

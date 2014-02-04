@@ -32,6 +32,14 @@
 
   <!-- Video  -->
   {{ if $gimme->article->longform }}
+  
+    {{ if $gimme->article->has_map }}
+    <div class="map-attachment aside-box">
+      <h2>{{ #storyPlaces# }}</h2>
+      {{ map show_locations_list="false" show_big_map="false" show_reset_link="false" width="290" height="195" }}
+    </div>
+    {{ /if }}
+  
     {{ list_article_attachments }}
     {{ if $gimme->attachment->extension == oga }}
       <div class="audio-attachment aside-box">
@@ -41,6 +49,7 @@
         </audio>
       </div><!-- /.audio-attachment -->
     {{ /if }}
+
 
     {{ if $gimme->attachment->extension == ogv || $gimme->attachment->extension == ogg || $gimme->attachment->extension == mp4 || $gimme->attachment->extension == webm }}             
 

@@ -43,7 +43,7 @@ $(document).ready(function(){
     //   $(this).addClass('skipTo');
     // });
     // make a mini menu from the header elements in the document at root level
-    var miniMenu = "<ul id='miniMenu' style='display: none;'>"
+    var miniMenu = "<ul id='miniMenu'>"
     miniMenu = miniMenu + "<li class='h2'><a href='#top'>Title</a></li>";
     $('#cont > h2, #cont h3, #cont h4').each(function(){
       var offsetY = $(this).position().top;
@@ -76,7 +76,7 @@ $(document).ready(function(){
     //   });
     // }
     miniMenu = miniMenu + "</ul>"
-    // $('#top').append(miniMenu);
+    $('#top').append(miniMenu);
     $('#miniMenu').fadeIn(1000);
 
     setTimeout(function(){
@@ -158,7 +158,17 @@ $(document).ready(function(){
       }
     });
 
-  }, 30);
+    // hide miniMenu if it's on top of a gallery element
+    var gallPos = $('.thumb-gallery').position().top;
+    var gallHeight = $('.thumb-gallery').height();
+    if (((currViewportPos + 10) > gallPos) || (currViewportPos < (gallPos + gallHeight))){
+      $('#miniMenu').fadeOut();
+    } else {
+      $('#miniMenu').fadeIn();
+    }
+    console.log(currViewportPos + " " + parseInt(gallPos + gallHeight));
+
+  }, 1);
 
 
 });

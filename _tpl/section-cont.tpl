@@ -2,7 +2,7 @@
   <h2>{{ #section# }} <span>{{ $gimme->section->name }}</span></h2>
 </div>
 
-{{ list_articles length="8" ignore_issue="true" constraints="type not poll" }}
+{{ list_articles length="8" ignore_issue="true" constraints="type not poll section not 70" }}
 
 {{ if $gimme->current_list->at_beginning }}
           <section class="grid-2">       

@@ -77,7 +77,7 @@
           <ul class="show">
     {{ local }}
     {{ set_current_issue }}
-    {{ list_sections }}              
+    {{ list_sections constraints="number not 70" }}
                <li{{ if $gimme->section->number == $gimme->default_section->number }} class="active"{{ /if }}><a href="{{ uri options="section" }}" title="{{ #viewAllPosts# }} {{ $gimme->section->name }}">{{ $gimme->section->name }}</a></li>
     {{ /list_sections }}
     {{ /local }}

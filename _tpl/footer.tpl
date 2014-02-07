@@ -6,7 +6,7 @@
                   <li>
                       <ul>
          {{ set_current_issue }}    
-          {{ list_sections }}       
+          {{ list_sections constraints="number not 70" }}
           <li><a href="{{ url options="section" }}" title="{{ $gimme->section->name }}">{{ $gimme->section->name }}</a></li>
           {{ /list_sections }}                      
                       </ul>

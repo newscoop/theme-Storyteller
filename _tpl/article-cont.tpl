@@ -30,40 +30,5 @@
 
   {{ include file="_tpl/article-slideshow.tpl" }}
 
-  <!-- Video  -->
-  {{ if $gimme->article->longform }}
-  
-    {{ if $gimme->article->has_map }}
-    <div class="map-attachment aside-box">
-      <h2>{{ #storyPlaces# }}</h2>
-      {{ map show_locations_list="false" show_big_map="false" show_reset_link="false" width="290" height="195" }}
-    </div>
-    {{ /if }}
-  
-    {{ list_article_attachments }}
-    {{ if $gimme->attachment->extension == oga }}
-      <div class="audio-attachment aside-box">
-        <h2>{{ #listenAudio# }}</h2>
-        <audio src="{{ uri options="articleattachment" }}" width="290" controls>
-          <a href="{{ uri options="articleattachment" }}">{{ #downloadAudioFile# }}</a>
-        </audio>
-      </div><!-- /.audio-attachment -->
-    {{ /if }}
-
-
-    {{ if $gimme->attachment->extension == ogv || $gimme->attachment->extension == ogg || $gimme->attachment->extension == mp4 || $gimme->attachment->extension == webm }}             
-
-      <div class="video-attachment aside-box"><!-- read http://diveintohtml5.org/video.html -->
-        <h2>{{ #watchVideo# }}</h2>
-        <video id="video_{{ $gimme->current_list->index }}" preload="auto">
-          <source src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}'>
-          <a href="{{ uri options="articleattachment" }}">{{ #download# }} .{{ $gimme->attachment->extension }} {{ #file# }}</a>
-        </video>
-      </div><!-- /#video-attachment --> 
-
-    {{ /if }}
-    {{ /list_article_attachments }}
-  {{ /if }}
-
 
 </article>

@@ -35,6 +35,9 @@
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="touch-icon.png">
 
+    <link rel="stylesheet" href='{{ url static_file="assets/css/main.css?v=$curVer" }}'>
+    <link rel="stylesheet" href='{{ url static_file="assets/css/skin.css?v=$curVer" }}'>
+
     <!-- longform styles  -->
     {{ if $gimme->article->longform }}
       <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/longform.css?v=$curVer" }}' />
@@ -45,9 +48,6 @@
       {{ elseif $gimme->article->cosmograd }}
         <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/cosmograd.css?v=$curVer" }}' />
       {{ /if }}
-    {{ else }}
-      <link rel="stylesheet" href='{{ url static_file="assets/css/main.css?v=$curVer" }}'>
-      <link rel="stylesheet" href='{{ url static_file="assets/css/skin.css?v=$curVer" }}'>
     {{ /if }}
     <!-- /longform -->
 

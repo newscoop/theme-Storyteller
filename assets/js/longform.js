@@ -23,12 +23,21 @@ $(document).ready(function(){
         var elemHeight = $(this).parent().height();
         var matchClass = $(this).parent().attr('class');
         matchClass = matchClass.replace('h2 ','');
+        var active = matchClass;
+        $(this).parent().siblings().not('.h2').animate({
+          'height': 0
+        }, 250);
         if ($(this).hasClass('active')){
+          $(this).parent().siblings().not('.h2').animate({
+            'height': 0
+          }, 250);
           $(this).removeClass('active');
-          $(this).parent().siblings('.' + matchClass).css('height','0');
         } else {
+          $(this).parent().siblings('.' + matchClass).animate({
+            'height': elemHeight + 'px'
+          }, 250);
+          $(this).parent().siblings().find('span').removeClass('active');
           $(this).addClass('active');
-          $(this).parent().siblings('.' + matchClass).css('height', elemHeight);
         }
       });
       $('#miniMenu a').bind('click', function(){

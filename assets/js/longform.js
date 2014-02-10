@@ -7,7 +7,7 @@ $(document).ready(function(){
   var miniMenu = "<ul id='miniMenu'>";
   var elemType;
   var i = 1;
-  $('#content h2, #content h3').each(function(){
+  $('#content h2, #content h3').not('.audio-attachment h3, .video-attachment h3, .attachment h3').each(function(){
     elemType = this.tagName.toLowerCase();
     elemParent = $(this).parent().parent().attr('id');
     $(this).addClass(elemType).attr('id', i);
@@ -70,8 +70,44 @@ $(document).ready(function(){
   });
 
   // deltaloop
+  var audioMaxCount = 100;
+  var audioMinCount = 0;
+  var audioVolumeCount = 0;
   setInterval(function(){
     var currViewportPos = window.pageYOffset;
+    $('audio.ambient').each(function(){
+      var parentPos = $(this).parent().position().top;
+      var parentHeight = $(this).parent().height();
+      if (currViewportPos > parentPos){
+        if (currViewportPos < parentHeight) {
+          $(this)[0].play();
+          if (audioMinCount < 100){
+            audioMinCount = audioMinCount + 1;
+            if (audioVolumeCount >= 1){
+              audioVolumeCount = 1;
+            } else {
+              audioVolumeCount = audioVolumeCount + .01;
+            }
+            $(this)[0].volume = audioVolumeCount.toFixed(2);
+          } else {
+            audioMinCount = 0;
+          }
+        } else {
+          if (audioMaxCount > 0){
+            audioMaxCount = audioMaxCount - 1;
+            if (audioVolumeCount <= 0){
+              audioVolumeCount = 0;
+            } else {
+              audioVolumeCount = audioVolumeCount - .01;
+            }
+            $(this)[0].volume = audioVolumeCount.toFixed(2);
+          } else {
+            $(this)[0].pause();
+            audioMaxCount = 100;
+          }
+        }
+      }
+    });
     // $('h2').each(function(){
       // if (currViewportPos > $(this).position().top){
         // this is where the background image will do something

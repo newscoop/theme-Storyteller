@@ -66,7 +66,6 @@ $(document).ready(function(){
       //   });
       // }
     }
-    $(this).attr('data-offsety', $(this).position().top);
   });
 
   // deltaloop

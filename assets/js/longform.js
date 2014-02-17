@@ -70,48 +70,66 @@ $(document).ready(function(){
 
   // deltaloop
   var audioMaxCount = 100;
+  var audioMaxPrevCount = audioMaxCount;
   var audioMinCount = 0;
-  var audioVolumeCount = 0;
+  var audioMinPrevCount = audioMinCount;
+  var playState = false;
+  var audioCount = 1;
+
+  $('audio.ambient').each(function(){
+    $(this).attr('data-count', audioCount);
+    audioCount = audioCount + 1;
+  });
+
   setInterval(function(){
     var currViewportPos = window.pageYOffset;
     $('audio.ambient').each(function(){
-      var parentPos = $(this).parent().position().top;
-      var parentHeight = $(this).parent().height();
-      if (currViewportPos > parentPos){
-        if (currViewportPos < parentHeight) {
-          $(this)[0].play();
-          if (audioMinCount < 100){
-            audioMinCount = audioMinCount + 1;
-            if (audioVolumeCount >= 1){
-              audioVolumeCount = 1;
-            } else {
-              audioVolumeCount = audioVolumeCount + .01;
-            }
-            $(this)[0].volume = audioVolumeCount.toFixed(2);
-          } else {
-            audioMinCount = 0;
-          }
-        } else {
-          if (audioMaxCount > 0){
-            audioMaxCount = audioMaxCount - 1;
-            if (audioVolumeCount <= 0){
-              audioVolumeCount = 0;
-            } else {
-              audioVolumeCount = audioVolumeCount - .01;
-            }
-            $(this)[0].volume = audioVolumeCount.toFixed(2);
-          } else {
-            $(this)[0].pause();
-            audioMaxCount = 100;
-          }
-        }
+      var parentPos = $(this).parent().parent().position().top;
+      var parentHeight = $(this).parent().parent().height();
+      if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
+        playState = true;
+      } else {
+        playState = false;
       }
+      controlAmbient($(this).data('count'));
     });
+
     // $('h2').each(function(){
       // if (currViewportPos > $(this).position().top){
         // this is where the background image will do something
       // }
     // });
-  }, 25);
+
+  }, 1000);
+
+  function controlAmbient(n){
+    var matchMe = n;
+    $('audio').each(function(){
+      if ($(this).data('count') == matchMe){
+        if (playState == true){
+          if (audioMaxPrevCount < audioMaxCount){
+            audioMaxPrevCount = audioMaxPrevCount + 1;
+            $(this)[0].volume = audioCount;
+          }
+          $(this)[0].play();
+        } else {
+          $(this)[0].pause();
+        }
+      }
+    });
+  }
+
+  // gallery stuff
+  $('.thumb-gallery .zoom').remove();
+  $('.thumb-gallery').wrapInner('<div class="stage"></div>');
+  var gallSize;
+  var gallHeight;
+  $('.thumb-gallery').each(function(){
+    gallHeight = $(this).find('.gall-box').first().find('figure').height();
+    gallSize = $(this).find('.stage .gall-box').length;
+    $(this).height(gallHeight);
+    $(this).find('.stage .gall-box').width($('#wrapper').width());
+    $(this).find('.stage').width((winWidth + 10) * gallSize);
+  });
 
 });

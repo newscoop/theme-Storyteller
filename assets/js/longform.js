@@ -94,27 +94,29 @@ $(document).ready(function(){
       controlAmbient($(this).data('count'));
     });
 
-    // $('h2').each(function(){
-      // if (currViewportPos > $(this).position().top){
-        // this is where the background image will do something
-      // }
-    // });
+  }, 30);
 
-  }, 1000);
-
+  var volCount = 0;
   function controlAmbient(n){
     var matchMe = n;
-    $('audio').each(function(){
+    $('audio.ambient').each(function(){
       if ($(this).data('count') == matchMe){
-        if (playState == true){
-          if (audioMaxPrevCount < audioMaxCount){
-            audioMaxPrevCount = audioMaxPrevCount + 1;
-            $(this)[0].volume = audioCount;
-          }
+        if ((volCount >= 0) && (volCount <= 1) && (playState == true)){
           $(this)[0].play();
+          volCount = volCount + .02;
+          if (volCount >= 1){
+            volCount = 1;
+          }
+          $(this)[0].volume = volCount.toFixed(1);
         } else {
-          $(this)[0].pause();
+          volCount = volCount - .02;
+          if (volCount <= 0){
+            volCount = 0;
+            $(this)[0].pause();
+          }
+          $(this)[0].volume = volCount.toFixed(1);
         }
+        console.log(volCount);
       }
     });
   }

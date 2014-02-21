@@ -100,7 +100,7 @@ $(document).ready(function(){
       // why do it twice? because it the render height on page load is much larger than the final computed height so it needs to be reset
       parentPos = $this.parent().parent().position().top;
       parentHeight = $this.parent().parent().height();
-      $this.parent().css('outline', 'solid 1px red');
+      // half second tick to check where we are with things
       setInterval(function(){
         currViewportPos = window.pageYOffset;
         if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){

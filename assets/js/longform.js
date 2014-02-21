@@ -95,30 +95,34 @@ $(document).ready(function(){
     // check to see where the window is in comparison to the current element and play audio accordingly / half second tick
     var parentPos = $(this).parent().parent().position().top;
     var parentHeight = $(this).parent().parent().height();
-    setInterval(function(){
-      currViewportPos = window.pageYOffset;
-      // console.log(currViewportPos + ' ' + parentPos + ' ' + parentHeight);
-      if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
-        // console.log(audioArr.vol.toFixed(1));
-        playState = true;
-        audio[0].play();
-        if (audioArr.vol > .9){
-          audioArr.vol = 1;  
+    var $this = $(this);
+    setTimeout(function(){
+      // why do it twice? because it the render height on page load is much larger than the final computed height so it needs to be reset
+      parentPos = $this.parent().parent().position().top;
+      parentHeight = $this.parent().parent().height();
+      $this.parent().css('outline', 'solid 1px red');
+      setInterval(function(){
+        currViewportPos = window.pageYOffset;
+        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
+          playState = true;
+          audio[0].play();
+          if (audioArr.vol > .9){
+            audioArr.vol = 1;  
+          } else {
+            audioArr.vol = audioArr.vol + .1;
+          }
         } else {
-          audioArr.vol = audioArr.vol + .1;
+          playState = false;
+          if (audioArr.vol < .1){
+            audioArr.vol = 0;
+            audio[0].pause();
+          } else {
+            audioArr.vol = audioArr.vol - .1;
+          }
         }
-      } else {
-        playState = false;
-        if (audioArr.vol < .1){
-          audioArr.vol = 0;
-          audio[0].pause();
-        } else {
-          audioArr.vol = audioArr.vol - .1;
-        }
-      }
-      audio[0].volume = audioArr.vol.toFixed(1);
-      console.log(playState + " " + audioArr.vol.toFixed(1) + " " + audio[0].volume);
-    }, 500);
+        audio[0].volume = audioArr.vol.toFixed(1);
+      }, 500);
+    }, 1000);
 
   });
 

@@ -101,12 +101,12 @@ $(document).ready(function(){
       if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
         // console.log(audioArr.vol.toFixed(1));
         playState = true;
+        audio[0].play();
         if (audioArr.vol > .9){
           audioArr.vol = 1;  
         } else {
           audioArr.vol = audioArr.vol + .1;
         }
-        audio[0].play();
       } else {
         playState = false;
         if (audioArr.vol < .1){
@@ -115,8 +115,8 @@ $(document).ready(function(){
         } else {
           audioArr.vol = audioArr.vol - .1;
         }
-        audio[0].volume = audioArr.vol.toFixed(1);
       }
+      audio[0].volume = audioArr.vol.toFixed(1);
       console.log(playState + " " + audioArr.vol.toFixed(1) + " " + audio[0].volume);
     }, 500);
 

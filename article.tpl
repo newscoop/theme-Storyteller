@@ -29,7 +29,8 @@
               {{ list_article_attachments }}
                 {{ if $gimme->attachment->extension == oga || $gimme->attachment->extension == mp3 || $gimme->attachment->extension == wav }}
                   {{ if $gimme->attachment->description == "ambient" }}
-                    <audio class="ambient" loop>
+                    
+                    <audio class="ambient" loop id="ambient-{{ $gimme->article->number }}">
                       <source src="{{ uri options="articleattachment" }}" />
                     </audio>
                   {{ else }}

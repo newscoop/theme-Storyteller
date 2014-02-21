@@ -59,67 +59,69 @@ $(document).ready(function(){
       var secPosterSrc = secPoster.find('img').attr('src');
       $(this).attr('style','background: url("' + secPosterSrc + '") 50% 50% no-repeat transparent; background-size: cover');
       $(this).css('line-height', winHeight + 'px');
-      // if (secPoster.next().is('.intro')){
-      //   var infoHeight = (secPoster.next().height() + 40);
-      //   secPoster.next().css({
-      //     'margin-top': '-' + (infoHeight / 3) + 'px'
-      //   });
-      // }
     }
   });
 
-  // deltaloop
-  var audioMaxCount = 100;
-  var audioMaxPrevCount = audioMaxCount;
-  var audioMinCount = 0;
-  var audioMinPrevCount = audioMinCount;
-  var playState = false;
-  var audioCount = 1;
+  // this gets used a lot
+  var currViewportPos = window.pageYOffset;
 
+  // ambient audio
   $('audio.ambient').each(function(){
-    $(this).attr('data-count', audioCount);
-    audioCount = audioCount + 1;
-  });
+    var audio = $(this);
+    var audioArr = audio.attr('id');
+    var audioArr = new Array();
+    audio[0].volume = 0;
+    playState = false;
 
-  setInterval(function(){
-    var currViewportPos = window.pageYOffset;
-    $('audio.ambient').each(function(){
-      var parentPos = $(this).parent().parent().position().top;
-      var parentHeight = $(this).parent().parent().height();
+    var i = 0;
+    var checkAudiostate = setInterval(function(){
+      if (audio[0].readyState > 0) {
+        audioArr.duration = audio[0].duration;
+        audioArr.id = audio.attr('id');
+        audioArr.src = audio.find('source').attr('src');
+        audioArr.pos = audio[0].currentTime;
+        audioArr.vol = audio[0].volume;
+        clearInterval(checkAudiostate);
+      } else {
+        console.log('Still trying to get audio duration… ' + i);
+        if (i == 120){
+          console.log('Tried for 1 minute, gave up');
+          clearInterval(checkAudiostate);
+        }
+        i = i + 1;
+      }
+    }, 500);
+
+    // check to see where the window is in comparison to the current element and play audio accordingly / half second tick
+    var parentPos = $(this).parent().parent().position().top;
+    var parentHeight = $(this).parent().parent().height();
+    setInterval(function(){
+      currViewportPos = window.pageYOffset;
+      // console.log(currViewportPos + ' ' + parentPos + ' ' + parentHeight);
       if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
+        // console.log(audioArr.vol.toFixed(1));
         playState = true;
+        if (audioArr.vol > .9){
+          audioArr.vol = 1;  
+        } else {
+          audioArr.vol = audioArr.vol + .1;
+        }
+        audio[0].play();
       } else {
         playState = false;
-      }
-      controlAmbient($(this).data('count'));
-    });
-
-  }, 30);
-
-  var volCount = 0;
-  function controlAmbient(n){
-    var matchMe = n;
-    $('audio.ambient').each(function(){
-      if ($(this).data('count') == matchMe){
-        if ((volCount >= 0) && (volCount <= 1) && (playState == true)){
-          $(this)[0].play();
-          volCount = volCount + .02;
-          if (volCount >= 1){
-            volCount = 1;
-          }
-          $(this)[0].volume = volCount.toFixed(1);
+        if (audioArr.vol < .1){
+          audioArr.vol = 0;
+          audio[0].pause();
         } else {
-          volCount = volCount - .02;
-          if (volCount <= 0){
-            volCount = 0;
-            $(this)[0].pause();
-          }
-          $(this)[0].volume = volCount.toFixed(1);
+          audioArr.vol = audioArr.vol - .1;
         }
-        console.log(volCount);
+        audio[0].volume = audioArr.vol.toFixed(1);
       }
-    });
-  }
+      console.log(playState + " " + audioArr.vol.toFixed(1) + " " + audio[0].volume);
+    }, 500);
+
+  });
+
 
   // gallery stuff
   $('.thumb-gallery .zoom').remove();

@@ -9,10 +9,11 @@
 {{ /if }}
 
 {{ if $gimme->article->longform }}
-  <script src="{{ uri static_file="assets/js/longform.js" }}"></script>
+  <script src='{{ uri static_file="assets/js/longform.js" }}'></script>
 {{ else }}
-  <script src="{{ uri static_file="assets/js/init.js" }}"></script>
+  <script src='{{ uri static_file="assets/js/init.js" }}'></script>
 {{ /if }}
 
+<script src="{{ url static_file='assets/js/libs/jquery.bxslider.min.js' }}"></script>
 <script src="{{ url static_file='assets/js/plugins.js' }}"></script>
 <script src="{{ url static_file='assets/js/script.js' }}"></script>

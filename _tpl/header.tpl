@@ -19,7 +19,7 @@
                       <ul class="sub">
                           <li><a href="#">{{ #followAtTwitter# }}</a></li>
                           <li><a href="#">{{ #likeOnFacebook# }}</a></li>
-                          <li><a href="http://{{ $gimme->publication->site }}/static/rss">{{ #signupRSS# }}</a></li>
+                          <li><a href="http://{{ $gimme->publication->site }}/{{ $gimme->language->code}}/static/rss">{{ #signupRSS# }}</a></li>
                         </ul>
                     </li>
                     <li class="share"><a href="#">{{ #shareThis# }}</a>

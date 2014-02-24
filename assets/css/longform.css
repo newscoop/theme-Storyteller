@@ -55,6 +55,22 @@
     font-size: 16pt;
     line-height: 2em;
     }
+  .longform .bxslider {
+    }
+    .longform .bxslider figure {
+      position: relative;
+      }
+      .longform .bxslider img {
+        width: 100%;
+        height: auto;
+        }
+      .longform .bxslider small {
+        font-size: inherit;
+        line-height: 20px;
+        margin-bottom: 0;
+        }
+    .longform .bx-pager {
+      }
 
 #miniMenu {
   display: none;

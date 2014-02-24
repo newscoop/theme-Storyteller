@@ -23,8 +23,32 @@
               <p><em>{{ #thisArticleIsLocked# }}</em></p>
             {{ /if }}
           
-            {{ include file="_tpl/article-slideshow.tpl" }}
-
+            {{* slideshow *}}
+            {{ assign var="i" value=0 }}
+            {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
+              {{ foreach $slideshow->items as $item name=insideslideshow }}
+                {{ if $smarty.foreach.insideslideshow.first }}
+                <div class="bxslider">
+                {{ /if }}
+                {{ assign var="i" value=$i+1 }}
+                {{ if $item->is_image }}
+                  <div id="tab-{{ $i }}" class="gall-box">
+                    <figure>
+                      <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
+                      <small>{{ $item->caption }} {{ if !(empty($item->image->photographer)) }}(Bild: {{ $item->image->photographer }}){{ /if }}</small>
+                    </figure>
+                  </div>
+                {{ else }}
+                  <div id="tab-{{ $i }}" class="gall-box">
+                    <figure>
+                      {{ video_player video=$item->video }}
+                      <small>{{ $item->caption }}</small>
+                    </figure>
+                  </div>
+                {{ /if }}
+              {{ /foreach }} 
+              </div><!-- / Thumb gallery -->
+            {{ /foreach }}
             {{ if $gimme->article->has_attachments }}
               {{ list_article_attachments }}
                 {{ if $gimme->attachment->extension == oga || $gimme->attachment->extension == mp3 || $gimme->attachment->extension == wav }}

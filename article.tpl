@@ -2,7 +2,7 @@
 
 {{ include file="_tpl/_html-head.tpl" }}
   
-  <div id="wrapper">
+  <div id="wrapper" {{ if $gimme->article->minimenu }}class="minimenu"{{ /if }}>
 
     {{ include file="_tpl/header.tpl" }}
 

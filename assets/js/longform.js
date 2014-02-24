@@ -1,57 +1,109 @@
 $(document).ready(function(){
+
+  // main menu
+  if( $(window).width() < 660) {
+    var expandCounter = 0;
+    $('.top-menu ul li a').click(function(){
+      if (expandCounter == 0) {
+        $(this).addClass('active');
+        $(this).next('.sub').slideDown('fast');
+        expandCounter = 1;
+      } else if ($(this).hasClass('active')) {
+        $('.top-menu ul li a').removeClass('active');
+        $('.sub').slideUp('fast');
+        expandCounter = 0;
+      } else {
+        $('.top-menu ul li a').removeClass('active');
+        $('.sub').slideUp('fast');
+        $(this).addClass('active');
+        $(this).next('.sub').slideDown('fast');
+        expandCounter = 1;
+      };
+      return false;
+    });
+    
+    $('a.cat-trigger').click(function(){
+      $('.top-menu ul li a').removeClass('active');
+      $('.top-menu ul li .sub').slideUp();
+      $(this).next('ul').slideToggle('fast');
+      expandCounter = 0;
+    });
+    
+    $('.search-box a.search-trigger').click(function(){
+      $('.top-menu ul li a').removeClass('active');
+      $('.top-menu ul li .sub').slideUp();
+      $(this).toggleClass('active');
+      $(this).next('div').slideToggle('fast');
+      expandCounter = 0;
+    });
+    
+  } else {
+    
+    // Man Nav
+    $('.top-menu ul li').hover(function(){
+      $(this).children('a').addClass('active');
+      $(this).children('.sub').slideDown('fast');
+    },
+    function(){
+      $(this).children('a').removeClass('active');
+      $(this).children('.sub').slideUp('fast');
+    });
+  }
+
   // these vars get used a whole lot
   var winHeight = $(window).height();
   var winWidth = $(window).width();
 
   // make a mini menu for easier navigation
-  var miniMenu = "<ul id='miniMenu'>";
-  var elemType;
-  var i = 1;
-  $('#content h2, #content h3').not('.audio-attachment h3, .video-attachment h3, .attachment h3').each(function(){
-    elemType = this.tagName.toLowerCase();
-    elemParent = $(this).parent().parent().attr('id');
-    $(this).addClass(elemType).attr('id', i);
-    miniMenu = miniMenu + "<li class='" + elemType + " " + elemParent + "'><span>+</span><a href='#" + i + "'>" + $(this).text() + "</a></li>";
-    i = i + 1;
-  });
-  miniMenu = miniMenu + "</ul>";
-  $('body').append(miniMenu);
-  setTimeout(function(){
-    $('body #miniMenu').fadeIn(1000, function(){
-      // do click events on the miniMenu
-      $('#miniMenu li span').bind('click', function(){
-        var elemHeight = $(this).parent().height();
-        var matchClass = $(this).parent().attr('class');
-        matchClass = matchClass.replace('h2 ','');
-        var active = matchClass;
-        $(this).parent().siblings().not('.h2').animate({
-          'height': 0
-        }, 250);
-        if ($(this).hasClass('active')){
+  if ($('#wrapper').hasClass('minimenu')){
+    var miniMenu = "<ul id='miniMenu'>";
+    var elemType;
+    var i = 1;
+    $('#content h2, #content h3').not('.audio-attachment h3, .video-attachment h3, .attachment h3').each(function(){
+      elemType = this.tagName.toLowerCase();
+      elemParent = $(this).parent().parent().attr('id');
+      $(this).addClass(elemType).attr('id', i);
+      miniMenu = miniMenu + "<li class='" + elemType + " " + elemParent + "'><span>+</span><a href='#" + i + "'>" + $(this).text() + "</a></li>";
+      i = i + 1;
+    });
+    miniMenu = miniMenu + "</ul>";
+    $('body').append(miniMenu);
+    setTimeout(function(){
+      $('body #miniMenu').fadeIn(1000, function(){
+        // do click events on the miniMenu
+        $('#miniMenu li span').bind('click', function(){
+          var elemHeight = $(this).parent().height();
+          var matchClass = $(this).parent().attr('class');
+          matchClass = matchClass.replace('h2 ','');
+          var active = matchClass;
           $(this).parent().siblings().not('.h2').animate({
             'height': 0
           }, 250);
-          $(this).removeClass('active');
-        } else {
-          $(this).parent().siblings('.' + matchClass).animate({
-            'height': elemHeight + 'px'
-          }, 250);
-          $(this).parent().siblings().find('span').removeClass('active');
-          $(this).addClass('active');
-        }
+          if ($(this).hasClass('active')){
+            $(this).parent().siblings().not('.h2').animate({
+              'height': 0
+            }, 250);
+            $(this).removeClass('active');
+          } else {
+            $(this).parent().siblings('.' + matchClass).animate({
+              'height': elemHeight + 'px'
+            }, 250);
+            $(this).parent().siblings().find('span').removeClass('active');
+            $(this).addClass('active');
+          }
+        });
+        $('#miniMenu a').bind('click', function(){
+          var elemMatch = $(this).attr('href');
+          var elemPos = $('#content').find(elemMatch).position().top;
+          $('body').animate({
+            scrollTop: elemPos
+          }, 1000);
+          // console.log(elemPos);
+          return false;
+        });
       });
-      $('#miniMenu a').bind('click', function(){
-        var elemMatch = $(this).attr('href');
-        var elemPos = $('#content').find(elemMatch).position().top;
-        $('body').animate({
-          scrollTop: elemPos
-        }, 1000);
-        // console.log(elemPos);
-        return false;
-      });
-    });
-  }, 3000);
-
+    }, 3000);
+  }
 
   $('#content h2').each(function(){
     var secPoster = $(this).next();

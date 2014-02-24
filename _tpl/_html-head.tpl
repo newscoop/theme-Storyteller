@@ -37,6 +37,7 @@
 
     <link rel="stylesheet" href='{{ url static_file="assets/css/main.css?v=$curVer" }}'>
     <link rel="stylesheet" href='{{ url static_file="assets/css/skin.css?v=$curVer" }}'>
+    <link rel="stylesheet" href='{{ url static_file="assets/css/jquery.bxslider.css" }}' />
 
     <!-- longform styles  -->
     {{ if $gimme->article->longform }}
@@ -63,5 +64,7 @@
     
   <!-- Video.js -->
   <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-  <script src="http://vjs.zencdn.net/c/video.js"></script>    
+  {{ if not $gimme->article->longform }}
+  <script src="http://vjs.zencdn.net/c/video.js"></script>
+  {{ /if }}
 </head>

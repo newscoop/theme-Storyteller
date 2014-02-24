@@ -128,16 +128,10 @@ $(document).ready(function(){
 
 
   // gallery stuff
-  $('.thumb-gallery .zoom').remove();
-  $('.thumb-gallery').wrapInner('<div class="stage"></div>');
-  var gallSize;
-  var gallHeight;
-  $('.thumb-gallery').each(function(){
-    gallHeight = $(this).find('.gall-box').first().find('figure').height();
-    gallSize = $(this).find('.stage .gall-box').length;
-    $(this).height(gallHeight);
-    $(this).find('.stage .gall-box').width($('#wrapper').width());
-    $(this).find('.stage').width((winWidth + 10) * gallSize);
-  });
+  if ($('.bxslider > div')[0]){
+    $('.bxslider').bxSlider({
+      auto: true
+    });
+  }
 
 });

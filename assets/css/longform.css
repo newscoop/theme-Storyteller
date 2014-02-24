@@ -1,3 +1,6 @@
+#top {
+  z-index: 2;
+  }
 .longform {
   }
   .longform .main {
@@ -69,8 +72,20 @@
         line-height: 20px;
         margin-bottom: 0;
         }
-    .longform .bx-pager {
-      }
+
+/* whiteout */
+.whiteout-main {
+  position: absolute;
+  background: white;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  }
+  .whiteout #content {
+    position: relative;
+    z-index: 1;
+    }
 
 #miniMenu {
   display: none;

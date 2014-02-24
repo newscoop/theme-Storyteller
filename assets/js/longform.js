@@ -54,6 +54,39 @@ $(document).ready(function(){
   var winHeight = $(window).height();
   var winWidth = $(window).width();
 
+  // 'whiteout' mode makes the header elements in the Rockstar theme only show when hovered
+  if ($('#wrapper').hasClass('whiteout')){
+    // make a big old white div to hide the other content
+    $('body').append('<div class="whiteout-main"></div>');
+    // just hide the main site header - maybe have these fold out later
+    $('#header').hide();
+    $('#nav-bar').hide();
+    // fade the top bar out
+    $('#top').css({
+      'opacity': '0'
+    });
+    $('#top').bind('mouseleave', function(){
+      setTimeout(function(){
+        $('.whiteout-main').animate({
+          'opacity': '1'
+        }, 1000);
+        $('#top').animate({
+          'opacity': '0'
+        }, 1000);
+      }, 500);
+    });
+
+    $('#top').bind('mouseenter', function(){
+      $('.whiteout-main').animate({
+        'opacity': '0'
+      }, 750);
+      $(this).animate({
+        'opacity': '1'
+      }, 750);
+      $(this).addClass('active');
+    });
+  }
+
   // make a mini menu for easier navigation
   if ($('#wrapper').hasClass('minimenu')){
     var miniMenu = "<ul id='miniMenu'>";

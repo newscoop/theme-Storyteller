@@ -65,15 +65,28 @@ $(document).ready(function(){
     $('#top').css({
       'opacity': '0'
     });
+
+    // get mousepos x-axis
+    var mouseY;
+    $(document).mousemove(function(e){
+      mouseY = e.pageY;
+      console.log(mouseY);
+    });
+
+    var topElemHeight = $('#top').height();
+    console.log(topElemHeight);
+
     $('#top').bind('mouseleave', function(){
       setTimeout(function(){
-        $('.whiteout-main').animate({
-          'opacity': '1'
-        }, 1000);
-        $('#top').animate({
-          'opacity': '0'
-        }, 1000);
-      }, 500);
+        if (mouseY > topElemHeight){
+            $('.whiteout-main').animate({
+              'opacity': '1'
+            }, 1000);
+            $('#top').animate({
+              'opacity': '0'
+            }, 1000);
+        }
+      }, 1000);
     });
 
     $('#top').bind('mouseenter', function(){

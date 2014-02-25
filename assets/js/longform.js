@@ -70,11 +70,9 @@ $(document).ready(function(){
     var mouseY;
     $(document).mousemove(function(e){
       mouseY = e.pageY;
-      console.log(mouseY);
     });
 
     var topElemHeight = $('#top').height();
-    console.log(topElemHeight);
 
     $('#top').bind('mouseleave', function(){
       setTimeout(function(){

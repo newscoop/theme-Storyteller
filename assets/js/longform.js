@@ -154,6 +154,7 @@ $(document).ready(function(){
       var secPosterSrc = secPoster.find('img').attr('src');
       $(this).attr('style','background: url("' + secPosterSrc + '") 50% 50% no-repeat transparent; background-size: cover');
       $(this).css('line-height', winHeight + 'px');
+      secPoster.remove();
     }
   });
 

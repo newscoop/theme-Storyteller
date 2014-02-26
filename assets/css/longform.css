@@ -36,6 +36,7 @@
       margin: 0 25px;
       padding: 0 25px;
       border: solid 1px #999;
+      box-shadow: 0 2px 2px #c0c0c0;
       }
   .longform h2 + figure {
     display: none;

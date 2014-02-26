@@ -33,7 +33,9 @@
     margin-bottom: 30px;
     }
     .longform article p video {
-      margin: 0 50px;
+      margin: 0 25px;
+      padding: 0 25px;
+      border: solid 1px #999;
       }
   .longform h2 + figure {
     display: none;

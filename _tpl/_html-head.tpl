@@ -62,9 +62,9 @@
         
     <script src="{{ url static_file="assets/js/libs/modernizr-2.0.6.js" }}"></script>
     
+  {{ if not $gimme->article->longform }}
   <!-- Video.js -->
   <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-  {{ if not $gimme->article->longform }}
   <script src="http://vjs.zencdn.net/c/video.js"></script>
   {{ /if }}
 </head>

@@ -142,7 +142,6 @@ $(document).ready(function(){
           $('body').animate({
             scrollTop: elemPos
           }, 1000);
-          // console.log(elemPos);
           return false;
         });
       });

@@ -225,7 +225,9 @@ $(document).ready(function(){
   // gallery stuff
   if ($('.bxslider > div')[0]){
     $('.bxslider').bxSlider({
-      auto: true
+      auto: true,
+      mode: 'fade',
+      speed: 2000
     });
   }
 

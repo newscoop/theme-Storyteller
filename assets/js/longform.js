@@ -161,6 +161,58 @@ $(document).ready(function(){
   // this gets used a lot
   var currViewportPos = window.pageYOffset;
 
+  // handle video
+  $('video').each(function(){
+    var video = $(this);
+    var videoArr = new Array();
+    video[0].volume = 0;
+    playState = false;
+
+    var i = 0;
+    var checkVideoState = setInterval(function(){
+      if (video[0].readyState > 0) {
+        videoArr.duration = video[0].duration;
+        videoArr.src = video.attr('src');
+        videoArr.pos = video[0].currentTime;
+        videoArr.vol = video[0].volume;
+        clearInterval(checkVideoState);
+      } else {
+        if (i == 120) {
+          clearInterval(checkVideoState);
+        }
+        i = i + 1;
+      }
+    }, 500);
+
+    setInterval(function(){
+      currViewportPos = window.pageYOffset;
+      var vidHeight = video.height();
+      // get top quarter of page
+      var vidPos = video.position().top;
+      if ((vidPos > (currViewportPos - (vidHeight / 2))) && (vidPos < ((currViewportPos - vidHeight) + winHeight))) {
+        video[0].play();
+      } else {
+        video[0].pause();
+      }
+      if (video[0].currentTime == video[0].duration){
+        video.addClass('ended');
+        video.css({
+          '-webkit-filter': 'grayscale(' + i + '%)',
+             '-moz-filter': 'grayscale(' + i + '%)',
+              '-ms-filter': 'grayscale(' + i + '%)',
+               '-o-filter': 'grayscale(' + i + '%)',
+                  'filter': 'grayscale(' + i + '%)',
+        });
+        if (i > 95){
+          i = 100
+        } else {
+          i = i + 5;
+        }
+      }
+    }, 500);
+
+  });
+
   // ambient audio
   $('audio.ambient').each(function(){
     var audio = $(this);
@@ -179,9 +231,9 @@ $(document).ready(function(){
         audioArr.vol = audio[0].volume;
         clearInterval(checkAudiostate);
       } else {
-        console.log('Still trying to get audio duration… ' + i);
+        // console.log('Still trying to get audio duration… ' + i);
         if (i == 120){
-          console.log('Tried for 1 minute, gave up');
+          // console.log('Tried for 1 minute, gave up');
           clearInterval(checkAudiostate);
         }
         i = i + 1;

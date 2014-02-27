@@ -165,7 +165,7 @@ $(document).ready(function(){
   $('video').each(function(){
     var video = $(this);
     var videoArr = new Array();
-    video[0].volume = 0;
+    video[0].volume = 1;
     vidState = false;
     playState = false;
 
@@ -245,7 +245,7 @@ $(document).ready(function(){
         audioArr.src = audio.find('source').attr('src');
         audioArr.pos = audio[0].currentTime;
         audioArr.vol = audio[0].volume;
-        console.log('loaded' + audioArr.src);
+        console.log('loaded ' + audioArr.src);
         clearInterval(checkAudiostate);
       } else {
         // console.log('Still trying to get audio duration… ' + i);

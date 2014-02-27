@@ -175,9 +175,11 @@ $(document).ready(function(){
         videoArr.src = video.attr('src');
         videoArr.pos = video[0].currentTime;
         videoArr.vol = video[0].volume;
+        console.log('loaded ' + videoArr.src);
         clearInterval(checkVideoState);
       } else {
         if (i == 120) {
+          console.log('couldn\'t load ' + video.attr('src'));
           clearInterval(checkVideoState);
         }
         i = i + 1;
@@ -191,6 +193,17 @@ $(document).ready(function(){
       var vidPos = video.position().top;
       if ((vidPos > (currViewportPos - (vidHeight / 2))) && (vidPos < ((currViewportPos - vidHeight) + winHeight))) {
         video[0].play();
+        $('audio.ambient').each(function(){
+          var audio = $(this);
+          var audioPrevPos = audio[0].currentTime;
+          var audioPos = audio[0].currentTime;
+          // console.log(audioPrevPos + " " + audioPos);
+          if (audioPos > audioPrevPos){
+            audio[0].pause();
+            audio.addClass('paused');
+          }
+          var i = 1;
+        });
       } else {
         video[0].pause();
       }
@@ -218,7 +231,6 @@ $(document).ready(function(){
     var audio = $(this);
     var audioArr = audio.attr('id');
     var audioArr = new Array();
-    audio[0].volume = 0;
     playState = false;
 
     var i = 0;
@@ -229,11 +241,12 @@ $(document).ready(function(){
         audioArr.src = audio.find('source').attr('src');
         audioArr.pos = audio[0].currentTime;
         audioArr.vol = audio[0].volume;
+        console.log('loaded' + audioArr.src);
         clearInterval(checkAudiostate);
       } else {
         // console.log('Still trying to get audio duration… ' + i);
         if (i == 120){
-          // console.log('Tried for 1 minute, gave up');
+          console.log('Tried for 1 minute, couldn\'t load ' + audio.find('source').attr('src'));
           clearInterval(checkAudiostate);
         }
         i = i + 1;

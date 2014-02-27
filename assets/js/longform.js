@@ -166,6 +166,7 @@ $(document).ready(function(){
     var video = $(this);
     var videoArr = new Array();
     video[0].volume = 0;
+    vidState = false;
     playState = false;
 
     var i = 0;
@@ -192,19 +193,22 @@ $(document).ready(function(){
       // get top quarter of page
       var vidPos = video.position().top;
       if ((vidPos > (currViewportPos - (vidHeight / 2))) && (vidPos < ((currViewportPos - vidHeight) + winHeight))) {
+        vidState = true;
         video[0].play();
         $('audio.ambient').each(function(){
           var audio = $(this);
           var audioPrevPos = audio[0].currentTime;
           var audioPos = audio[0].currentTime;
-          // console.log(audioPrevPos + " " + audioPos);
+          // if they don't match then the audio is playing
           if (audioPos > audioPrevPos){
             audio[0].pause();
+            playState = false;
             audio.addClass('paused');
           }
           var i = 1;
         });
       } else {
+        vidState = false;
         video[0].pause();
       }
       if (video[0].currentTime == video[0].duration){
@@ -264,7 +268,7 @@ $(document).ready(function(){
       // half second tick to check where we are with things
       setInterval(function(){
         currViewportPos = window.pageYOffset;
-        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
+        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState = false)){
           playState = true;
           audio[0].play();
           if (audioArr.vol > .9){

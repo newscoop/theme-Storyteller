@@ -49,44 +49,16 @@
               {{ /foreach }} 
               </div><!-- / Thumb gallery -->
             {{ /foreach }}
+
             {{ if $gimme->article->has_attachments }}
               {{ list_article_attachments length="1" }}
                 {{ if $gimme->attachment->extension == oga || $gimme->attachment->extension == mp3 || $gimme->attachment->extension == wav }}
-                  {{ if $gimme->attachment->description == "ambient" }}
-                    
+                  {{ if $gimme->attachment->description == "ambient" }}                    
                     <audio class="ambient" loop id="ambient-{{ $gimme->article->number }}">
                       <source src="{{ uri options="articleattachment" }}" />
                     </audio>
-                  {{ else }}
-                    <div class="audio-attachment">
-                      <h3>{{ #listenAudio# }}</h3>
-                      <audio src="{{ uri options="articleattachment" }}" width="290" controls>
-                        <a href="{{ uri options="articleattachment" }}">{{ #downloadAudioFile# }}</a>
-                      </audio>
-                    </div><!-- /.audio-attachment -->
                   {{ /if }}
-
-                {{ elseif $gimme->attachment->extension == ogv || $gimme->attachment->extension == ogg || $gimme->attachment->extension == mp4 || $gimme->attachment->extension == webm }}             
-
-                  <div class="video-attachment"><!-- read http://diveintohtml5.org/video.html -->
-                    <h3>{{ #watchVideo# }}</h3>
-                    <video id="video_{{ $gimme->current_list->index }}" class="video-js vjs-default-skin" controls
-                      preload="auto" width="100%" data-setup="{}">
-                      <source src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}'>
-                      <a href="{{ uri options="articleattachment" }}">{{ #download# }} .{{ $gimme->attachment->extension }} {{ #file# }}</a>
-                    </video>
-                  </div><!-- /#video-attachment --> 
-
-                {{ else }}
-
-                  <div class="attachment">
-                    <h3>{{ #downloadFile# }}</h3>
-                    <p>{{ #fileOfType# }} {{ $gimme->attachment->mime_type }}</p>
-                    <a href="{{ uri options="articleattachment" }}">{{ $gimme->attachment->file_name }} ({{ $gimme->attachment->size_kb }}kb)</a>
-                    <p><em>{{ $gimme->attachment->description }}</em></p>
-                  </div><!-- /.attachment -->
-
-                {{ /if }}      
+                {{ /if }}
               {{ /list_article_attachments }}
             {{ /if }} 
 

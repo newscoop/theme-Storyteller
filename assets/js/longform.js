@@ -215,6 +215,7 @@ $(document).ready(function(){
       }
       if (video[0].currentTime == video[0].duration){
         video.addClass('ended');
+        vidState = false;
         video.css({
           '-webkit-filter': 'grayscale(' + i + '%)',
              '-moz-filter': 'grayscale(' + i + '%)',

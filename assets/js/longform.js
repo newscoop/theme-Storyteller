@@ -161,13 +161,14 @@ $(document).ready(function(){
   // this gets used a lot
   var currViewportPos = window.pageYOffset;
 
+  var vidState = false;
+  var playState = false;
+
   // handle video
   $('video').each(function(){
     var video = $(this);
     var videoArr = new Array();
     video[0].volume = 1;
-    vidState = false;
-    playState = false;
 
     var i = 0;
     var checkVideoState = setInterval(function(){
@@ -176,6 +177,7 @@ $(document).ready(function(){
         videoArr.src = video.attr('src');
         videoArr.pos = video[0].currentTime;
         videoArr.vol = video[0].volume;
+        playState = false;
         console.log('loaded ' + videoArr.src);
         clearInterval(checkVideoState);
       } else {
@@ -268,7 +270,7 @@ $(document).ready(function(){
       // half second tick to check where we are with things
       setInterval(function(){
         currViewportPos = window.pageYOffset;
-        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
+        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState == false)){
           playState = true;
           audio[0].play();
           if (audioArr.vol > .9){

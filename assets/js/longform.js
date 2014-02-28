@@ -268,7 +268,7 @@ $(document).ready(function(){
       // half second tick to check where we are with things
       setInterval(function(){
         currViewportPos = window.pageYOffset;
-        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState = false)){
+        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight))){
           playState = true;
           audio[0].play();
           if (audioArr.vol > .9){

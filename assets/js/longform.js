@@ -167,6 +167,20 @@ $(document).ready(function(){
   // handle video
   $('video').each(function(){
     var video = $(this);
+    var mainSrc = video.attr('src');
+    mainSrc = "<source src='" + mainSrc + "' />";
+    // blat the main src elem
+    video.removeAttr('src');
+    var srcs = "";
+    video.find('source').each(function(){
+      var src = ($(this).attr('src'));
+      src = src.replace('/admin/articles','');
+      srcs = srcs + "<source src='" + src + "' />";
+      $(this).remove();
+    });
+    srcs = mainSrc + srcs;
+    video.prepend(srcs);
+    // video.insert('<source src="' + mainSrc + '" />');
     var videoArr = new Array();
     video[0].volume = 1;
 

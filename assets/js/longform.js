@@ -319,4 +319,11 @@ $(document).ready(function(){
     });
   }
 
+  // make animated gif
+  $('.anigif').each(function(){
+    var src = $(this).attr('href');
+    $(this).after('<img src="' + src + '" />');
+    $(this).remove();
+  });
+
 });

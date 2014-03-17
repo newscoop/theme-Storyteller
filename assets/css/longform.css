@@ -91,6 +91,13 @@
     font-size: 16pt;
     line-height: 2em;
     }
+  .longform .anigif {
+    margin: 20px auto;
+    padding: 30px;
+    border: solid 1px #ddd;
+    box-shadow: 0 2px 2px #c0c0c0;
+    max-width: 870px;
+    }
   .longform .bxslider {
     }
     .longform .bxslider figure {

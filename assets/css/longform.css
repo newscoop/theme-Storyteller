@@ -1,5 +1,12 @@
+#wrapper {
+  max-width: inherit;
+  padding: 0;
+  }
+
 #top {
   z-index: 2;
+  max-width: 930px;
+  margin: 0 auto;
   }
 .longform {
   }
@@ -26,6 +33,18 @@
     letter-spacing: .1em;
     font-size: 50pt;
     line-height: 2em;
+    }
+  .longform h2.leader {
+    max-width: 100%;
+    background-attachment: fixed;
+    }
+  .longform article h2,
+  .longform article h3,
+  .longform article p {
+    background: #fff;
+    max-width: 930px;
+    margin-left: auto;
+    margin-right: auto;
     }
   .longform article p {
     line-height: 2;

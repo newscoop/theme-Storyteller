@@ -1,4 +1,5 @@
-{{ assign var="curVer" value = "1"}}
+{{ assign var="curThemeVer" value = "1"}}
+{{ assign var="curLongformVer" value = "1"}}
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -41,14 +42,7 @@
 
     <!-- longform styles  -->
     {{ if $gimme->article->longform }}
-      <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/longform.css?v=$curVer" }}' />
-      {{ if $gimme->article->saturn }}
-        <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/saturn.css?v=$curVer" }}' />
-      {{ elseif $gimme->article->aurora }}
-        <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/aurora.css?v=$curVer" }}' />
-      {{ elseif $gimme->article->cosmograd }}
-        <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/cosmograd.css?v=$curVer" }}' />
-      {{ /if }}
+      <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/longform.css?v=$curLongformVer" }}' />
     {{ /if }}
     <!-- /longform -->
 

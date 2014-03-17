@@ -40,6 +40,7 @@
     }
   .longform article h2,
   .longform article h3,
+  .longform article h4,
   .longform article p {
     background: #fff;
     max-width: 930px;

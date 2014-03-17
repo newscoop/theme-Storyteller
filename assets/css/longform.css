@@ -58,7 +58,13 @@
       border: solid 1px #c0c0c0;
       box-shadow: 0 2px 2px #c0c0c0;
       }
+  .longform article blockquote {
+    max-width: 930px;
+    margin: auto auto 20px;
     }
+    .longform article blockquote p {
+      background: none;
+      }
   .longform .intro {
     margin: 30px 0 30px;
     padding: 0 30px 20px;

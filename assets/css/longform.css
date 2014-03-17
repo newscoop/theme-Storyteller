@@ -68,11 +68,12 @@
       background: none;
       }
   .longform .intro {
-    margin: 30px 0 30px;
+    margin: 30px auto 30px;
     padding: 0 30px 20px;
     border-bottom: #ddd solid 1px;
     border-radius: 1px;
     font-style: italic;
+    max-width: 870px;
     }
   .longform h3:nth-of-type(1) {
     border-top: none;

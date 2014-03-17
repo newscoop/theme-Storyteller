@@ -169,7 +169,7 @@ $(document).ready(function(){
   $('video').each(function(){
     var video = $(this);
     var mainSrc = video.attr('src');
-    video.attr('controls', true);
+    // video.attr('controls', true);
     mainSrc = "<source src='" + mainSrc + "' />";
     // blat the main src elem
     video.removeAttr('src');

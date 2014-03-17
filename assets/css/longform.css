@@ -30,8 +30,8 @@
   .longform h2 {
     text-align: center;
     margin-bottom: 0;
-    color: #000;
-    text-shadow: 0 0 1px #fff;
+    color: #ddd;
+    text-shadow: 2px 2px 1px #000;
     letter-spacing: .1em;
     font-size: 50pt;
     line-height: 2em;

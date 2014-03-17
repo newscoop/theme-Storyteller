@@ -323,7 +323,7 @@ $(document).ready(function(){
   // make animated gif
   $('.anigif').each(function(){
     var src = $(this).attr('href');
-    $(this).after('<img src="' + src + '" />');
+    $(this).after('<img src="' + src + '" class="anigif" />');
     $(this).remove();
   });
 

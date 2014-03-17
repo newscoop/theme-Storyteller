@@ -58,8 +58,6 @@
       border: solid 1px #c0c0c0;
       box-shadow: 0 2px 2px #c0c0c0;
       }
-  .longform h2 + figure {
-    display: none;
     }
   .longform .intro {
     margin: 30px 0 30px;

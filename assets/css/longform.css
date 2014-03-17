@@ -14,9 +14,11 @@
     width: auto;
     float: none;
     }
-  .longform .entry section {
+  .longform section {
     border-bottom: none;
     margin: 0;
+    }
+  .longform .entry section {
     padding: 0;
     }
   .longform .entry article {
@@ -103,6 +105,12 @@
         margin: 0 auto 0;
         max-width: 930px;
         }
+  .longform + #footer {
+    border-top: solid 1px #ddd;
+    max-width: 930px;
+    margin: 0 auto;
+    padding-top: 30px;
+    }
 
 /* whiteout */
 .whiteout-main {

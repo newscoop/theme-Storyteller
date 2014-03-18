@@ -152,10 +152,9 @@ $(document).ready(function(){
     var secPoster = $(this).next();
     if (secPoster.is('figure')){
       var secPosterSrc = secPoster.find('img').attr('src');
-      $(this).attr('style','background: url("' + secPosterSrc + '") 50% 50% no-repeat transparent; background-size: cover');
+      $(this).attr('style','background-image: url("' + secPosterSrc + '")');
       $(this).css({
-        'line-height': winHeight + 'px',
-        'background-attachment': 'fixed'
+        'line-height': winHeight + 'px'
       });
       $(this).addClass('leader');
       secPoster.remove();

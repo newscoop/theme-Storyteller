@@ -55,7 +55,7 @@
     }
     .longform article p video {
       margin: 0 25px;
-      padding: 0 25px;
+      padding: 25px;
       border: solid 1px #c0c0c0;
       box-shadow: 0 2px 2px #c0c0c0;
       }

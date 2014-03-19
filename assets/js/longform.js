@@ -203,7 +203,21 @@ $(document).ready(function(){
     setTimeout(function(){
       $('.dlme').remove();
     }, 150);
+    video[0].play();
   });
+
+  setInterval(function(){
+    $('.video').each(function(){
+      var video = $(this);
+      var dur = video[0].duration;
+      var cur = video[0].currentTime;
+      // force loop the leader videos
+      if (cur >= dur){
+        video[0].currentTime = 0;
+        video[0].play();
+      }
+    });
+  }, 500);
 
 
   // this gets used a lot

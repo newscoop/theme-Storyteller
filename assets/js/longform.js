@@ -168,7 +168,7 @@ $(document).ready(function(){
     mainSrc = "<source src='" + mainSrc + "' />";
     // blat the main src elem
     video.removeAttr('src');
-    video.addAttr('autoplay', true);
+    video.attr('autoplay', true);
     var srcs = "";
     video.find('source').each(function(){
       var src = ($(this).attr('src'));

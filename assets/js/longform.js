@@ -161,13 +161,7 @@ $(document).ready(function(){
     }
   });
 
-  // this gets used a lot
-  var currViewportPos = window.pageYOffset;
-
-  var vidState = false;
-  var playState = false;
-
-  // handle video
+  // fix video sources
   $('video').each(function(){
     var video = $(this);
     var mainSrc = video.attr('src');
@@ -184,7 +178,44 @@ $(document).ready(function(){
     });
     srcs = mainSrc + srcs;
     video.prepend(srcs);
-    // video.insert('<source src="' + mainSrc + '" />');
+  });
+
+  $('.videoLeader').each(function(){
+    var video = $(this);
+    video.attr('loop', true);
+    video.attr('autoplay', true);
+    video.parent().addClass('dlme');
+    video.parent().parent().find('h2').css({
+      'line-height': winHeight + 'px',
+      'background': 'transparent'
+    });
+    video.parent().parent().find('h2').after($(this));
+    video.attr('width', 'auto');
+    video.attr('height', 'auto');
+    video.find('object').remove();
+    video.css({
+      'width': winWidth + 'px',
+      'max-height': winHeight + 'px',
+      'position': 'absolute',
+      'margin-top': '-' + winHeight + 'px',
+      'z-index': '-1'
+    });
+    setTimeout(function(){
+      $('.dlme').remove();
+    }, 150);
+  });
+
+
+  // this gets used a lot
+  var currViewportPos = window.pageYOffset;
+
+  var vidState = false;
+  var playState = false;
+
+  // handle video
+  $('video').not('.videoLeader').each(function(){
+    var video = $(this);
+
     var videoArr = new Array();
     video[0].volume = 1;
 
@@ -196,11 +227,9 @@ $(document).ready(function(){
         videoArr.pos = video[0].currentTime;
         videoArr.vol = video[0].volume;
         playState = false;
-        console.log('loaded ' + videoArr.src);
         clearInterval(checkVideoState);
       } else {
         if (i == 120) {
-          console.log('couldn\'t load ' + video.attr('src'));
           clearInterval(checkVideoState);
         }
         i = i + 1;

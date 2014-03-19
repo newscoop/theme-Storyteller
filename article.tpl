@@ -16,7 +16,9 @@
           <article>
             {{ if $gimme->article->content_accessible }}
               <h2 id="{{ $gimme->article->number }}">{{ $gimme->article->name }}</h2>
-              {{ include file="_tpl/img/img_big.tpl" where="article" }}
+              {{ if not $gimme->article->videoLeader }}
+                {{ include file="_tpl/img/img_big.tpl" where="article" }}
+              {{ /if }}
               <div class="intro">{{ $gimme->article->deck }}</div>
               {{ include file="_tpl/_edit-article.tpl" }}{{ $gimme->article->full_text }}
             {{ else }}

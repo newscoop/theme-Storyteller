@@ -53,9 +53,9 @@
             {{ /foreach }}
 
             {{ if $gimme->article->has_attachments }}
-              {{ list_article_attachments length="1" }}
+              {{ list_article_attachments }}
                 {{ if $gimme->attachment->extension == oga || $gimme->attachment->extension == mp3 || $gimme->attachment->extension == wav }}
-                  {{ if $gimme->attachment->description == "ambient" }}                    
+                  {{ if $gimme->attachment->description == "ambient" }}
                     <audio class="ambient" loop id="ambient-{{ $gimme->article->number }}">
                       <source src="{{ uri options="articleattachment" }}" />
                     </audio>

@@ -165,10 +165,10 @@ $(document).ready(function(){
   $('video').each(function(){
     var video = $(this);
     var mainSrc = video.attr('src');
-    // video.attr('controls', true);
     mainSrc = "<source src='" + mainSrc + "' />";
     // blat the main src elem
     video.removeAttr('src');
+    video.addAttr('autoplay', true);
     var srcs = "";
     video.find('source').each(function(){
       var src = ($(this).attr('src'));
@@ -182,8 +182,6 @@ $(document).ready(function(){
 
   $('.videoLeader').each(function(){
     var video = $(this);
-    video.attr('loop', true);
-    video.attr('autoplay', true);
     video.parent().addClass('dlme');
     video.parent().parent().find('h2').css({
       'line-height': winHeight + 'px',
@@ -194,7 +192,7 @@ $(document).ready(function(){
     video.attr('height', 'auto');
     video.find('object').remove();
     video.css({
-      'width': winWidth + 'px',
+      'max-width': winWidth + 'px',
       'max-height': winHeight + 'px',
       'position': 'absolute',
       'margin-top': '-' + winHeight + 'px',
@@ -207,11 +205,12 @@ $(document).ready(function(){
   });
 
   setInterval(function(){
-    $('.video').each(function(){
+    $('.videoLeader').each(function(){
       var video = $(this);
       var dur = video[0].duration;
       var cur = video[0].currentTime;
       // force loop the leader videos
+      console.log(cur + ' ' + dur);
       if (cur >= dur){
         video[0].currentTime = 0;
         video[0].play();

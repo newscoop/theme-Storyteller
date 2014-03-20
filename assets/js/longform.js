@@ -212,7 +212,6 @@ $(document).ready(function(){
       if (cur == dur){
         console.log('ping');
         video[0].load();
-        video[0].currentTime = 0.1;
         video[0].play();
       }
     }, 100);

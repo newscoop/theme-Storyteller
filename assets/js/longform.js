@@ -193,6 +193,7 @@ $(document).ready(function(){
     video.css({
       'width': winWidth + 'px',
       'max-width': winWidth + 'px',
+      'background': 'black',
       'height': winHeight + 'px',
       'max-height': winHeight + 'px',
       'position': 'absolute',

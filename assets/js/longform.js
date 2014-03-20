@@ -209,8 +209,8 @@ $(document).ready(function(){
     if (typeof video[0].loop == 'boolean') { // loop supported
       video[0].loop = true;
     } else { // loop property not supported
-      video[0].on('ended', function () {
-        console.log('ping');
+      video[0].addEventListener('ended', function () {
+        console.log('playing');
         $(this)[0].load();
         $(this)[0].currentTime = 0.1;
         $(this)[0].play();

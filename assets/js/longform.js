@@ -308,12 +308,10 @@ $(document).ready(function(){
         audioArr.src = audio.find('source').attr('src');
         audioArr.pos = audio[0].currentTime;
         audioArr.vol = audio[0].volume;
-        console.log('loaded ' + audioArr.src);
         clearInterval(checkAudiostate);
       } else {
         // console.log('Still trying to get audio duration… ' + i);
         if (i == 120){
-          console.log('Tried for 1 minute, couldn\'t load ' + audio.find('source').attr('src'));
           clearInterval(checkAudiostate);
         }
         i = i + 1;

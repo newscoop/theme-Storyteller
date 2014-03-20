@@ -300,6 +300,7 @@ $(document).ready(function(){
     var audioArr = audio.attr('id');
     var audioArr = new Array();
     playState = false;
+    audio[0].pause();
 
     var i = 0;
     var checkAudiostate = setInterval(function(){

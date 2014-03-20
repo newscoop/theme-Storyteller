@@ -210,6 +210,7 @@ $(document).ready(function(){
       video[0].loop = true;
     } else { // loop property not supported
       video[0].on('ended', function () {
+        $(this)[0].load();
         $(this)[0].currentTime = 0;
         $(this)[0].play();
       }, false);

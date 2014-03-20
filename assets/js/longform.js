@@ -162,32 +162,32 @@ $(document).ready(function(){
   });
 
   // fix video sources
-  $('video').each(function(){
-    var video = $(this);
-    var mainSrc = video.attr('src');
-    mainSrc = "<source src='" + mainSrc + "' />";
-    // blat the main src elem
-    video.removeAttr('src');
-    var srcs = "";
-    video.find('source').each(function(){
-      var src = ($(this).attr('src'));
-      src = src.replace('/admin/articles','');
-      srcs = srcs + "<source src='" + src + "' />";
-      $(this).remove();
-    });
-    srcs = mainSrc + srcs;
-    video.prepend(srcs);
-  });
+  // $('video').each(function(){
+  //   var video = $(this);
+  //   var mainSrc = video.attr('src');
+  //   mainSrc = "<source src='" + mainSrc + "' />";
+  //   // blat the main src elem
+  //   video.removeAttr('src');
+  //   var srcs = "";
+  //   video.find('source').each(function(){
+  //     var src = ($(this).attr('src'));
+  //     src = src.replace('/admin/articles','');
+  //     srcs = srcs + "<source src='" + src + "' />";
+  //     $(this).remove();
+  //   });
+  //   srcs = mainSrc + srcs;
+  //   video.prepend(srcs);
+  // });
 
   $('.videoLeader').each(function(){
     var video = $(this);
-    video.parent().addClass('dlme');
+    // video.parent().addClass('dlme');
     video.parent().parent().find('h2').css({
       'line-height': winHeight + 'px',
       'background': 'transparent'
     });
-    video.parent().parent().find('h2').after($(this));
-    video.find('object').remove();
+    // video.parent().parent().find('h2').after($(this));
+    // video.find('object').remove();
     video.css({
       'width': winWidth + 'px',
       'max-width': winWidth + 'px',
@@ -198,9 +198,9 @@ $(document).ready(function(){
       'margin-top': '-' + winHeight + 'px',
       'z-index': '-1'
     });
-    setTimeout(function(){
-      $('.dlme').remove();
-    }, 150);
+    // setTimeout(function(){
+    //   $('.dlme').remove();
+    // }, 150);
     // force loop if ended
     if (typeof video[0].loop == 'boolean') { // loop supported
       video[0].loop = true;

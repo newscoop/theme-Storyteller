@@ -189,11 +189,11 @@ $(document).ready(function(){
       'background': 'transparent'
     });
     video.parent().parent().find('h2').after($(this));
-    video.attr('width', 'auto');
-    video.attr('height', 'auto');
     video.find('object').remove();
     video.css({
+      'width': winWidth + 'px',
       'max-width': winWidth + 'px',
+      'height': winHeight + 'px',
       'max-height': winHeight + 'px',
       'position': 'absolute',
       'margin-top': '-' + winHeight + 'px',

@@ -192,6 +192,7 @@ $(document).ready(function(){
     });
     video.parent().parent().find('h2').after($(this));
     video.find('object').remove();
+    var blurAmt = 4;
     video.css({
       'width': winWidth + 'px',
       'max-width': winWidth + 'px',
@@ -201,11 +202,11 @@ $(document).ready(function(){
       'position': 'absolute',
       'margin-top': '-' + winHeight + 'px',
       'z-index': '-1',
-      '-webkit-filter': 'blur(2px)',
-      '-moz-filter': 'blur(2px)',
-      '-ms-filter': 'blur(2px)',
-      '-o-filter': 'blur(2px)',
-      'filter': 'blur(2px)'
+      '-webkit-filter': 'blur(' + blurAmt + ')',
+      '-moz-filter': 'blur(' + blurAmt + ')',
+      '-ms-filter': 'blur(' + blurAmt + ')',
+      '-o-filter': 'blur(' + blurAmt + ')',
+      'filter': 'blur(' + blurAmt + ')'
     });
     setTimeout(function(){
       $('.dlme').remove();

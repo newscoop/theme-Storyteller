@@ -170,7 +170,6 @@ $(document).ready(function(){
     video.removeAttr('src');
     if (video.hasClass('videoLeader')){
       video.attr('autoplay', true);
-      video.attr('loop', true);
     }
     var srcs = "";
     video.find('source').each(function(){
@@ -205,6 +204,16 @@ $(document).ready(function(){
     setTimeout(function(){
       $('.dlme').remove();
     }, 150);
+    video[0].play();
+    // force loop if ended
+    if (typeof video[0].loop == 'boolean') { // loop supported
+      video[0].loop = true;
+    } else { // loop property not supported
+      video[0].on('ended', function () {
+        $(this)[0].currentTime = 0;
+        $(this)[0].play();
+      }, false);
+    }
     video[0].play();
   });
 

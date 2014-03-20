@@ -201,6 +201,10 @@ $(document).ready(function(){
       'position': 'absolute',
       'margin-top': '-' + winHeight + 'px',
       'z-index': '-1',
+      '-webkit-filter': 'blur(2px)',
+      '-moz-filter': 'blur(2px)',
+      '-ms-filter': 'blur(2px)',
+      '-o-filter': 'blur(2px)',
       'filter': 'blur(2px)'
     });
     setTimeout(function(){

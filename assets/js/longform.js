@@ -210,7 +210,6 @@ $(document).ready(function(){
       var cur = video[0].currentTime;
       var dur = video[0].duration;
       if (cur == dur){
-        console.log('ping');
         video[0].load();
         video[0].play();
       }

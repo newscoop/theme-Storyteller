@@ -14,6 +14,17 @@
         {{ list_related_articles }}
         <section id="component-{{ $gimme->article->number }}">
           <article>
+            {{ if $gimme->article->has_attachments }}
+              {{ list_article_attachments }}
+                {{ if $gimme->attachment->extension == oga || $gimme->attachment->extension == mp3 || $gimme->attachment->extension == wav }}
+                  {{ if $gimme->attachment->description == "ambient" }}
+                    <audio class="ambient" loop id="ambient-{{ $gimme->article->number }}">
+                      <source src="/attachment/{{ $gimme->attachment->identifier }}/{{ $gimme->attachment->file_name }}" />
+                    </audio>
+                  {{ /if }}
+                {{ /if }}
+              {{ /list_article_attachments }}
+            {{ /if }} 
             {{ if $gimme->article->content_accessible }}
               <h2 id="{{ $gimme->article->number }}">{{ $gimme->article->name }}</h2>
               {{ if not $gimme->article->videoLeader }}
@@ -51,18 +62,6 @@
               {{ /foreach }} 
               </div><!-- / Thumb gallery -->
             {{ /foreach }}
-
-            {{ if $gimme->article->has_attachments }}
-              {{ list_article_attachments }}
-                {{ if $gimme->attachment->extension == oga || $gimme->attachment->extension == mp3 || $gimme->attachment->extension == wav }}
-                  {{ if $gimme->attachment->description == "ambient" }}
-                    <audio class="ambient" loop id="ambient-{{ $gimme->article->number }}">
-                      <source src="{{ uri options="articleattachment" }}" />
-                    </audio>
-                  {{ /if }}
-                {{ /if }}
-              {{ /list_article_attachments }}
-            {{ /if }} 
 
           </article>
         </section>

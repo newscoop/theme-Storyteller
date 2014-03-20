@@ -170,6 +170,7 @@ $(document).ready(function(){
     video.removeAttr('src');
     if (video.hasClass('videoLeader')){
       video.attr('autoplay', true);
+      video.attr('loop', true);
     }
     var srcs = "";
     video.find('source').each(function(){

@@ -200,7 +200,8 @@ $(document).ready(function(){
       'max-height': winHeight + 'px',
       'position': 'absolute',
       'margin-top': '-' + winHeight + 'px',
-      'z-index': '-1'
+      'z-index': '-1',
+      'filter': 'blur(2px)'
     });
     setTimeout(function(){
       $('.dlme').remove();

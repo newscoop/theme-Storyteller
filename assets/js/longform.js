@@ -204,7 +204,6 @@ $(document).ready(function(){
     setTimeout(function(){
       $('.dlme').remove();
     }, 150);
-    video[0].play();
     // force loop if ended
     if (typeof video[0].loop == 'boolean') { // loop supported
       video[0].loop = true;

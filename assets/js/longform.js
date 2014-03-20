@@ -206,16 +206,12 @@ $(document).ready(function(){
       $('.dlme').remove();
     }, 150);
     // force loop if ended
-    if (typeof video[0].loop == 'boolean') { // loop supported
-      video[0].loop = true;
-    } else { // loop property not supported
-      video[0].addEventListener('ended', function () {
-        console.log('playing');
-        $(this)[0].load();
-        $(this)[0].currentTime = 0.1;
-        $(this)[0].play();
-      }, false);
-    }
+    video[0].addEventListener('ended', function () {
+      console.log('playing');
+      video[0].load();
+      video[0].currentTime = 0.1;
+      video[0].play();
+    }, false);
     video[0].play();
   });
 

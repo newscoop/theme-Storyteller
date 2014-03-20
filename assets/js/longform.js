@@ -162,55 +162,59 @@ $(document).ready(function(){
   });
 
   // fix video sources
-  // $('video').each(function(){
-  //   var video = $(this);
-  //   var mainSrc = video.attr('src');
-  //   mainSrc = "<source src='" + mainSrc + "' />";
-  //   // blat the main src elem
-  //   video.removeAttr('src');
-  //   var srcs = "";
-  //   video.find('source').each(function(){
-  //     var src = ($(this).attr('src'));
-  //     src = src.replace('/admin/articles','');
-  //     srcs = srcs + "<source src='" + src + "' />";
-  //     $(this).remove();
-  //   });
-  //   srcs = mainSrc + srcs;
-  //   video.prepend(srcs);
-  // });
+  $('video').each(function(){
+    var video = $(this);
+    var mainSrc = video.attr('src');
+    mainSrc = "<source src='" + mainSrc + "' />";
+    // blat the main src elem
+    video.removeAttr('src');
+    if (video.hasClass('videoLeader')){
+      video.attr('autoplay', true);
+      video.attr('loop', true);
+    }
+    var srcs = "";
+    video.find('source').each(function(){
+      var src = ($(this).attr('src'));
+      src = src.replace('/admin/articles','');
+      srcs = srcs + "<source src='" + src + "' />";
+      $(this).remove();
+    });
+    srcs = mainSrc + srcs;
+    video.prepend(srcs);
+  });
 
   $('.videoLeader').each(function(){
     var video = $(this);
-    // video.parent().addClass('dlme');
-    // video.parent().parent().find('h2').css({
-    //   'line-height': winHeight + 'px',
-    //   'background': 'transparent'
-    // });
-    // video.parent().parent().find('h2').after($(this));
-    // video.find('object').remove();
-    // video.css({
-    //   'width': winWidth + 'px',
-    //   'max-width': winWidth + 'px',
-    //   'background-color': 'black',
-    //   'height': winHeight + 'px',
-    //   'max-height': winHeight + 'px',
-    //   'position': 'absolute',
-    //   'margin-top': '-' + winHeight + 'px',
-    //   'z-index': '-1'
-    // });
-    // setTimeout(function(){
-    //   $('.dlme').remove();
-    // }, 150);
+    video.parent().addClass('dlme');
+    video.parent().parent().find('h2').css({
+      'line-height': winHeight + 'px',
+      'background': 'transparent'
+    });
+    video.parent().parent().find('h2').after($(this));
+    video.find('object').remove();
+    video.css({
+      'width': winWidth + 'px',
+      'max-width': winWidth + 'px',
+      'background-color': 'black',
+      'height': winHeight + 'px',
+      'max-height': winHeight + 'px',
+      'position': 'absolute',
+      'margin-top': '-' + winHeight + 'px',
+      'z-index': '-1'
+    });
+    setTimeout(function(){
+      $('.dlme').remove();
+    }, 150);
     // force loop if ended
-    // if (typeof video[0].loop == 'boolean') { // loop supported
-    //   video[0].loop = true;
-    // } else { // loop property not supported
-    //   video[0].on('ended', function () {
-    //     $(this)[0].currentTime = 0;
-    //     $(this)[0].play();
-    //   }, false);
-    // }
-    // video[0].play();
+    if (typeof video[0].loop == 'boolean') { // loop supported
+      video[0].loop = true;
+    } else { // loop property not supported
+      video[0].on('ended', function () {
+        $(this)[0].currentTime = 0;
+        $(this)[0].play();
+      }, false);
+    }
+    video[0].play();
   });
 
   // this gets used a lot

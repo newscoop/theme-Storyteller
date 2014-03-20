@@ -168,8 +168,10 @@ $(document).ready(function(){
     mainSrc = "<source src='" + mainSrc + "' />";
     // blat the main src elem
     video.removeAttr('src');
-    video.attr('autoplay', true);
-    video.attr('loop', true);
+    if (video.hasClass('videoLeader')){
+      video.attr('autoplay', true);
+      video.attr('loop', true);
+    }
     var srcs = "";
     video.find('source').each(function(){
       var src = ($(this).attr('src'));

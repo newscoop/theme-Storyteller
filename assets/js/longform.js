@@ -211,7 +211,6 @@ $(document).ready(function(){
       var dur = video[0].duration;
       var cur = video[0].currentTime;
       // force loop the leader videos
-      console.log(cur + ' ' + dur);
       if (cur == dur){
         video[0].currentTime = 0;
         video[0].play();

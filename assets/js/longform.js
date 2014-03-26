@@ -192,8 +192,8 @@ $(document).ready(function(){
     });
     video.parent().parent().find('h2').after($(this));
     video.find('object').remove();
-    video.attr('loop', true);
-    video.attr('autoplay', true);
+    video.loop = true;
+    video.autoplay = true;
     video.css({
       'width': winWidth + 'px',
       'max-width': winWidth + 'px',
@@ -207,15 +207,24 @@ $(document).ready(function(){
     setTimeout(function(){
       $('.dlme').remove();
     }, 150);
+
     // force loop if ended
-    setInterval(function(){
-      var cur = video[0].currentTime;
-      var dur = video[0].duration;
-      if (cur == dur){
-        video[0].currentTime = 0.1;
-        video[0].play();
-      }
-    }, 100);
+
+    // video[0].addEventListener('ended', function(){
+    //   console.log('ended');
+    // });
+    if (typeof video.loop == 'boolean') { // loop supported
+      video[0].load();
+      video[0].play();
+    }
+    // } else { // loop property not supported
+    //   var cur = video[0].currentTime;
+    //   var dur = video[0].duration;
+    //   if (cur == dur){
+    //     video[0].currentTime = 0.1;
+    //     video[0].play();
+    //   }
+    // };
     video[0].play();
   });
 

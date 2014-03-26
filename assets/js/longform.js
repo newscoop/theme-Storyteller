@@ -331,12 +331,22 @@ $(document).ready(function(){
       setInterval(function(){
         currViewportPos = window.pageYOffset;
         if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState === false)){
-          playState = true;
-          audio[0].play();
-          if (audioArr.vol > 0.9){
-            audioArr.vol = 1;
+          if ((currViewportPos + winHeight) >= ($(document).height() + winHeight)){
+            playState = false;
+            if (audioArr.vol < 0.1){
+              audioArr.vol = 0;
+              audio[0].pause();
+            } else {
+              audioArr.vol = audioArr.vol - 0.1;
+            }
           } else {
-            audioArr.vol = audioArr.vol + 0.1;
+            playState = true;
+            audio[0].play();
+            if (audioArr.vol > 0.9){
+              audioArr.vol = 1;
+            } else {
+              audioArr.vol = audioArr.vol + 0.1;
+            }
           }
         } else {
           playState = false;

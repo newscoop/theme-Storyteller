@@ -208,23 +208,16 @@ $(document).ready(function(){
       $('.dlme').remove();
     }, 150);
 
-    // force loop if ended
-
-    // video[0].addEventListener('ended', function(){
-    //   console.log('ended');
-    // });
-    if (typeof video.loop == 'boolean') { // loop supported
-      video[0].load();
-      video[0].play();
-    }
-    // } else { // loop property not supported
-    //   var cur = video[0].currentTime;
-    //   var dur = video[0].duration;
-    //   if (cur == dur){
-    //     video[0].currentTime = 0.1;
-    //     video[0].play();
-    //   }
-    // };
+    setInterval(function(){
+      var dur = video[0].duration;
+      dur = dur.toFixed(2);
+      var cur = video[0].currentTime;
+      cur = cur.toFixed(2);
+      // console.log(cur + ' ' + dur);
+      if (cur == dur || cur == "0.00" && dur != 'NaN' && dur != null && dur != undefined){
+        video[0].play();
+      }
+    }, 100);
     video[0].play();
   });
 

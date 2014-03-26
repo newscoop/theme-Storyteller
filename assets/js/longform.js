@@ -208,14 +208,17 @@ $(document).ready(function(){
       $('.dlme').remove();
     }, 150);
     // force loop if ended
-    setInterval(function(){
+    if (typeof video[0].loop == 'boolean') { // loop supported
+      video[0].currentTime = 0.1;
+      video[0].play();
+    } else { // loop property not supported
       var cur = video[0].currentTime;
       var dur = video[0].duration;
       if (cur == dur){
         video[0].currentTime = 0.1;
         video[0].play();
       }
-    }, 100);
+    };
     video[0].play();
   });
 

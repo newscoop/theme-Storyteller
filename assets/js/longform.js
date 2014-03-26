@@ -330,23 +330,13 @@ $(document).ready(function(){
       // half second tick to check where we are with things
       setInterval(function(){
         currViewportPos = window.pageYOffset;
-        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState === false)){
-          if ((currViewportPos + winHeight) >= ($(document).height() + winHeight)){
-            playState = false;
-            if (audioArr.vol < 0.1){
-              audioArr.vol = 0;
-              audio[0].pause();
-            } else {
-              audioArr.vol = audioArr.vol - 0.1;
-            }
+        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) != ((currViewportPos + winHeight) >= ($(document).height() - $('#footer').height())) && (vidState === false)){
+          playState = true;
+          audio[0].play();
+          if (audioArr.vol > 0.9){
+            audioArr.vol = 1;
           } else {
-            playState = true;
-            audio[0].play();
-            if (audioArr.vol > 0.9){
-              audioArr.vol = 1;
-            } else {
-              audioArr.vol = audioArr.vol + 0.1;
-            }
+            audioArr.vol = audioArr.vol + 0.1;
           }
         } else {
           playState = false;

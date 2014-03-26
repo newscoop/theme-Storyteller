@@ -202,11 +202,6 @@ $(document).ready(function(){
       'position': 'absolute',
       'margin-top': '-' + winHeight + 'px',
       'z-index': '-1',
-      '-webkit-filter': 'blur(' + blurAmt + 'px)',
-      '-moz-filter': 'blur(' + blurAmt + 'px)',
-      '-ms-filter': 'blur(' + blurAmt + 'px)',
-      '-o-filter': 'blur(' + blurAmt + 'px)',
-      'filter': 'blur(' + blurAmt + 'px)'
     });
     setTimeout(function(){
       $('.dlme').remove();

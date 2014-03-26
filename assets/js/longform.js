@@ -208,7 +208,7 @@ $(document).ready(function(){
       $('.dlme').remove();
     }, 150);
     // force loop if ended
-    if (typeof video[0].loop == 'boolean') { // loop supported
+    if (typeof video.loop == 'boolean') { // loop supported
       video[0].currentTime = 0.1;
       video[0].play();
     } else { // loop property not supported

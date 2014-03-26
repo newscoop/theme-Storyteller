@@ -4,7 +4,7 @@ $(document).ready(function(){
   if( $(window).width() < 660) {
     var expandCounter = 0;
     $('.top-menu ul li a').click(function(){
-      if (expandCounter == 0) {
+      if (expandCounter === 0) {
         $(this).addClass('active');
         $(this).next('.sub').slideDown('fast');
         expandCounter = 1;
@@ -18,17 +18,17 @@ $(document).ready(function(){
         $(this).addClass('active');
         $(this).next('.sub').slideDown('fast');
         expandCounter = 1;
-      };
+      }
       return false;
     });
-    
+
     $('a.cat-trigger').click(function(){
       $('.top-menu ul li a').removeClass('active');
       $('.top-menu ul li .sub').slideUp();
       $(this).next('ul').slideToggle('fast');
       expandCounter = 0;
     });
-    
+
     $('.search-box a.search-trigger').click(function(){
       $('.top-menu ul li a').removeClass('active');
       $('.top-menu ul li .sub').slideUp();
@@ -36,9 +36,9 @@ $(document).ready(function(){
       $(this).next('div').slideToggle('fast');
       expandCounter = 0;
     });
-    
+
   } else {
-    
+
     // Man Nav
     $('.top-menu ul li').hover(function(){
       $(this).children('a').addClass('active');
@@ -210,14 +210,12 @@ $(document).ready(function(){
 
     setInterval(function(){
       var dur = video[0].duration;
-      dur = dur.toFixed(2);
       var cur = video[0].currentTime;
-      cur = cur.toFixed(2);
       // console.log(cur + ' ' + dur);
-      if (cur == dur || cur == "0.00" && dur != 'NaN' && dur != null && dur != undefined){
+      if (cur == dur){
         video[0].play();
       }
-    }, 100);
+    }, 500);
     video[0].play();
   });
 
@@ -231,7 +229,7 @@ $(document).ready(function(){
   $('video').not('.videoLeader').each(function(){
     var video = $(this);
 
-    var videoArr = new Array();
+    var videoArr = new Array([]);
     video[0].volume = 1;
 
     var i = 0;
@@ -286,7 +284,7 @@ $(document).ready(function(){
                   'filter': 'grayscale(' + i + '%)',
         });
         if (i > 95){
-          i = 100
+          i = 100;
         } else {
           i = i + 5;
         }
@@ -299,7 +297,7 @@ $(document).ready(function(){
   $('audio.ambient').each(function(){
     var audio = $(this);
     var audioArr = audio.attr('id');
-    var audioArr = new Array();
+    var audioArr = new Array([]);
     playState = false;
     audio[0].pause();
 
@@ -332,21 +330,21 @@ $(document).ready(function(){
       // half second tick to check where we are with things
       setInterval(function(){
         currViewportPos = window.pageYOffset;
-        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState == false)){
+        if ((currViewportPos > parentPos) && (currViewportPos < (parentPos + parentHeight)) && (vidState === false)){
           playState = true;
           audio[0].play();
-          if (audioArr.vol > .9){
-            audioArr.vol = 1;  
+          if (audioArr.vol > 0.9){
+            audioArr.vol = 1;
           } else {
-            audioArr.vol = audioArr.vol + .1;
+            audioArr.vol = audioArr.vol + 0.1;
           }
         } else {
           playState = false;
-          if (audioArr.vol < .1){
+          if (audioArr.vol < 0.1){
             audioArr.vol = 0;
             audio[0].pause();
           } else {
-            audioArr.vol = audioArr.vol - .1;
+            audioArr.vol = audioArr.vol - 0.1;
           }
         }
         audio[0].volume = audioArr.vol.toFixed(1);

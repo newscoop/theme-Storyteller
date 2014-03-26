@@ -192,7 +192,8 @@ $(document).ready(function(){
     });
     video.parent().parent().find('h2').after($(this));
     video.find('object').remove();
-    var blurAmt = 4;
+    video.attr('loop', true);
+    video.attr('autoplay', true);
     video.css({
       'width': winWidth + 'px',
       'max-width': winWidth + 'px',

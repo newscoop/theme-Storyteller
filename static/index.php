@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta title="Storyteller" />
-  <script src="js/zepto.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
 </head>
 <body>

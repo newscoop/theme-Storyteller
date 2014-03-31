@@ -1,9 +1,6 @@
-$(document).ready(function(){
-  //  do this immediately
-  console.log('document loaded');
-});
+var winHeight = $(window).height();
+var winWidth = $(window).width();
 
-$(window).load(function(){
-  //  do this afterwards
-  console.log('window loaded');
+$(document).ready(function(){
+
 });

@@ -21,6 +21,7 @@
     <article>
     <!-- media types are listed below -->
     <?php include "modules/text_fixed_image.php"; ?>
+    <?php include "modules/text.php"; ?>
     <?php include "modules/video.php"; ?>
     <?php include "modules/video_text.php"; ?>
     <?php include "modules/audio.php"; ?>

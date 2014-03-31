@@ -1,6 +1,47 @@
 @import "reset.css";
 @import "typography.css";
 
-body {
-  font-family: sans-serif;
+.longform {
   }
+  .longform section {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    }
+    .longform section article h2,
+    .longform section article h3,
+    .longform section article p,
+    .longform section article blockquote,
+    .longform section article figure {
+      width: 50%;
+      margin: 0 auto;
+      padding: 0;
+      }
+      .longform section article blockquote p {
+        width: auto;
+        }
+    .longform section article figure img {
+      max-width: 100%;
+      max-height: auto;
+      }
+/* fixed image, text remains in document flow */
+.fixed-image {
+  }
+  .fixed-image figure img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    margin: auto;
+    }
+  .fixed-image h2,
+  .fixed-image figcaption {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    }
+  .fixed-image figure figcaption p {
+    width: auto;
+    }

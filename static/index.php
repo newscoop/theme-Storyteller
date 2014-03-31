@@ -3,15 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta title="Storyteller" />
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="js/zepto.js"></script>
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
 </head>
-<body>
+<body class="longform">
   <header>
+    <h1>
+      <a href="/">Site name</a>
+    </h1>
+    <nav>
+      <ul>
+        <li><a href="/">Section</a></li>
+      </ul>
+    </nav>
   </header>
   <section>
     <article>
     <!-- media types are listed below -->
+    <?php include "modules/text_fixed_image.php"; ?>
     <?php include "modules/video.php"; ?>
     <?php include "modules/video_text.php"; ?>
     <?php include "modules/audio.php"; ?>

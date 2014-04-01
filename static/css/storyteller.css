@@ -19,7 +19,7 @@ a {
   .longform section {
     position: relative;
     z-index: 1;
-    background: #fff;
+    background: url(/img/texture-tile.jpg) 0 0 repeat #fff;
     }
     .longform section article h2,
     .longform section article h3,

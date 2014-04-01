@@ -70,3 +70,20 @@ a {
   .fixed-image figure figcaption p {
     width: auto;
     }
+/* masthead with video */
+.masthead-video {
+  position: relative;
+  overflow: hidden;
+  }
+  .masthead-video video {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+    }
+  .masthead-video h2 {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    }

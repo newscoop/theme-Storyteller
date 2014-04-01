@@ -9,7 +9,9 @@
 
   <figure>
     <img src="/img/figure.jpg" />
-    <figcaption>Proin dignissim ante non porta scelerisque. Donec iaculis vulputate nunc, at lobortis diam suscipit in. Pellentesque condimentum nisi lectus, eu eleifend nisi ullamcorper a. Vestibulum tempus est vitae auctor varius. Sed nec eros a ligula accumsan pharetra. Donec bibendum nec sapien eget elementum. Duis mi dolor, euismod id sapien in, interdum sollicitudin dui. Mauris blandit libero at velit consequat, in adipiscing dolor pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed et augue eget arcu mollis convallis vitae a diam.</figcaption>
+    <figcaption>
+      <p>Proin dignissim ante non porta scelerisque. Donec iaculis vulputate nunc, at lobortis diam suscipit in. Pellentesque condimentum nisi lectus, eu eleifend nisi ullamcorper a. Vestibulum tempus est vitae auctor varius. Sed nec eros a ligula accumsan pharetra. Donec bibendum nec sapien eget elementum. Duis mi dolor, euismod id sapien in, interdum sollicitudin dui. Mauris blandit libero at velit consequat, in adipiscing dolor pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed et augue eget arcu mollis convallis vitae a diam.</p>
+    </figcaption>
   </figure>
 
   <p>Sed eget sagittis diam, nec bibendum diam. Nunc in vestibulum sapien. Nunc non vulputate odio, faucibus porta mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla luctus bibendum erat id mollis. Proin venenatis rutrum augue ac rutrum. Sed nisl dui, porta a ultrices in, sollicitudin sit amet felis. Mauris sagittis varius sem, a posuere nibh ultricies et. Aenean quis neque sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut velit enim. Pellentesque quis lacus lacinia mi semper porta.</p>

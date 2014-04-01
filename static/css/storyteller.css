@@ -1,6 +1,19 @@
 @import "reset.css";
 @import "typography.css";
 
+a {
+  color: #fff;
+  text-decoration: none;
+  background-image: -webkit-linear-gradient(top,#fff 50%,#666665 50%);
+     background-image: -moz-linear-gradient(top,#fff 50%,#666665 50%);
+      background-image: -ms-linear-gradient(top,#fff 50%,#666665 50%);
+       background-image: -o-linear-gradient(top,#fff 50%,#666665 50%);
+    background-image: linear-gradient(to bottom,#fff 50%,#666665 50%);
+  background-repeat: repeat-x;
+  background-size: 2px 2px;
+  background-position: 0 16px;
+  }
+
 .longform {
   }
   .longform section {
@@ -24,6 +37,9 @@
       max-width: 100%;
       max-height: auto;
       }
+    .longform section section {
+      padding: 30px 0;
+      }
 /* fixed image, text remains in document flow */
 .fixed-image {
   }
@@ -40,8 +56,9 @@
     position: relative;
     z-index: 1;
     color: #fff;
-    text-shadow: 1px 1px 1px #000;
+    text-shadow: 0 0 1px #000, 0 0 1px #000;
     }
+  .fixed-image figure figcaption h3,
   .fixed-image figure figcaption p {
     width: auto;
     }

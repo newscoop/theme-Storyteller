@@ -1,4 +1,17 @@
 body {
   font-family: sans-serif;
-  line-height: 1.2em;
+  letter-spacing: .05em;
+  }
+h2 {
+  font-family: serif;
+  font-size: 2em;
+  line-height: 2em;
+  margin: 0;
+  }
+h3 {
+  text-transform: uppercase;
+  line-height: 2em;
+  }
+p {
+  line-height: 2em;
   }

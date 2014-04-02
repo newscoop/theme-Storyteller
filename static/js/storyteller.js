@@ -29,4 +29,29 @@ $(document).ready(function(){
     }
     return randVal;
   };
+
+  $('section.video').each(function(){
+    var video = $(this);
+    var videoArr = new Array([]);
+    videoArr.id = randId();
+    videoArr.mp4 = "";
+    videoArr.ogg = "";
+    videoArr.webm = "";
+    var j = video.find('source').length;
+    for (i = 0; i < j; i = i + 1){
+      tmpStr = $(this).find('source')[i].src;
+      if (tmpStr.indexOf('mp4')!=-1){
+        videoArr.mp4 = tmpStr;
+      }
+      if (tmpStr.indexOf('ogv')!=-1){
+        videoArr.ogg = tmpStr;
+      }
+      if (tmpStr.indexOf('webm')!=-1){
+        videoArr.webm = tmpStr;
+      }
+    }
+    video.before('<canvas id=' + videoArr.id + '></canvas>');
+    video.remove();
+  });
+
 });

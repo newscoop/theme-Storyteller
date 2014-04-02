@@ -91,4 +91,9 @@ $(document).ready(function(){
     }
   });
 
+  // main loop triggers every half a second
+  var loop = setInterval(function(){
+    
+  }, 500);
+
 });

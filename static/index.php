@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta title="Storyteller" />
-  <script src="js/zepto.js"></script>
+  <script src="/js/zepto.js"></script>
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
 </head>
 <body class="longform">
@@ -34,6 +34,6 @@
   </section>
   <footer>
   </footer>
-  <script src="js/storyteller.js"></script>
+  <script src="/js/storyteller.js"></script>
 </body>
 </html>

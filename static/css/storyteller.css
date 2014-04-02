@@ -16,10 +16,30 @@ a {
 
 .longform {
   }
-  .longform canvas {
+  .longform header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    }
+  .longform canvas,
+  .longform audio {
     display: block;
     }
-  .longform section {
+  .longform blockquote {
+    webkit-border-radius: 3px;
+       moz-border-radius: 3px;
+        ms-border-radius: 3px;
+         o-border-radius: 3px;
+           border-radius: 3px;
+    background: #fff;
+    margin: 30px auto!important;
+    padding: 30px!important;
+    box-shadow: 0 0 1px #999;
+    }
+    .longform blockquote cite:before {
+      content: "– ";
+      }
+  .longform > section > article > section {
     position: relative;
     z-index: 1;
     background: url(/img/texture-tile.jpg) 0 0 repeat #fff;
@@ -29,7 +49,8 @@ a {
     .longform section article p,
     .longform section article blockquote,
     .longform section article figure,
-    .longform section article canvas {
+    .longform section article canvas,
+    .longform section article audio {
       width: 50%;
       margin: 0 auto;
       padding: 0;
@@ -52,6 +73,7 @@ a {
       }
 /* fixed image, text remains in document flow */
 .fixed-image {
+  z-index: 0!important;
   }
   .fixed-image figure img {
     position: fixed;

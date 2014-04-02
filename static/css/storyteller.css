@@ -16,6 +16,9 @@ a {
 
 .longform {
   }
+  .longform canvas {
+    display: block;
+    }
   .longform section {
     position: relative;
     z-index: 1;
@@ -25,11 +28,13 @@ a {
     .longform section article h3,
     .longform section article p,
     .longform section article blockquote,
-    .longform section article figure {
+    .longform section article figure,
+    .longform section article canvas {
       width: 50%;
       margin: 0 auto;
       padding: 0;
       }
+      .longform section article figure p,
       .longform section article blockquote p {
         width: auto;
         }

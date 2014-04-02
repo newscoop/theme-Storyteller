@@ -31,7 +31,7 @@ $(document).ready(function(){
   };
 
   $('section.video').each(function(){
-    var video = $(this);
+    var video = $(this).find('video');
     var videoArr = new Array([]);
     videoArr.id = randId();
     videoArr.mp4 = "";
@@ -50,8 +50,45 @@ $(document).ready(function(){
         videoArr.webm = tmpStr;
       }
     }
-    video.before('<canvas id=' + videoArr.id + '></canvas>');
-    video.remove();
+    var canvasObj = '<canvas id=' + videoArr.id + '>Your browser doesn\'t support the canvas element. Please upgrade to a newer browser.</canvas>';
+    video.before(canvasObj);
+    video.hide();
+    // now push the video to the canvas
+    // var canvas = $('#' + videoArr.id)[0];
+    // var canvasWidth = video.width();
+    // var canvasHeight = video.height();
+    // var context = canvas.getContext('2d');
+
+    // video[0].addEventListener('play', function(){
+    //   draw(this, context, canvasWidth, canvasHeight);
+    // }, false);
+
+    // function draw(video, canvas) {
+    //   if(video[0].paused || video[0].ended) return false;
+    //     canvas.drawImage(video, 0, 0, canvasWidth, canvasHeight);
+    //     setTimeout(draw, 20, video, canvas, canvasWidth, canvasHeight);
+    //   }
+    // function(){
+        var v = video[0];
+        var canvas = $('#' + videoArr.id)[0];
+        var context = canvas.getContext('2d');
+
+        var cw = Math.floor(canvas.clientWidth);
+        var ch = Math.floor(canvas.clientHeight);
+        canvas.width = cw;
+        canvas.height = ch;
+
+        v.addEventListener('play', function(){
+            draw(this,context,cw,ch);
+        },false);
+
+    // },false);
+
+    function draw(v,c,w,h) {
+        if(v.paused || v.ended) return false;
+        c.drawImage(v,0,0,w,h);
+        setTimeout(draw,20,v,c,w,h);
+    }
   });
 
 });

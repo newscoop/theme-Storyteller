@@ -20,16 +20,16 @@
   <section>
     <article>
     <!-- media types are listed below -->
-    <?php include "modules/text_fixed_image.php"; ?>
+    <?php include "modules/masthead.php"; ?>
+    <?php include "modules/masthead_image.php"; ?>
+    <?php include "modules/masthead_video.php"; ?>
     <?php include "modules/text.php"; ?>
+    <?php include "modules/text_fixed_image.php"; ?>
     <?php include "modules/video.php"; ?>
     <?php include "modules/video_text.php"; ?>
     <?php include "modules/audio.php"; ?>
     <?php include "modules/slideshow.php"; ?>
     <?php include "modules/slideshow_text.php"; ?>
-    <?php include "modules/masthead.php"; ?>
-    <?php include "modules/masthead_image.php"; ?>
-    <?php include "modules/masthead_video.php"; ?>
     <?php include "modules/map.php"; ?>
     </article>
   </section>

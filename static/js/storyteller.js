@@ -54,35 +54,18 @@ $(document).ready(function(){
     video.before(canvasObj);
     video.hide();
     // now push the video to the canvas
-    // var canvas = $('#' + videoArr.id)[0];
-    // var canvasWidth = video.width();
-    // var canvasHeight = video.height();
-    // var context = canvas.getContext('2d');
+    var v = video[0];
+    var canvas = $('#' + videoArr.id)[0];
+    var context = canvas.getContext('2d');
 
-    // video[0].addEventListener('play', function(){
-    //   draw(this, context, canvasWidth, canvasHeight);
-    // }, false);
+    var cw = Math.floor(canvas.clientWidth);
+    var ch = Math.floor(canvas.clientHeight);
+    canvas.width = cw;
+    canvas.height = ch;
 
-    // function draw(video, canvas) {
-    //   if(video[0].paused || video[0].ended) return false;
-    //     canvas.drawImage(video, 0, 0, canvasWidth, canvasHeight);
-    //     setTimeout(draw, 20, video, canvas, canvasWidth, canvasHeight);
-    //   }
-    // function(){
-        var v = video[0];
-        var canvas = $('#' + videoArr.id)[0];
-        var context = canvas.getContext('2d');
-
-        var cw = Math.floor(canvas.clientWidth);
-        var ch = Math.floor(canvas.clientHeight);
-        canvas.width = cw;
-        canvas.height = ch;
-
-        v.addEventListener('play', function(){
-            draw(this,context,cw,ch);
-        },false);
-
-    // },false);
+    v.addEventListener('play', function(){
+        draw(this,context,cw,ch);
+    },false);
 
     function draw(v,c,w,h) {
         if(v.paused || v.ended) return false;

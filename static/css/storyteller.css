@@ -82,7 +82,7 @@ a {
 .image.full {
   z-index: 0!important;
   }
-  .fixed.full figure img {
+  .image.full figure img {
     position: fixed;
     top: 0;
     left: 0;
@@ -93,15 +93,15 @@ a {
     border: none!important;
     padding: 0!important;
     }
-  .fixed.full h2,
-  .fixed.full figcaption {
+  .image.full h2,
+  .image.full figcaption {
     position: relative;
     z-index: 1;
     color: #fff;
     text-shadow: 0 0 1px #000, 0 0 1px #000;
     }
-  .fixed.full figure figcaption h3,
-  .fixed.full figure figcaption p {
+  .image.full figure figcaption h3,
+  .image.full figure figcaption p {
     width: auto;
     }
 /* add this to all elements that have a full screen element */

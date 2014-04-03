@@ -35,10 +35,15 @@ a {
     margin: 30px auto!important;
     padding: 30px!important;
     box-shadow: 0 0 1px #999;
+    text-align: center;
     }
-    .longform blockquote cite:before {
-      content: "– ";
+    .longform blockquote cite {
+      text-align: right;
+      display: block;
       }
+      .longform blockquote cite:before {
+        content: "– ";
+        }
   .longform > section > article > section {
     position: relative;
     z-index: 1;
@@ -74,10 +79,10 @@ a {
       padding: 30px 0;
       }
 /* fixed image, text remains in document flow */
-.fixed-image {
+.image.full {
   z-index: 0!important;
   }
-  .fixed-image figure img {
+  .fixed.full figure img {
     position: fixed;
     top: 0;
     left: 0;
@@ -88,17 +93,22 @@ a {
     border: none!important;
     padding: 0!important;
     }
-  .fixed-image h2,
-  .fixed-image figcaption {
+  .fixed.full h2,
+  .fixed.full figcaption {
     position: relative;
     z-index: 1;
     color: #fff;
     text-shadow: 0 0 1px #000, 0 0 1px #000;
     }
-  .fixed-image figure figcaption h3,
-  .fixed-image figure figcaption p {
+  .fixed.full figure figcaption h3,
+  .fixed.full figure figcaption p {
     width: auto;
     }
+/* add this to all elements that have a full screen element */
+.full {
+  position: relative;
+  z-index: 0!important;
+  }
 /* masthead with video */
 .masthead-video {
   position: relative;
@@ -115,4 +125,13 @@ a {
     z-index: 1;
     color: #fff;
     text-shadow: 0 0 2px #000;
+    }
+/* fullscreen maps */
+.map {
+  }
+  .map.full iframe {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     }

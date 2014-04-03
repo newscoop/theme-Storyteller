@@ -52,7 +52,7 @@ a {
     .longform section article canvas,
     .longform section article audio {
       width: 50%;
-      margin: 0 auto;
+      margin: 0 auto 30px;
       padding: 0;
       }
       .longform section article figure p,
@@ -60,6 +60,8 @@ a {
         width: auto;
         }
     .longform section article figure img {
+      position: relative;
+      left: -20px;
       max-width: 100%;
       max-height: auto;
       background: #fff;

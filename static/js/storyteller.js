@@ -74,6 +74,12 @@ $(document).ready(function(){
     }
   });
 
+  $('section.map.full').each(function(){
+    var map = $(this).find('iframe');
+    map.width(winWidth - 20);
+    map.height(winHeight);
+  });
+
   // main loop triggers every half a second
   var loop = setInterval(function(){
     

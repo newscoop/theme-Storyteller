@@ -82,11 +82,28 @@ $(document).ready(function(){
 
   // main loop triggers every half a second
   var loop = setInterval(function(){
-    
     // this is always the current top left corner of the viewing area
     var currViewport = window.pageYOffset;
     // you can get the viewport area by adding winHeight to currViewport
+    $('.full').each(function(){
+      var fullTop = $(this).position().top;
+      var fullBot = $(this).height();
+      var fullSize = fullTop + fullBot;
+      // then we want to remove the windowHeight form the top position and add it to the height so that when we check to see if elements should be displayed or not we make sure they don't just appear
+      var fullTopAdj = (fullTop - winHeight);
+      var fullBotAdj = (fullBot + winHeight);
+      var fullSizeAdj = fullTopAdj + fullBotAdj;
+      if ((currViewport > fullTopAdj) && (currViewport < fullSizeAdj)){
+        $(this).find('figure').css({
+          'display': 'block'
+        });
+      } else {
+        $(this).find('figure').css({
+          'display': 'none'
+        });
+      }
+    });
 
-  }, 500);
+  }, 250);
 
 });

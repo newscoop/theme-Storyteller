@@ -76,8 +76,8 @@ $(document).ready(function(){
 
   $('section.map.full').each(function(){
     var map = $(this).find('iframe');
-    map.width(winWidth - 20);
-    map.height(winHeight);
+    map.attr('width', winWidth);
+    map.attr('height', winHeight);
   });
 
   // main loop triggers every half a second
@@ -94,11 +94,11 @@ $(document).ready(function(){
       var fullBotAdj = (fullBot + winHeight);
       var fullSizeAdj = fullTopAdj + fullBotAdj;
       if ((currViewport > fullTopAdj) && (currViewport < fullSizeAdj)){
-        $(this).find('figure').css({
+        $(this).find('figure, iframe, video').css({
           'display': 'block'
         });
       } else {
-        $(this).find('figure').css({
+        $(this).find('figure, iframe, video').css({
           'display': 'none'
         });
       }

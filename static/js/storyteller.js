@@ -93,7 +93,7 @@ $(document).ready(function(){
       var fullTopAdj = (fullTop - winHeight);
       var fullBotAdj = (fullBot + winHeight);
       var fullSizeAdj = fullTopAdj + fullBotAdj;
-      if ((currViewport > fullTopAdj) && (currViewport < fullSizeAdj)){
+      if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
         $(this).find('figure, iframe, video').css({
           'display': 'block'
         });

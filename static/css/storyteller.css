@@ -80,7 +80,7 @@ a {
       }
 /* add this to all elements that have a full screen element */
 .full {
-  position: relative;
+  position: static!important;
   z-index: 0!important;
   }
   /* hide the elements by default */
@@ -136,8 +136,8 @@ a {
 .map {
   }
   .map.full iframe {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
+    z-index: -1;
     }

@@ -74,7 +74,10 @@ $(document).ready(function(){
     }
   });
 
-  $('.slides').bxSlider();
+  $('.slides').bxSlider({
+    auto: true,
+    loop: true
+  });
 
   // full sreen maps
   $('section.map.full').each(function(){

@@ -177,55 +177,57 @@ a {
     text-shadow: 0 0 2px #000;
     border-radius: 1px;
     }
-/* slideshow */
-.slideshow {
+
+/* full screen background video */
+.video.full {
+  background: none!important;
   position: relative;
+  overflow: hidden;
   }
-  .slideshow .slides {
-    width: 50%;
-    margin: 0 auto;
-    position: relative;
+  .video.full .lead-video {
+    position: fixed;
+    top: 0;
+    width: 100%;
     z-index: -1;
     }
-    .slideshow .slides li {
-      position: absolute;
-      top: 0;
-      left: 0;
-      }
-      .slideshow .slides h3 {
-        margin: auto 0;
-        }
-      .slideshow .slides dl {
-        position: absolute;
-        bottom: 64px;
-        text-align: right;
-        right: 0;
-        margin: auto 0;
-        color: #999;
-        }
-        .slideshow .slides dl dt,
-        .slideshow .slides dl dd {
-          display: inline;
-          font-size: 10px;
-          }
-      .slideshow .slides li figure {
-        width: 100%;
-        }
-        .slideshow .slides li figure img {
-          margin: 0;
-          box-shadow: none;
-          }
-        .slideshow .slides li figcaption {
-          color: #000;
-          padding: 30px 20px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          text-shadow: 0 0 1px #fff;
-          }
-/* fullscreen maps */
+  .video.full h2 {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    }
+  .video.full > h3,
+  .video.full > p {
+    background: rgba(0,0,0,.1);
+    padding: 0 20px!important;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    border-radius: 1px;
+    }
+
+/* slideshow */
+.slideshow {
+  }
+  .slideshow .bx-wrapper .bx-viewport {
+    background: none;
+    border: none;
+    box-shadow: none;
+    }
+
+/* maps */
 .map {
+  }
+  .map iframe {
+    display: block;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: solid 1px #333;
+    box-shadow: 0 0 1px #000;
+    }
+
+/* fullscreen maps */
+.map.full {
+  background: none!important;
   }
   .map.full iframe {
     position: fixed;

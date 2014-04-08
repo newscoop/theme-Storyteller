@@ -25,6 +25,10 @@ a {
   .longform audio {
     display: block;
     }
+  .longform canvas {
+    border: solid 1px #333;
+    box-shadow: 0 0 1px #999;
+    }
   .longform blockquote {
     webkit-border-radius: 3px;
        moz-border-radius: 3px;

@@ -1,5 +1,8 @@
 <!-- default template -->
 <section>
+
+  <h3>Heading</h3>
+
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut velit faucibus, tempus mauris sit amet, feugiat nisi. Mauris tincidunt vehicula orci, vitae viverra mauris venenatis volutpat. Vivamus leo tellus, ullamcorper commodo diam et, sollicitudin tincidunt sem. Nulla facilisi. Maecenas porttitor lobortis sapien. Nunc sit amet augue diam. Quisque sodales iaculis ante, non gravida dui molestie ullamcorper. Nulla vulputate venenatis tincidunt. Mauris sed convallis urna. Praesent tempus, risus sed congue consectetur, metus urna tincidunt augue, quis dapibus ligula lectus id metus. Suspendisse in nibh eget massa rutrum scelerisque id sit amet diam. Aenean vehicula nibh sit amet elementum luctus. Cras ornare aliquet metus et porttitor. Nunc vel massa sed ante mattis sollicitudin. Proin volutpat odio est, eget porttitor ante auctor at.</p>
 
   <blockquote>

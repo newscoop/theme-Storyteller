@@ -87,16 +87,17 @@ a {
   z-index: 0!important;
   }
   /* hide the elements by default */
-  .full figure,
-  .full video,
+  .full .lead-image,
+  .full .lead-video,
   .full iframe {
     display: none;
     }
 /* fixed image, text remains in document flow */
 .image.full {
+  background: none;
   z-index: 0!important;
   }
-  .image.full figure img {
+  .image.full .lead-image {
     position: fixed;
     top: 0;
     left: 0;

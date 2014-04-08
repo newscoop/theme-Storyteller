@@ -1,9 +1,9 @@
 <section class="masthead-video">
   <h2>Masthead with video</h2>
   <video autoplay loop class="lead-video">
-    <source src="/video/video.mp4" type="video/mp4" />
-    <source src="/video/video.ogv" type="video/ogg" />
-    <source src="/video/video.webm" type="video/webm" />
+    <source src="video/video.mp4" type="video/mp4" />
+    <source src="video/video.ogv" type="video/ogg" />
+    <source src="video/video.webm" type="video/webm" />
   </video>
   <h3>Sub heading</h3>
 
@@ -13,7 +13,7 @@
   </blockquote>
 
   <figure>
-    <img src="/img/figure.jpg" />
+    <img src="img/figure.jpg" />
     <figcaption>
       <p>Proin dignissim ante non porta scelerisque. Donec iaculis vulputate nunc, at lobortis diam suscipit in. Pellentesque condimentum nisi lectus, eu eleifend nisi ullamcorper a. Vestibulum tempus est vitae auctor varius. Sed nec eros a ligula accumsan pharetra. Donec bibendum nec sapien eget elementum. Duis mi dolor, euismod id sapien in, interdum sollicitudin dui. Mauris blandit libero at velit consequat, in adipiscing dolor pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed et augue eget arcu mollis convallis vitae a diam.</p>
     </figcaption>

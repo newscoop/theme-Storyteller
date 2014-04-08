@@ -3,7 +3,7 @@
   <ul class="slides">
     <li>
       <figure>
-        <img src="/img/slideshow/img1.png" />
+        <img src="img/slideshow/img1.png" />
         <figcaption>
           <h3>Title 1</h3>
           <dl>
@@ -16,7 +16,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img2.png" />
+        <img src="img/slideshow/img2.png" />
         <figcaption>
           <h3>Title 2</h3>
           <dl>
@@ -29,7 +29,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img3.png" />
+        <img src="img/slideshow/img3.png" />
         <figcaption>
           <h3>Title 3</h3>
           <dl>
@@ -42,7 +42,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img4.png" />
+        <img src="img/slideshow/img4.png" />
         <figcaption>
           <h3>Title 4</h3>
           <dl>
@@ -55,7 +55,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img5.png" />
+        <img src="img/slideshow/img5.png" />
         <figcaption>
           <h3>Title 5</h3>
           <dl>

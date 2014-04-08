@@ -3,7 +3,7 @@
   <ul class="slides">
     <li>
       <figure>
-        <img src="/img/slideshow/img1.png" />
+        <img src="img/slideshow/img1.png" />
         <figcaption>
           <dl>
             <dt>Copyright:</dt>
@@ -14,7 +14,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img2.png" />
+        <img src="img/slideshow/img2.png" />
         <figcaption>
           <dl>
             <dt>Copyright:</dt>
@@ -25,7 +25,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img3.png" />
+        <img src="img/slideshow/img3.png" />
         <figcaption>
           <dl>
             <dt>Copyright:</dt>
@@ -36,7 +36,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img4.png" />
+        <img src="img/slideshow/img4.png" />
         <figcaption>
           <dl>
             <dt>Copyright:</dt>
@@ -47,7 +47,7 @@
     </li>
     <li>
       <figure>
-        <img src="/img/slideshow/img5.png" />
+        <img src="img/slideshow/img5.png" />
         <figcaption>
           <dl>
             <dt>Copyright:</dt>

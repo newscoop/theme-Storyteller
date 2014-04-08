@@ -48,23 +48,25 @@ a {
     position: relative;
     z-index: 1;
     background: url(/img/texture-tile.jpg) 0 0 repeat #fff;
+    padding: 30px 0;
     }
-    .longform section article h2,
-    .longform section article h3,
-    .longform section article p,
-    .longform section article blockquote,
-    .longform section article figure,
-    .longform section article canvas,
-    .longform section article audio {
+    .longform > section > article > section h2,
+    .longform > section > article > section h3,
+    .longform > section > article > section p,
+    .longform > section > article > section blockquote,
+    .longform > section > article > section figure,
+    .longform > section > article > section canvas,
+    .longform > section > article > section audio,
+    .longform > section > article > section dl {
       width: 50%;
       margin: 0 auto 30px;
       padding: 0;
       }
-      .longform section article figure p,
-      .longform section article blockquote p {
+      .longform > section > article > section figure p,
+      .longform > section > article > section blockquote p {
         width: auto;
         }
-    .longform section article figure img {
+    .longform > section > article > section figure img {
       position: relative;
       left: -20px;
       max-width: 100%;
@@ -74,9 +76,6 @@ a {
       margin: 20px auto;
       border: solid 1px #999;
       box-shadow: 0 1px 2px #333;
-      }
-    .longform section section {
-      padding: 30px 0;
       }
 /* add this to all elements that have a full screen element */
 .full {
@@ -115,16 +114,50 @@ a {
   .image.full figure figcaption p {
     width: auto;
     }
+/* masthead with image */
+.masthead-image {
+/*  position: static;*/
+  }
+  .masthead-image .lead-image {
+    width: 100%!important;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    }
+    .masthead-image .lead-image img {
+      position: absolute;
+      left: 0!important;
+      top: 0;
+      width: 100%;
+      height: auto;
+      padding: 0!important;
+      margin: 0!important;
+      border: none!important;
+      }
+  .masthead-image h2 {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    }
+  .masthead-image h3,
+  .masthead-image p {
+    background: rgba(0,0,0,.1);
+    padding: 0 20px!important;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    border-radius: 1px;
+    }
 /* masthead with video */
 .masthead-video {
   position: relative;
   overflow: hidden;
   }
-  .masthead-video video {
+  .masthead-video .lead-video {
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 0;
+    z-index: -1;
     }
   .masthead-video h2 {
     position: relative;
@@ -132,6 +165,59 @@ a {
     color: #fff;
     text-shadow: 0 0 2px #000;
     }
+  .masthead-video h3,
+  .masthead-video p {
+    background: rgba(0,0,0,.1);
+    padding: 0 20px!important;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    border-radius: 1px;
+    }
+/* slideshow */
+.slideshow {
+  position: relative;
+  }
+  .slideshow .slides {
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    z-index: -1;
+    }
+    .slideshow .slides li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      }
+      .slideshow .slides h3 {
+        margin: auto 0;
+        }
+      .slideshow .slides dl {
+        position: absolute;
+        bottom: 64px;
+        text-align: right;
+        right: 0;
+        margin: auto 0;
+        color: #999;
+        }
+        .slideshow .slides dl dt,
+        .slideshow .slides dl dd {
+          display: inline;
+          font-size: 10px;
+          }
+      .slideshow .slides li figure {
+        width: 100%;
+        }
+        .slideshow .slides li figure img {
+          margin: 0;
+          box-shadow: none;
+          }
+        .slideshow .slides li figcaption {
+          color: #000;
+          padding: 30px 20px;
+          position: absolute;
+          top: 0;
+          text-shadow: 0 0 1px #fff;
+          }
 /* fullscreen maps */
 .map {
   }

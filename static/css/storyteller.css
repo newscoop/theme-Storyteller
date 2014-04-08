@@ -220,6 +220,8 @@ a {
           padding: 30px 20px;
           position: absolute;
           top: 0;
+          left: 0;
+          right: 0;
           text-shadow: 0 0 1px #fff;
           }
 /* fullscreen maps */

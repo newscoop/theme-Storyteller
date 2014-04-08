@@ -99,17 +99,17 @@ $(document).ready(function(){
       var fullTopAdj = (fullTop - winHeight);
       var fullBotAdj = (fullBot + winHeight);
       var fullSizeAdj = fullTopAdj + fullBotAdj;
-      if (((currViewport + (winHeight + (winHeight / 2))) >= fullTop) && (currViewport <= (fullSize + (winHeight / 2)))){
-        $(this).find('figure, iframe, video').css({
+      if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+        $(this).find('.lead-image, iframe, .lead-video').css({
           'display': 'block'
         });
       } else {
-        $(this).find('figure, iframe, video').css({
+        $(this).find('.lead-image, iframe, .lead-video').css({
           'display': 'none'
         });
       }
     });
 
-  }, 250);
+  }, 100);
 
 });

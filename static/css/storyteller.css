@@ -144,8 +144,8 @@ a {
     color: #fff;
     text-shadow: 0 0 2px #000;
     }
-  .masthead-image h3,
-  .masthead-image p {
+  .masthead-image > h3,
+  .masthead-image > p {
     background: rgba(0,0,0,.1);
     padding: 0 20px!important;
     color: #fff;
@@ -169,8 +169,8 @@ a {
     color: #fff;
     text-shadow: 0 0 2px #000;
     }
-  .masthead-video h3,
-  .masthead-video p {
+  .masthead-video > h3,
+  .masthead-video > p {
     background: rgba(0,0,0,.1);
     padding: 0 20px!important;
     color: #fff;

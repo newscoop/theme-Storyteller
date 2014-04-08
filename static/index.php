@@ -5,6 +5,7 @@
   <meta title="Storyteller" />
   <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
+  <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
 </head>
 <body class="longform">
   <header>
@@ -36,6 +37,8 @@
   </section>
   <footer>
   </footer>
+  <script src="/js/libs/jquery.bxslider.min.js"></script>
+  <script src="/js/libs/jquery.easing.1.3.js"></script>
   <script src="/js/storyteller.js"></script>
 </body>
 </html>

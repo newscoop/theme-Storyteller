@@ -32,6 +32,9 @@
     <?php include "modules/audio.php"; ?>
     <?php include "modules/slideshow.php"; ?>
     <?php include "modules/slideshow_text.php"; ?>
+    <?php include "modules/slideshow_text_overlay.php"; ?>
+    <?php include "modules/slideshow_full_fade.php"; ?>
+    <?php include "modules/slideshow_full_shutter.php"; ?>
     <?php include "modules/map.php"; ?>
     <?php include "modules/map_fullscreen.php"; ?>
     </article>

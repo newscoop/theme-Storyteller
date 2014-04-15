@@ -74,9 +74,14 @@ $(document).ready(function(){
     }
   });
 
-  $('.slides').bxSlider({
+  $('.slideshow').not('.shutter').find('.slides').bxSlider({
     auto: true,
-    loop: true
+    loop: true,
+    controls: false,
+    mode: 'fade'
+  });
+  $('.slideshow.full, .bx-viewport').css({
+    'min-height' : winHeight
   });
 
   // full sreen maps

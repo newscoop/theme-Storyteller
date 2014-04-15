@@ -214,6 +214,52 @@ a {
     border: none;
     box-shadow: none;
     }
+    .slideshow .bx-wrapper figure h3 {
+      width: auto;
+      }
+  .slideshow .bx-wrapper figure dl {
+    width: auto;
+    font-size: 10px;
+    }
+    .slideshow .slideshow .bx-wrapper figure dl dt,
+    .slideshow .slideshow .bx-wrapper figure dl dd, {
+      width: auto;
+      display: inline;
+      color: red;
+      }
+.slideshow.full.fade {
+  }
+  .slideshow.full.fade .bx-wrapper {
+    margin: 0 auto;
+    height: 100%;
+    }
+    .slideshow.full.fade .bx-wrapper .bx-controls {
+      position: absolute;
+      width: 100%;
+      bottom: 60px;
+      }
+    .slideshow.full.fade .bx-wrapper figure {
+      max-width: 100%;
+      min-width: 100%;
+      margin: 0;
+      }
+      .slideshow.full.fade .bx-wrapper figure img {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        left: 0;
+        border: none;
+        box-shadow: none;
+        }
+      .slideshow.full.fade .bx-wrapper figure figcaption {
+        position: relative;
+        z-index: 1;
+        top: 0;
+        width: 50%;
+        margin: 0 auto;
+        }
 
 /* maps */
 .map {

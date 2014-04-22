@@ -74,6 +74,53 @@ $(document).ready(function(){
     }
   });
 
+  var i = 0;
+  var header = $('header');
+  var collapse = $('#collapse');
+
+  $('#collapse').bind('click', function(){
+    if (header.hasClass('active')){
+      header.attr('class', null);
+      var rotateMenu = setInterval(function(){
+        header.find('nav, ul, h1').fadeOut(function(){
+          header.css({
+            'min-width': 0,
+            'background': 'rgba(255, 255, 255, .25)'
+          }, 500);
+        });
+        collapse.css({
+          '-webkit-transform': 'rotate(' + i + 'deg)'
+        });
+        if (i >= 90){
+          i = 90;
+          clearInterval(rotateMenu);
+        } else {
+          i = i + 10;
+        }
+        console.log(i);
+      }, 5);
+    } else {
+      header.addClass('active');
+      var rotateMenu = setInterval(function(){
+        header.css({
+          'min-width': '20%',
+          'background': 'rgba(255, 255, 255, 1)'
+        });
+        header.find('nav, ul, h1').fadeIn(500);
+        collapse.css({
+          '-webkit-transform': 'rotate(' + i + 'deg)'
+        });
+        if (i <= 0){
+          i = 0;
+          clearInterval(rotateMenu);
+        } else {
+          i = i - 10;
+        }
+        console.log(i);
+      }, 5);
+    }
+  });
+
   $('.slideshow').not('.shutter').find('.slides').bxSlider({
     auto: true,
     loop: true,

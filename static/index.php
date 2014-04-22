@@ -9,6 +9,7 @@
 </head>
 <body class="longform">
   <header>
+    <p id="collapse">Collapse/Expand the menu</p>
     <h1>
       <a href="/">Site name</a>
     </h1>

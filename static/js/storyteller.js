@@ -159,7 +159,7 @@ $(document).ready(function(){
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;
-      // then we want to remove the windowHeight form the top position and add it to the height so that when we check to see if elements should be displayed or not we make sure they don't just appear
+      // then we want to remove the windowHeight from the top position and add it to the height so that when we check to see if elements should be displayed or not we make sure they don't just appear
       var fullTopAdj = (fullTop - winHeight);
       var fullBotAdj = (fullBot + winHeight);
       var fullSizeAdj = fullTopAdj + fullBotAdj;

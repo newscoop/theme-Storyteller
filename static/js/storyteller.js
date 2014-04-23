@@ -74,49 +74,52 @@ $(document).ready(function(){
     }
   });
 
-  var i = 0;
   var header = $('header');
   var collapse = $('#collapse');
+  var doCollapse = true;
+  var i = 0;
+
+  header.find('h1, nav, ul, form, legend').hide();
 
   $('#collapse').bind('click', function(){
-    if (header.hasClass('active')){
-      header.attr('class', null);
-      var rotateMenu = setInterval(function(){
-        header.find('nav, ul, h1').fadeOut(function(){
-          header.css({
-            'min-width': 0,
-            'background': 'rgba(255, 255, 255, .25)'
-          }, 500);
+    if (doCollapse === true){
+      doCollapse = false;
+      header.animate({
+        'min-width': '20%'
+      }, 500, function(){
+        header.css({
+          'background': 'rgba(255, 255, 255, 1)'
         });
+        header.find('nav, ul, h1, form').fadeIn();
+      });
+      var rotateMenu = setInterval(function(){
         collapse.css({
           '-webkit-transform': 'rotate(' + i + 'deg)'
         });
         if (i >= 90){
-          i = 90;
           clearInterval(rotateMenu);
         } else {
           i = i + 10;
         }
-        console.log(i);
       }, 5);
     } else {
-      header.addClass('active');
+      doCollapse = true;
+      header.find('nav, ul, h1, form').fadeOut();
+      header.delay(500).animate({
+        'min-width': '0%'
+      }, 500);
+      header.css({
+        'background': 'rgba(255, 255, 255, .25)'
+      });
       var rotateMenu = setInterval(function(){
-        header.css({
-          'min-width': '20%',
-          'background': 'rgba(255, 255, 255, 1)'
-        });
-        header.find('nav, ul, h1').fadeIn(500);
         collapse.css({
           '-webkit-transform': 'rotate(' + i + 'deg)'
         });
         if (i <= 0){
-          i = 0;
           clearInterval(rotateMenu);
         } else {
           i = i - 10;
         }
-        console.log(i);
       }, 5);
     }
   });

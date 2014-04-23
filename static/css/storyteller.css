@@ -29,15 +29,19 @@ a {
   .longform #collapse {
     background: url(../img/menu.png) 0 0 no-repeat;
     text-indent: -10000px;
-    width: 24px;
-    height: 24px;
+    margin: 0 0 10px;
+    width: 16px;
+    height: 16px;
     background-size: 100%;
     cursor: pointer;
     }
-  .longform header ul,
-  .longform header h1,
-  .longform header nav {
-    display: none;
+  .longform header form input {
+    margin: 10px 0;
+    border: solid 1px #999;
+    font-size: 16px;
+    line-height: 1.5em;
+    text-indent: 10px;
+    font-weight: normal;
     }
   .longform header a {
     color: #000;

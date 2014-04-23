@@ -78,6 +78,7 @@ $(document).ready(function(){
   var collapse = $('#collapse');
   var doCollapse = true;
   var i = 0;
+  var rotateMenu;
 
   header.find('h1, nav, ul, form, legend').hide();
 
@@ -92,7 +93,7 @@ $(document).ready(function(){
         });
         header.find('nav, ul, h1, form').fadeIn();
       });
-      var rotateMenu = setInterval(function(){
+      rotateMenu = setInterval(function(){
         collapse.css({
           '-webkit-transform': 'rotate(' + i + 'deg)',
              '-moz-transform': 'rotate(' + i + 'deg)',
@@ -115,7 +116,7 @@ $(document).ready(function(){
       header.css({
         'background': 'rgba(255, 255, 255, .25)'
       });
-      var rotateMenu = setInterval(function(){
+      rotateMenu = setInterval(function(){
         collapse.css({
           '-webkit-transform': 'rotate(' + i + 'deg)',
              '-moz-transform': 'rotate(' + i + 'deg)',

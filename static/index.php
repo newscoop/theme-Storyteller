@@ -13,6 +13,10 @@
     <h1>
       <a href="/">Site name</a>
     </h1>
+    <form id="search" name="search">
+      <legend>Search</legend>
+      <input type="text" placeholder="Search" />
+    </form>
     <nav>
       <ul>
         <li><a href="/">Section</a></li>

@@ -134,13 +134,28 @@ $(document).ready(function(){
   });
 
   $('.slideshow').not('.shutter').find('.slides').bxSlider({
-    auto: true,
+    // auto: true,
     loop: true,
     controls: false,
     mode: 'fade'
   });
+
   $('.slideshow.full, .bx-viewport').css({
     'min-height' : winHeight
+  });
+
+  // full sreen shutter slides
+  $('.slideshow.full.shutter').each(function(){
+    $(this).find('li, figure').each(function(){
+      $(this).height(winHeight);
+    });
+    var i = $(this).find('li').length;
+    $(this).find('li').each(function(){
+      $(this).css({
+        'z-index': i
+      });
+      i = i - 1;
+    });
   });
 
   // full sreen maps
@@ -150,11 +165,9 @@ $(document).ready(function(){
     map.attr('height', winHeight);
   });
 
-  // main loop triggers every half a second
-  var loop = setInterval(function(){
-    // this is always the current top left corner of the viewing area
+  // all checks that happen after the scroll do here
+  var afterScroll = addEventListener('scroll', function(){
     var currViewport = window.pageYOffset;
-    // you can get the viewport area by adding winHeight to currViewport
     $('.full').each(function(){
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
@@ -172,6 +185,37 @@ $(document).ready(function(){
           'display': 'none'
         });
       }
+    });
+  });
+
+  // main loop triggers every tenth of a second
+  var loop = setInterval(function(){
+    // this is always the current top left corner of the viewing area
+    var currViewport = window.pageYOffset;
+    // you can get the viewport area by adding winHeight to currViewport
+    $('.shutter').each(function(){
+      var parPos = $(this).position().top;
+      var parHeight = $(this).height();
+      var parBot = (parPos + parHeight);
+      $(this).find('li').each(function(){
+        var fullTop = $(this).position().top;
+        var fullBot = $(this).height();
+        var fullSize = fullTop + fullBot;
+        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+          if (currViewport >= fullTop){
+            $(this).find('video:first-child, figure > img').each(function(){
+              $(this).addClass('fixed');
+            });
+          } else {
+            $(this).find('video:first-child, figure > img').each(function(){
+              $(this).removeClass('fixed');
+            });
+          }
+        } else if (currViewport > parBot) {
+          console.log('ping');
+          $(this).find('.fixed').removeClass('fixed');
+        }
+      });
     });
 
   }, 100);

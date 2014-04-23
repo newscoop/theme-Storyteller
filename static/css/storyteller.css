@@ -254,16 +254,17 @@ a {
     }
     .slideshow .bx-wrapper figure h3 {
       width: auto;
+      margin: 0;
       }
   .slideshow .bx-wrapper figure dl {
+    margin: 10px auto;
     width: auto;
     font-size: 10px;
     }
-    .slideshow .slideshow .bx-wrapper figure dl dt,
-    .slideshow .slideshow .bx-wrapper figure dl dd, {
+    .slideshow .bx-wrapper figure dl dt,
+    .slideshow .bx-wrapper figure dl dd {
       width: auto;
       display: inline;
-      color: red;
       }
 .slideshow.full.fade {
   }
@@ -298,6 +299,59 @@ a {
         width: 50%;
         margin: 0 auto;
         }
+/* this doesn't really rely on js as much as it does css */
+.fixed {
+  position: fixed!important;
+  top: 0;
+  }
+.slideshow.full.shutter {
+  }
+  .slideshow.full.shutter > .slides {
+    }
+    .slideshow.full.shutter li {
+      position: relative;
+      overflow: hidden;
+      }
+      .slideshow.full.shutter h3 {
+        width: auto;
+        margin: 0;
+        }
+      .slideshow.full.shutter figure dl {
+        margin: 10px auto;
+        width: auto;
+        font-size: 10px;
+        }
+        .slideshow.full.shutter figure dl dt,
+        .slideshow.full.shutter figure dl dd {
+          width: auto;
+          display: inline;
+          }
+      .slideshow.full.shutter figure {
+        }
+        .slideshow.full.shutter figure img {
+          position: absolute;
+          left: 0;
+          margin: 0;
+          padding: 0;
+          border: none;
+          box-shadow: none;
+          width: 100%;
+          height: auto;
+          }
+        .slideshow.full.shutter figure figcaption {
+          position: relative;
+          z-index: 1;
+          }
+      .slideshow.full.shutter video {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        }
+        .slideshow.full.shutter video + span {
+          display: block;
+          position: relative;
+          z-index: 1;
+          }
 
 /* maps */
 .map {

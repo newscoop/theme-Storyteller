@@ -94,7 +94,11 @@ $(document).ready(function(){
       });
       var rotateMenu = setInterval(function(){
         collapse.css({
-          '-webkit-transform': 'rotate(' + i + 'deg)'
+          '-webkit-transform': 'rotate(' + i + 'deg)',
+             '-moz-transform': 'rotate(' + i + 'deg)',
+              '-ms-transform': 'rotate(' + i + 'deg)',
+               '-o-transform': 'rotate(' + i + 'deg)',
+                  'transform': 'rotate(' + i + 'deg)'
         });
         if (i >= 90){
           clearInterval(rotateMenu);
@@ -113,7 +117,11 @@ $(document).ready(function(){
       });
       var rotateMenu = setInterval(function(){
         collapse.css({
-          '-webkit-transform': 'rotate(' + i + 'deg)'
+          '-webkit-transform': 'rotate(' + i + 'deg)',
+             '-moz-transform': 'rotate(' + i + 'deg)',
+              '-ms-transform': 'rotate(' + i + 'deg)',
+               '-o-transform': 'rotate(' + i + 'deg)',
+                  'transform': 'rotate(' + i + 'deg)'
         });
         if (i <= 0){
           clearInterval(rotateMenu);

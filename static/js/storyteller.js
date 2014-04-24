@@ -149,12 +149,13 @@ $(document).ready(function(){
     $(this).find('li, figure').each(function(){
       $(this).height(winHeight);
     });
-    var i = $(this).find('li').length;
+    var i = 1;
+    // var i = $(this).find('li').length;
     $(this).find('li').each(function(){
       $(this).css({
         'z-index': i
       });
-      i = i - 1;
+      i = i + 1;
     });
   });
 

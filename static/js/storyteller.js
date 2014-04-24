@@ -212,7 +212,8 @@ $(document).ready(function(){
             });
           }
         } else if (currViewport > parBot) {
-          console.log('ping');
+          $(this).find('.fixed').removeClass('fixed');
+        } else {
           $(this).find('.fixed').removeClass('fixed');
         }
       });

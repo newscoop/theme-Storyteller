@@ -2,6 +2,10 @@ var winHeight = $(window).height();
 var winWidth = $(window).width();
 
 $(document).ready(function(){
+  var getViewport = function(){
+    var currViewport = window.pageYOffset;
+    return currViewport;
+  };
   // scope is private but can use global
 
   $('section').each(function(){

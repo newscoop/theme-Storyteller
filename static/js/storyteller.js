@@ -2,10 +2,41 @@ var winHeight = $(window).height();
 var winWidth = $(window).width();
 
 $(document).ready(function(){
+
+  // use this function to create IDs for objects that don't have them - probably not an issue after template creation
+  var randId = function(limit){
+    var randVal = ""; // we want a string the length of the input limit not an integer
+    if (limit === null || limit === undefined){
+      limit = 4; // you can't have a random string of nothing so set default to 4 where there are 10000 (including 0000) possibilities
+    }
+    for (i = 0; i < limit; i = i + 1){
+      var randValPart = Math.floor(Math.random(0, limit) * 10);
+      randVal = randVal + randValPart;
+    }
+    return randVal;
+  };
+
   var getViewport = function(){
     var currViewport = window.pageYOffset;
     return currViewport;
   };
+
+  // check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound
+  if ($('audio.ambient')[0]){
+    $('body').append('<audio id="audioMaster" loop src="null" />');
+    var audioMaster = $('#audioMaster');
+    $('.ambient').each(function(){
+      var src = $(this).attr('src');
+      var par = $(this).parent().get(0).tagName.toLowerCase();
+      if (par == 'figure'){
+        $(this).parent().parent().attr('data-audiosrc', src);
+      } else {
+        $(this).parent().attr('data-audiosrc', src);
+      }
+      $(this).remove();
+    });
+  }
+
   // scope is private but can use global
 
   $('section').each(function(){
@@ -20,19 +51,6 @@ $(document).ready(function(){
       });
     }
   });
-
-  // use this function to create IDs for objects that don't have them
-  var randId = function(limit){
-    var randVal = ""; // we want a string the length of the input limit not an integer
-    if (limit === null || limit === undefined){
-      limit = 4; // you can't have a random string of nothing so set default to 4 where there are 10000 (including 0000) possibilities
-    }
-    for (i = 0; i < limit; i = i + 1){
-      var randValPart = Math.floor(Math.random(0, limit) * 10);
-      randVal = randVal + randValPart;
-    }
-    return randVal;
-  };
 
   $('section.video').each(function(){
     var video = $(this).find('video');
@@ -204,6 +222,36 @@ $(document).ready(function(){
           $(this).find('.fixed').removeClass('fixed');
         }
       });
+    });
+
+    $('section, li').each(function(){
+      j = j + 1;
+      if ($(this).attr('data-audiosrc')) {
+        var playState = false;
+        var src = $(this).attr('data-audiosrc');
+        var fullTop = $(this).position().top;
+        var fullBot = $(this).height();
+        var fullSize = fullTop + fullBot;
+        var fullTopAdj = (fullTop - winHeight);
+        var fullBotAdj = (fullBot + winHeight);
+        var fullSizeAdj = fullTopAdj + fullBotAdj;
+        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+          if (playState === true){
+            playState = true;
+            audioMaster[0].pause();
+            audioMaster[0].src = null;
+          } else {
+            playState = false;
+            audioMaster[0].src = src;
+            audioMaster[0].play();
+          }
+          console.log(j + ' ' + playState + ' ' + $(this).find('h3').text());
+        } else {
+          playState = false;
+          audioMaster[0].src = src;
+          audioMaster[0].play();
+        }
+      }
     });
 
     $('.full').each(function(){

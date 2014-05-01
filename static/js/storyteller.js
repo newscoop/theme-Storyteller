@@ -171,6 +171,11 @@ $(document).ready(function(){
   });
 
   // all checks that happen after the scroll do here
+
+  // variable for the audio element to use to make sure that the masterAudio object doesn't stop/start all the time
+
+  var j = 0;
+
   var afterScroll = addEventListener('scroll', function(){
 
     var currViewport = getViewport();

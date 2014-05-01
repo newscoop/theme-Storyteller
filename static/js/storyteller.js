@@ -27,6 +27,7 @@ $(document).ready(function(){
     var audioMaster = $('#audioMaster');
     $('.ambient').each(function(){
       var src = $(this).attr('src');
+      var playing = false;
       var par = $(this).parent().get(0).tagName.toLowerCase();
       if (par == 'figure'){
         $(this).parent().parent().attr('data-audiosrc', src);
@@ -227,8 +228,7 @@ $(document).ready(function(){
     $('section, li').each(function(){
       j = j + 1;
       if ($(this).attr('data-audiosrc')) {
-        var playState = false;
-        var src = $(this).attr('data-audiosrc');
+        var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;
@@ -236,20 +236,35 @@ $(document).ready(function(){
         var fullBotAdj = (fullBot + winHeight);
         var fullSizeAdj = fullTopAdj + fullBotAdj;
         if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-          if (playState === true){
-            playState = true;
+          if (audioMaster[0].playing === true){
             audioMaster[0].pause();
             audioMaster[0].src = null;
+            audioMaster[0].playing = false;
           } else {
-            playState = false;
             audioMaster[0].src = src;
             audioMaster[0].play();
+            audioMaster[0].playing = true;
           }
           console.log(j + ' ' + playState + ' ' + $(this).find('h3').text());
         } else {
-          playState = false;
-          audioMaster[0].src = src;
-          audioMaster[0].play();
+          if (audioMaster[0].playing == true) {
+
+            console.log(audioMaster[0].src, src);
+
+            if (audioMaster[0].src == src) {
+              console.log('already playing current track');
+            } else {
+              console.log('updating track and playing');
+              audioMaster[0].src = src;
+              audioMaster[0].play();
+              audioMaster[0].playing = true;
+            }
+          } else {
+            audioMaster[0].src = src;
+            console.log('here I am starting to play audio');
+            audioMaster[0].play();
+            audioMaster[0].playing = true;
+          }
         }
       }
     });

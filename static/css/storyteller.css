@@ -2,7 +2,7 @@
 @import "typography.css";
 
 a {
-  color: #fff;
+  color: #000;
   text-decoration: none;
   background-image: -webkit-linear-gradient(top, #fff 50%, #666665 50%);
      background-image: -moz-linear-gradient(top, #fff 50%, #666665 50%);
@@ -34,6 +34,7 @@ a {
     height: 24px;
     background-size: 100%;
     cursor: pointer;
+    padding: 0!important;
     }
   .longform header form input {
     margin: 10px 0;
@@ -89,25 +90,20 @@ a {
   .longform > section > article > section {
     position: relative;
     z-index: 1;
-    background: url(/img/texture-tile.jpg) 0 0 repeat #fff;
+    background: #fff;
     padding: 30px 0;
     }
     .longform > section > article > section h2,
     .longform > section > article > section h3,
     .longform > section > article > section p,
-    .longform > section > article > section blockquote,
     .longform > section > article > section figure,
+    .longform > section > article > section blockquote,
     .longform > section > article > section canvas,
     .longform > section > article > section audio,
     .longform > section > article > section dl {
       width: 50%;
       margin: 0 auto 30px;
-      padding: 0;
       }
-      .longform > section > article > section figure p,
-      .longform > section > article > section blockquote p {
-        width: auto;
-        }
     .longform > section > article > section figure img {
       position: relative;
       left: -20px;
@@ -119,6 +115,28 @@ a {
       border: solid 1px #999;
       box-shadow: 0 1px 2px #333;
       }
+
+    .longform h2 {
+      background: rgba(255, 255, 255, .75);
+      position: relative;
+      z-index: 1;
+      color: #000;
+      text-shadow: 0 0 2px #fff;
+      border-radius: 2px;
+      }
+    .longform h3,
+    .longform p {
+      background: rgba(255, 255, 255, .75);
+      padding: 0 20px;
+      color: #000;
+      text-shadow: 0 0 2px #fff;
+      border-radius: 2px;
+      }
+    .longform figcaption h3,
+    .longform figcaption p {
+      width: auto!important;
+      }
+
 /* add this to all elements that have a full screen element */
 .full {
   position: static!important;
@@ -150,12 +168,6 @@ a {
   .image.full figcaption {
     position: relative;
     z-index: 1;
-    color: #fff;
-    text-shadow: 0 0 1px #000, 0 0 1px #000;
-    }
-  .image.full figure figcaption h3,
-  .image.full figure figcaption p {
-    width: auto;
     }
 /* masthead with image */
 .masthead-image {
@@ -177,20 +189,6 @@ a {
       margin: 0!important;
       border: none!important;
       }
-  .masthead-image h2 {
-    position: relative;
-    z-index: 1;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    }
-  .masthead-image > h3,
-  .masthead-image > p {
-    background: rgba(0,0,0,.1);
-    padding: 0 20px!important;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    border-radius: 1px;
-    }
 /* masthead with video */
 .masthead-video {
   position: relative;
@@ -201,20 +199,6 @@ a {
     top: 0;
     width: 100%;
     z-index: -1;
-    }
-  .masthead-video h2 {
-    position: relative;
-    z-index: 1;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    }
-  .masthead-video > h3,
-  .masthead-video > p {
-    background: rgba(0,0,0,.1);
-    padding: 0 20px!important;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    border-radius: 1px;
     }
 
 /* full screen background video */
@@ -228,20 +212,6 @@ a {
     top: 0;
     width: 100%;
     z-index: -1;
-    }
-  .video.full h2 {
-    position: relative;
-    z-index: 1;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    }
-  .video.full > h3,
-  .video.full > p {
-    background: rgba(0,0,0,.1);
-    padding: 0 20px!important;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    border-radius: 1px;
     }
 
 /* slideshow */
@@ -312,7 +282,7 @@ a {
       position: relative;
       overflow: hidden;
       }
-      .slideshow.full.shutter h3 {
+      .slideshow.full.shutter > h3 {
         width: auto;
         margin: 0;
         }

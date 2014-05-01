@@ -20,6 +20,7 @@
         <source src="video/video.ogv" type="video/ogv" />
         <source src="video/video.webm" type="video/webm" />
       </video>
+      <audio class="ambient" src="audio/audio.mp3"></audio>
       <span>
         <h3>Title 2</h3>
         <dl>
@@ -44,6 +45,7 @@
     </li>
     <li>
       <figure>
+        <audio class="ambient" src="audio/audio.mp3"></audio>
         <img src="img/slideshow/shutter3.jpg" />
         <figcaption>
           <h3>Title 4</h3>

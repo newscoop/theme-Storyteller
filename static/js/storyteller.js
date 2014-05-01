@@ -25,10 +25,20 @@ $(document).ready(function(){
   if ($('audio.ambient')[0]){
     $('body').append('<audio id="audioMaster" loop src="null" />');
     var audioMaster = $('#audioMaster');
+    var audioElements = [];
+    var audioElementId = 0;
     $('.ambient').each(function(){
       var src = $(this).attr('src');
       var playing = false;
+      var audioElement = {};
       var par = $(this).parent().get(0).tagName.toLowerCase();
+
+      audioElement.id = audioElementId;
+      audioElement.src = src;
+      audioElement.playing = false;
+      audioElements.push(audioElement);
+      audioElementId++;
+
       if (par == 'figure'){
         $(this).parent().parent().attr('data-audiosrc', src);
       } else {
@@ -225,6 +235,7 @@ $(document).ready(function(){
       });
     });
 
+    var audioElementId = 0;
     $('section, li').each(function(){
       j = j + 1;
       if ($(this).attr('data-audiosrc')) {
@@ -235,38 +246,43 @@ $(document).ready(function(){
         var fullTopAdj = (fullTop - winHeight);
         var fullBotAdj = (fullBot + winHeight);
         var fullSizeAdj = fullTopAdj + fullBotAdj;
+        var audioElement = audioElements[audioElementId];
+        
         if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-          if (audioMaster[0].playing === true){
-            audioMaster[0].pause();
-            audioMaster[0].src = null;
-            audioMaster[0].playing = false;
-          } else {
-            audioMaster[0].src = src;
-            audioMaster[0].play();
-            audioMaster[0].playing = true;
-          }
-          console.log(j + ' ' + playState + ' ' + $(this).find('h3').text());
-        } else {
-          if (audioMaster[0].playing == true) {
-
-            console.log(audioMaster[0].src, src);
-
-            if (audioMaster[0].src == src) {
-              console.log('already playing current track');
-            } else {
-              console.log('updating track and playing');
+          console.log('found audio');
+          if (audioMaster[0].playing === true) {
+            if (!audioMaster[0].audioElementId === audioElement.id) {
+              console.log('updating audio src');
               audioMaster[0].src = src;
+              audioMaster[0].audioElementId = audioElement.id;
               audioMaster[0].play();
               audioMaster[0].playing = true;
+              audioElement.playing = true;
             }
           } else {
+            console.log('turning on audio');
             audioMaster[0].src = src;
-            console.log('here I am starting to play audio');
+            audioMaster[0].audioElementId = audioElement.id;
             audioMaster[0].play();
             audioMaster[0].playing = true;
+            audioElement.playing = true;
           }
+        } else {
+          if (audioMaster[0].playing === true){
+            if (audioMaster[0].audioElementId === audioElement.id) {
+              console.log('turning off audio');
+              var playingId = audioMaster[0].audioElementId;
+              audioMaster[0].pause();
+              audioMaster[0].src = null;
+              audioMaster[0].playing = false;
+              audioMaster[0].audioElementId = null;
+            }
+          }
+          audioElement.playing = false;
+          //console.log(j + ' ' + audioMaster[0].playing + ' ' + $(this).find('h3').text());
         }
-      }
+        audioElementId++;
+      } 
     });
 
     $('.full').each(function(){

@@ -5,11 +5,11 @@
 a {
   color: #000;
   text-decoration: none;
-  background-image: -webkit-linear-gradient(top, #fff 50%, #666665 50%);
-     background-image: -moz-linear-gradient(top, #fff 50%, #666665 50%);
-      background-image: -ms-linear-gradient(top, #fff 50%, #666665 50%);
-       background-image: -o-linear-gradient(top, #fff 50%, #666665 50%);
-    background-image: linear-gradient(to bottom, #fff 50%, #666665 50%);
+  background-image: -webkit-linear-gradient(top, #000 50%, #666665 50%);
+     background-image: -moz-linear-gradient(top, #000 50%, #666665 50%);
+      background-image: -ms-linear-gradient(top, #000 50%, #666665 50%);
+       background-image: -o-linear-gradient(top, #000 50%, #666665 50%);
+    background-image: linear-gradient(to bottom, #000 50%, #666665 50%);
   background-repeat: repeat-x;
   background-size: 2px 2px;
   background-position: 0 16px;

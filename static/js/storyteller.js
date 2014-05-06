@@ -61,6 +61,21 @@ $(document).ready(function(){
         'min-height': (winHeight - paddingVertical) + 'px'
       });
     }
+    if ($(this).hasClass('chapter-title')){
+      var title = $(this).find('h1');
+      title.css({
+        'line-height': (winHeight - 60) + 'px'
+      });
+      title.after('<span class="continue">Click here to continue</span>');
+    }
+  });
+
+  $('.continue').bind('click', function(){
+    // console.log($(this).parent().parent().next().position().top);
+    var nextObjPos = $(this).parent().parent().next().position().top + "px";
+    $('body').animate({
+      scrollTop: nextObjPos
+    }, 1000);
   });
 
   $('section.video').each(function(){

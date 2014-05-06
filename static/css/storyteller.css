@@ -14,15 +14,15 @@ a {
   background-size: 2px 2px;
   background-position: 0 16px;
   }
-
-.longform {
+h2 {
+  margin: 0;
   }
   .longform header {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .75);
     z-index: 1000;
     padding: 15px;
     box-shadow: 0 0 2px #000;

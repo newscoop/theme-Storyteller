@@ -120,12 +120,8 @@ $(document).ready(function(){
       doCollapse = false;
       header.animate({
         'min-width': '20%'
-      }, 500, function(){
-        header.css({
-          'background': 'rgba(255, 255, 255, 1)'
-        });
-        header.find('nav, ul, h1, form').fadeIn();
-      });
+      }, 500);
+      header.find('nav, ul, h1, form').fadeIn();
       rotateMenu = setInterval(function(){
         collapse.css({
           '-webkit-transform': 'rotate(' + i + 'deg)',
@@ -146,9 +142,6 @@ $(document).ready(function(){
       header.delay(500).animate({
         'min-width': '0%'
       }, 500);
-      header.css({
-        'background': 'rgba(255, 255, 255, .25)'
-      });
       rotateMenu = setInterval(function(){
         collapse.css({
           '-webkit-transform': 'rotate(' + i + 'deg)',
@@ -197,6 +190,9 @@ $(document).ready(function(){
     var map = $(this).find('iframe');
     map.attr('width', winWidth);
     map.attr('height', winHeight);
+    map.css({
+      'display': 'none'
+    });
   });
 
   // all checks that happen after the scroll do here
@@ -282,7 +278,7 @@ $(document).ready(function(){
           //console.log(j + ' ' + audioMaster[0].playing + ' ' + $(this).find('h3').text());
         }
         audioElementId++;
-      } 
+      }
     });
 
     $('.full').each(function(){

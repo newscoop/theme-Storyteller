@@ -243,12 +243,12 @@ $(document).ready(function(){
         var fullBotAdj = (fullBot + winHeight);
         var fullSizeAdj = fullTopAdj + fullBotAdj;
         var audioElement = audioElements[audioElementId];
-        
+
         if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-          console.log('found audio');
+          // console.log('found audio');
           if (audioMaster[0].playing === true) {
-            if (!audioMaster[0].audioElementId === audioElement.id) {
-              console.log('updating audio src');
+            if (audioMaster[0].audioElementId !== audioElement.id) {
+              // console.log('updating audio src');
               audioMaster[0].src = src;
               audioMaster[0].audioElementId = audioElement.id;
               audioMaster[0].play();
@@ -256,7 +256,7 @@ $(document).ready(function(){
               audioElement.playing = true;
             }
           } else {
-            console.log('turning on audio');
+            // console.log('turning on audio');
             audioMaster[0].src = src;
             audioMaster[0].audioElementId = audioElement.id;
             audioMaster[0].play();
@@ -266,7 +266,7 @@ $(document).ready(function(){
         } else {
           if (audioMaster[0].playing === true){
             if (audioMaster[0].audioElementId === audioElement.id) {
-              console.log('turning off audio');
+              // console.log('turning off audio');
               var playingId = audioMaster[0].audioElementId;
               audioMaster[0].pause();
               audioMaster[0].src = null;

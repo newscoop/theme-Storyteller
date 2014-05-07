@@ -190,7 +190,7 @@ h2 {
       margin: 0 -20px;
       }
       .longform > section > article > section figure figcaption h3 {
-        padding: 0;
+        padding: 0 20px;
         }
       .longform > section > article > section figure figcaption p {
         padding: 20px;

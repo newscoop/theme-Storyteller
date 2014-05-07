@@ -70,12 +70,14 @@ $(document).ready(function(){
     }
   });
 
+
   $('.continue').bind('click', function(){
-    // console.log($(this).parent().parent().next().position().top);
+    // console.log('ping');
     var nextObjPos = $(this).parent().parent().next().position().top + "px";
-    $('body').animate({
+    $('body, html').animate({
       scrollTop: nextObjPos
     }, 1000);
+    // console.log(nextObjPos);
   });
 
   $('section.video').each(function(){

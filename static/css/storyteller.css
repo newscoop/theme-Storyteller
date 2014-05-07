@@ -123,8 +123,16 @@ h2 {
         color: #c0c0c0;
         }
   .longform canvas {
-    border: solid 1px #333;
-    box-shadow: 0 0 1px #999;
+    background: #fff;
+    box-shadow: 0 0 5px #999;
+    border-radius: 3px;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto!important 30px;
+    display: block;
+    }
+  .longform audio {
+    display: block;
     }
   .longform blockquote {
     webkit-border-radius: 3px;

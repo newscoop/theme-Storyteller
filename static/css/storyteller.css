@@ -178,6 +178,15 @@ h2 {
       border-radius: 3px;
       box-shadow: 0 0 5px #999;
       }
+    .longform > section > article > section figure figcaption {
+      margin: 0 -20px;
+      }
+      .longform > section > article > section figure figcaption h3 {
+        padding: 0;
+        }
+      .longform > section > article > section figure figcaption p {
+        padding: 20px;
+        }
 
     .longform h2 {
       background: rgba(255, 255, 255, .75);
@@ -186,6 +195,7 @@ h2 {
       color: #000;
       text-shadow: 0 0 2px #fff;
       border-radius: 2px;
+      padding: 0 20px;
       }
     .longform h3,
     .longform p {
@@ -250,6 +260,7 @@ h2 {
       padding: 0!important;
       margin: 0!important;
       border: none!important;
+      box-shadow: none;
       }
 /* masthead with video */
 .masthead-video {

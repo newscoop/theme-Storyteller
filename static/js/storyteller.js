@@ -188,7 +188,9 @@ $(document).ready(function(){
   // full sreen shutter slides
   $('.slideshow.full.shutter').each(function(){
     $(this).find('li, figure').each(function(){
-      $(this).height(winHeight);
+      $(this).css({
+        'min-height' :winHeight
+      });
     });
     var i = 1;
     // var i = $(this).find('li').length;

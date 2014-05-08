@@ -2,7 +2,7 @@
   <article>
     <h1>Chapter Title</h1>
     <figure>
-      <img src="../img/chapter-title.jpg" />
+      <img src="../img/chapter-title.jpg" class="lead-image" />
       <figcaption>
         <dl>
           <dt>Copyright:</dt>

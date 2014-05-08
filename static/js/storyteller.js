@@ -300,7 +300,7 @@ $(document).ready(function(){
       }
     });
 
-    $('.full').each(function(){
+    $('.full, .chapter-title').each(function(){
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;

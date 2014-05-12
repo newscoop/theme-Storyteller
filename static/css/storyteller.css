@@ -82,6 +82,8 @@ h2 {
     margin: 0;
     width: 100%;
     z-index: 0;
+    border-radius: 0;
+    box-shadow: none;
     }
   .longform .chapter-title .continue {
     position: absolute;
@@ -268,8 +270,26 @@ h2 {
       padding: 0!important;
       margin: 0!important;
       border: none!important;
+      border-radius: 0;
       box-shadow: none;
       }
+    .masthead-image .lead-image figcaption {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: right;
+      }
+      .masthead-image .lead-image figcaption dl {
+        width: auto;
+        margin: 0;
+        font-size: 10px;
+        color: #fff;
+        text-shadow: 0 0 2px #000;
+        }
+        .masthead-image .lead-image figcaption dl dt,
+        .masthead-image .lead-image figcaption dl dd {
+          display: inline;
+          }
 /* masthead with video */
 .masthead-video {
   position: relative;

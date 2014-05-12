@@ -13,6 +13,10 @@
   <figure>
     <img src="img/figure.jpg" />
     <figcaption>
+      <dl>
+        <dt>Image copyright:</dt>
+          <dd>Pete Haughie</dd>
+      </dl>
       <p>Proin dignissim ante non porta scelerisque. Donec iaculis vulputate nunc, at lobortis diam suscipit in. Pellentesque condimentum nisi lectus, eu eleifend nisi ullamcorper a. Vestibulum tempus est vitae auctor varius. Sed nec eros a ligula accumsan pharetra. Donec bibendum nec sapien eget elementum. Duis mi dolor, euismod id sapien in, interdum sollicitudin dui. Mauris blandit libero at velit consequat, in adipiscing dolor pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed et augue eget arcu mollis convallis vitae a diam.</p>
     </figcaption>
   </figure>

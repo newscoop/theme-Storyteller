@@ -6,7 +6,7 @@
         <img src="img/slideshow/img1.png" />
         <figcaption>
           <dl>
-            <dt>Copyright:</dt>
+            <dt>Image copyright:</dt>
               <dd>Pete Haughie</dd>
           </dl>
         </figcaption>
@@ -17,7 +17,7 @@
         <img src="img/slideshow/img2.png" />
         <figcaption>
           <dl>
-            <dt>Copyright:</dt>
+            <dt>Image copyright:</dt>
               <dd>Pete Haughie</dd>
           </dl>
         </figcaption>
@@ -28,7 +28,7 @@
         <img src="img/slideshow/img3.png" />
         <figcaption>
           <dl>
-            <dt>Copyright:</dt>
+            <dt>Image copyright:</dt>
               <dd>Pete Haughie</dd>
           </dl>
         </figcaption>
@@ -39,7 +39,7 @@
         <img src="img/slideshow/img4.png" />
         <figcaption>
           <dl>
-            <dt>Copyright:</dt>
+            <dt>Image copyright:</dt>
               <dd>Pete Haughie</dd>
           </dl>
         </figcaption>
@@ -50,7 +50,7 @@
         <img src="img/slideshow/img5.png" />
         <figcaption>
           <dl>
-            <dt>Copyright:</dt>
+            <dt>Image copyright:</dt>
               <dd>Pete Haughie</dd>
           </dl>
         </figcaption>

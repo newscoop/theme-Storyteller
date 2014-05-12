@@ -318,6 +318,18 @@ h2 {
       width: auto;
       display: inline;
       }
+.slideshow.overlay {
+  }
+  .slideshow.overlay figure {
+    position: relative;
+    }
+    .slideshow.overlay figcaption {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      }
+
 .slideshow.full.fade {
   }
   .slideshow.full.fade .bx-wrapper {

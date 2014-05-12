@@ -72,12 +72,12 @@ $(document).ready(function(){
 
 
   $('.continue').bind('click', function(){
-    // console.log('ping');
-    var nextObjPos = $(this).parent().parent().next().position().top + "px";
-    $('body, html').animate({
-      scrollTop: nextObjPos
-    }, 1000);
-    // console.log(nextObjPos);
+    if ($(this).parent().parent().next()[0]){
+      var nextObjPos = $(this).parent().parent().next().position().top + "px";
+      $('body, html').animate({
+        scrollTop: nextObjPos
+      }, 1000);
+    }
   });
 
   $('section.video').each(function(){

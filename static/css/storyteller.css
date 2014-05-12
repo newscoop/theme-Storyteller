@@ -302,6 +302,7 @@ h2 {
     background: none;
     border: none;
     box-shadow: none;
+    left: 0;
     }
     .slideshow .bx-wrapper figure h3 {
       width: auto;
@@ -354,6 +355,7 @@ h2 {
         left: 0;
         border: none;
         box-shadow: none;
+        border-radius: 0;
         }
       .slideshow.full.fade .bx-wrapper figure figcaption {
         position: relative;

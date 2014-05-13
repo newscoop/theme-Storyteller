@@ -1,5 +1,5 @@
 <section class="image full">
-  <h2>Fixed image and text</h2>
+<!--   <h2>Fixed image and text</h2> -->
   <figure class="lead-image">
     <img src="img/figure-text.jpg" />
     <figcaption>

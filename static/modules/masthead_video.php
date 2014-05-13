@@ -2,7 +2,6 @@
   <h2>Masthead with video</h2>
   <video autoplay loop class="lead-video">
     <source src="video/video.mp4" type="video/mp4" />
-    <source src="video/video.ogv" type="video/ogg" />
     <source src="video/video.webm" type="video/webm" />
   </video>
   <h3>Sub heading</h3>

@@ -17,7 +17,6 @@
     <li>
       <video autoplay loop>
         <source src="video/video.mp4" type="video/mp4" />
-        <source src="video/video.ogv" type="video/ogv" />
         <source src="video/video.webm" type="video/webm" />
       </video>
       <audio class="ambient" src="audio/audio.mp3"></audio>

@@ -320,14 +320,26 @@ h2 {
       text-align: right;
       }
       .masthead-image .lead-image figcaption dl {
-        width: auto;
+        width: 100%;
         margin: 0;
         font-size: 10px;
         color: #fff;
         text-shadow: 0 0 2px #000;
         }
-        .masthead-image .lead-image figcaption dl dt,
-        .masthead-image .lead-image figcaption dl dd {
+    .masthead-image figure {
+      position: relative;
+      }
+      .masthead-image figure figcaption dl {
+        position: absolute;
+        right: 0;
+        width: 100%!important;
+        margin: -38px 0 0!important;
+        text-align: right;
+        font-size: 10px;
+        color: #000;
+        }
+        .masthead-image figure figcaption dl dt,
+        .masthead-image figure figcaption dl dd {
           display: inline;
           }
 /* masthead with video */

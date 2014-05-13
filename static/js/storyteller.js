@@ -309,10 +309,4 @@ $(document).ready(function(){
 
   });
 
-  // main loop triggers every half a second
-  var loop = setInterval(function(){
-    // this is always the current top left corner of the viewing area
-    var currViewport = getViewport();
-  }, 500);
-
 });

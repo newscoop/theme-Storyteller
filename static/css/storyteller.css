@@ -88,25 +88,34 @@ h2 {
     border-radius: 0;
     box-shadow: none;
     }
-  .longform .chapter-title figcaption {
-    position: absolute;
-    left: 0;
-    z-index: 1;
-    bottom: 10px;
-    width: 100%;
-    text-align: right;
-    }
-    .longform .chapter-title figcaption dl {
-      width: auto;
-      margin: 0;
-      font-size: 10px;
-      color: #fff;
-      text-shadow: 0 0 2px #000;
+    .longform .chapter-title figure {
+      position: static!important;
       }
-      .longform .chapter-title figcaption dl dt,
-      .longform .chapter-title figcaption dl dd {
-        display: inline;
+    .longform .chapter-title figcaption {
+      position: absolute;
+      width: 100%;
+      margin: 0;
+      right: 20px;
+      z-index: 1;
+      bottom: 0;
+      text-align: right;
+      }
+      .longform .chapter-title figcaption dl {
+        margin-top: -28px!important;
+        font-size: 10px;
+        color: #fff;
+        text-shadow: 0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000;
         }
+        .longform .chapter-title figcaption dl dt,
+        .longform .chapter-title figcaption dl dd {
+          display: inline;
+          }
   .longform .chapter-title .continue {
     position: absolute;
     top: 50%;
@@ -219,7 +228,22 @@ h2 {
       .longform > section > article > section figure figcaption p {
         padding: 20px;
         }
-
+  .longform figure {
+    position: relative;
+    }
+    .longform figure figcaption dl {
+      position: absolute;
+      right: 0;
+      width: 100%!important;
+      margin: -38px 0 0!important;
+      text-align: right;
+      font-size: 10px;
+      color: #000;
+      }
+      .longform figure figcaption dl dt,
+      .longform figure figcaption dl dd {
+        display: inline;
+        }
     .longform h2 {
       background: rgba(255, 255, 255, .75);
       position: relative;
@@ -253,6 +277,7 @@ h2 {
   .full iframe {
     display: none;
     }
+
 /* fixed image, text remains in document flow */
 .image.full {
   background: none;
@@ -280,13 +305,21 @@ h2 {
     z-index: 1;
     }
   .image.full figcaption dl {
+    width: 100%!important;
     position: absolute;
-    top: 10px;
-    right: 20px;
+    top: 0;
+    margin: -21px 20px 0 0!important;
+    right: -50%;
     font-size: 10px;
     text-align: right;
     color: #fff;
-    text-shadow: 0 0 2px #000;
+    text-shadow: 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000;
     }
     .image.full figcaption dt,
     .image.full figcaption dd {
@@ -321,27 +354,17 @@ h2 {
       }
       .masthead-image .lead-image figcaption dl {
         width: 100%;
-        margin: 0;
+        margin: 0!important;
         font-size: 10px;
         color: #fff;
-        text-shadow: 0 0 2px #000;
+        text-shadow: 0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000;
         }
-    .masthead-image figure {
-      position: relative;
-      }
-      .masthead-image figure figcaption dl {
-        position: absolute;
-        right: 0;
-        width: 100%!important;
-        margin: -38px 0 0!important;
-        text-align: right;
-        font-size: 10px;
-        color: #000;
-        }
-        .masthead-image figure figcaption dl dt,
-        .masthead-image figure figcaption dl dd {
-          display: inline;
-          }
 /* masthead with video */
 .masthead-video {
   position: relative;
@@ -357,23 +380,6 @@ h2 {
     border-radius: 0;
     box-shadow: none;
     }
-  .masthead-video figure {
-    position: relative;
-    }
-    .masthead-video figcaption {
-      }
-    .masthead-video figcaption dl {
-      position: absolute;
-      right: 0;
-      width: 100%!important;
-      margin: -38px 0 0!important;
-      font-size: 10px;
-      text-align: right;
-      }
-      .masthead-video figcaption dl dt,
-      .masthead-video figcaption dl dd {
-        display: inline;
-        }
 /* full screen background video */
 .video.full {
   background: none!important;
@@ -386,21 +392,6 @@ h2 {
     width: 100%;
     z-index: -1;
     }
-  .video.full figure {
-    position: relative;
-    }
-  .video.full figure dl {
-    position: absolute;
-    width: 100%;
-    margin: -38px 0 0 20px;
-    font-size: 10px;
-    text-align: right;
-    }
-    .video.full figure dl dt,
-    .video.full figure dl dd {
-      display: inline;
-      }
-
 /* slideshow */
 .slideshow {
   }
@@ -411,11 +402,10 @@ h2 {
     left: 0;
     }
     .slideshow .bx-wrapper figure h3 {
-      width: auto;
-      margin: 0;
+      margin: 0 0 20px;
       }
   .slideshow .bx-wrapper figure dl {
-    margin: 10px auto;
+    margin: -34px auto 0!important;
     width: auto;
     font-size: 10px;
     }
@@ -436,38 +426,38 @@ h2 {
       right: 40px;
       }
 
-.slideshow.full.fade {
+.slideshow.full {
   }
-  .slideshow.full.fade .bx-wrapper {
+  .slideshow.full .bx-wrapper {
     margin: 0 auto;
     height: 100%;
     }
-    .slideshow.full.fade .bx-wrapper .bx-controls {
+    .slideshow.full .bx-wrapper .bx-controls {
       position: absolute;
       right: 20px;
       top: 0;
       height: 100%;
       width: 20px;
       }
-      .slideshow.full.fade .bx-wrapper .bx-controls .bx-pager {
+      .slideshow.full .bx-wrapper .bx-controls .bx-pager {
         position: relative;
         top: 50%;
         padding: 0;
         height: 50%;
         }
-    .slideshow.full.fade .bx-wrapper .slides > li {
+    .slideshow.full .bx-wrapper .slides > li {
       padding: 20px 0;
       }
-    .slideshow.full.fade .bx-wrapper figure {
+    .slideshow.full .bx-wrapper figure {
       max-width: 100%;
       min-width: 100%;
       margin: 0;
       }
-      .slideshow.full.fade .bx-wrapper figure img {
+      .slideshow.full .bx-wrapper figure img {
         position: absolute;
         width: 100%;
         height: auto;
-        margin: 0;
+        margin: -20px 0 0;
         padding: 0;
         top: 0;
         left: 0;
@@ -475,13 +465,23 @@ h2 {
         box-shadow: none;
         border-radius: 0;
         }
-      .slideshow.full.fade .bx-wrapper figure figcaption {
+      .slideshow.full .bx-wrapper figure figcaption {
         position: relative;
         z-index: 1;
         top: 0;
         width: 50%;
         margin: 0 auto;
         }
+        .slideshow.full .bx-wrapper figure figcaption dl {
+          margin: -52px 20px 0 0!important;
+          right: -50%;
+          color: #fff;
+          text-shadow: 0 0 2px #000,
+                       0 0 2px #000,
+                       0 0 2px #000,
+                       0 0 2px #000,
+                       0 0 2px #000;
+          }
 /* this doesn't really rely on js as much as it does css */
 .fixed {
   position: fixed!important;

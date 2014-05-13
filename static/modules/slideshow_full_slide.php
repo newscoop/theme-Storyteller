@@ -1,5 +1,5 @@
-<section class="slideshow full fade">
-  <h2>Slideshow fullscreen with fading slides</h2>
+<section class="slideshow full horizontal">
+  <h2>Slideshow fullscreen with sliding slides</h2>
   <ul class="slides">
     <li>
       <figure>

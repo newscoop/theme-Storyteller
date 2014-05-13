@@ -183,20 +183,10 @@ $(document).ready(function(){
       var parHeight = $(this).height();
       var parBot = (parPos + parHeight);
       $(this).find('img, video').each(function(){
-        if (((currViewport + winHeight) >= parPos) && (currViewport <= parBot)){
-          if ((currViewport >= parPos)){
-            $(this).each(function(){
-              $(this).addClass('fixed');
-            });
-          } else {
-            $(this).each(function(){
-              $(this).removeClass('fixed');
-            });
-          }
-        } else if (currViewport > parBot) {
-          $(this).find('.fixed').removeClass('fixed');
+        if ((currViewport >= parPos) && (currViewport <= parBot)) {
+          $(this).addClass('fixed');
         } else {
-          $(this).find('.fixed').removeClass('fixed');
+          $(this).removeClass('fixed');
         }
       });
     });

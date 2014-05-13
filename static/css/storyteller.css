@@ -357,7 +357,23 @@ h2 {
     border-radius: 0;
     box-shadow: none;
     }
-
+  .masthead-video figure {
+    position: relative;
+    }
+    .masthead-video figcaption {
+      }
+    .masthead-video figcaption dl {
+      position: absolute;
+      right: 0;
+      width: 100%!important;
+      margin: -38px 0 0!important;
+      font-size: 10px;
+      text-align: right;
+      }
+      .masthead-video figcaption dl dt,
+      .masthead-video figcaption dl dd {
+        display: inline;
+        }
 /* full screen background video */
 .video.full {
   background: none!important;

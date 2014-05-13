@@ -26,6 +26,7 @@
   <section>
     <article>
     <!-- media types are listed below -->
+    <?php include "modules/chapter_title_video.php"; ?>
     <?php include "modules/chapter_title.php"; ?>
     <?php include "modules/masthead.php"; ?>
     <?php include "modules/masthead_image.php"; ?>

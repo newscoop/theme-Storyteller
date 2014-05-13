@@ -175,10 +175,40 @@ $(document).ready(function(){
   // variable for the audio element to use to make sure that the masterAudio object doesn't stop/start all the time
 
   var j = 0;
+  var currViewport = getViewport();
+
+  var doChapterTitles = function(){
+    $('.chapter-title').each(function(){
+      var parPos = $(this).position().top;
+      var parHeight = $(this).height();
+      var parBot = (parPos + parHeight);
+      $(this).find('img, video').each(function(){
+        if (((currViewport + winHeight) >= parPos) && (currViewport <= parBot)){
+          if ((currViewport >= parPos)){
+            $(this).each(function(){
+              $(this).addClass('fixed');
+            });
+          } else {
+            $(this).each(function(){
+              $(this).removeClass('fixed');
+            });
+          }
+        } else if (currViewport > parBot) {
+          $(this).find('.fixed').removeClass('fixed');
+        } else {
+          $(this).find('.fixed').removeClass('fixed');
+        }
+      });
+    });
+  };
+  doChapterTitles();
 
   var afterScroll = addEventListener('scroll', function(){
 
-    var currViewport = getViewport();
+    // remember to reset the viewport position whenever someone has moved around the article
+    currViewport = getViewport();
+
+    doChapterTitles();
 
     $('.shutter').each(function(){
       var parPos = $(this).position().top;
@@ -256,7 +286,7 @@ $(document).ready(function(){
       }
     });
 
-    $('.full, .chapter-title').each(function(){
+    $('.full').each(function(){
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;

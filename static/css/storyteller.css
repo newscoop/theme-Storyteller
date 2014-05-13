@@ -497,21 +497,25 @@ h2 {
       overflow: hidden;
       }
       .slideshow.full.shutter dl {
-        background: rgba(255, 255, 255, .75);
-        margin: -20px auto 10px;
-        padding: 20px;
-        width: 50%;
+        position: absolute;
+        top: 0;
+        right: -50%;
+        margin: 0 60px 0 0!important;
+        width: 100%!important;
         font-size: 10px;
+        color: #fff;
+        text-shadow: 0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000;
         }
-        .slideshow.full.shutter figure dl {
-          width: auto;
-          }
         .slideshow.full.shutter dl dt,
         .slideshow.full.shutter dl dd {
-          width: auto;
           display: inline;
           }
       .slideshow.full.shutter figure {
+        position: static;
         }
         .slideshow.full.shutter figure img {
           position: absolute;
@@ -529,7 +533,7 @@ h2 {
           z-index: 1;
           }
           .slideshow.full.shutter figure figcaption h3 {
-            margin: 30px 0;
+            margin: 10px 0 20px;
             }
       .slideshow.full.shutter video {
         padding: 0;
@@ -546,6 +550,12 @@ h2 {
           position: relative;
           z-index: 1;
           }
+          .slideshow.full.shutter video + span dl {
+            right: 0;
+            width: 50%!important;
+            text-align: right;
+            margin: -10px 20px 0 0!important;
+            }
           .slideshow.full.shutter video + span h3 {
             margin: 30px auto;
             }

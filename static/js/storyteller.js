@@ -80,50 +80,6 @@ $(document).ready(function(){
     }
   });
 
-  $('section.video').each(function(){
-    var video = $(this).find('video');
-    var videoArr = new Array([]);
-    videoArr.id = randId();
-    videoArr.mp4 = "";
-    videoArr.ogg = "";
-    videoArr.webm = "";
-    var j = video.find('source').length;
-    for (i = 0; i < j; i = i + 1){
-      tmpStr = $(this).find('source')[i].src;
-      if (tmpStr.indexOf('mp4')!=-1){
-        videoArr.mp4 = tmpStr;
-      }
-      if (tmpStr.indexOf('ogv')!=-1){
-        videoArr.ogg = tmpStr;
-      }
-      if (tmpStr.indexOf('webm')!=-1){
-        videoArr.webm = tmpStr;
-      }
-    }
-    var canvasObj = '<canvas id=' + videoArr.id + '>Your browser doesn\'t support the canvas element. Please upgrade to a newer browser.</canvas>';
-    video.before(canvasObj);
-    video.hide();
-    // now push the video to the canvas
-    var v = video[0];
-    var canvas = $('#' + videoArr.id)[0];
-    var context = canvas.getContext('2d');
-
-    var cw = Math.floor(canvas.clientWidth);
-    var ch = Math.floor(canvas.clientHeight);
-    canvas.width = cw;
-    canvas.height = ch;
-
-    v.addEventListener('play', function(){
-        draw(this,context,cw,ch);
-    },false);
-
-    function draw(v,c,w,h) {
-        if(v.paused || v.ended) return false;
-        c.drawImage(v,0,0,w,h);
-        setTimeout(draw,20,v,c,w,h);
-    }
-  });
-
   var header = $('header');
   var collapse = $('#collapse');
   var doCollapse = true;

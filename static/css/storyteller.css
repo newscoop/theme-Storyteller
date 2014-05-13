@@ -124,13 +124,13 @@ h2 {
       .longform .chapter-title .continue:hover:after {
         color: #c0c0c0;
         }
-  .longform canvas {
+  .longform video {
     background: #fff;
     box-shadow: 0 0 5px #999;
     border-radius: 3px;
     padding: 20px;
     width: 50%;
-    margin: 0 auto!important 30px;
+    margin: 0 auto 30px!important;
     display: block;
     }
   .longform audio {

@@ -132,11 +132,23 @@ $(document).ready(function(){
     }
   });
 
-  $('.slideshow').not('.shutter').find('.slides').bxSlider({
-    // auto: true,
-    loop: true,
-    controls: false,
-    mode: 'fade'
+  $('.slideshow').each(function(){
+    if ($(this).hasClass('shutter')){
+      // nothing
+    } else {
+      if ($(this).hasClass('fade')){
+        $(this).find('.slides').bxSlider({
+          loop: true,
+          controls: false,
+          mode: 'fade'
+        });
+      } else {
+        $(this).find('.slides').bxSlider({
+          loop: true,
+          controls: false,
+        });
+      }
+    }
   });
 
   $('.slideshow.full, .bx-viewport').css({

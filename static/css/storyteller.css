@@ -447,6 +447,7 @@ h2 {
       }
 
 .slideshow.full {
+  padding: 0!important;
   }
   .slideshow.full .bx-wrapper {
     margin: 0 auto;

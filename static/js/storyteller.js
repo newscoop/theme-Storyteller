@@ -89,6 +89,8 @@ $(document).ready(function(){
   header.find('h1, nav, ul, form, legend').hide();
 
   $('#collapse').bind('click', function(){
+
+// **************************************** this could be done with css transitions instead of loop
     if (doCollapse === true){
       doCollapse = false;
       header.animate({
@@ -168,6 +170,7 @@ $(document).ready(function(){
       $(this).css({
         'z-index': i
       });
+//******************** ++i would be faster. You could probably do z-index: ++i above
       i = i + 1;
     });
   });
@@ -191,6 +194,8 @@ $(document).ready(function(){
       var parHeight = $(this).height();
       var parBot = ((parPos + parHeight) - 10);
       // for images just change the classes
+
+//****************** $(this).children('img') might be a little faster but i don't think it will make any change
       $(this).find('img').each(function(){
         if ((currViewport >= parPos) && (currViewport <= parBot)) {
           $(this).addClass('fixed');
@@ -257,6 +262,7 @@ $(document).ready(function(){
   var doAmbientAudio = function(){
     var audioElementId = 0;
     $('section, li').each(function(){
+ //********************************************* j++ or ++j
       j = j + 1;
       if ($(this).attr('data-audiosrc')) {
         var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');

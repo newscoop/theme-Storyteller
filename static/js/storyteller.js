@@ -62,9 +62,9 @@ $(document).ready(function(){
       });
     }
     if ($(this).hasClass('chapter-title')){
-      var title = $(this).find('h1');
+      var title = $(this).find('.title');
       title.css({
-        'line-height': (winHeight - 60) + 'px'
+        'top': ((winHeight / 2) - 60) + 'px'
       });
       title.after('<span class="continue">Click here to continue</span>');
     }

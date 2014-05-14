@@ -326,8 +326,8 @@ h2 {
     width: 100%!important;
     position: absolute;
     top: 0;
-    margin: -21px 20px 0 0!important;
-    right: -50%;
+    margin: 20px 20px 0 0!important;
+    z-index: 1;
     font-size: 10px;
     text-align: right;
     color: #fff;

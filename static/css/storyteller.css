@@ -19,16 +19,16 @@ h2 {
   }
   .longform header {
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    top: 10px;
+    left: 10px;
     background: rgba(255, 255, 255, .75);
     z-index: 1000;
-    padding: 15px;
+    padding: 0 5px;
+    border-radius: 3px;
     box-shadow: 0 0 2px #000;
     }
   .longform #collapse {
-    background: url(../img/menu.png) 0 0 no-repeat;
+    background: url(../img/menu.png) 0 5px no-repeat;
     text-indent: -10000px;
     margin: 0 0 10px;
     width: 24px;
@@ -66,16 +66,33 @@ h2 {
     padding: 0;
     overflow: hidden;
     }
+  .longform .chapter-title .title {
+    position: absolute;
+    width: 100%;
+    display: block;
+    z-index: 1;
+    }
   .longform .chapter-title h1 {
     position: relative;
     text-align: center;
     width: 50%;
     margin: 0 auto;
-    z-index: 1;
     color: #fff;
     text-shadow: 1px 1px 2px #000;
     padding: 0;
     }
+    .longform .chapter-title p {
+      font-family: 'roboto', sans-serif;
+      font-size: 2em;
+      text-align: center;
+      background: none;
+      color: #fff;
+      text-shadow: 0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000;
+      }
   .longform .chapter-title img,
   .longform .chapter-title video {
     position: absolute;
@@ -118,7 +135,7 @@ h2 {
           }
   .longform .chapter-title .continue {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     z-index: 1;
     width: 70px;

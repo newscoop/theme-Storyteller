@@ -182,10 +182,6 @@ $(document).ready(function(){
     });
   });
 
-  // all checks that happen after the scroll do here
-
-  // variable for the audio element to use to make sure that the masterAudio object doesn't stop/start all the time
-
   var j = 0;
   var currViewport = getViewport();
 
@@ -225,68 +221,56 @@ $(document).ready(function(){
       });
     });
   };
+  // run the chapter titles
   doChapterTitles();
 
-  $(window).scroll(function(){
-
-    $.doTimeout( 'afterScroll', 250, function(){
-      // remember to reset the viewport position whenever someone has moved around the article
-      currViewport = getViewport();
-
-      doChapterTitles();
-
-      $('.shutter').each(function(){
-        var parPos = $(this).position().top;
-        var parHeight = $(this).height();
-        var parBot = ((parPos + parHeight) - 10);
-        $(this).find('li').each(function(){
-          var fullTop = $(this).position().top;
-          var fullBot = $(this).height();
-          var fullSize = fullTop + fullBot;
-          if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-            if (currViewport >= fullTop){
-              $(this).find('video:first-child, figure > img').each(function(){
-                $(this).addClass('fixed');
-              });
-            } else {
-              $(this).find('video:first-child, figure > img').each(function(){
-                $(this).removeClass('fixed');
-              });
-            }
-          } else if (currViewport > parBot) {
-            $(this).find('.fixed').removeClass('fixed');
+  // if your article starts with a shutter slideshow you might have to rethink it
+  var doShutters = function(){
+    $('.shutter').each(function(){
+      var parPos = $(this).position().top;
+      var parHeight = $(this).height();
+      var parBot = ((parPos + parHeight) - 10);
+      $(this).find('li').each(function(){
+        var fullTop = $(this).position().top;
+        var fullBot = $(this).height();
+        var fullSize = fullTop + fullBot;
+        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+          if (currViewport >= fullTop){
+            $(this).find('video:first-child, figure > img').each(function(){
+              $(this).addClass('fixed');
+            });
           } else {
-            $(this).find('.fixed').removeClass('fixed');
+            $(this).find('video:first-child, figure > img').each(function(){
+              $(this).removeClass('fixed');
+            });
           }
-        });
+        } else if (currViewport > parBot) {
+          $(this).find('.fixed').removeClass('fixed');
+        } else {
+          $(this).find('.fixed').removeClass('fixed');
+        }
       });
+    });
+  };
 
-      var audioElementId = 0;
-      $('section, li').each(function(){
-        j = j + 1;
-        if ($(this).attr('data-audiosrc')) {
-          var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
-          var fullTop = $(this).position().top;
-          var fullBot = $(this).height();
-          var fullSize = fullTop + fullBot;
-          var fullTopAdj = (fullTop - winHeight);
-          var fullBotAdj = (fullBot + winHeight);
-          var fullSizeAdj = fullTopAdj + fullBotAdj;
-          var audioElement = audioElements[audioElementId];
+  // handle ambient audio here - I advise you to defer this
+  var doAmbientAudio = function(){
+    var audioElementId = 0;
+    $('section, li').each(function(){
+      j = j + 1;
+      if ($(this).attr('data-audiosrc')) {
+        var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
+        var fullTop = $(this).position().top;
+        var fullBot = $(this).height();
+        var fullSize = fullTop + fullBot;
+        var fullTopAdj = (fullTop - winHeight);
+        var fullBotAdj = (fullBot + winHeight);
+        var fullSizeAdj = fullTopAdj + fullBotAdj;
+        var audioElement = audioElements[audioElementId];
 
-          if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-            // console.log('found audio');
-            if (audioMaster[0].playing === true) {
-              if (audioMaster[0].audioElementId !== audioElement.id) {
-                // console.log('updating audio src');
-                audioMaster[0].src = src;
-                audioMaster[0].audioElementId = audioElement.id;
-                audioMaster[0].play();
-                audioMaster[0].playing = true;
-                audioElement.playing = true;
-              }
-            } else {
-              // console.log('turning on audio');
+        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+          if (audioMaster[0].playing === true) {
+            if (audioMaster[0].audioElementId !== audioElement.id) {
               audioMaster[0].src = src;
               audioMaster[0].audioElementId = audioElement.id;
               audioMaster[0].play();
@@ -294,24 +278,30 @@ $(document).ready(function(){
               audioElement.playing = true;
             }
           } else {
-            if (audioMaster[0].playing === true){
-              if (audioMaster[0].audioElementId === audioElement.id) {
-                // console.log('turning off audio');
-                var playingId = audioMaster[0].audioElementId;
-                audioMaster[0].pause();
-                audioMaster[0].src = null;
-                audioMaster[0].playing = false;
-                audioMaster[0].audioElementId = null;
-              }
-            }
-            audioElement.playing = false;
-            //console.log(j + ' ' + audioMaster[0].playing + ' ' + $(this).find('h3').text());
+            audioMaster[0].src = src;
+            audioMaster[0].audioElementId = audioElement.id;
+            audioMaster[0].play();
+            audioMaster[0].playing = true;
+            audioElement.playing = true;
           }
-          audioElementId++;
+        } else {
+          if (audioMaster[0].playing === true){
+            if (audioMaster[0].audioElementId === audioElement.id) {
+              var playingId = audioMaster[0].audioElementId;
+              audioMaster[0].pause();
+              audioMaster[0].src = null;
+              audioMaster[0].playing = false;
+              audioMaster[0].audioElementId = null;
+            }
+          }
+          audioElement.playing = false;
         }
-      });
+        audioElementId++;
+      }
     });
+  };
 
+  var doFullScreenObjects = function(){
     $('.full').each(function(){
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
@@ -330,7 +320,27 @@ $(document).ready(function(){
         });
       }
     });
+  };
+  doFullScreenObjects();
+
+  $(window).scroll(function(){
+    // if it's urgent you update immediately after scroll then place your function next:
+
+    // remember to reset the viewport position whenever someone has moved around the article
+    currViewport = getViewport();
+
+    doChapterTitles();
+
+    doShutters();
+
+    // don't need something execute immediately after the scroll? Put it in the deferred function below.
+    $.doTimeout( 'afterScroll', 250, function(){
+
+      doAmbientAudio();
+
+      doFullScreenObjects();
+
+    });
 
   });
-
 });

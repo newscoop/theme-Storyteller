@@ -1,6 +1,8 @@
 <section class="chapter-title">
   <article>
-    <h1>Chapter Title</h1>
+    <span class="title">
+      <h1>Chapter Title</h1>
+    </span>
     <figure>
       <img src="img/chapter-title.jpg" />
       <figcaption>

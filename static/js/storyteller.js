@@ -80,60 +80,6 @@ $(document).ready(function(){
     }
   });
 
-  var header = $('header');
-  var collapse = $('#collapse');
-  var doCollapse = true;
-  var i = 0;
-  var rotateMenu;
-
-  header.find('h1, nav, ul, form, legend').hide();
-
-  $('#collapse').bind('click', function(){
-
-// **************************************** this could be done with css transitions instead of loop
-    if (doCollapse === true){
-      doCollapse = false;
-      header.animate({
-        'min-width': '20%'
-      }, 500);
-      header.find('nav, ul, h1, form').fadeIn();
-      rotateMenu = setInterval(function(){
-        collapse.css({
-          '-webkit-transform': 'rotate(' + i + 'deg)',
-             '-moz-transform': 'rotate(' + i + 'deg)',
-              '-ms-transform': 'rotate(' + i + 'deg)',
-               '-o-transform': 'rotate(' + i + 'deg)',
-                  'transform': 'rotate(' + i + 'deg)'
-        });
-        if (i >= 90){
-          clearInterval(rotateMenu);
-        } else {
-          i = i + 10;
-        }
-      }, 5);
-    } else {
-      doCollapse = true;
-      header.find('nav, ul, h1, form').fadeOut();
-      header.delay(500).animate({
-        'min-width': '0%'
-      }, 500);
-      rotateMenu = setInterval(function(){
-        collapse.css({
-          '-webkit-transform': 'rotate(' + i + 'deg)',
-             '-moz-transform': 'rotate(' + i + 'deg)',
-              '-ms-transform': 'rotate(' + i + 'deg)',
-               '-o-transform': 'rotate(' + i + 'deg)',
-                  'transform': 'rotate(' + i + 'deg)'
-        });
-        if (i <= 0){
-          clearInterval(rotateMenu);
-        } else {
-          i = i - 10;
-        }
-      }, 5);
-    }
-  });
-
   $('.slideshow').each(function(){
     if ($(this).hasClass('shutter')){
       // nothing
@@ -164,14 +110,11 @@ $(document).ready(function(){
         'min-height' :winHeight
       });
     });
-    var i = 1;
-    // var i = $(this).find('li').length;
+    var i = 0;
     $(this).find('li').each(function(){
       $(this).css({
-        'z-index': i
+        'z-index': ++i
       });
-//******************** ++i would be faster. You could probably do z-index: ++i above
-      i = i + 1;
     });
   });
 
@@ -194,9 +137,7 @@ $(document).ready(function(){
       var parHeight = $(this).height();
       var parBot = ((parPos + parHeight) - 10);
       // for images just change the classes
-
-//****************** $(this).children('img') might be a little faster but i don't think it will make any change
-      $(this).find('img').each(function(){
+      $(this).children('img').each(function(){
         if ((currViewport >= parPos) && (currViewport <= parBot)) {
           $(this).addClass('fixed');
         } else {
@@ -233,8 +174,7 @@ $(document).ready(function(){
   var doAmbientAudio = function(){
     var audioElementId = 0;
     $('section, li').each(function(){
- //********************************************* j++ or ++j
-      j = j + 1;
+      j++;
       if ($(this).attr('data-audiosrc')) {
         var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
         var fullTop = $(this).position().top;

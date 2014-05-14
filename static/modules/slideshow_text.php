@@ -1,5 +1,4 @@
 <section class="slideshow">
-  <h2>Slideshow with text</h2>
   <ul class="slides">
     <li>
       <figure>

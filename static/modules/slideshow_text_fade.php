@@ -1,5 +1,4 @@
 <section class="slideshow fade">
-  <h2>Slideshow with text and fade</h2>
   <ul class="slides">
     <li>
       <figure>

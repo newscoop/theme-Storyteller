@@ -1,5 +1,4 @@
 <section class="map full">
-  <h2>Fullscreen Map</h2>
   <blockquote>
     <p>Sed tincidunt mi eu lectus euismod, non gravida ligula ullamcorper. Curabitur sodales, dolor at ultricies elementum, dui odio vehicula tellus, vel rutrum turpis enim id turpis. Vestibulum erat ante, dictum vitae pulvinar in, posuere nec est. Sed nec leo justo.</p>
     <cite>Cicero, 45BC</cite>

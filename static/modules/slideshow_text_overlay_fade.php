@@ -1,5 +1,4 @@
 <section class="slideshow overlay fade">
-  <h2>Slideshow with text overlay and fade</h2>
   <ul class="slides">
     <li>
       <figure>

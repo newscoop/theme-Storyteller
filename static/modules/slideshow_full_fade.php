@@ -1,5 +1,4 @@
 <section class="slideshow full fade">
-  <h2>Slideshow fullscreen with fade</h2>
   <ul class="slides">
     <li>
       <figure>

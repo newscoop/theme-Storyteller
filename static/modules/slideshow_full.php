@@ -1,5 +1,4 @@
 <section class="slideshow full">
-  <h2>Slideshow fullscreen</h2>
   <ul class="slides">
     <li>
       <figure>

@@ -1,5 +1,4 @@
 <section class="masthead-image">
-  <h2>Masthead with image</h2>
   <figure class="lead-image">
     <img src="img/figure.jpg" />
     <figcaption>

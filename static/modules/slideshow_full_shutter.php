@@ -1,5 +1,4 @@
 <section class="slideshow full shutter">
-  <h2>Slideshow full screen with shutter styles</h2>
   <ul class="slides">
     <li>
       <figure>

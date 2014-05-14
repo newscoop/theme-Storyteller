@@ -288,11 +288,9 @@ h2 {
   position: static!important;
   z-index: 0!important;
   }
-  /* hide the elements by default */
-  .full .lead-image,
+  .full .lead-image img,
   .full .lead-video,
   .full iframe {
-    display: none;
     }
 
 /* fixed image, text remains in document flow */
@@ -302,10 +300,10 @@ h2 {
   position: relative!important;
   }
   .image.full .lead-image img {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: 1;
     width: 100%;
     margin: 0!important;
     box-shadow: none!important;
@@ -315,6 +313,9 @@ h2 {
   .image.full h2 {
     position: relative;
     z-index: 1;
+    }
+  .image.full figure {
+    position: static;
     }
   .image.full figcaption h3,
   .image.full figcaption p {

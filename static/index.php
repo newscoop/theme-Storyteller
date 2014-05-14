@@ -40,7 +40,6 @@
     <?php include "modules/slideshow_full_fade.php"; ?>
     <?php include "modules/slideshow_full_shutter.php"; ?>
     <?php include "modules/map.php"; ?>
-    <?php include "modules/map_fullscreen.php"; ?>
     </article>
   </section>
   <footer>

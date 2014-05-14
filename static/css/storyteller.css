@@ -560,7 +560,7 @@ h2 {
         border-radius: 0;
         border: 0;
         box-shadow: none;
-        position: absolute!important;
+        position: absolute;
         width: 100%;
         height: auto;
         margin: 0!important;

@@ -1,6 +1,6 @@
 <section class="masthead-video">
   <h2>Masthead with video</h2>
-  <video autoplay loop class="lead-video">
+  <video loop class="lead-video">
     <source src="video/video.mp4" type="video/mp4" />
     <source src="video/video.webm" type="video/webm" />
   </video>

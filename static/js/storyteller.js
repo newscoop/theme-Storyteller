@@ -193,12 +193,34 @@ $(document).ready(function(){
     $('.chapter-title').each(function(){
       var parPos = $(this).position().top;
       var parHeight = $(this).height();
-      var parBot = (parPos + parHeight);
-      $(this).find('img, video').each(function(){
+      var parBot = ((parPos + parHeight) - 10);
+      // for images just change the classes
+      $(this).find('img').each(function(){
         if ((currViewport >= parPos) && (currViewport <= parBot)) {
           $(this).addClass('fixed');
         } else {
           $(this).removeClass('fixed');
+        }
+      });
+      // for video change the classes and also pause/play the video
+      $(this).find('video').each(function(){
+        var video = $(this);
+        if ((currViewport >= parPos) && (currViewport <= parBot)) {
+          $(this).addClass('fixed');
+          if (video[0].playing === true) {
+              video[0].play();
+              video[0].playing = true;
+          } else {
+            video[0].play();
+            video[0].playing = true;
+          }
+        } else {
+          $(this).removeClass('fixed');
+          if (video[0].playing === true){
+              video[0].pause();
+              video[0].playing = false;
+          }
+          video[0].playing = false;
         }
       });
     });

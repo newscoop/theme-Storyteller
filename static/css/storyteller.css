@@ -2,17 +2,12 @@
 @import "typography.css";
 @import "fonts.css";
 
-a {
+.longform a {
   color: #000;
   text-decoration: none;
-  background-image: -webkit-linear-gradient(top, #000 50%, #666665 50%);
-     background-image: -moz-linear-gradient(top, #000 50%, #666665 50%);
-      background-image: -ms-linear-gradient(top, #000 50%, #666665 50%);
-       background-image: -o-linear-gradient(top, #000 50%, #666665 50%);
-    background-image: linear-gradient(to bottom, #000 50%, #666665 50%);
-  background-repeat: repeat-x;
-  background-size: 2px 2px;
-  background-position: 0 16px;
+  }
+.longform .dark a {
+  color: #fff;
   }
 h2 {
   margin: 0;
@@ -196,6 +191,13 @@ h2 {
     box-shadow: 0 0 4px #999;
     text-align: center;
     }
+  .longform .dark blockquote {
+    background: #333;
+    margin: 0 auto!important 30px;
+    padding: 20px!important;
+    box-shadow: 0 0 4px #000;
+    text-align: center;
+    }
     .longform blockquote p {
       width: 100%!important;
       background: none;
@@ -205,6 +207,9 @@ h2 {
       text-align: right;
       display: block;
       }
+    .longform .dark blockquote cite {
+      color: #fff;
+      }
       .longform blockquote cite:before {
         content: "– ";
         }
@@ -213,6 +218,9 @@ h2 {
     z-index: 1;
     background: #fff;
     padding: 30px 0;
+    }
+  .longform > section > article > section.dark {
+    background: #1c1c1c;
     }
     .longform > section > article > section h2,
     .longform > section > article > section h3,
@@ -236,6 +244,10 @@ h2 {
       border-radius: 3px;
       box-shadow: 0 0 5px #999;
       }
+    .longform > section > article > section.dark figure img {
+      background: #333;
+      box-shadow: 0 0 5px #000;
+      }
     .longform > section > article > section figure figcaption {
       margin: 0 -20px;
       }
@@ -257,26 +269,50 @@ h2 {
       font-size: 10px;
       color: #000;
       }
+    .longform .dark figure figcaption dl {
+      color: #fff;
+      }
       .longform figure figcaption dl dt,
       .longform figure figcaption dl dd {
         display: inline;
         }
     .longform h2 {
-      background: rgba(255, 255, 255, .75);
       position: relative;
       z-index: 1;
       color: #000;
-      text-shadow: 0 0 2px #fff;
-      border-radius: 2px;
-      padding: 0 20px;
+      text-shadow: 0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff;
       }
     .longform h3,
     .longform p {
-      background: rgba(255, 255, 255, .75);
-      padding: 0 20px;
       color: #000;
-      text-shadow: 0 0 2px #fff;
-      border-radius: 2px;
+      text-shadow: 0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff;
+      }
+    .longform .dark h2 {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-shadow: 0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000;
+      }
+    .longform .dark h3,
+    .longform .dark p {
+      color: #fff;
+      text-shadow: 0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000;
       }
     .longform figcaption h3,
     .longform figcaption p {

@@ -32,7 +32,9 @@
     <?php include "modules/masthead_image.php"; ?>
     <?php include "modules/masthead_video.php"; ?>
     <?php include "modules/text.php"; ?>
+    <?php include "modules/text_variant.php"; ?>
     <?php include "modules/text_fixed_image.php"; ?>
+    <?php include "modules/text_fixed_image_variant.php"; ?>
     <?php include "modules/video.php"; ?>
     <?php include "modules/text_fixed_video.php"; ?>
     <?php include "modules/audio.php"; ?>

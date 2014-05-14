@@ -298,6 +298,7 @@ h2 {
   background: none;
   z-index: 0!important;
   position: relative!important;
+  overflow: hidden;
   }
   .image.full .lead-image img {
     position: absolute;
@@ -332,8 +333,6 @@ h2 {
     text-align: right;
     color: #fff;
     text-shadow: 0 0 2px #000,
-                 0 0 2px #000,
-                 0 0 2px #000,
                  0 0 2px #000,
                  0 0 2px #000,
                  0 0 2px #000,

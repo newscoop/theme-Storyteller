@@ -45,6 +45,7 @@
   </section>
   <footer>
   </footer>
+  <script src="js/libs/jquery.dotimeout.1.0.js"></script>
   <script src="js/libs/jquery.bxslider.min.js"></script>
   <script src="js/libs/jquery.easing.1.3.js"></script>
   <script src="js/storyteller.js"></script>

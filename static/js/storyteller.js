@@ -227,57 +227,66 @@ $(document).ready(function(){
   };
   doChapterTitles();
 
-  var afterScroll = addEventListener('scroll', function(){
+  $(window).scroll(function(){
 
-    // remember to reset the viewport position whenever someone has moved around the article
-    currViewport = getViewport();
+    $.doTimeout( 'afterScroll', 250, function(){
+      // remember to reset the viewport position whenever someone has moved around the article
+      currViewport = getViewport();
 
-    doChapterTitles();
+      doChapterTitles();
 
-    $('.shutter').each(function(){
-      var parPos = $(this).position().top;
-      var parHeight = $(this).height();
-      var parBot = ((parPos + parHeight) - 10);
-      $(this).find('li').each(function(){
-        var fullTop = $(this).position().top;
-        var fullBot = $(this).height();
-        var fullSize = fullTop + fullBot;
-        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-          if (currViewport >= fullTop){
-            $(this).find('video:first-child, figure > img').each(function(){
-              $(this).addClass('fixed');
-            });
+      $('.shutter').each(function(){
+        var parPos = $(this).position().top;
+        var parHeight = $(this).height();
+        var parBot = ((parPos + parHeight) - 10);
+        $(this).find('li').each(function(){
+          var fullTop = $(this).position().top;
+          var fullBot = $(this).height();
+          var fullSize = fullTop + fullBot;
+          if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+            if (currViewport >= fullTop){
+              $(this).find('video:first-child, figure > img').each(function(){
+                $(this).addClass('fixed');
+              });
+            } else {
+              $(this).find('video:first-child, figure > img').each(function(){
+                $(this).removeClass('fixed');
+              });
+            }
+          } else if (currViewport > parBot) {
+            $(this).find('.fixed').removeClass('fixed');
           } else {
-            $(this).find('video:first-child, figure > img').each(function(){
-              $(this).removeClass('fixed');
-            });
+            $(this).find('.fixed').removeClass('fixed');
           }
-        } else if (currViewport > parBot) {
-          $(this).find('.fixed').removeClass('fixed');
-        } else {
-          $(this).find('.fixed').removeClass('fixed');
-        }
+        });
       });
-    });
 
-    var audioElementId = 0;
-    $('section, li').each(function(){
-      j = j + 1;
-      if ($(this).attr('data-audiosrc')) {
-        var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
-        var fullTop = $(this).position().top;
-        var fullBot = $(this).height();
-        var fullSize = fullTop + fullBot;
-        var fullTopAdj = (fullTop - winHeight);
-        var fullBotAdj = (fullBot + winHeight);
-        var fullSizeAdj = fullTopAdj + fullBotAdj;
-        var audioElement = audioElements[audioElementId];
+      var audioElementId = 0;
+      $('section, li').each(function(){
+        j = j + 1;
+        if ($(this).attr('data-audiosrc')) {
+          var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
+          var fullTop = $(this).position().top;
+          var fullBot = $(this).height();
+          var fullSize = fullTop + fullBot;
+          var fullTopAdj = (fullTop - winHeight);
+          var fullBotAdj = (fullBot + winHeight);
+          var fullSizeAdj = fullTopAdj + fullBotAdj;
+          var audioElement = audioElements[audioElementId];
 
-        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-          // console.log('found audio');
-          if (audioMaster[0].playing === true) {
-            if (audioMaster[0].audioElementId !== audioElement.id) {
-              // console.log('updating audio src');
+          if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+            // console.log('found audio');
+            if (audioMaster[0].playing === true) {
+              if (audioMaster[0].audioElementId !== audioElement.id) {
+                // console.log('updating audio src');
+                audioMaster[0].src = src;
+                audioMaster[0].audioElementId = audioElement.id;
+                audioMaster[0].play();
+                audioMaster[0].playing = true;
+                audioElement.playing = true;
+              }
+            } else {
+              // console.log('turning on audio');
               audioMaster[0].src = src;
               audioMaster[0].audioElementId = audioElement.id;
               audioMaster[0].play();
@@ -285,29 +294,22 @@ $(document).ready(function(){
               audioElement.playing = true;
             }
           } else {
-            // console.log('turning on audio');
-            audioMaster[0].src = src;
-            audioMaster[0].audioElementId = audioElement.id;
-            audioMaster[0].play();
-            audioMaster[0].playing = true;
-            audioElement.playing = true;
-          }
-        } else {
-          if (audioMaster[0].playing === true){
-            if (audioMaster[0].audioElementId === audioElement.id) {
-              // console.log('turning off audio');
-              var playingId = audioMaster[0].audioElementId;
-              audioMaster[0].pause();
-              audioMaster[0].src = null;
-              audioMaster[0].playing = false;
-              audioMaster[0].audioElementId = null;
+            if (audioMaster[0].playing === true){
+              if (audioMaster[0].audioElementId === audioElement.id) {
+                // console.log('turning off audio');
+                var playingId = audioMaster[0].audioElementId;
+                audioMaster[0].pause();
+                audioMaster[0].src = null;
+                audioMaster[0].playing = false;
+                audioMaster[0].audioElementId = null;
+              }
             }
+            audioElement.playing = false;
+            //console.log(j + ' ' + audioMaster[0].playing + ' ' + $(this).find('h3').text());
           }
-          audioElement.playing = false;
-          //console.log(j + ' ' + audioMaster[0].playing + ' ' + $(this).find('h3').text());
+          audioElementId++;
         }
-        audioElementId++;
-      }
+      });
     });
 
     $('.full').each(function(){

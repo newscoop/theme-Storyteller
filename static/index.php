@@ -36,12 +36,6 @@
     <?php include "modules/video.php"; ?>
     <?php include "modules/text_fixed_video.php"; ?>
     <?php include "modules/audio.php"; ?>
-    <?php include "modules/slideshow.php"; ?>
-    <?php include "modules/slideshow_fade.php"; ?>
-    <?php include "modules/slideshow_text.php"; ?>
-    <?php include "modules/slideshow_text_fade.php"; ?>
-    <?php include "modules/slideshow_text_overlay.php"; ?>
-    <?php include "modules/slideshow_text_overlay_fade.php"; ?>
     <?php include "modules/slideshow_full.php"; ?>
     <?php include "modules/slideshow_full_fade.php"; ?>
     <?php include "modules/slideshow_full_shutter.php"; ?>

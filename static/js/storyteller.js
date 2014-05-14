@@ -333,12 +333,12 @@ $(document).ready(function(){
 
     doShutters();
 
+    doFullScreenObjects();
+
     // don't need something execute immediately after the scroll? Put it in the deferred function below.
     $.doTimeout( 'afterScroll', 250, function(){
 
       doAmbientAudio();
-
-      doFullScreenObjects();
 
     });
 

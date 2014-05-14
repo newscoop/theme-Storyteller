@@ -224,35 +224,6 @@ $(document).ready(function(){
   // run the chapter titles
   doChapterTitles();
 
-  // if your article starts with a shutter slideshow you might have to rethink it
-  var doShutters = function(){
-    $('.shutter').each(function(){
-      var parPos = $(this).position().top;
-      var parHeight = $(this).height();
-      var parBot = ((parPos + parHeight) - 10);
-      $(this).find('li').each(function(){
-        var fullTop = $(this).position().top;
-        var fullBot = $(this).height();
-        var fullSize = fullTop + fullBot;
-        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-          if (currViewport >= fullTop){
-            $(this).find('video:first-child, figure > img').each(function(){
-              $(this).addClass('fixed');
-            });
-          } else {
-            $(this).find('video:first-child, figure > img').each(function(){
-              $(this).removeClass('fixed');
-            });
-          }
-        } else if (currViewport > parBot) {
-          $(this).find('.fixed').removeClass('fixed');
-        } else {
-          $(this).find('.fixed').removeClass('fixed');
-        }
-      });
-    });
-  };
-
   // handle ambient audio here - I advise you to defer this
   var doAmbientAudio = function(){
     var audioElementId = 0;
@@ -311,17 +282,53 @@ $(document).ready(function(){
       var fullBotAdj = (fullBot + winHeight);
       var fullSizeAdj = fullTopAdj + fullBotAdj;
       if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-        $(this).find('.lead-image, iframe, .lead-video').css({
-          'display': 'block'
-        });
+        if (currViewport >= fullTop){
+          $(this).find('.lead-image img, .lead-video').each(function(){
+            $(this).addClass('fixed');
+          });
+        } else {
+          $(this).find('.lead-image img, .lead-video').each(function(){
+            $(this).removeClass('fixed');
+          });
+        }
+      } else if (currViewport > fullBot) {
+        $(this).find('.fixed').removeClass('fixed');
       } else {
-        $(this).find('.lead-image, iframe, .lead-video').css({
-          'display': 'none'
-        });
+        $(this).find('.fixed').removeClass('fixed');
       }
     });
   };
   doFullScreenObjects();
+
+  // if your article starts with a shutter slideshow you might have to rethink it
+  var doShutters = function(){
+    $('.shutter').each(function(){
+      var parPos = $(this).position().top;
+      var parHeight = $(this).height();
+      var parBot = ((parPos + parHeight) - 10);
+      $(this).find('li').each(function(){
+        var fullTop = $(this).position().top;
+        var fullBot = $(this).height();
+        var fullSize = fullTop + fullBot;
+        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+          if (currViewport >= fullTop){
+            $(this).find('video:first-child, figure > img').each(function(){
+              $(this).addClass('fixed');
+            });
+          } else {
+            $(this).find('video:first-child, figure > img').each(function(){
+              $(this).removeClass('fixed');
+            });
+          }
+        } else if (currViewport > parBot) {
+          $(this).find('.fixed').removeClass('fixed');
+        } else {
+          $(this).find('.fixed').removeClass('fixed');
+        }
+      });
+    });
+  };
+  doShutters();
 
   $(window).scroll(function(){
     // if it's urgent you update immediately after scroll then place your function next:

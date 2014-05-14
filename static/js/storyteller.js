@@ -237,7 +237,7 @@ $(document).ready(function(){
     $('.shutter').each(function(){
       var parPos = $(this).position().top;
       var parHeight = $(this).height();
-      var parBot = (parPos + parHeight);
+      var parBot = ((parPos + parHeight) - 10);
       $(this).find('li').each(function(){
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();

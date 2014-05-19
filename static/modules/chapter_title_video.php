@@ -1,4 +1,4 @@
-<section class="chapter-title">
+<section class="chapter-title dark">
   <article>
     <span class="title">
       <h1>Chapter Title</h1>

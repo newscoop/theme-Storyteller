@@ -2,8 +2,9 @@
   <article>
     <span class="title">
       <h1>Chapter Title</h1>
+      <p>Decriptive text</p>
     </span>
-    <figure>
+    <figure class="lead-image">
       <img src="img/chapter-title.jpg" />
       <figcaption>
         <dl>

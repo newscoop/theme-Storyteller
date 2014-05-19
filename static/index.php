@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta title="Storyteller" />
-  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+  <meta name="viewport" content="width=768px, minimum-scale=1.0, maximum-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
   <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
+  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 </head>
 <body class="longform">
   <header>
@@ -37,7 +38,6 @@
     <?php include "modules/text_fixed_image_variant.php"; ?>
     <?php include "modules/video.php"; ?>
     <?php include "modules/text_fixed_video.php"; ?>
-    <?php include "modules/audio.php"; ?>
     <?php include "modules/slideshow_full.php"; ?>
     <?php include "modules/slideshow_full_fade.php"; ?>
     <?php include "modules/slideshow_full_shutter.php"; ?>

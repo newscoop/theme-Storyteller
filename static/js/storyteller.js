@@ -21,6 +21,9 @@ $(document).ready(function(){
     return currViewport;
   };
 
+  // set the meta viewport width to the
+  $('meta[name=viewport]').attr('content', 'width=' + winWidth + ', ' + $('meta[name=viewport]').attr('content'));
+
   // check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound
   if ($('audio.ambient')[0]){
     $('body').append('<audio id="audioMaster" loop src="null" />');

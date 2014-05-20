@@ -638,7 +638,7 @@ h2 {
 @media screen and (min-device-width: 768px) {
     /* hide these elements entirely */
     .lead-video {
-      display: none!important;
+/*      display: none!important;*/
       }
     /* ipad-portrait */
     @media screen and (max-width: 896px) {

@@ -442,7 +442,6 @@ h2 {
   overflow: hidden;
   }
   .video.full .lead-video {
-    position: fixed;
     top: 0;
     width: 100%;
     z-index: -1;

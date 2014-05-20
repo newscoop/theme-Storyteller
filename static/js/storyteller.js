@@ -140,16 +140,55 @@ $(document).ready(function(){
       var parHeight = $(this).height();
       var parBot = ((parPos + parHeight) - 10);
       // for images just change the classes
-      $(this).children('img').each(function(){
-        if ((currViewport >= parPos) && (currViewport <= parBot)) {
-          $(this).addClass('fixed');
+      $(this).find('img').each(function(){
+        var src = $(this).attr('src');
+        var par = $(this).parent().parent().parent();
+        par.css({
+          'background': 'url(' + src + ') no-repeat',
+          'background-position': 'center center',
+          'background-attachment': 'static'
+        });
+        if (winHeight > winWidth) {
+          par.css({
+            'background-size': 'auto 100%'
+          });
         } else {
-          $(this).removeClass('fixed');
+          par.css({
+            'background-size': '100% auto'
+          });
+        }
+        $(this).hide();
+        if ((currViewport >= parPos) && (currViewport <= parBot)) {
+          par.css({
+            'background-attachment': 'fixed'
+          });
+        } else {
+          par.css({
+            'background-attachment': 'static'
+          });
         }
       });
       // for video change the classes and also pause/play the video
       $(this).find('video').each(function(){
         var video = $(this);
+        if ($(this).attr('poster')){
+          var src = $(this).attr('poster');
+          var par = $(this).parent().parent();
+          par.css({
+            'background': 'url(' + src + ') no-repeat',
+            'background-position': 'center center',
+            'background-attachment': 'static'
+          });
+          if (winHeight > winWidth) {
+            par.css({
+              'background-size': 'auto 100%'
+            });
+          } else {
+            par.css({
+              'background-size': '100% auto'
+            });
+          }
+        }
         if ((currViewport >= parPos) && (currViewport <= parBot)) {
           $(this).addClass('fixed');
           if (video[0].playing === true) {

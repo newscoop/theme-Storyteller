@@ -54,9 +54,6 @@ h2 {
     padding: 0;
     overflow: hidden;
     }
-    .longform .chapter-title.dark {
-      background: #333;
-      }
   .longform .chapter-title .title {
     position: absolute;
     width: 100%;
@@ -634,31 +631,71 @@ h2 {
     box-shadow: 0 0 1px #000;
     }
 
-/* fullscreen maps */
-.map.full {
-  background: none!important;
-  }
-  .map.full iframe {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    }
-
 /* responsive */
 /* tablets */
-@media screen and (min-device-width: 481px) and (max-device-width: 799px) {
-  /* don't display these at all, they're no use to a viewer on tablet */
-  .lead-video {
-    display: none!important;
+
+/* iPad */
+@media screen and (min-device-width: 768px) {
+    /* hide these elements entirely */
+    .lead-video {
+      display: none!important;
+      }
+    /* ipad-portrait */
+    @media screen and (max-width: 896px) {
+      }
+    /* ipad-landscape */
+    @media screen and (min-width: 897px) {
+
+      }
   }
-  .longform .chapter-title h1 {
-    width: auto!important;
+
+/* iPhone */
+@media screen and (max-device-width: 480px) {
+    /* hide these elements entirely */
+    .lead-video {
+      display: none!important;
+    }
+    .longform .chapter-title h1 {
+      width: auto;
+    }
+    .longform > section > article > section h2,
+    .longform > section > article > section h3,
+    .longform > section > article > section p,
+    .longform > section > article > section figure,
+    .longform > section > article > section blockquote,
+    .longform > section > article > section canvas,
+    .longform > section > article > section audio,
+    .longform > section > article > section dl {
+      width: 80%;
+    }
+    .chapter-title h1 {
+      font-size: 2em;
+      }
+    p {
+      font-size: 1em!important;
+      }
+    /* iphone-portrait */
+    @media screen and (max-width: 400px) {
+      }
+    /* iphone-landscape */
+    @media screen and (min-width: 401px) {
+
+      }
   }
-}
-/* phone */
-@media only screen and (max-device-width: 480px) {
-  .lead-video {
-    display: none!important;
+
+
+/* iOS specific */
+/* iPhone < 5: */
+@media screen and (device-aspect-ratio: 2/3) {
+
   }
-}
+
+/* iPhone 5: */
+@media screen and (device-aspect-ratio: 40/71) {
+
+  }
+
+/* iPad: */
+@media screen and (device-aspect-ratio: 3/4) {
+
+  }

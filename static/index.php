@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta title="Storyteller" />
-  
+  <meta name="viewport" content="initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
   <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
   <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>

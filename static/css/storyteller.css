@@ -644,3 +644,21 @@ h2 {
     left: 0;
     z-index: -1;
     }
+
+/* responsive */
+/* tablets */
+@media screen and (min-device-width: 481px) and (max-device-width: 799px) {
+  /* don't display these at all, they're no use to a viewer on tablet */
+  .lead-video {
+    display: none!important;
+  }
+  .longform .chapter-title h1 {
+    width: auto!important;
+  }
+}
+/* phone */
+@media only screen and (max-device-width: 480px) {
+  .lead-video {
+    display: none!important;
+  }
+}

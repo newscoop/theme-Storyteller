@@ -132,20 +132,41 @@ $(document).ready(function(){
   var j = 0;
   var currViewport = getViewport();
 
-  var doChapterTitles = function(){
+  var doBackgrounds = function(){
     $('.chapter-title').each(function(){
-      var par = null;
-      var parPos = $(this).position().top;
-      var parHeight = $(this).height();
-      var parBot = ((parPos + parHeight) - 10);
-      // for images just change the classes
+      // do this if there's a video
+      $(this).find('video').each(function(){
+        var video = $(this);
+        if ($(this).attr('poster')){
+          var src = $(this).attr('poster');
+          par = $(this).parent().parent();
+          var bgElem = "<div class='bgContainer'></div>";
+          par.append(bgElem);
+          var bgDiv = par.find('.bgContainer');
+          bgDiv.width(winWidth);
+          bgDiv.height(winHeight);
+          bgDiv.css({
+            'background': 'url(' + src + ') no-repeat',
+            'background-position': 'center center'
+          });
+          if (winHeight > winWidth) {
+            bgDiv.css({
+              'background-size': 'auto 100%'
+            });
+          } else {
+            bgDiv.css({
+              'background-size': '100% auto'
+            });
+          }
+        }
+      });
+      // do this if there's an image
       $(this).find('img').each(function(){
         var src = $(this).attr('src');
         var par = $(this).parent().parent().parent();
         par.css({
           'background': 'url(' + src + ') no-repeat',
           'background-position': 'center center',
-          'background-attachment': 'scroll'
         });
         if (winHeight > winWidth) {
           par.css({
@@ -158,31 +179,23 @@ $(document).ready(function(){
         }
         $(this).hide();
       });
+    });
+  };
+  doBackgrounds();
+
+  var doChapterTitles = function(){
+    $('.chapter-title').each(function(){
+      var par = null;
+      var parPos = $(this).position().top;
+      var parHeight = $(this).height();
+      var parBot = ((parPos + parHeight) - 10);
+      var bgDiv = $(this).find('.bgContainer');
+      // for images just change the classes
       // for video change the classes and also pause/play the video
       $(this).find('video').each(function(){
         var video = $(this);
-        if ($(this).attr('poster')){
-          var src = $(this).attr('poster');
-          par = $(this).parent().parent();
-          par.css({
-            'background': 'url(' + src + ') no-repeat',
-            'background-position': 'center center',
-            'background-attachment': 'scroll'
-          });
-          if (winHeight > winWidth) {
-            par.css({
-              'background-size': 'auto 100%'
-            });
-          } else {
-            par.css({
-              'background-size': '100% auto'
-            });
-          }
-        }
         if ((currViewport >= parPos) && (currViewport <= parBot)) {
-          par.css({
-            'background-attachment': 'fixed'
-          });
+          bgDiv.addClass('fixed');
           $(this).addClass('fixed');
           if (video[0].playing === true) {
               video[0].play();
@@ -192,9 +205,7 @@ $(document).ready(function(){
             video[0].playing = true;
           }
         } else {
-          par.css({
-            'background-attachment': 'scroll'
-          });
+          bgDiv.removeClass('fixed');
           $(this).removeClass('fixed');
           if (video[0].playing === true){
               video[0].pause();
@@ -202,6 +213,14 @@ $(document).ready(function(){
           }
           video[0].playing = false;
         }
+        $(this).find('img').each(function(){
+          var img = $(this);
+          if ((currViewport >= parPos) && (currViewport <= parBot)) {
+            bgDiv.addClass('fixed');
+          } else {
+            bgDiv.removeClass('fixed');
+          }
+        });
       });
     });
   };

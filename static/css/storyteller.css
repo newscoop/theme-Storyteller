@@ -47,20 +47,16 @@ h2 {
     line-height: 1.5em;
     }
     .longform header a:hover {
-      background-image: -webkit-linear-gradient(top, #000 50%, #666665 50%);
-         background-image: -moz-linear-gradient(top, #000 50%, #666665 50%);
-          background-image: -ms-linear-gradient(top, #000 50%, #666665 50%);
-           background-image: -o-linear-gradient(top, #000 50%, #666665 50%);
-        background-image: linear-gradient(to bottom, #000 50%, #666665 50%);
-      background-repeat: repeat-x;
-      background-size: 2px 2px;
-      background-position: 0 16px;
+      text-decoration: underline;
       }
   .longform .chapter-title {
     position: relative;
     padding: 0;
     overflow: hidden;
     }
+    .longform .chapter-title.dark {
+      background: #333;
+      }
   .longform .chapter-title .title {
     position: absolute;
     width: 100%;

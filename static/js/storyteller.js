@@ -134,6 +134,7 @@ $(document).ready(function(){
 
   var doChapterTitles = function(){
     $('.chapter-title').each(function(){
+      var par = null;
       var parPos = $(this).position().top;
       var parHeight = $(this).height();
       var parBot = ((parPos + parHeight) - 10);
@@ -144,7 +145,7 @@ $(document).ready(function(){
         par.css({
           'background': 'url(' + src + ') no-repeat',
           'background-position': 'center center',
-          'background-attachment': 'static'
+          'background-attachment': 'scroll'
         });
         if (winHeight > winWidth) {
           par.css({
@@ -156,26 +157,17 @@ $(document).ready(function(){
           });
         }
         $(this).hide();
-        if ((currViewport >= parPos) && (currViewport <= parBot)) {
-          par.css({
-            'background-attachment': 'fixed'
-          });
-        } else {
-          par.css({
-            'background-attachment': 'static'
-          });
-        }
       });
       // for video change the classes and also pause/play the video
       $(this).find('video').each(function(){
         var video = $(this);
         if ($(this).attr('poster')){
           var src = $(this).attr('poster');
-          var par = $(this).parent().parent();
+          par = $(this).parent().parent();
           par.css({
             'background': 'url(' + src + ') no-repeat',
             'background-position': 'center center',
-            'background-attachment': 'static'
+            'background-attachment': 'scroll'
           });
           if (winHeight > winWidth) {
             par.css({
@@ -188,6 +180,9 @@ $(document).ready(function(){
           }
         }
         if ((currViewport >= parPos) && (currViewport <= parBot)) {
+          par.css({
+            'background-attachment': 'fixed'
+          });
           $(this).addClass('fixed');
           if (video[0].playing === true) {
               video[0].play();
@@ -197,6 +192,9 @@ $(document).ready(function(){
             video[0].playing = true;
           }
         } else {
+          par.css({
+            'background-attachment': 'scroll'
+          });
           $(this).removeClass('fixed');
           if (video[0].playing === true){
               video[0].pause();

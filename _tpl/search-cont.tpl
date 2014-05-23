@@ -2,7 +2,7 @@
   <h2>{{ #searchResults# }}</h2>
 </div>  
 
-{{ list_search_results length="9" columns="3" constraints="section not 70" }}
+{{ list_search_results length="9" columns="3" }}
 
 {{ if $gimme->current_list->column == 1 }}            
             <section class="grid-3">

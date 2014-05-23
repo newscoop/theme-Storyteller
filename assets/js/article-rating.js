@@ -1,3 +1,5 @@
+<script type='text/javascript'>
+ 
 $(document).ready(function() {
     
    // gets the initial rating
@@ -68,3 +70,5 @@ function set_votes(widget) {
     $(widget).find('.total_votes').text( votes + ' votes recorded (' + exact + ' rating)' );
     $(widget).find('.rating_error').text( error );
 }
+ 
+</script>

@@ -1,5 +1,5 @@
         <div id="top" class="clearfix">
-            <h3>{{ #welcomeStoryTeller# }}</h3>
+            <h3>{{ #welcomeRockstar# }}</h3>
             <div class="top-menu">
                 <ul>
                 
@@ -19,7 +19,7 @@
                       <ul class="sub">
                           <li><a href="#">{{ #followAtTwitter# }}</a></li>
                           <li><a href="#">{{ #likeOnFacebook# }}</a></li>
-                          <li><a href="http://{{ $gimme->publication->site }}/{{ $gimme->language->code}}/static/rss">{{ #signupRSS# }}</a></li>
+                          <li><a href="http://{{ $gimme->publication->site }}/static/rss">{{ #signupRSS# }}</a></li>
                         </ul>
                     </li>
                     <li class="share"><a href="#">{{ #shareThis# }}</a>
@@ -77,7 +77,7 @@
           <ul class="show">
     {{ local }}
     {{ set_current_issue }}
-    {{ list_sections constraints="number not 70" }}
+    {{ list_sections }}              
                <li{{ if $gimme->section->number == $gimme->default_section->number }} class="active"{{ /if }}><a href="{{ uri options="section" }}" title="{{ #viewAllPosts# }} {{ $gimme->section->name }}">{{ $gimme->section->name }}</a></li>
     {{ /list_sections }}
     {{ /local }}

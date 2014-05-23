@@ -1,4 +1,4 @@
-{{ list_playlist_articles name="Front page" length="4" constraints="section not 70" }} 
+{{ list_playlist_articles name="Front page" length="4" }} 
 {{ if $gimme->current_list->at_beginning }}
 
           <section class="grid-1">

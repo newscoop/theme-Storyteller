@@ -7,7 +7,7 @@
 {{ include file="_tpl/header.tpl" }}
 
 		<div id="content">
-
+        
 {{ include file="_tpl/section-cont.tpl" }}
             
 {{ include file="_tpl/section-two-blocks.tpl" }} 

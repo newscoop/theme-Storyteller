@@ -54,3 +54,4 @@
     <script src="http://vjs.zencdn.net/c/video.js"></script>
   {{ /if }}
 </head>
+<body {{ if $gimme->article->type_name == "storyteller"}}class='longform'{{ /if }}>

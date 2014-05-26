@@ -1,7 +1,5 @@
-<script type='text/javascript'>
- 
 $(document).ready(function() {
-    
+
    // gets the initial rating
     $('.rate_widget').each(function(i) {
         var widget = this;
@@ -18,13 +16,13 @@ $(document).ready(function() {
             'json'
         );
     });
- 
- 
+
+
     // Handles the mouseover
     $('.ratings_stars').hover(
         function() {
             $(this).prevAll().andSelf().addClass('ratings_over');
-            $(this).nextAll().removeClass('ratings_vote'); 
+            $(this).nextAll().removeClass('ratings_vote');
         },
         // Handles the mouseout
         function() {
@@ -33,13 +31,13 @@ $(document).ready(function() {
             set_votes($(this).parent());
         }
     );
- 
+
     // actually records the vote
     $('.ratings_stars').bind('click', function() {
         var star = this;
         var widget = $(this).parent();
         var score = $(star).attr('class').match(/star_(\d+)/)[1];
- 
+
         var clicked_data = {
             f_rating_score : score,
             f_article_number : $(star).parent().attr('id')
@@ -52,23 +50,21 @@ $(document).ready(function() {
                 set_votes(widget);
             },
             'json'
-        ); 
+        );
     });
 });
- 
-// binds the rating data returned by the rating controller 
+
+// binds the rating data returned by the rating controller
 // to the widget elements
 function set_votes(widget) {
- 
+
     var avg = $(widget).data('fsr').whole_avg;
     var votes = $(widget).data('fsr').number_votes;
     var exact = $(widget).data('fsr').dec_avg;
     var error = $(widget).data('fsr').error;
- 
+
     $(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
-    $(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote'); 
+    $(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote');
     $(widget).find('.total_votes').text( votes + ' votes recorded (' + exact + ' rating)' );
     $(widget).find('.rating_error').text( error );
 }
- 
-</script>

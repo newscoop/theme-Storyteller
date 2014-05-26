@@ -1,6 +1,5 @@
 {{ config_load file="{{ $gimme->language->english_name }}.conf" }}
 
-
 {{ include file="_tpl/_html-head.tpl" }}
 
 {{ if $gimme->article->type_name == "storyteller" }}
@@ -10,6 +9,11 @@
         <section>
             <article>
         {{ /if }}
+
+        {{ if $gimme->article->type_name == "ST_chaptitle" }}
+            {{ include file="_tpl/_storyteller/chapter-title.tpl" }}
+        {{ /if }}
+
         {{ if $gimme->current_list->at_end }}
             </article>
         </section>
@@ -19,7 +23,6 @@
 {{ else }}
 
 	<div id="wrapper">
-
 
 {{ include file="_tpl/header.tpl" }}
 

@@ -1,0 +1,708 @@
+@import "reset.css";
+@import "typography.css";
+@import "fonts.css";
+
+.longform a {
+  color: #000;
+  text-decoration: none;
+  }
+.longform .dark a {
+  color: #fff;
+  }
+h2 {
+  margin: 0;
+  }
+  .longform header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1000;
+    padding: 0 5px 0 40px;
+    box-shadow: 0 0 2px #000;
+    }
+  .longform #collapse {
+    position: absolute;
+    top: 0;
+    left: 7px;
+    background: url(../img/menu.png) 0 5px no-repeat;
+    text-indent: -10000px;
+    margin: 0 0 10px;
+    width: 24px;
+    height: 24px;
+    background-size: 100%;
+    cursor: pointer;
+    padding: 0!important;
+    }
+  .longform header form legend {
+    display: none;
+    }
+  .longform header form input {
+    margin: 10px 0;
+    border: solid 1px #999;
+    font-size: 12px;
+    line-height: 1.5em;
+    text-indent: 10px;
+    font-weight: normal;
+    }
+  .longform header a {
+    color: #000;
+    background: none;
+    text-decoration: none;
+    line-height: 1.5em;
+    }
+    .longform header a:hover {
+      text-decoration: underline;
+      }
+  .longform .chapter-title {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    }
+  .longform .chapter-title .title {
+    position: absolute;
+    width: 100%;
+    display: block;
+    z-index: 1;
+    }
+  .longform .chapter-title h1 {
+    position: relative;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    color: #fff;
+    text-shadow: 0px 0px 2px #000,
+                 0px 0px 2px #000,
+                 0px 0px 2px #000,
+                 0px 0px 2px #000,
+                 0px 0px 2px #000;
+    padding: 0;
+    }
+    .longform .chapter-title p {
+      font-family: 'roboto', sans-serif;
+      font-size: 2em;
+      text-align: center;
+      background: none;
+      color: #fff;
+      text-shadow: 0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000;
+      }
+  .longform .chapter-title img {
+/*    display: none;*/
+    }
+  .longform .chapter-title video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 0;
+    border-radius: 0;
+    box-shadow: none;
+    }
+    .longform .chapter-title figure {
+      position: static!important;
+      }
+    .longform .chapter-title figcaption {
+      position: absolute;
+      width: 100%;
+      margin: 0;
+      right: 20px;
+      z-index: 1;
+      bottom: 0;
+      text-align: right;
+      }
+      .longform .chapter-title figcaption dl {
+        margin-top: -28px!important;
+        font-size: 10px;
+        color: #fff;
+        text-shadow: 0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000;
+        }
+        .longform .chapter-title figcaption dl dt,
+        .longform .chapter-title figcaption dl dd {
+          display: inline;
+          }
+  .longform .chapter-title .continue {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    z-index: 1;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    text-indent: -10000em;
+    border: solid 2px #fff;
+    border-radius: 36px;
+    margin: 10px 0 0 -36px ;
+    -webkit-box-shadow: 0 0 2px #000;
+       -moz-box-shadow: 0 0 2px #000;
+        -ms-box-shadow: 0 0 2px #000;
+         -o-box-shadow: 0 0 2px #000;
+            box-shadow: 0 0 2px #000;
+    background: rgba(0, 0, 0, .5);
+    cursor: pointer;
+    }
+    .longform .chapter-title .continue:after {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      font-size: 3em;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      line-height: 70px;
+      content: "↓";
+      text-align: center;
+      text-indent: 0;
+      text-shadow: 0 0 3px #333,
+                   0 0 3px #333,
+                   0 0 3px #333,
+                   0 0 3px #333,
+                   0 0 3px #333;
+      }
+      .longform .chapter-title .continue:hover:after {
+        color: #c0c0c0;
+        }
+  .longform video {
+    background: #fff;
+    box-shadow: 0 0 5px #999;
+    border-radius: 3px;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto 30px!important;
+    display: block;
+    }
+  .longform audio {
+    display: block;
+    }
+  .longform blockquote {
+    webkit-border-radius: 3px;
+       moz-border-radius: 3px;
+        ms-border-radius: 3px;
+         o-border-radius: 3px;
+           border-radius: 3px;
+    background: #fff;
+    margin: 0 auto!important 30px;
+    padding: 20px!important;
+    box-shadow: 0 0 4px #999;
+    text-align: center;
+    }
+  .longform .dark blockquote {
+    background: #333;
+    margin: 0 auto!important 30px;
+    padding: 20px!important;
+    box-shadow: 0 0 4px #000;
+    text-align: center;
+    }
+    .longform blockquote p {
+      width: 100%!important;
+      background: none;
+      padding: 0;
+      }
+    .longform blockquote cite {
+      text-align: right;
+      display: block;
+      }
+    .longform .dark blockquote cite {
+      color: #fff;
+      }
+      .longform blockquote cite:before {
+        content: "– ";
+        }
+  .longform > section > article > section {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 30px 0;
+    }
+  .longform > section > article > section.dark {
+    background: #1c1c1c;
+    }
+    .longform > section > article > section h2,
+    .longform > section > article > section h3,
+    .longform > section > article > section p,
+    .longform > section > article > section figure,
+    .longform > section > article > section blockquote,
+    .longform > section > article > section canvas,
+    .longform > section > article > section audio,
+    .longform > section > article > section dl {
+      width: 50%;
+      margin: 0 auto 30px;
+      }
+    .longform > section > article > section figure img {
+      position: relative;
+      left: -20px;
+      max-width: 100%;
+      max-height: auto;
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 3px;
+      box-shadow: 0 0 5px #999;
+      }
+    .longform > section > article > section.dark figure img {
+      background: #333;
+      box-shadow: 0 0 5px #000;
+      }
+    .longform > section > article > section figure figcaption {
+      margin: 0 -20px;
+      }
+      .longform > section > article > section figure figcaption h3 {
+        padding: 0 20px;
+        }
+      .longform > section > article > section figure figcaption p {
+        padding: 20px;
+        }
+  .longform figure {
+    position: relative;
+    }
+    .longform figure figcaption dl {
+      position: absolute;
+      right: 0;
+      width: 100%!important;
+      margin: -38px 0 0!important;
+      text-align: right;
+      font-size: 10px;
+      color: #000;
+      }
+    .longform .dark figure figcaption dl {
+      color: #fff;
+      }
+      .longform figure figcaption dl dt,
+      .longform figure figcaption dl dd {
+        display: inline;
+        }
+    .longform h2 {
+      position: relative;
+      z-index: 1;
+      color: #000;
+      text-shadow: 0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff;
+      }
+    .longform h3,
+    .longform p {
+      color: #000;
+      text-shadow: 0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff;
+      }
+    .longform .dark h2 {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-shadow: 0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000;
+      }
+    .longform .dark h3,
+    .longform .dark p {
+      color: #fff;
+      text-shadow: 0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000,
+                   0 0 2px #000;
+      }
+    .longform figcaption h3,
+    .longform figcaption p {
+      width: auto!important;
+      }
+
+/* add this to all elements that have a full screen element */
+.full {
+  position: static!important;
+  z-index: 0!important;
+  }
+  .full .lead-image img,
+  .full .lead-video,
+  .full iframe {
+    }
+
+/* fixed image, text remains in document flow */
+.image.full {
+  background: none;
+  z-index: 0!important;
+  position: relative!important;
+  overflow: hidden;
+  }
+  .image.full .lead-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    margin: 0!important;
+    box-shadow: none!important;
+    border: none!important;
+    padding: 0!important;
+    }
+  .image.full h2 {
+    position: relative;
+    z-index: 1;
+    }
+  .image.full figure {
+    position: static;
+    }
+  .image.full figcaption h3,
+  .image.full figcaption p {
+    position: relative;
+    z-index: 1;
+    }
+  .image.full figcaption dl {
+    width: 100%!important;
+    position: absolute;
+    top: 0;
+    margin: 20px 20px 0 0!important;
+    z-index: 1;
+    font-size: 10px;
+    text-align: right;
+    color: #fff;
+    text-shadow: 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000;
+    }
+    .image.full figcaption dt,
+    .image.full figcaption dd {
+      display: inline;
+      }
+/* masthead with image */
+.masthead-image {
+  }
+  .masthead-image .lead-image {
+    width: 100%!important;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    }
+    .masthead-image .lead-image img {
+      position: absolute;
+      left: 0!important;
+      top: 0;
+      width: 100%;
+      height: auto;
+      padding: 0!important;
+      margin: 0!important;
+      border: none!important;
+      border-radius: 0;
+      box-shadow: none;
+      }
+    .masthead-image .lead-image figcaption {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: right;
+      }
+      .masthead-image .lead-image figcaption dl {
+        width: 100%;
+        margin: 0!important;
+        font-size: 10px;
+        color: #fff;
+        text-shadow: 0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000;
+        }
+/* masthead with video */
+.masthead-video {
+  position: relative;
+  overflow: hidden;
+  }
+  .masthead-video .lead-video {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    padding: 0;
+    margin: 0!important;
+    border-radius: 0;
+    box-shadow: none;
+    }
+/* full screen background video */
+.video.full {
+  background: none!important;
+  position: relative;
+  overflow: hidden;
+  }
+  .video.full .lead-video {
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    }
+/* slideshow */
+.slideshow {
+  }
+  .slideshow .bx-wrapper .bx-viewport {
+    background: none;
+    border: none;
+    box-shadow: none;
+    left: 0;
+    }
+    .slideshow .bx-wrapper figure h3 {
+      margin: 0 0 20px;
+      }
+  .slideshow .bx-wrapper figure dl {
+    margin: -34px auto 0!important;
+    width: auto;
+    font-size: 10px;
+    }
+    .slideshow .bx-wrapper figure dl dt,
+    .slideshow .bx-wrapper figure dl dd {
+      width: auto;
+      display: inline;
+      }
+.slideshow.overlay {
+  }
+  .slideshow.overlay figure {
+    position: relative;
+    }
+    .slideshow.overlay figcaption {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      }
+
+.slideshow.full {
+  padding: 0!important;
+  }
+  .slideshow.full .bx-wrapper {
+    margin: 0 auto;
+    height: 100%;
+    }
+    .slideshow.full .bx-wrapper .bx-controls {
+      position: absolute;
+      right: 20px;
+      top: 0;
+      height: 100%;
+      width: 20px;
+      }
+      .slideshow.full .bx-wrapper .bx-controls .bx-pager {
+        position: relative;
+        top: 50%;
+        padding: 0;
+        height: 50%;
+        }
+    .slideshow.full .bx-wrapper .slides > li {
+      padding: 20px 0;
+      }
+    .slideshow.full .bx-wrapper figure {
+      max-width: 100%;
+      min-width: 100%;
+      margin: 0;
+      }
+      .slideshow.full .bx-wrapper figure img {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        margin: -20px 0 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        }
+      .slideshow.full .bx-wrapper figure figcaption {
+        position: relative;
+        z-index: 1;
+        top: 0;
+        width: 50%;
+        margin: 0 auto;
+        }
+        .slideshow.full .bx-wrapper figure figcaption dl {
+          margin: -52px 20px 0 0!important;
+          right: -50%;
+          color: #fff;
+          text-shadow: 0 0 2px #000,
+                       0 0 2px #000,
+                       0 0 2px #000,
+                       0 0 2px #000,
+                       0 0 2px #000;
+          }
+/* this doesn't really rely on js as much as it does css */
+.fixed {
+  position: fixed!important;
+  top: 0;
+  }
+.slideshow.full.shutter {
+  }
+  .slideshow.full.shutter > .slides {
+    }
+    .slideshow.full.shutter li {
+      position: relative;
+      padding: 10px 0;
+      overflow: hidden;
+      }
+      .slideshow.full.shutter dl {
+        position: absolute;
+        top: 0;
+        right: -50%;
+        margin: 0 60px 0 0!important;
+        width: 100%!important;
+        font-size: 10px;
+        color: #fff;
+        text-shadow: 0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000,
+                     0 0 2px #000;
+        }
+        .slideshow.full.shutter dl dt,
+        .slideshow.full.shutter dl dd {
+          display: inline;
+          }
+      .slideshow.full.shutter figure {
+        position: static;
+        }
+        .slideshow.full.shutter figure img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          margin: 0;
+          padding: 0;
+          border: none;
+          box-shadow: none;
+          width: 100%;
+          height: auto;
+          }
+        .slideshow.full.shutter figure figcaption {
+          position: relative;
+          z-index: 1;
+          }
+          .slideshow.full.shutter figure figcaption h3 {
+            margin: 10px 0 20px;
+            }
+      .slideshow.full.shutter video {
+        padding: 0;
+        border-radius: 0;
+        border: 0;
+        box-shadow: none;
+        position: absolute;
+        width: 100%;
+        height: auto;
+        margin: 0!important;
+        }
+        .slideshow.full.shutter video + span {
+          display: block;
+          position: relative;
+          z-index: 1;
+          }
+          .slideshow.full.shutter video + span dl {
+            right: 0;
+            width: 50%!important;
+            text-align: right;
+            margin: -10px 20px 0 0!important;
+            }
+          .slideshow.full.shutter video + span h3 {
+            margin: 30px auto;
+            }
+
+/* maps */
+.map {
+  }
+  .map iframe {
+    display: block;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: solid 1px #333;
+    box-shadow: 0 0 1px #000;
+    }
+
+/* responsive */
+/* tablets */
+
+/* iPad */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* hide these elements entirely */
+    .lead-video {
+      display: none!important;
+      }
+    /* ipad-portrait */
+    @media screen and (max-width: 896px) {
+      }
+    /* ipad-landscape */
+    @media screen and (min-width: 897px) {
+
+      }
+  }
+
+/* iPhone */
+@media screen and (max-device-width: 480px) {
+    /* hide these elements entirely */
+    .lead-video {
+      display: none!important;
+    }
+    .longform .chapter-title h1 {
+      width: auto;
+    }
+    .longform > section > article > section h2,
+    .longform > section > article > section h3,
+    .longform > section > article > section p,
+    .longform > section > article > section figure,
+    .longform > section > article > section blockquote,
+    .longform > section > article > section canvas,
+    .longform > section > article > section audio,
+    .longform > section > article > section dl {
+      width: 80%;
+    }
+    .chapter-title h1 {
+      font-size: 2em;
+      }
+    p {
+      font-size: 1em!important;
+      }
+    /* iphone-portrait */
+    @media screen and (max-width: 400px) {
+      }
+    /* iphone-landscape */
+    @media screen and (min-width: 401px) {
+
+      }
+  }
+
+
+/* iOS specific */
+/* iPhone < 5: */
+@media screen and (device-aspect-ratio: 2/3) {
+
+  }
+
+/* iPhone 5: */
+@media screen and (device-aspect-ratio: 40/71) {
+
+  }
+
+/* iPad: */
+@media screen and (device-aspect-ratio: 3/4) {
+
+  }

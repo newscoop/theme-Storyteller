@@ -312,6 +312,7 @@ $(document).ready(function(){
   // if your article starts with a shutter slideshow you might have to rethink it
   var doShutters = function(){
     $('.shutter').each(function(){
+      var par = $(this);
       var parPos = $(this).position().top;
       var parHeight = $(this).height();
       var parBot = ((parPos + parHeight) - 10);
@@ -319,7 +320,7 @@ $(document).ready(function(){
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;
-        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+        if (((currViewport + winHeight) < parBot) && ((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)) {
           if (currViewport >= fullTop){
             $(this).find('video:first-child, figure > img').each(function(){
               $(this).addClass('fixed');
@@ -337,7 +338,6 @@ $(document).ready(function(){
       });
     });
   };
-  doShutters();
 
   var doMediaFade = function(){
     var i = 0;

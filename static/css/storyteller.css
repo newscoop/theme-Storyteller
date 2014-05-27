@@ -99,6 +99,10 @@ h2 {
     border-radius: 0;
     box-shadow: none;
     }
+    .longform .chapter-title .bgContainer {
+      position: absolute;
+      top: 0;
+      }
     .longform .chapter-title figure {
       position: static!important;
       }

@@ -1,4 +1,4 @@
-<section class="chapter-title">
+<section class="chapter-title{{ if $gimme->article->dark }} dark{{ /if }}">
   <article>
     <span class="title">
       <h1>
@@ -27,4 +27,5 @@
       {{ include file="_tpl/img/img_full.tpl" where="article" }}
     {{ /if }}
   </article>
+  {{ include file="_tpl/_storyteller/ambient.tpl" }}
 </section>

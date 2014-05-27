@@ -279,6 +279,7 @@ $(document).ready(function(){
       }
     });
   };
+  doAmbientAudio();
 
   var doFullScreenObjects = function(){
     $('.full').each(function(){

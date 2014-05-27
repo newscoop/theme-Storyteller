@@ -12,7 +12,7 @@
             <a href="{{ $gimme->url->scheme }}://{{ $gimme->publication->site }}/{{ $item->image->original }}" title="{{ $item->caption }} {{ if !(empty($item->image->photographer)) }}(Bild: {{ $item->image->photographer }}){{ /if }}" rel="fancybox-thumb" class="zoom fancybox-thumb">Zoom</a>
             {{ /if }}
             <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
-            <small>{{ $item->caption }} {{ if !(empty($item->image->photographer)) }}(Bild: {{ $item->image->photographer }}){{ /if }}</small>
+            <small>{{ $item->caption }} {{ if !(empty($item->image->photographer)) }}({{ #photo# }}: {{ $item->image->photographer }}){{ /if }}</small>
           </figure>
         </div>
     {{ else }}

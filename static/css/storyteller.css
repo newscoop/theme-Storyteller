@@ -13,16 +13,20 @@ h2 {
   margin: 0;
   }
   .longform header {
+    display: none;
     position: fixed;
-    top: 10px;
-    left: 10px;
-    background: rgba(255, 255, 255, .75);
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
     z-index: 1000;
-    padding: 0 5px;
-    border-radius: 3px;
+    padding: 0 5px 0 40px;
     box-shadow: 0 0 2px #000;
     }
   .longform #collapse {
+    position: absolute;
+    top: 0;
+    left: 7px;
     background: url(../img/menu.png) 0 5px no-repeat;
     text-indent: -10000px;
     margin: 0 0 10px;
@@ -32,10 +36,13 @@ h2 {
     cursor: pointer;
     padding: 0!important;
     }
+  .longform header form legend {
+    display: none;
+    }
   .longform header form input {
     margin: 10px 0;
     border: solid 1px #999;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.5em;
     text-indent: 10px;
     font-weight: normal;
@@ -86,7 +93,7 @@ h2 {
                    0 0 2px #000;
       }
   .longform .chapter-title img {
-/*    display: none;*/
+    /* display: none; */
     }
   .longform .chapter-title video {
     position: absolute;
@@ -133,7 +140,7 @@ h2 {
           }
   .longform .chapter-title .continue {
     position: absolute;
-    top: 60%;
+    bottom: 20px;
     left: 50%;
     z-index: 1;
     width: 70px;
@@ -639,10 +646,10 @@ h2 {
 /* tablets */
 
 /* iPad */
-@media screen and (min-device-width: 768px) {
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     /* hide these elements entirely */
     .lead-video {
-/*      display: none!important;*/
+      display: none!important;
       }
     /* ipad-portrait */
     @media screen and (max-width: 896px) {

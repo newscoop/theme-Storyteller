@@ -13,6 +13,9 @@
         {{ if $gimme->article->type_name == "ST_chaptitle" }}
             {{ include file="_tpl/_storyteller/chapter-title.tpl" }}
         {{ /if }}
+        {{ if $gimme->article->type_name == "ST_textblock" }}
+            {{ include file="_tpl/_storyteller/text-block.tpl" }}
+        {{ /if }}
 
         {{ if $gimme->current_list->at_end }}
             </article>

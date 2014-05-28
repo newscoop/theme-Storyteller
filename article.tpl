@@ -6,6 +6,18 @@
 
     {{ list_related_articles }}
         {{ if $gimme->current_list->at_beginning }}
+        <header>
+            <ul>
+        {{ /if }}
+                <li><a href="#{{ $gimme->article->number}}">{{ if $gimme->article->display_title }}{{ $gimme->article->display_title }}{{ else }}{{ $gimme->article->name }}{{ /if }}</a></li>
+        {{ if $gimme->current_list->at_end }}
+            </ul>
+        </header>
+        {{ /if }}
+    {{ /list_related_articles }}
+
+    {{ list_related_articles }}
+        {{ if $gimme->current_list->at_beginning }}
         <section>
             <article>
         {{ /if }}

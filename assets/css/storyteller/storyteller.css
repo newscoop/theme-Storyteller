@@ -509,6 +509,7 @@ h2 {
       top: 0;
       height: 100%;
       width: 20px;
+      z-index: 100;
       }
       .slideshow.full .bx-wrapper .bx-controls .bx-pager {
         position: relative;
@@ -563,7 +564,7 @@ h2 {
   .slideshow.full.shutter > .slides {
     }
     .slideshow.full.shutter li {
-      position: relative;
+      position: relative!important;
       padding: 10px 0;
       overflow: hidden;
       }

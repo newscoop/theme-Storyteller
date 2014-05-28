@@ -347,8 +347,26 @@ $(document).ready(function(){
 
   $(window).scroll(function(){
     // if it's urgent you update immediately after scroll then place your function next:
+  var resizeTimer;
+  $(window).resize(function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      currViewport = getViewport();
 
-    // remember to reset the viewport position whenever someone has moved around the article
+      doChapterTitles();
+
+      doShutters();
+
+      doFullScreenObjects();
+
+      doBlockSizes();
+
+      doAmbientAudio();
+    }, 100);
+
+  });
+
+  $(window).scroll(function(){
     currViewport = getViewport();
 
     doChapterTitles();

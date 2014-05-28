@@ -28,6 +28,9 @@
         {{ if $gimme->article->type_name == "ST_textblock" }}
             {{ include file="_tpl/_storyteller/text-block.tpl" }}
         {{ /if }}
+        {{ if $gimme->article->type_name == "ST_slideshow" }}
+            {{ include file="_tpl/_storyteller/slideshow.tpl" }}
+        {{ /if }}
 
         {{ if $gimme->current_list->at_end }}
             </article>

@@ -1,5 +1,12 @@
+// define global window height and width
 var winHeight = $(window).height();
 var winWidth = $(window).width();
+
+// set function to refill those values when needed
+var doWinDimensions = function(){
+  winHeight = $(window).height();
+  winWidth = $(window).width();
+};
 
 $(document).ready(function(){
 
@@ -48,29 +55,30 @@ $(document).ready(function(){
     });
   }
 
-  // scope is private but can use global
-
-  $('section').each(function(){
-    if ($(this).attr('class')){
-      var paddingTop = ($(this).css('padding-top'));
-      paddingTop = paddingTop.replace('px','');
-      var paddingBottom = ($(this).css('padding-bottom'));
-      paddingBottom = paddingBottom.replace('px','');
-      var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
-      $(this).css({
-        'min-height': (winHeight - paddingVertical) + 'px',
-        'width': winWidth
-      });
-    }
-    if ($(this).hasClass('chapter-title')){
-      var title = $(this).find('.title');
-      title.css({
-        'top': ((winHeight / 2) - 60) + 'px'
-      });
-      title.after('<span class="continue">Click here to continue</span>');
-    }
-  });
-
+  var doBlockSizes = function(){
+    $('section').each(function(){
+      if ($(this).attr('class')){
+        var paddingTop = ($(this).css('padding-top'));
+        paddingTop = paddingTop.replace('px','');
+        var paddingBottom = ($(this).css('padding-bottom'));
+        paddingBottom = paddingBottom.replace('px','');
+        var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
+        $(this).css({
+          'min-height': (winHeight - paddingVertical) + 'px',
+          'width': winWidth
+        });
+      }
+      if ($(this).hasClass('chapter-title')){
+        var title = $(this).find('.title');
+        title.css({
+          'top': ((winHeight / 2) - 60) + 'px'
+        });
+        title.after('<span class="continue">Click here to continue</span>');
+      }
+    });
+    console.log('ping');
+  };
+  doBlockSizes();
 
   $('.continue').bind('click', function(){
     if ($(this).parent().parent().next()[0]){
@@ -279,7 +287,6 @@ $(document).ready(function(){
       }
     });
   };
-  doAmbientAudio();
 
   var doFullScreenObjects = function(){
     $('.full').each(function(){
@@ -312,7 +319,6 @@ $(document).ready(function(){
   // if your article starts with a shutter slideshow you might have to rethink it
   var doShutters = function(){
     $('.shutter').each(function(){
-      var par = $(this);
       var parPos = $(this).position().top;
       var parHeight = $(this).height();
       var parBot = ((parPos + parHeight) - 10);
@@ -320,7 +326,7 @@ $(document).ready(function(){
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;
-        if (((currViewport + winHeight) < parBot) && ((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)) {
+        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
           if (currViewport >= fullTop){
             $(this).find('video:first-child, figure > img').each(function(){
               $(this).addClass('fixed');
@@ -338,25 +344,28 @@ $(document).ready(function(){
       });
     });
   };
+  doShutters();
 
-  var doMediaFade = function(){
-    var i = 0;
-    $('article > section').not('.slideshow.shutter, .chapter-title').each(function(){
-      $(this).find('img').each(function(){
-        if ($(this).parent('.lead-image')){
-          $(this).css({
-            // 'outline': 'solid 1px red'
-          });
-        }
-      });
-    });
-  };
-  doMediaFade();
+  var resizeTimer;
+  $(window).resize(function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      currViewport = getViewport();
+
+      doChapterTitles();
+
+      doShutters();
+
+      doFullScreenObjects();
+
+      doBlockSizes();
+
+      doAmbientAudio();
+    }, 100);
+
+  });
 
   $(window).scroll(function(){
-    // if it's urgent you update immediately after scroll then place your function next:
-
-    // remember to reset the viewport position whenever someone has moved around the article
     currViewport = getViewport();
 
     doChapterTitles();

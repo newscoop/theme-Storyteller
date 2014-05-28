@@ -154,6 +154,7 @@ $(document).ready(function(){
           bgDiv.width(winWidth);
           bgDiv.height(winHeight);
           bgDiv.css({
+            'z-index':'-1',
             'background': 'url("' + src + '") no-repeat',
             'background-position': 'center center'
           });

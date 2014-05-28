@@ -76,7 +76,6 @@ $(document).ready(function(){
         title.after('<span class="continue">Click here to continue</span>');
       }
     });
-    console.log('ping');
   };
   doBlockSizes();
 
@@ -112,7 +111,7 @@ $(document).ready(function(){
     'min-height' : winHeight
   });
 
-  // full sreen shutter slides
+  // full screen shutter slides
   $('.slideshow.full.shutter').each(function(){
     $(this).find('li, figure').each(function(){
       $(this).css({
@@ -326,7 +325,7 @@ $(document).ready(function(){
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;
-        if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
+        if (((currViewport + winHeight) >= fullTop) && ((currViewport + winHeight) <= parBot) && (currViewport <= fullSize)){
           if (currViewport >= fullTop){
             $(this).find('video:first-child, figure > img').each(function(){
               $(this).addClass('fixed');

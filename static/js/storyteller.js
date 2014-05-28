@@ -55,29 +55,30 @@ $(document).ready(function(){
     });
   }
 
-  // scope is private but can use global
-
-  $('section').each(function(){
-    if ($(this).attr('class')){
-      var paddingTop = ($(this).css('padding-top'));
-      paddingTop = paddingTop.replace('px','');
-      var paddingBottom = ($(this).css('padding-bottom'));
-      paddingBottom = paddingBottom.replace('px','');
-      var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
-      $(this).css({
-        'min-height': (winHeight - paddingVertical) + 'px',
-        'width': winWidth
-      });
-    }
-    if ($(this).hasClass('chapter-title')){
-      var title = $(this).find('.title');
-      title.css({
-        'top': ((winHeight / 2) - 60) + 'px'
-      });
-      title.after('<span class="continue">Click here to continue</span>');
-    }
-  });
-
+  var doBlockSizes = function(){
+    $('section').each(function(){
+      if ($(this).attr('class')){
+        var paddingTop = ($(this).css('padding-top'));
+        paddingTop = paddingTop.replace('px','');
+        var paddingBottom = ($(this).css('padding-bottom'));
+        paddingBottom = paddingBottom.replace('px','');
+        var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
+        $(this).css({
+          'min-height': (winHeight - paddingVertical) + 'px',
+          'width': winWidth
+        });
+      }
+      if ($(this).hasClass('chapter-title')){
+        var title = $(this).find('.title');
+        title.css({
+          'top': ((winHeight / 2) - 60) + 'px'
+        });
+        title.after('<span class="continue">Click here to continue</span>');
+      }
+    });
+    console.log('ping');
+  };
+  doBlockSizes();
 
   $('.continue').bind('click', function(){
     if ($(this).parent().parent().next()[0]){

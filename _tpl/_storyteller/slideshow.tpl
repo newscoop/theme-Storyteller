@@ -1,4 +1,4 @@
-<section class="slideshow{{ if $gimme->article->shutter }} full shutter{{ /if }}{{ if $gimme->article->fade }} fade{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
+<section class="slideshow{{ if $gimme->article->shutter }} full shutter{{ /if }}{{ if $gimme->article->fade && not $gimme->article->horizontal }} fade{{ /if }}{{ if $gimme->article->horizontal && not $gimme->article->shutter && not $gimme->article->fade }} horizontal{{ /if }}{{ if $gimme->article->fullscreen && not $gimme->article->shutter }} full{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
   {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
     {{ foreach $slideshow->items as $item name=insideslideshow }}

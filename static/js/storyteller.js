@@ -1,5 +1,12 @@
+// define global window height and width
 var winHeight = $(window).height();
 var winWidth = $(window).width();
+
+// set function to refill those values when needed
+var doWinDimensions = function(){
+  winHeight = $(window).height();
+  winWidth = $(window).width();
+};
 
 $(document).ready(function(){
 

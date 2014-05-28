@@ -1,4 +1,4 @@
-<section class="chapter-title{{ if $gimme->article->dark }} dark{{ /if }}">
+<section class="chapter-title{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
   <article>
     <span class="title">
       <h1>

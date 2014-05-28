@@ -13,7 +13,7 @@
       {{ /if }}
     </span>
     {{ if $gimme->article->video }}
-      <video class="lead-video fixed" autoplay {{ if $gimme->article->loop }}loop{{ /if }} {{ if $gimme->article->preload }}preload="true"{{ /if }} poster="{{ image rendition='full' }}{{ $image->src }}{{ /image }}">
+      <video class="lead-video fixed" {{ if $gimme->article->autoplay }}autoplay="autoplay" {{ /if }}{{ if $gimme->article->loop }}loop="loop" {{ /if }} {{ if $gimme->article->preload }}preload="auto" {{ /if }} poster="{{ image rendition='full' }}{{ $image->src }}{{ /image }}">
       {{ list_article_attachments }}
         {{ if $gimme->attachment->extension == mp4 }}
           <source src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />

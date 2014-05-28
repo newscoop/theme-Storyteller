@@ -39,6 +39,7 @@
     <meta name="author" content="Pete Haughie" />
     <meta name="generator" content="Atom 0.92.0" />
     <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/jquery.bxslider.css" }}">
   {{ else }}
     <meta name="author" content="Ljuba Rankovic" >
     <meta name="generator" content="Bluefish 2.0.3" >

@@ -7,6 +7,11 @@
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
   <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
   <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="css/full-slider.css" rel="stylesheet">
+
 </head>
 <body class="longform">
   <header>
@@ -27,6 +32,8 @@
   <section>
     <article>
     <!-- media types are listed below -->
+    <?php include "modules/slideshow_full_bootstrap.php"; ?>
+
     <?php include "modules/chapter_title_video.php"; ?>
     <?php include "modules/chapter_title.php"; ?>
     <?php include "modules/masthead.php"; ?>
@@ -46,9 +53,17 @@
   </section>
   <footer>
   </footer>
+  <script src="js/libs/bootstrap.js"></script>
+
   <script src="js/libs/jquery.dotimeout.1.0.js"></script>
   <script src="js/libs/jquery.bxslider.min.js"></script>
   <script src="js/libs/jquery.easing.1.3.js"></script>
   <script src="js/storyteller.js"></script>
+  <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
 </body>
 </html>

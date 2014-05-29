@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta title="Storyteller" />
   <meta name="viewport" content="initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
-  <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
-  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="css/full-slider.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
+  <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
+  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 
 </head>
 <body class="longform">
@@ -53,17 +53,19 @@
   </section>
   <footer>
   </footer>
+
+  <!-- Bootstrap slideshow -->
   <script src="js/libs/bootstrap.js"></script>
+  <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+  </script>
 
   <script src="js/libs/jquery.dotimeout.1.0.js"></script>
   <script src="js/libs/jquery.bxslider.min.js"></script>
   <script src="js/libs/jquery.easing.1.3.js"></script>
   <script src="js/storyteller.js"></script>
-  <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
 
 </body>
 </html>

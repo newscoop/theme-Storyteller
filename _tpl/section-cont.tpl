@@ -2,13 +2,13 @@
   <h2>{{ #section# }} <span>{{ $gimme->section->name }}</span></h2>
 </div>
 
-{{ list_articles length="8" ignore_issue="true" constraints="type not poll" }}
+{{ list_articles length="8" ignore_issue="true" constraints="type not poll type not ST_slideshow type not ST_slide type not ST_textblock type not ST_chaptitle" }}
 
 {{ if $gimme->current_list->at_beginning }}
-          <section class="grid-2">       
-{{ /if }}     
+          <section class="grid-2">
+{{ /if }}
 
-{{ if $gimme->current_list->index lte 2 }}         
+{{ if $gimme->current_list->index lte 2 }}
               <article>
                     {{ include file="_tpl/img/img_onehalf.tpl" }}
                     <small><a href="{{ url options="section" }}">{{ $gimme->section->name }}</a> {{ list_article_topics }}{{ if $gimme->current_list->at_beginning }}<em>/ {{ /if }}<a href="{{ url options="template topic.tpl" }}">{{ $gimme->topic->name }}</a>{{ if $gimme->current_list->at_end }}</em>{{ else }}, {{ /if }}{{ /list_article_topics }}</small>
@@ -18,19 +18,19 @@
                     <span class="more"><a href="{{ url options="article" }}">+  {{ #readMore# }}</a> or <a href="{{ url options="article" }}#comments">{{ #addComment# }} ({{ $gimme->article->comment_count }})</a></span>
                 </article>
 {{ /if }}
-                
-{{ if $gimme->current_list->index == 2 || ($gimme->current_list->at_end && $gimme->current_list->index lte 2) }}            
+
+{{ if $gimme->current_list->index == 2 || ($gimme->current_list->at_end && $gimme->current_list->index lte 2) }}
             </section><!-- / 2 article grid -->
 {{ /if }}
 
-{{ if $gimme->current_list->index == 3 }}             
+{{ if $gimme->current_list->index == 3 }}
             <div class="title">
               <h2>MORE <span>STORIES</span></h2>
             </div>
-            
+
             <section class="grid-3">
-{{ /if }}    
-{{ if $gimme->current_list->index gte 3 }}        
+{{ /if }}
+{{ if $gimme->current_list->index gte 3 }}
               <article>
                     {{ include file="_tpl/img/img_onethird.tpl" }}
                     <small><a href="{{ url options="section" }}">{{ $gimme->section->name }}</a> {{ list_article_topics }}{{ if $gimme->current_list->at_beginning }}<em>/ {{ /if }}<a href="{{ url options="template topic.tpl" }}">{{ $gimme->topic->name }}</a>{{ if $gimme->current_list->at_end }}</em>{{ else }}, {{ /if }}{{ /list_article_topics }}</small>
@@ -39,10 +39,10 @@
                     <p>{{ include file="_tpl/_edit-article.tpl" }}{{ $gimme->article->deck }}</p>
                     <span class="more"><a href="{{ url options="article" }}">+  {{ #readMore# }}</a> or <a href="{{ url options="article" }}#comments">{{ #addComment# }} ({{ $gimme->article->comment_count }})</a></span>
                 </article>
-{{ /if }}                
-{{ if $gimme->current_list->at_end && !($gimme->current_list->index == 2) }}              
-            </section><!-- / 3 articles grid -->  
-{{ /if }}           
+{{ /if }}
+{{ if $gimme->current_list->at_end && !($gimme->current_list->index == 2) }}
+            </section><!-- / 3 articles grid -->
+{{ /if }}
 {{ if $gimme->current_list->at_end }}
 
 {{* PAGINATION *}}
@@ -65,5 +65,6 @@
 {{ /if }}
 
 {{ /if }}
-            
-{{ /list_articles }}            
+
+
+{{ /list_articles }}

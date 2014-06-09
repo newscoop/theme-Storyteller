@@ -1,13 +1,13 @@
 <div class="title">
   <h2>{{ #searchResults# }}</h2>
-</div>  
+</div>
 
-{{ list_search_results length="9" columns="3" }}
+{{ list_search_results length="9" columns="3" constraints="type not ST_slideshow type not ST_slide type not ST_textblock type not ST_chaptitle" }}
 
-{{ if $gimme->current_list->column == 1 }}            
+{{ if $gimme->current_list->column == 1 }}
             <section class="grid-3">
-{{ /if }}    
-        
+{{ /if }}
+
               <article>
                     {{ include file="_tpl/img/img_onethird.tpl" }}
                     <small><a href="{{ url options="section" }}">{{ $gimme->section->name }}</a> {{ list_article_topics }}{{ if $gimme->current_list->at_beginning }}<em>/ {{ /if }}<a href="{{ url options="template topic.tpl" }}">{{ $gimme->topic->name }}</a>{{ if $gimme->current_list->at_end }}</em>{{ else }}, {{ /if }}{{ /list_article_topics }}</small>
@@ -16,11 +16,11 @@
                     <p>{{ include file="_tpl/_edit-article.tpl" }}{{ $gimme->article->deck }}</p>
                     <span class="more"><a href="{{ url options="article" }}">+  {{ #readMore# }}</a> or <a href="{{ url options="article" }}#comments">{{ #addComment# }} ({{ $gimme->article->comment_count }})</a></span>
                 </article>
-                
-{{ if ($gimme->current_list->column == 3) || $gimme->current_list->at_end }}              
-            </section><!-- / 3 articles grid -->  
-            
-{{ if $gimme->current_list->at_end }} 
+
+{{ if ($gimme->current_list->column == 3) || $gimme->current_list->at_end }}
+            </section><!-- / 3 articles grid -->
+
+{{ if $gimme->current_list->at_end }}
 {{* PAGINATION *}}
 {{ $pages=ceil($gimme->current_list->count/9) }}
 {{ $curpage=intval($gimme->url->get_parameter($gimme->current_list_id())) }}
@@ -42,11 +42,11 @@
 {{ /if }}
 
 {{ /if }}
-            
-{{ /list_search_results }}     
+
+{{ /list_search_results }}
 
 {{ if $gimme->prev_list_empty }}
-<section class="grid-3">       
+<section class="grid-3">
 <p>{{ #noSearchResults# }}</p>
 {{ assign var="incl-all-sec" value=1 }}
 </section>

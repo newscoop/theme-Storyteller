@@ -4,8 +4,6 @@
       <h1>
         {{ if $gimme->article->display_title }}
           {{ $gimme->article->display_title }}
-        {{ else }}
-          {{ $gimme->article->title }}
         {{ /if }}
       </h1>
       {{ if $gimme->article->deck }}

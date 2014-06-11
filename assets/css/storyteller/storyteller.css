@@ -249,6 +249,9 @@ h2 {
       width: 50%;
       margin: 0 auto 30px;
       }
+      .longform > section > article > section .cs_img p {
+        width: 100%;
+        }
     .longform > section > article > section figure img,
     .longform > section > article > section .cs_img img {
       position: relative;

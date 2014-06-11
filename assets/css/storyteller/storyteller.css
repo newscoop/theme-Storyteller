@@ -258,7 +258,7 @@ h2 {
     .longform > section > article > section figure img,
     .longform > section > article > section .cs_img {
       position: relative;
-      left: -20px;
+      left: -10px;
       max-width: 100%;
       max-height: auto;
       background: #fff;

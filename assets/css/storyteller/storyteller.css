@@ -256,7 +256,7 @@ h2 {
       .longform > section > article > section .cs_img_caption {
         }
     .longform > section > article > section figure img,
-    .longform > section > article > section .cs_img img {
+    .longform > section > article > section .cs_img {
       position: relative;
       left: -20px;
       max-width: 100%;

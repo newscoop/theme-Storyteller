@@ -241,6 +241,7 @@ h2 {
     .longform > section > article > section h3,
     .longform > section > article > section p,
     .longform > section > article > section figure,
+    .longform > section > article > section .cs_img,
     .longform > section > article > section blockquote,
     .longform > section > article > section canvas,
     .longform > section > article > section audio,
@@ -248,7 +249,8 @@ h2 {
       width: 50%;
       margin: 0 auto 30px;
       }
-    .longform > section > article > section figure img {
+    .longform > section > article > section figure img,
+    .longform > section > article > section .cs_img img {
       position: relative;
       left: -20px;
       max-width: 100%;
@@ -259,7 +261,8 @@ h2 {
       border-radius: 3px;
       box-shadow: 0 0 5px #999;
       }
-    .longform > section > article > section.dark figure img {
+    .longform > section > article > section.dark figure img,
+    .longform > section > article > section.dark .cs_img img {
       background: #333;
       box-shadow: 0 0 5px #000;
       }

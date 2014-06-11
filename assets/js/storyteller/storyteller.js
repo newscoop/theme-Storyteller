@@ -79,6 +79,16 @@ $(document).ready(function(){
   };
   doBlockSizes();
 
+  var doZindex = function(){
+    i = 0;
+    $('section > article > section').each(function(){
+      $(this).css({
+        'z-index': ++i
+      });
+    });
+  };
+  doZindex();
+
   $('.continue').bind('click', function(){
     if ($(this).parent().parent().next()[0]){
       var nextObjPos = $(this).parent().parent().next().position().top + "px";

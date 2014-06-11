@@ -327,10 +327,16 @@ $(document).ready(function(){
         var fullSize = fullTop + fullBot;
         if (((currViewport + winHeight) >= fullTop) && ((currViewport + winHeight) <= parBot) && (currViewport <= fullSize)){
           if (currViewport >= fullTop){
+            $(this).find('video:first-child').each(function(){
+              $(this)[0].play();
+            });
             $(this).find('video:first-child, figure > img').each(function(){
               $(this).addClass('fixed');
             });
           } else {
+            $(this).find('video:first-child').each(function(){
+              $(this)[0].pause();
+            });
             $(this).find('video:first-child, figure > img').each(function(){
               $(this).removeClass('fixed');
             });

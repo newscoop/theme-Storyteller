@@ -566,7 +566,8 @@ h2 {
 /* this doesn't really rely on js as much as it does css */
 .fixed {
   position: fixed!important;
-  top: 0;
+  top: auto!important;
+  bottom: 0;
   }
 .slideshow.full.shutter {
   }

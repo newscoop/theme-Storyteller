@@ -613,7 +613,7 @@ h2 {
         .slideshow.full.shutter figure figcaption {
           position: absolute;
           width: 50%;
-          bottom: 25%;
+          bottom: 12.5%;
           z-index: 1;
           }
           .slideshow.full.shutter .left-text figure figcaption {
@@ -641,7 +641,7 @@ h2 {
         .slideshow.full.shutter video + span {
           position: absolute;
           width: 100%;
-          bottom: 25%;
+          bottom: 12.5%;
           z-index: 1;
           }
           .slideshow.full.shutter .left-text video + span {

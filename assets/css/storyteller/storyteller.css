@@ -611,9 +611,20 @@ h2 {
           border-radius: 0;
           }
         .slideshow.full.shutter figure figcaption {
-          position: relative;
+          position: absolute;
+          width: 50%;
+          bottom: 25%;
           z-index: 1;
           }
+          .slideshow.full.shutter .left-text figure figcaption {
+            width: 25%;
+            left: 30px;
+            }
+          .slideshow.full.shutter .right-text figure figcaption {
+            width: 25%;
+            right: 30px;
+            text-align: right;
+            }
           .slideshow.full.shutter figure figcaption h3 {
             margin: 10px 0 20px;
             }
@@ -628,8 +639,8 @@ h2 {
         margin: -10px 0 0!important;
         }
         .slideshow.full.shutter video + span {
-          width: 100%;
           position: absolute;
+          width: 100%;
           bottom: 25%;
           z-index: 1;
           }

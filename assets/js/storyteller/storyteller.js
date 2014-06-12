@@ -123,16 +123,15 @@ $(document).ready(function(){
 
   // full screen shutter slides
   $('.slideshow.full.shutter').each(function(){
-    $(this).find('figure').each(function(){
+    $(this).find('figure, li').each(function(){
       $(this).css({
-        'min-height' :winHeight
+        'min-height' :(winHeight + (winHeight / 2))
       });
     });
     var i = 0;
     $(this).find('li').each(function(){
       $(this).css({
-        'z-index': ++i,
-        'min-height' :(winHeight + (winHeight / 2))
+        'z-index': ++i
       });
     });
   });

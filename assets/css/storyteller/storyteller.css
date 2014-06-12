@@ -618,11 +618,11 @@ h2 {
           }
           .slideshow.full.shutter .left-text figure figcaption {
             width: 25%;
-            left: 30px;
+            left: 7%;
             }
           .slideshow.full.shutter .right-text figure figcaption {
             width: 25%;
-            right: 30px;
+            right: 7%;
             text-align: right;
             }
           .slideshow.full.shutter figure figcaption h3 {
@@ -646,7 +646,7 @@ h2 {
           }
           .slideshow.full.shutter .left-text video + span {
             width: 25%;
-            left: 50px;
+            left: 7%;
             }
             .slideshow.full.shutter .left-text video + span p {
               width: 100%;
@@ -655,7 +655,7 @@ h2 {
           .slideshow.full.shutter .right-text video + span {
             width: 25%;
             text-align: right;
-            right: 50px;
+            right: 7%;
             }
             .slideshow.full.shutter .right-text video + span p {
               width: 100%;

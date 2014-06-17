@@ -58,7 +58,7 @@ $(document).ready(function(){
       if ($(this).hasClass('chapter-title')){
         var title = $(this).find('.title');
         title.css({
-          'top': ((winHeight / 2) - 60) + 'px'
+          'bottom': ((winHeight / 2) - 60) + 'px'
         });
         title.after('<span class="continue">Click here to continue</span>');
       }

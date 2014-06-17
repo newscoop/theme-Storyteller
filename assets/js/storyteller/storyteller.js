@@ -29,19 +29,17 @@ $(document).ready(function(){
           // check to see if the last character is a '4'
           if (src.substr(-1) == '4'){
             src = src;
-          } else {
-            $(this).remove();
           }
         } else if (Modernizr.video.webm){
           // check to see if the last digit is an 'm'
           if (src.substr(-1) == 'm'){
             src = src;
-          } else {
-            $(this).remove();
           }
         }
       }
     });
+    video.attr('data-video', src);
+    $(this).find('source').remove();
   });
 
   // Check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound

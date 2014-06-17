@@ -1,3 +1,4 @@
+<script src="{{ url static_file="assets/js/libs/modernizr-2.0.6.js" }}"></script>
 {{ if $gimme->article->type_name == "storyteller" }}
 <script src="{{ url static_file="assets/js/storyteller/libs/jquery.bxslider.min.js" }}"></script>
 <script src="{{ url static_file="assets/js/storyteller/libs/jquery.dotimeout.1.0.js" }}"></script>

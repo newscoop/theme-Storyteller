@@ -112,7 +112,7 @@ $(document).ready(function(){
   $('.slideshow.full.shutter').each(function(){
     $(this).find('figure, li').each(function(){
       $(this).css({
-        'min-height' :(winHeight + (winHeight / 2))
+        'min-height' : winHeight
       });
     });
     var i = 0;

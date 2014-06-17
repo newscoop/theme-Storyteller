@@ -15,7 +15,36 @@ $(document).ready(function(){
     return currViewport;
   };
 
-  // check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound
+  // Set up video elements ready for async loading
+  $('video').each(function(){
+    var video = $(this);
+    var vidPar = video.parent();
+    var src = null;
+    video.find('source').each(function(){
+      src = $(this).attr('src');
+      // check for mp4 or webm capability
+      if (Modernizr.video) {
+        // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
+        if (Modernizr.video.h264) {
+          // check to see if the last character is a '4'
+          if (src.substr(-1) == '4'){
+            src = src;
+          } else {
+            $(this).remove();
+          }
+        } else if (Modernizr.video.webm){
+          // check to see if the last digit is an 'm'
+          if (src.substr(-1) == 'm'){
+            src = src;
+          } else {
+            $(this).remove();
+          }
+        }
+      }
+    });
+  });
+
+  // Check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound
   if ($('audio.ambient')[0]){
     $('body').append('<audio id="audioMaster" loop src="null" />');
     var audioMaster = $('#audioMaster');

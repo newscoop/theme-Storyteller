@@ -42,7 +42,7 @@ $(document).ready(function(){
     });
   }
 
-  var doBlockSizes = function(){
+  var doChapTitleText = function(){
     $('section').each(function(){
       if ($(this).attr('class')){
         var paddingTop = ($(this).css('padding-top'));
@@ -64,7 +64,7 @@ $(document).ready(function(){
       }
     });
   };
-  doBlockSizes();
+  doChapTitleText();
 
   var doZindex = function(){
     i = 0;

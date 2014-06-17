@@ -1,6 +1,8 @@
 {{ if $gimme->article->shutter }}
   <section class="slideshow full shutter{{ if $gimme->article->dark }} dark{{ /if }}">
-    {{ include file="_tpl/_storyteller/ambient.tpl" }}
+    {{ if $gimme->browser->ua_type != "mobile" }}
+      {{ include file="_tpl/_storyteller/ambient.tpl" }}
+    {{ /if }}
     {{ list_related_articles }}
       {{ if $gimme->current_list->at_beginning }}
         <ul class="slides">

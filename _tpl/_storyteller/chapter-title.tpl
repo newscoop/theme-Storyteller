@@ -25,5 +25,7 @@
       {{ include file="_tpl/img/img_full.tpl" where="article" }}
     {{ /if }}
   </article>
-  {{ include file="_tpl/_storyteller/ambient.tpl" }}
+  {{ if $gimme->browser->ua_type != "mobile" }}
+    {{ include file="_tpl/_storyteller/ambient.tpl" }}
+  {{ /if }}
 </section>

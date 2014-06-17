@@ -286,28 +286,15 @@ $(document).ready(function(){
 
   var doFullScreenObjects = function(){
     $('.full').each(function(){
-      var fullTop = $(this).position().top;
-      var fullBot = $(this).height();
-      var fullSize = fullTop + fullBot;
-      // then we want to remove the windowHeight from the top position and add it to the height so that when we check to see if elements should be displayed or not we make sure they don't just appear
-      var fullTopAdj = (fullTop - winHeight);
-      var fullBotAdj = (fullBot + winHeight);
-      var fullSizeAdj = fullTopAdj + fullBotAdj;
-      if (((currViewport + winHeight) >= fullTop) && (currViewport <= fullSize)){
-        if (currViewport >= fullTop){
-          $(this).find('.lead-image img, .lead-video').each(function(){
-            $(this).addClass('fixed');
-          });
+      $(this).find('.lead-image img, .lead-video').each(function(){
+        if (winHeight > winWidth){
+          $(this).width('auto');
+          $(this).height(winHeight);
         } else {
-          $(this).find('.lead-image img, .lead-video').each(function(){
-            $(this).removeClass('fixed');
-          });
+          $(this).width(winWidth);
+          $(this).height('auto');
         }
-      } else if (currViewport > fullBot) {
-        $(this).find('.fixed').removeClass('fixed');
-      } else {
-        $(this).find('.fixed').removeClass('fixed');
-      }
+      });
     });
   };
   doFullScreenObjects();

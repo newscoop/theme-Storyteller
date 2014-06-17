@@ -45,7 +45,6 @@
     <meta name="generator" content="Bluefish 2.0.3" >
     <link rel="stylesheet" href="{{ url static_file="assets/css/main.css" }}">
     <link rel="stylesheet" href="{{ url static_file="assets/css/skin.css" }}">
-    <script src="{{ url static_file="assets/js/libs/modernizr-2.0.6.js" }}"></script>
     {{ if $gimme->template->name == "article.tpl" }}
     <!-- styles for fancybox, used on article page -->
     <link rel="stylesheet" href="{{ url static_file='assets/css/fancybox/jquery.fancybox-1.3.4.css' }}" />

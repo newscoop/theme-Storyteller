@@ -4,9 +4,6 @@
   <meta charset="utf-8" />
   <meta title="Storyteller" />
   <meta name="viewport" content="initial-scale=1.0" />
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="css/full-slider.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/storyteller.css" />
   <link rel="stylesheet" type="text/css" href="css/bxslider/jquery.bxslider.css" />
@@ -34,9 +31,6 @@
     <!-- media types are listed below -->
     <?php include "modules/chapter_title_video.php"; ?>
     <?php include "modules/chapter_title.php"; ?>
-
-    <?php include "modules/slideshow_full_bootstrap.php"; ?>
-
     <?php include "modules/masthead.php"; ?>
     <?php include "modules/masthead_image.php"; ?>
     <?php include "modules/masthead_video.php"; ?>
@@ -54,14 +48,6 @@
   </section>
   <footer>
   </footer>
-
-  <!-- Bootstrap slideshow -->
-  <script src="js/libs/bootstrap.js"></script>
-  <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-  </script>
 
   <script src="js/libs/jquery.dotimeout.1.0.js"></script>
   <script src="js/libs/jquery.bxslider.min.js"></script>

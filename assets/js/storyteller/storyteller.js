@@ -42,6 +42,25 @@ $(document).ready(function(){
     $(this).find('source').remove();
   });
 
+  // mute button
+  var muted = false;
+  $('#mute').bind('click', function(){
+    if (muted === true){
+      $(this).attr('class', null);
+      muted = false;
+      $('video, audio').each(function(){
+        $(this)[0].volume = 1;
+      });
+    } else {
+      muted = true;
+      $(this).addClass('muted');
+      $('video, audio').each(function(){
+        $(this)[0].volume = 0;
+      });
+    }
+    return false;
+  });
+
   // Check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound
   if ($('audio.ambient')[0]){
     $('body').append('<audio id="audioMaster" loop src="null" />');

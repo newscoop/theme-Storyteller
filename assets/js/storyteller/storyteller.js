@@ -44,9 +44,9 @@ $(document).ready(function(){
 
   // mute button
   var muted = false;
-  $('#mute').bind('click', function(){
+  $('.mute').bind('click', function(){
     if (muted === true){
-      $(this).attr('class', null);
+      $(this).removeClass('muted');
       muted = false;
       $('video, audio').each(function(){
         $(this)[0].volume = 1;

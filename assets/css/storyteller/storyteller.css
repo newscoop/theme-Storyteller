@@ -66,11 +66,24 @@ h2 {
     text-decoration: none;
     line-height: 1.5em;
     }
-    .longform header a:hover {
+    .longform header nav {
+      margin: 5px 0 10px;
+      line-height: 30px;
+      }
+    .longform header nav a span {
+      display: inline-block;
+      text-align: center;
+      width: 24px;
+      height: 24px;
+      background: #999;
+      color: #fff;
+      border-radius: 12px;
+      }
+    .longform header nav a:hover {
       text-decoration: underline;
       }
-    .longform header .active:after {
-        content: ' <';
+    .longform header nav a.active span {
+      background: #333;
       }
   .longform .chapter-title {
     position: relative;

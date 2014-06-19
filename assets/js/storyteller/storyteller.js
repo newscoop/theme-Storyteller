@@ -445,6 +445,7 @@ $(document).ready(function(){
 
   });
 
+/*
   $(window).scroll(function(){
     currViewport = getViewport();
 
@@ -463,6 +464,6 @@ $(document).ready(function(){
       doAmbientAudio();
 
     });
-
   });
+*/
 });

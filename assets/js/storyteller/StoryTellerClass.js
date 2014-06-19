@@ -11,11 +11,12 @@ var doWinDimensions = function(){
 var storyTeller = {
   options: {},
   assets: [],
-  audio_playing: [],
-  video_playing: [],
+  live_assets: [],
   initialized: false,
 
   init: function(options, callback) {
+    var that = this;
+
     // TODO: check options to see if we should skip certain asset types
     this.loadChapterTitleAssets();
     this.loadShutterAssets();
@@ -24,7 +25,9 @@ var storyTeller = {
     console.log(this.assets);
 
     // call function to set scroll function
-    $(window).scroll(this.onScroll());
+    $(window).scroll(function() {
+      that.onScroll()
+    });
 
     this.initialized = true;
 
@@ -38,14 +41,15 @@ var storyTeller = {
     currViewport = this.getViewport();
 
     // trigger assets that come into view
-    for (var asset in this.assets) {
+    for (var a in this.assets) {
+      var asset = this.assets[a];
       if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
-        // TODO: call triggerAsset function, and add asset to current playing assets
+        // TODO: call triggerAsset function, and add asset to live_assets
         console.log(asset);
       }
     }
 
-    // TODO: stop playing assets that move out of view
+    // TODO: stop / turn off live_assets that move out of view
   },
 
   loadChapterTitleAssets: function() {

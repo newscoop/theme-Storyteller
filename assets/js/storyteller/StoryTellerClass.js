@@ -21,6 +21,8 @@ var storyTeller = {
     this.loadShutterAssets();
     this.loadAudioAssets();
 
+    console.log(this.assets);
+
     // call function to set scroll function
     $(window).scroll(this.onScroll());
 
@@ -102,6 +104,7 @@ var storyTeller = {
   },
 
   loadAudioAssets: function() {
+    var that = this;
     $('section, li').each(function(){
       if ($(this).attr('data-audiosrc')) {
         var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');

@@ -42,6 +42,31 @@ $(document).ready(function(){
     $(this).find('source').remove();
   });
 
+  // collapse header
+  var collapsed = false;
+
+  var doMainNav = function(){
+    if (collapsed === false){
+      collapsed = true;
+      $('header nav').addClass('active');
+    } else {
+      collapsed = false;
+      $('header nav').removeClass('active');
+    }
+  };
+
+  $('#collapse').bind('click', function(){
+    $('header nav li').animate({
+      'opacity': 0
+    }, 500, function(){
+      doMainNav();
+      $('header nav li').animate({
+        'opacity': 1
+      });
+    });
+    return false;
+  });
+
   // header nav
   $('header nav a').bind('click', function(){
     var src = $(this).attr('href').replace('#','');

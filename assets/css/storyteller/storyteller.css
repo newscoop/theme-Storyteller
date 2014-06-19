@@ -49,17 +49,43 @@ h2 {
     height: 32px;
     cursor: pointer;
     }
-  .longform header form legend {
-    display: none;
+  .longform header form {
+    margin: -3px 0 0;
     }
-  .longform header form input {
-    margin: 10px 0;
-    border: solid 1px #999;
-    font-size: 12px;
-    line-height: 1.5em;
-    text-indent: 10px;
-    font-weight: normal;
-    }
+    .longform header form legend {
+      display: none;
+      }
+    .longform header form input[type=text] {
+      margin: 10px 0 0 0;
+      font-size: 12px;
+      line-height: 1.5em;
+      text-indent: 10px;
+      font-weight: normal;
+      min-width: 95px;
+      min-height: 19px;
+      border: solid 1px #999;
+      border-radius: 3px 0 0 3px;
+      border-right: none;
+      }
+    .longform header form input[type=submit] {
+      display: inline-block;
+      font-weight: normal;
+      line-height: 1.5em;
+      min-height: 19px;
+      border: solid 1px #999;
+      border-left: none;
+      border-radius: 0 3px 3px 0;
+      padding: auto 10px;
+      margin: 0 0 0 -5px;
+      cursor: pointer;
+      }
+      @-moz-document url-prefix(){
+        .longform header form input[type=submit] {
+          position: relative;
+          top: -1px;
+          min-height: 23px;
+        }
+      }
   .longform header a {
     color: #000;
     background: none;
@@ -70,8 +96,18 @@ h2 {
       }
       .longform header nav li {
         position: relative;
-        text-indent: 34px;
         line-height: 1.7em;
+        text-indent: 34px;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        overflow: hidden;
+        margin: 0 0 1px;
+        }
+      .longform header nav.active li {
+        display: block;
+        width: auto;
+        height: auto;
         }
     .longform header nav a span {
       position: absolute;
@@ -91,6 +127,11 @@ h2 {
       }
     .longform header nav a.active span {
       background: #333;
+      }
+    .longform header .search-box {
+      position: absolute;
+      right: 10px;
+      top: 7px;
       }
   .longform .chapter-title {
     position: relative;

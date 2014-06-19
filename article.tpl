@@ -4,10 +4,10 @@
 
 {{ if $gimme->article->type_name == "storyteller" }}
 
-    {{ list_related_articles }}
-        {{ if $gimme->current_list->at_beginning }}
-        <header>
-            <a href="#" id="collapse"></a>
+    <header>
+        <a href="#" id="collapse"></a>
+        {{ list_related_articles }}
+            {{ if $gimme->current_list->at_beginning }}
             <nav>
                 <ul>
             {{ /if }}
@@ -17,10 +17,13 @@
             {{ if $gimme->current_list->at_end }}
                 </ul>
             </nav>
-            <a href="#" class="mute">Mute</a>
-        </header>
-        {{ /if }}
-    {{ /list_related_articles }}
+            {{ /if }}
+        {{ /list_related_articles }}
+        <a href="#" class="mute">Mute</a>
+        {{ search_form template="search.tpl" html_code="class=\"search-box\"" button_html_code="class=\"button\"" }}
+            {{ camp_edit object="search" attribute="keywords" html_code="placeholder=\"input search\"" }}
+        {{ /search_form }}
+    </header>
 
     {{ list_related_articles }}
         {{ if $gimme->current_list->at_beginning }}

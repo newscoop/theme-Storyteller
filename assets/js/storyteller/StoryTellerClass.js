@@ -17,8 +17,9 @@ var storyTeller = {
  
   init: function(options, callback) {
     // TODO: check options to see if we should skip certain asset types
-    this.loadChapterTitlesAssets();
-    this.loadShuttersAssets();
+    this.loadChapterTitleAssets();
+    this.loadShutterAssets();
+    this.loadAudioAssets();
 
     // call function to set scroll function
     $(window).scroll(this.onScroll());
@@ -45,7 +46,7 @@ var storyTeller = {
     // TODO: stop playing assets that move out of view
   },
 
-  loadChapterTitlesAssets: function() {
+  loadChapterTitleAssets: function() {
     var that = this;
     $('.chapter-title').each(function(){
       var par = null;
@@ -78,7 +79,7 @@ var storyTeller = {
     });
   },
 
-  loadShuttersAssets: function() {
+  loadShutterAssets: function() {
     var that = this;
     $('.shutter').each(function(){
       var parPos = $(this).position().top;
@@ -98,6 +99,29 @@ var storyTeller = {
         that.assets.push(asset);        
       });
     });
+  },
+
+  loadAudioAssets: function() {
+    $('section, li').each(function(){
+      if ($(this).attr('data-audiosrc')) {
+        var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
+        var fullTop = $(this).position().top;
+        var fullBot = $(this).height();
+        var fullSize = fullTop + fullBot;
+        var asset = {
+          type: 'audio',
+          el: $(this),
+          top: fullTop,
+          bottom: fullBot,
+          full-size: fullSize,
+        }
+        that.assets.push(asset);        
+      }
+    });
+  },
+
+  triggerAsset: function(asset) {
+    console.log('triggering: ', asset);
   },
 
   getViewport: function(){

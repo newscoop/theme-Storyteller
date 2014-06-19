@@ -14,7 +14,7 @@ var storyTeller = {
   audio_playing: [],
   video_playing: [],
   initialized: false,
- 
+
   init: function(options, callback) {
     // TODO: check options to see if we should skip certain asset types
     this.loadChapterTitleAssets();
@@ -25,7 +25,7 @@ var storyTeller = {
     $(window).scroll(this.onScroll());
 
     this.initialized = true;
-  
+
     if (callback) {
       callback();
     }
@@ -38,7 +38,7 @@ var storyTeller = {
     // trigger assets that come into view
     for (var asset in this.assets) {
       if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
-        // TODO: call triggerAsset functio, and add asset to current playing assets 
+        // TODO: call triggerAsset function, and add asset to current playing assets
         console.log(asset);
       }
     }
@@ -56,25 +56,25 @@ var storyTeller = {
       var bgDiv = $(this).find('.bgContainer');
 
       // videos
-      $(this).find('video').each(function(){
+      $(this).find('.lead-video').each(function(){
         var asset = {
           type: 'chapter-title-video',
           el: $(this),
           top: parPos,
           bottom: parBot
-        }
-        that.assets.push(asset);        
+        };
+        that.assets.push(asset);
       });
 
       // images
-      $(this).find('img').each(function(){
+      $(this).find('.lead-image').each(function(){
         var asset = {
           type: 'chapter-title-image',
           el: $(this),
           top: parPos,
           bottom: parBot
-        }
-        that.assets.push(asset);        
+        };
+        that.assets.push(asset);
       });
     });
   },
@@ -94,9 +94,9 @@ var storyTeller = {
           el: $(this),
           top: parPos,
           bottom: parBot,
-          full-size: fullSize,
-        }
-        that.assets.push(asset);        
+          fullsize: fullSize
+        };
+        that.assets.push(asset);
       });
     });
   },
@@ -113,9 +113,9 @@ var storyTeller = {
           el: $(this),
           top: fullTop,
           bottom: fullBot,
-          full-size: fullSize,
-        }
-        that.assets.push(asset);        
+          fullsize: fullSize
+        };
+        that.assets.push(asset);
       }
     });
   },
@@ -128,9 +128,9 @@ var storyTeller = {
     var currViewport = window.pageYOffset;
     return currViewport;
   },
-}
+};
 
-$(document).ready(function(){ 
+$(document).ready(function(){
 
   // init storyTeller manager
   storyTeller.init(function() {

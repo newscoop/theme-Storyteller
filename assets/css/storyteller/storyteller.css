@@ -13,19 +13,21 @@ h2 {
   margin: 0;
   }
   .longform header {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     background: white;
     z-index: 1000;
-    padding: 0 5px 0 40px;
+    padding: 5px 5px 0 90px;
     box-shadow: 0 0 2px #000;
     }
   .mute {
+    position: absolute;
+    left: 52px;
+    top: 5px;
     background: url(../../img/icon-unmuted.png) center center no-repeat transparent!important;
-    background-size: 100% auto!important;
+    background-size: 100%!important;
     display: inline-block;
     text-indent: -1000px;
     overflow: hidden;
@@ -35,18 +37,17 @@ h2 {
     .mute.muted {
       background-image: url(../../img/icon-muted.png)!important;
       }
-  .longform #collapse {
+  #collapse {
     position: absolute;
-    top: 0;
-    left: 7px;
-    background: url(../../img/menu.png) 0 5px no-repeat;
+    top: 7px;
+    left: 10px;
+    background: url(../../img/icon-menu.png) center center no-repeat;
+    background-size: 100%!important;
     text-indent: -10000px;
-    margin: 0 0 10px;
-    width: 24px;
-    height: 24px;
-    background-size: 100%;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    padding: 0!important;
     }
   .longform header form legend {
     display: none;

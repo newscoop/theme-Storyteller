@@ -76,6 +76,7 @@ $(document).ready(function(){
     $('body > section > article > section').each(function(){
       var matchName = $(this).attr('name');
       var fullTop = $(this).position().top;
+      var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;
       if (((currViewport) >= fullTop) && (currViewport <= fullSize)){
         $('nav li a').each(function(){

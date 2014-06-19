@@ -64,20 +64,27 @@ h2 {
     color: #000;
     background: none;
     text-decoration: none;
-    line-height: 1.5em;
     }
     .longform header nav {
       margin: 5px 0 10px;
-      line-height: 30px;
       }
+      .longform header nav li {
+        position: relative;
+        text-indent: 34px;
+        line-height: 1.7em;
+        }
     .longform header nav a span {
-      display: inline-block;
+      position: absolute;
+      left: 0;
       text-align: center;
+      text-indent: 0;
       width: 24px;
       height: 24px;
       background: #999;
       color: #fff;
       border-radius: 12px;
+      overflow: hidden;
+      line-height: 1.5em;
       }
     .longform header nav a:hover {
       text-decoration: underline;

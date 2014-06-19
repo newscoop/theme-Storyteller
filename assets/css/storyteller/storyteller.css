@@ -23,11 +23,23 @@ h2 {
     padding: 0 5px 0 40px;
     box-shadow: 0 0 2px #000;
     }
+  .mute {
+    background: url(../../img/icon-unmuted.png) center center no-repeat transparent!important;
+    background-size: 100% auto!important;
+    display: inline-block;
+    text-indent: -1000px;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    }
+    .mute.muted {
+      background-image: url(../../img/icon-muted.png)!important;
+      }
   .longform #collapse {
     position: absolute;
     top: 0;
     left: 7px;
-    background: url(../img/menu.png) 0 5px no-repeat;
+    background: url(../../img/menu.png) 0 5px no-repeat;
     text-indent: -10000px;
     margin: 0 0 10px;
     width: 24px;

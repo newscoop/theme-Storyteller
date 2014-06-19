@@ -82,13 +82,11 @@ $(document).ready(function(){
       var fullBotAdj = (fullBot + winHeight);
       var fullSizeAdj = fullTopAdj + fullBotAdj;
       if (((currViewport) >= fullTop) && (currViewport <= fullSize)){
-        console.log(matchName + ' ' + fullTop + ' ' + currViewport);
         $('nav li a').each(function(){
+          $(this).removeClass('active');
           var navId = $(this).attr('href').replace('#','');
           if (navId == matchName){
             $(this).addClass('active');
-          } else {
-            $('nav li a').removeClass('active');
           }
         });
       }

@@ -204,16 +204,6 @@ $(document).ready(function(){
     });
   });
 
-  // full sreen maps
-  $('section.map.full').each(function(){
-    var map = $(this).find('iframe');
-    map.attr('width', winWidth);
-    map.attr('height', winHeight);
-    map.css({
-      'display': 'none'
-    });
-  });
-
   var j = 0;
   var currViewport = getViewport();
 

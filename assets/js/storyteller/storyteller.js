@@ -71,6 +71,31 @@ $(document).ready(function(){
     return false;
   });
 
+  // mark nav as active
+  var doActiveNav = function(){
+    $('body > section > article > section').each(function(){
+      var matchName = $(this).attr('name');
+      var fullTop = $(this).position().top;
+      var fullBot = $(this).height();
+      var fullSize = fullTop + fullBot;
+      var fullTopAdj = (fullTop - winHeight);
+      var fullBotAdj = (fullBot + winHeight);
+      var fullSizeAdj = fullTopAdj + fullBotAdj;
+      if (((currViewport) >= fullTop) && (currViewport <= fullSize)){
+        console.log(matchName + ' ' + fullTop + ' ' + currViewport);
+        $('nav li a').each(function(){
+          var navId = $(this).attr('href').replace('#','');
+          if (navId == matchName){
+            $(this).addClass('active');
+          } else {
+            $('nav li a').removeClass('active');
+          }
+        });
+      }
+    });
+  };
+  doActiveNav();
+
   // Check through document and see if there are ambient audio elements. If there are, create a single audio element and use it as the basis for all further sound
   if ($('audio.ambient')[0]){
     $('body').append('<audio id="audioMaster" loop src="null" />');

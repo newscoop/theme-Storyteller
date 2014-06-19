@@ -25,7 +25,7 @@ h2 {
   .mute {
     position: absolute;
     left: 52px;
-    top: 5px;
+    top: 7px;
     background: url(../../img/icon-unmuted.png) center center no-repeat transparent!important;
     background-size: 100%!important;
     display: inline-block;
@@ -68,6 +68,9 @@ h2 {
     }
     .longform header a:hover {
       text-decoration: underline;
+      }
+    .longform header .active:after {
+        content: ' <';
       }
   .longform .chapter-title {
     position: relative;

@@ -1,5 +1,5 @@
 {{ if $gimme->article->shutter }}
-  <section class="slideshow full shutter{{ if $gimme->article->dark }} dark{{ /if }}">
+  <section name="{{ $gimme->article->number }}" class="slideshow full shutter{{ if $gimme->article->dark }} dark{{ /if }}">
     {{ if $gimme->browser->ua_type != "mobile" }}
       {{ include file="_tpl/_storyteller/ambient.tpl" }}
     {{ /if }}
@@ -7,7 +7,7 @@
       {{ if $gimme->current_list->at_beginning }}
         <ul class="slides">
       {{ /if }}
-          <li name="{{ $gimme->article->number }}" class="{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}">
+          <li class="{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}">
             {{ include file="_tpl/_storyteller/slide.tpl" }}
           </li>
       {{ if $gimme->current_list->at_end }}

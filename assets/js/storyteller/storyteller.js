@@ -42,6 +42,16 @@ $(document).ready(function(){
     $(this).find('source').remove();
   });
 
+  // header nav
+  $('header nav a').bind('click', function(){
+    var src = $(this).attr('href').replace('#','');
+    var target = $('[name=' + src + ']').position().top;
+    $('body, html').animate({
+      scrollTop: target + 'px'
+    }, 1000);
+    return false;
+  });
+
   // mute button
   var muted = false;
   $('.mute').bind('click', function(){

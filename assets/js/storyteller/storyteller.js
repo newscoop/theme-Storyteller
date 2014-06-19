@@ -393,7 +393,7 @@ $(document).ready(function(){
 
       doFullScreenObjects();
 
-      doBlockSizes();
+      //doBlockSizes();
 
       doAmbientAudio();
     }, 100);

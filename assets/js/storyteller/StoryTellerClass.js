@@ -21,6 +21,8 @@ var storyTeller = {
     this.loadChapterTitleAssets();
     this.loadShutterAssets();
     this.loadAudioAssets();
+    this.doZindex();
+    this.doBackgrounds();
 
     console.log(this.assets);
 
@@ -36,6 +38,72 @@ var storyTeller = {
     }
   },
 
+  doZindex: function() {
+    i = 0;
+    $('section > article > section').each(function(){
+      $(this).css({
+        'z-index': ++i
+      });
+    });
+  },
+
+
+  doBackgrounds: function(){
+    $('.chapter-title').each(function(){
+      // do this if there's a video
+      $(this).find('video').each(function(){
+        var video = $(this);
+        if ($(this).attr('poster')){
+          var src = $(this).attr('poster');
+          par = $(this).parent().parent();
+          var bgElem = "<div class='bgContainer'></div>";
+          par.append(bgElem);
+          var bgDiv = par.find('.bgContainer');
+          bgDiv.width(winWidth);
+          bgDiv.height(winHeight);
+          bgDiv.css({
+            'z-index':'-1',
+            'background': 'url("' + src + '") no-repeat',
+            'background-position': 'center center'
+          });
+          if (winHeight > winWidth) {
+            bgDiv.css({
+              'background-size': 'auto 100%'
+            });
+          } else {
+            bgDiv.css({
+              'background-size': '100% auto'
+            });
+          }
+        }
+      });
+      // do this if there's an image
+      $(this).find('img').each(function(){
+        var src = $(this).attr('src');
+        var par = $(this).parent().parent().parent();
+        var bgElem = "<div class='bgContainer'></div>";
+        par.append(bgElem);
+        var bgDiv = par.find('.bgContainer');
+        bgDiv.width(winWidth);
+        bgDiv.height(winHeight);
+        bgDiv.css({
+          'background': 'url("' + src + '") no-repeat',
+          'background-position': 'center center',
+        });
+        if (winHeight > winWidth) {
+          bgDiv.css({
+            'background-size': 'auto 100%'
+          });
+        } else {
+          bgDiv.css({
+            'background-size': '100% auto'
+          });
+        }
+        $(this).hide();
+      });
+    });
+  },
+
   onScroll: function() {
     var that = this;
     currViewport = this.getViewport();
@@ -45,11 +113,22 @@ var storyTeller = {
       var asset = this.assets[a];
       if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
         // TODO: call triggerAsset function, and add asset to live_assets
-        console.log(asset);
+        that.triggerAsset(asset);
       }
     }
 
     // TODO: stop / turn off live_assets that move out of view
+  },
+
+  triggerChapterTitle: function(asset) {
+    console.log(asset.type); 
+    if (asset.type === "chapter-title-video") {
+      asset.bgDiv.addClass('fixed');
+      asset.el.addClass('fixed');
+      asset.el[0].play();
+      asset.el[0].playing = true;
+      console.log(asset.el[0].playing, asset.el[0]);
+    }
   },
 
   loadChapterTitleAssets: function() {
@@ -67,7 +146,8 @@ var storyTeller = {
           type: 'chapter-title-video',
           el: $(this),
           top: parPos,
-          bottom: parBot
+          bottom: parBot,
+          bgDiv: bgDiv
         };
         that.assets.push(asset);
       });
@@ -128,7 +208,9 @@ var storyTeller = {
   },
 
   triggerAsset: function(asset) {
-    console.log('triggering: ', asset);
+    if (asset.type === "chapter-title-video") {
+      this.triggerChapterTitle(asset);
+    }
   },
 
   getViewport: function(){

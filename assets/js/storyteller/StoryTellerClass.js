@@ -26,6 +26,8 @@ var storyTeller = {
 
     console.log(this.assets);
 
+    console.log(this.assets);
+
     // call function to set scroll function
     $(window).scroll(function() {
       that.onScroll()

@@ -13,16 +13,20 @@ var storyTeller = {
   assets: [],
   live_assets: [],
   initialized: false,
+  audio_master: null,
 
   init: function(options, callback) {
     var that = this;
 
-    // async load video
+    // async load assets
     this.asyncLoadVideo();
+    this.asyncLoadAudio();
 
+    this.doSlideShows();
     this.doChapterTitleText();
     this.doZindex();
     this.doBackgrounds();
+    this.doFullScreenObjects();
 
     // TODO: check options to see if we should skip certain asset types
     this.loadChapterTitleAssets();
@@ -43,7 +47,46 @@ var storyTeller = {
     }
   },
   
-  
+  doSlideShows: function() {
+    $('.slideshow').each(function(){
+      if ($(this).hasClass('shutter')){
+        // nothing
+      } else {
+        if ($(this).hasClass('fade')){
+          $(this).find('.slides').bxSlider({
+            loop: true,
+            controls: false,
+            mode: 'fade'
+          });
+        } else {
+          $(this).find('.slides').bxSlider({
+            loop: true,
+            controls: false,
+          });
+        }
+      }
+    });
+
+    $('.slideshow.full, .bx-viewport').css({
+      'min-height' : winHeight
+    });
+
+    // full screen shutter slides
+    $('.slideshow.full.shutter').each(function(){
+      $(this).find('figure, li').each(function(){
+        $(this).css({
+          'min-height' : winHeight
+        });
+      });
+      var i = 0;
+      $(this).find('li').each(function(){
+        $(this).css({
+          'z-index': ++i
+        });
+      });
+    });
+  },
+
   doChapterTitleText: function(){
     $('section').each(function(){
       if ($(this).attr('class')){
@@ -64,6 +107,20 @@ var storyTeller = {
         });
         title.after('<span class="continue">Click here to continue</span>');
       }
+    });
+  },
+
+  doFullScreenObjects: function() {
+    $('.full').each(function(){
+      $(this).find('.lead-image img, .lead-video').each(function(){
+        if (winHeight > winWidth){
+          $(this).width('auto');
+          $(this).height(winHeight);
+        } else {
+          $(this).width(winWidth);
+          $(this).height('auto');
+        }
+      });
     });
   },
 
@@ -93,6 +150,26 @@ var storyTeller = {
       video.attr('data-video', src);
       $(this).find('source').remove();
     });
+  },
+
+  asyncLoadAudio: function() {
+    var that = this;
+    if ($('audio.ambient')[0]){
+      $('body').append('<audio id="audioMaster" loop src="null" />');
+      that.audio_master = $('#audioMaster');
+      $('.ambient').each(function(){
+        var src = $(this).attr('src');
+        var par = $(this).parent().get(0).tagName.toLowerCase();
+
+        if (par == 'figure'){
+          $(this).parent().parent().attr('data-audiosrc', src);
+        } else {
+          $(this).parent().attr('data-audiosrc', src);
+        }
+        $(this).remove();
+      });
+    }
+
   },
 
   doZindex: function() {
@@ -168,31 +245,96 @@ var storyTeller = {
     // trigger assets that come into view
     for (var a in this.assets) {
       var asset = this.assets[a];
-      if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
-        // TODO: call triggerAsset function, and add asset to live_assets
-        that.triggerAsset(asset);
+
+      if (asset.type === 'chapter-title-video') {
+        if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
+          that.triggerChapterTitle(asset);
+        } else {
+          that.stopChapterTitle(asset);
+        }
+      }
+
+      if (asset.type === 'ambient-audio') {
+        if (((currViewport + winHeight) >= asset.top) && (currViewport <= asset.fullsize)) {
+          that.triggerAmbientAudio(asset);
+        } else  {
+          that.stopAmbientAudio(asset);
+        }
       }
     }
 
     // TODO: stop / turn off live_assets that move out of view
   },
+  
+  triggerAmbientAudio: function(asset) {
+    var that = this;
+    var audio = asset.el[0];
 
+    var src = src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('data-audiosrc');
+    var masterAudio = this.audio_master[0];
+
+    console.log(src, asset);
+
+    if (!that.assetIsLive(asset)) {
+      if (masterAudio.src !== src) {
+        masterAudio.src = src;
+      }
+      masterAudio.play();
+      that.live_assets.push(masterAudio);
+    } else {
+      console.log('audio is already playing');
+    }
+  },
+
+  stopAmbientAudio: function(asset) {
+    var that = this;
+    var audio = asset.el[0]; 
+    var masterAudio = this.audio_master[0];
+
+    masterAudio.pause();
+    // remove it from the live assets list
+    this.live_assets = $.grep(that.live_assets, function(a,i) { 
+      return a.src === masterAudio.src; 
+    }, true); 
+  },
+  
   triggerChapterTitle: function(asset) {
-    console.log(asset.type); 
-    if (asset.type === "chapter-title-video") {
-      var video = asset.el[0];
-      video.playing = false;
+    var that = this;
+    var video = asset.el[0];
+    if (!that.assetIsLive(video)) {
       asset.bgDiv.addClass('fixed');
       asset.el.addClass('fixed');
-      $(video).attr('src', $(asset.el[0]).attr('data-video'));
-      if (video.playing != true) {
-        video.play();
-        video.playing = true;
-        console.log('starting video');
-      } else {
-        console.log('video is already playing');
-      }
+      $(video).attr('src', $(video).attr('data-video'));
+      video.play();
+      that.live_assets.push(video);
+      console.log('starting video');
+    } else {
+      console.log('video is already playing');
     }
+  },
+
+  stopChapterTitle: function(asset) {
+    var that = this;
+    var video = asset.el[0]; 
+    video.pause();
+    // remove it from the live assets list
+    this.live_assets = $.grep(that.live_assets, function(a,i) { 
+      return a.src === video.src; 
+    }, true); 
+  },
+
+  assetIsLive: function(asset) {
+    var results = $.grep(this.live_assets, function(a) {
+        return a.src === asset.src;
+    });
+    console.log(results.length);
+
+    if (results.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+
   },
 
   loadChapterTitleAssets: function() {
@@ -232,9 +374,6 @@ var storyTeller = {
   loadShutterAssets: function() {
     var that = this;
     $('.shutter').each(function(){
-      var parPos = $(this).position().top;
-      var parHeight = $(this).height();
-      var parBot = ((parPos + parHeight) - 10);
       $(this).find('li').each(function(){
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
@@ -242,8 +381,8 @@ var storyTeller = {
         var asset = {
           type: 'shutter',
           el: $(this),
-          top: parPos,
-          bottom: parBot,
+          top: fullTop,
+          bottom: fullBot,
           fullsize: fullSize
         };
         that.assets.push(asset);
@@ -255,12 +394,11 @@ var storyTeller = {
     var that = this;
     $('section, li').each(function(){
       if ($(this).attr('data-audiosrc')) {
-        var src = location.protocol + '//' + window.location.hostname + '/' + $(this).attr('data-audiosrc');
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;
         var asset = {
-          type: 'audio',
+          type: 'ambient-audio',
           el: $(this),
           top: fullTop,
           bottom: fullBot,
@@ -269,12 +407,6 @@ var storyTeller = {
         that.assets.push(asset);
       }
     });
-  },
-
-  triggerAsset: function(asset) {
-    if (asset.type === "chapter-title-video") {
-      this.triggerChapterTitle(asset);
-    }
   },
 
   getViewport: function(){

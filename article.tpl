@@ -5,6 +5,7 @@
 {{ if $gimme->article->type_name == "storyteller" }}
 
     <header>
+        {{ if $gimme->article->nav }}
         <a href="#" id="collapse"></a>
         {{ list_related_articles }}
             {{ if $gimme->current_list->at_beginning }}
@@ -19,6 +20,7 @@
             </nav>
             {{ /if }}
         {{ /list_related_articles }}
+        {{ /if }}
         <a href="#" class="mute">Mute</a>
         {{ search_form template="search.tpl" html_code="class=\"search-box\"" button_html_code="class=\"button\"" }}
             {{ camp_edit object="search" attribute="keywords" html_code="placeholder=\"input search\"" }}

@@ -3,8 +3,8 @@
 <script src="{{ url static_file="assets/js/storyteller/libs/jquery.bxslider.min.js" }}"></script>
 <script src="{{ url static_file="assets/js/storyteller/libs/jquery.dotimeout.1.0.js" }}"></script>
 <script src="{{ url static_file="assets/js/storyteller/libs/jquery.easing.1.3.js" }}"></script>
-<script src="{{ url static_file="assets/js/storyteller/storyteller.js" }}"></script>
-<script src="{{ url static_file="assets/js/storyteller/StoryTellerClass.js" }}"></script>
+<!-- <script src="{{ url static_file="assets/js/storyteller/storyteller.js" }}"></script> -->
+<script src="{{ url static_file="assets/js/storyteller/StoryTellerClass.js" }}"></script> 
 {{ if $gimme->article->dthree }}
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
 {{ /if }}

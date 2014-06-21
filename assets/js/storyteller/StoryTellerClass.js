@@ -17,14 +17,17 @@ var storyTeller = {
   init: function(options, callback) {
     var that = this;
 
+    // async load video
+    this.asyncLoadVideo();
+
+    this.doChapterTitleText();
+    this.doZindex();
+    this.doBackgrounds();
+
     // TODO: check options to see if we should skip certain asset types
     this.loadChapterTitleAssets();
     this.loadShutterAssets();
     this.loadAudioAssets();
-    this.doZindex();
-    this.doBackgrounds();
-
-    console.log(this.assets);
 
     console.log(this.assets);
 
@@ -38,6 +41,58 @@ var storyTeller = {
     if (callback) {
       callback();
     }
+  },
+  
+  
+  doChapterTitleText: function(){
+    $('section').each(function(){
+      if ($(this).attr('class')){
+        var paddingTop = ($(this).css('padding-top'));
+        paddingTop = paddingTop.replace('px','');
+        var paddingBottom = ($(this).css('padding-bottom'));
+        paddingBottom = paddingBottom.replace('px','');
+        var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
+        $(this).css({
+          'min-height': (winHeight - paddingVertical) + 'px',
+          'width': winWidth
+        });
+      }
+      if ($(this).hasClass('chapter-title')){
+        var title = $(this).find('.title');
+        title.css({
+          'bottom': ((winHeight / 2) - 60) + 'px'
+        });
+        title.after('<span class="continue">Click here to continue</span>');
+      }
+    });
+  },
+
+  asyncLoadVideo: function() {
+    $('video').each(function(){
+      var video = $(this);
+      var vidPar = video.parent();
+      var src = null;
+      video.find('source').each(function(){
+        src = $(this).attr('src');
+        // check for mp4 or webm capability
+        if (Modernizr.video) {
+          // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
+          if (Modernizr.video.h264) {
+            // check to see if the last character is a '4'
+            if (src.substr(-1) == '4'){
+              src = src;
+            }
+          } else if (Modernizr.video.webm){
+            // check to see if the last digit is an 'm'
+            if (src.substr(-1) == 'm'){
+              src = src;
+            }
+          }
+        }
+      });
+      video.attr('data-video', src);
+      $(this).find('source').remove();
+    });
   },
 
   doZindex: function() {
@@ -125,11 +180,18 @@ var storyTeller = {
   triggerChapterTitle: function(asset) {
     console.log(asset.type); 
     if (asset.type === "chapter-title-video") {
+      var video = asset.el[0];
+      video.playing = false;
       asset.bgDiv.addClass('fixed');
       asset.el.addClass('fixed');
-      asset.el[0].play();
-      asset.el[0].playing = true;
-      console.log(asset.el[0].playing, asset.el[0]);
+      $(video).attr('src', $(asset.el[0]).attr('data-video'));
+      if (video.playing != true) {
+        video.play();
+        video.playing = true;
+        console.log('starting video');
+      } else {
+        console.log('video is already playing');
+      }
     }
   },
 

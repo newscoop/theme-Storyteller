@@ -16,6 +16,7 @@ $(document).ready(function(){
   };
 
   // Set up video elements ready for async loading
+  /*
   $('video').each(function(){
     var video = $(this);
     var vidPar = video.parent();
@@ -41,6 +42,7 @@ $(document).ready(function(){
     video.attr('data-video', src);
     $(this).find('source').remove();
   });
+  */
 
   // collapse header
   var collapsed = false;

@@ -77,14 +77,14 @@ var storyTeller = {
       this.collapsed = false;
       $('header nav').removeClass('active');
     }
-    
+
     // add event handlers
     $('#collapse').bind('click', function(){
-      $('header nav li').animate({
+      $('header nav').animate({
         'opacity': 0
       }, 500, function(){
         that.doMainNav();
-        $('header nav li').animate({
+        $('header nav').animate({
           'opacity': 1
         });
       });

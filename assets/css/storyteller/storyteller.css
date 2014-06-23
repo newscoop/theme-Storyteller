@@ -43,14 +43,14 @@ h2 {
       }
   #collapse {
     position: absolute;
-    top: 7px;
-    left: 10px;
+    top: 12px;
+    left: 15px;
     background: url(../../img/icon-menu.png) center center no-repeat;
     background-size: 100%!important;
     text-indent: -10000px;
     overflow: hidden;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24;
     cursor: pointer;
     }
   .longform header form {

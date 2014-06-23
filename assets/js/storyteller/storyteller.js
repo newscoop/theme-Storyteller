@@ -58,11 +58,11 @@ $(document).ready(function(){
   };
 
   $('#collapse').bind('click', function(){
-    $('header nav li').animate({
+    $('header nav').animate({
       'opacity': 0
     }, 500, function(){
       doMainNav();
-      $('header nav li').animate({
+      $('header nav').animate({
         'opacity': 1
       });
     });

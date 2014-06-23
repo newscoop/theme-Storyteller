@@ -22,7 +22,7 @@
       {{ if $smarty.foreach.insideslideshow.first }}
         <ul class="slides">
       {{ /if }}
-          <li>
+          <li name="{{ $gimme->article->number }}">
             {{ if $item->is_image }}
               {{ image rendition="full" }}
               <figure>

@@ -4,7 +4,8 @@
 
 {{ if $gimme->article->type_name == "storyteller" }}
 
-    <header>
+    <header{{ if $gimme->article->nav }} class="nav"{{ /if }}>
+        <a href="/" id="home">{{ #home# }}</a>
         {{ if $gimme->article->nav }}
         <a href="#" id="collapse"></a>
         {{ list_related_articles }}

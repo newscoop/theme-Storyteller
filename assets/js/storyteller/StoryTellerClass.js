@@ -61,6 +61,19 @@ var storyTeller = {
       }
     });
 
+    // nav collapse  event handlers
+    $('#collapse').bind('click', function(){
+      $('header nav li').animate({
+        'opacity': 0
+      }, 500, function(){
+        that.doMainNav();
+        $('header nav li').animate({
+          'opacity': 1
+        });
+      });
+      return false;
+    });
+
     this.initialized = true;
 
     if (callback) {
@@ -78,19 +91,6 @@ var storyTeller = {
       $('header nav').removeClass('active');
     }
     
-    // add event handlers
-    $('#collapse').bind('click', function(){
-      $('header nav li').animate({
-        'opacity': 0
-      }, 500, function(){
-        that.doMainNav();
-        $('header nav li').animate({
-          'opacity': 1
-        });
-      });
-      return false;
-    });
-
     // header nav
     $('header nav a').bind('click', function(){
       var src = $(this).attr('href').replace('#','');

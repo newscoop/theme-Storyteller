@@ -9,6 +9,7 @@
     {{ /if }}
   {{ /list_article_attachments }}
   </video>
+  <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
   <span>
     {{ if $gimme->article->display_title && $gimme->article->show_title }}
       <h2>{{ $gimme->article->display_title }}</h2>

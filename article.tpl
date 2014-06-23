@@ -14,7 +14,7 @@
                 <ul>
             {{ /if }}
             {{ if $gimme->article->display_title }}
-                    <li><a href="#{{ $gimme->article->number }}"><span>{{ $gimme->current_list->index }}</span> {{ if $gimme->article->display_title }}{{ $gimme->article->display_title }}{{ /if }}</a>
+                    <li><a href="#{{ $gimme->article->number }}"><span>{{ counter }}</span> {{ if $gimme->article->display_title }}{{ $gimme->article->display_title }}{{ /if }}</a>
                     </li>
             {{ /if }}
             {{ if $gimme->current_list->at_end || $gimme->current_list->at_end && $gimme->current_list->index == 1 }}

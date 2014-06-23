@@ -51,6 +51,16 @@ var storyTeller = {
       that.onScroll();
     });
 
+    // continue event handler
+    $('.continue').bind('click', function(){
+      if ($(this).parent().parent().next()[0]){
+        var nextObjPos = $(this).parent().parent().next().position().top + "px";
+        $('body, html').animate({
+          scrollTop: nextObjPos
+        }, 1000);
+      }
+    });
+
     this.initialized = true;
 
     if (callback) {
@@ -195,6 +205,7 @@ var storyTeller = {
   doFullScreenObjects: function() {
     $('.full').each(function(){
       $(this).find('.lead-image img, .lead-video').each(function(){
+        $(this).removeClass('fixed');
         if (winHeight > winWidth){
           $(this).width('auto');
           $(this).height(winHeight);
@@ -405,8 +416,9 @@ var storyTeller = {
       }, true); 
     });
     $(asset.el).find('video:first-child, figure > img').each(function(){
-      $(this).addClass('fixed');
+      $(this).removeClass('fixed');
     });
+    $(asset.el).removeClass('fixed');
   },
  
   triggerAmbientAudio: function(asset) {
@@ -445,8 +457,8 @@ var storyTeller = {
     var that = this;
     var video = asset.el[0];
     if (!that.assetIsLive(video)) {
-      asset.bgDiv.addClass('fixed');
-      asset.el.addClass('fixed');
+      $(asset.bgDiv).addClass('fixed');
+      $(asset.el).addClass('fixed');
       $(video).attr('src', $(video).attr('data-video'));
       video.play();
       that.live_assets.push(video);
@@ -460,6 +472,7 @@ var storyTeller = {
     var that = this;
     var video = asset.el[0]; 
     video.pause();
+    $(video).removeClass('fixed');
     $(asset.el.bgDiv).removeClass('fixed');
     // remove it from the live assets list
     this.live_assets = $.grep(that.live_assets, function(a,i) { 
@@ -492,6 +505,7 @@ var storyTeller = {
 
       // videos
       $(this).find('.lead-video').each(function(){
+        $(this).removeClass('fixed');
         var asset = {
           type: 'chapter-title-video',
           el: $(this),

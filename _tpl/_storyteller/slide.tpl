@@ -10,7 +10,7 @@
   {{ /list_article_attachments }}
   </video>
   <span>
-    {{ if $gimme->article->display_title }}
+    {{ if $gimme->article->display_title && $gimme->article->show_title }}
       <h2>{{ $gimme->article->display_title }}</h2>
     {{ /if }}
     {{ if $gimme->article->full_text }}
@@ -30,7 +30,7 @@
         {{ /if }}
       {{ /if }}
       <figcaption>
-        {{ if $gimme->article->display_title }}
+        {{ if $gimme->article->display_title && $gimme->article->show_title }}
          <h3>{{ $gimme->article->display_title }}</h3>
         {{ /if }}
         {{ if $gimme->article->full_text }}

@@ -113,6 +113,9 @@ h2 {
         width: auto;
         height: auto;
         }
+        .longform header nav.active li li {
+          margin: 0 0 0 34px;
+          }
     .longform header nav a span {
       position: absolute;
       left: 0;
@@ -124,7 +127,8 @@ h2 {
       color: #fff;
       border-radius: 12px;
       overflow: hidden;
-      line-height: 1.5em;
+      line-height: 23px;
+      font-size: .75em;
       }
     .longform header nav a:hover {
       text-decoration: underline;

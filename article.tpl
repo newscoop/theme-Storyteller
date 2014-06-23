@@ -8,14 +8,29 @@
         <a href="/" id="home">{{ #home# }}</a>
         {{ if $gimme->article->nav }}
         <a href="#" id="collapse"></a>
+        {{ $i = 1 }}
         {{ list_related_articles }}
             {{ if $gimme->current_list->at_beginning }}
             <nav>
                 <ul>
             {{ /if }}
             {{ if $gimme->article->display_title }}
-                    <li><a href="#{{ $gimme->article->number }}"><span>{{ counter }}</span> {{ if $gimme->article->display_title }}{{ $gimme->article->display_title }}{{ /if }}</a>
+                    <li><a href="#{{ $gimme->article->number }}"><span>{{ $i }}</span> {{ $gimme->article->display_title }}</a>
+                    {{ $j = 1 }}
+                    {{ list_related_articles }}
+                        {{ if $gimme->article->display_title }}
+                            {{ if $gimme->current_list->at_beginning }}
+                                <ul>
+                            {{ /if }}
+                                    <li><a href="#{{ $gimme->article->number }}"><span>{{ $i }}.{{ $j }}</span> {{ $gimme->article->display_title }}</a></li>
+                                    {{ assign var = $j value = $j++ }}
+                            {{ if $gimme->current_list->at_end || $gimme->current_list->at_end && $gimme->current_list->index == 1 }}
+                                </ul>
+                            {{ /if }}
+                        {{ /if }}
+                    {{ /list_related_articles }}
                     </li>
+                    {{ assign var = $i value = $i++ }}
             {{ /if }}
             {{ if $gimme->current_list->at_end || $gimme->current_list->at_end && $gimme->current_list->index == 1 }}
                 </ul>

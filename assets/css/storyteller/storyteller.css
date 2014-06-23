@@ -708,8 +708,8 @@ h2 {
           padding: 0;
           border: none;
           box-shadow: none;
-          width: 100%;
-          height: auto;
+          width: 100%!important;
+          height: auto!important;
           border-radius: 0;
           }
         .slideshow.full.shutter figure img.bottom {

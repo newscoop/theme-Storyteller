@@ -29,7 +29,7 @@ h2 {
   .mute {
     position: absolute;
     left: 52px;
-    top: 7px;
+    top: 8px;
     background: url(../../img/icon-unmuted.png) center center no-repeat transparent!important;
     background-size: 100%!important;
     display: inline-block;

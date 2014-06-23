@@ -460,6 +460,7 @@ var storyTeller = {
     var that = this;
     var video = asset.el[0]; 
     video.pause();
+    $(asset.el.bgDiv).removeClass('fixed');
     // remove it from the live assets list
     this.live_assets = $.grep(that.live_assets, function(a,i) { 
       return a.src === video.src; 

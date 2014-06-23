@@ -51,6 +51,16 @@ var storyTeller = {
       that.onScroll();
     });
 
+    // continue event handler
+    $('.continue').bind('click', function(){
+      if ($(this).parent().parent().next()[0]){
+        var nextObjPos = $(this).parent().parent().next().position().top + "px";
+        $('body, html').animate({
+          scrollTop: nextObjPos
+        }, 1000);
+      }
+    });
+
     this.initialized = true;
 
     if (callback) {

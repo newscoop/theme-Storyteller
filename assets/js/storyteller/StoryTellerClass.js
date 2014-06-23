@@ -61,13 +61,27 @@ var storyTeller = {
       }
     });
 
+    // nav collapse  event handlers
+    $('#collapse').bind('click', function(){
+      $('header nav li').animate({
+        'opacity': 0
+      }, 500, function(){
+        that.doMainNav();
+        $('header nav li').animate({
+          'opacity': 1
+        });
+      });
+      return false;
+    });
+
+
     this.initialized = true;
 
     if (callback) {
       callback();
     }
   },
- 
+
   doMainNav: function() {
     var that = this;
     if (this.collapsed === false){
@@ -77,19 +91,6 @@ var storyTeller = {
       this.collapsed = false;
       $('header nav').removeClass('active');
     }
-
-    // add event handlers
-    $('#collapse').bind('click', function(){
-      $('header nav').animate({
-        'opacity': 0
-      }, 500, function(){
-        that.doMainNav();
-        $('header nav').animate({
-          'opacity': 1
-        });
-      });
-      return false;
-    });
 
     // header nav
     $('header nav a').bind('click', function(){
@@ -138,7 +139,7 @@ var storyTeller = {
       }
     });
   },
- 
+
   doSlideShows: function() {
     $('.slideshow').each(function(){
       if ($(this).hasClass('shutter')){
@@ -385,7 +386,7 @@ var storyTeller = {
     }
 
   },
- 
+
   triggerShutter: function(asset) {
     var that = this;
     $(asset.el).find('video:first-child').each(function(){
@@ -394,7 +395,7 @@ var storyTeller = {
       if (!that.assetIsLive(video)) {
         $(video).attr('src', $(video).attr('data-video'));
         video.play();
-        that.live_assets.push(video);       
+        that.live_assets.push(video);
         console.log('playing video', video);
       } else {
         //console.log('video is already playing');
@@ -411,16 +412,16 @@ var storyTeller = {
       var video =  $(this)[0];
       video.pause();
       // remove it from the live assets list
-      that.live_assets = $.grep(that.live_assets, function(a,i) { 
-        return a.src === video.src; 
-      }, true); 
+      that.live_assets = $.grep(that.live_assets, function(a,i) {
+        return a.src === video.src;
+      }, true);
     });
     $(asset.el).find('video:first-child, figure > img').each(function(){
       $(this).removeClass('fixed');
     });
     $(asset.el).removeClass('fixed');
   },
- 
+
   triggerAmbientAudio: function(asset) {
     var that = this;
     var audio = asset.el[0];
@@ -443,16 +444,16 @@ var storyTeller = {
 
   stopAmbientAudio: function(asset) {
     var that = this;
-    var audio = asset.el[0]; 
+    var audio = asset.el[0];
     var masterAudio = this.audio_master[0];
 
     masterAudio.pause();
     // remove it from the live assets list
-    this.live_assets = $.grep(that.live_assets, function(a,i) { 
-      return a.src === masterAudio.src; 
-    }, true); 
+    this.live_assets = $.grep(that.live_assets, function(a,i) {
+      return a.src === masterAudio.src;
+    }, true);
   },
-  
+
   triggerChapterTitle: function(asset) {
     var that = this;
     var video = asset.el[0];
@@ -470,14 +471,14 @@ var storyTeller = {
 
   stopChapterTitle: function(asset) {
     var that = this;
-    var video = asset.el[0]; 
+    var video = asset.el[0];
     video.pause();
     $(video).removeClass('fixed');
     $(asset.el.bgDiv).removeClass('fixed');
     // remove it from the live assets list
-    this.live_assets = $.grep(that.live_assets, function(a,i) { 
-      return a.src === video.src; 
-    }, true); 
+    this.live_assets = $.grep(that.live_assets, function(a,i) {
+      return a.src === video.src;
+    }, true);
   },
 
   assetIsLive: function(asset) {

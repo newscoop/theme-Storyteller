@@ -19,14 +19,8 @@
                     {{ $j = 1 }}
                     {{ list_related_articles }}
                         {{ if $gimme->article->display_title }}
-                            {{ if $gimme->current_list->at_beginning }}
-                                <ul>
-                            {{ /if }}
-                                    <li><a href="#{{ $gimme->article->number }}"><span>{{ $i }}.{{ $j }}</span> {{ $gimme->article->display_title }}</a></li>
-                                    {{ assign var = $j value = $j++ }}
-                            {{ if $gimme->current_list->at_end || $gimme->current_list->at_end && $gimme->current_list->index == 1 }}
-                                </ul>
-                            {{ /if }}
+                            <li class="child"><a href="#{{ $gimme->article->number }}"><span>{{ $i }}.{{ $j }}</span> {{ $gimme->article->display_title }}</a></li>
+                            {{ assign var = $j value = $j++ }}
                         {{ /if }}
                     {{ /list_related_articles }}
                     </li>

@@ -108,12 +108,16 @@ h2 {
         overflow: hidden;
         margin: 0 0 1px;
         }
+        .longform header nav li.child {
+          display: none;
+          }
       .longform header nav.active li {
         display: block;
         width: auto;
         height: auto;
         }
-        .longform header nav.active li li {
+        .longform header nav.active li.child {
+          display: block;
           margin: 0 0 0 34px;
           }
     .longform header nav a span {

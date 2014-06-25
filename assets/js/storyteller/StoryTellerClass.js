@@ -123,20 +123,26 @@ var storyTeller = {
   },
 
   doActiveNav: function(currViewport) {
-    $('body > section > article > section').each(function(){
+    var i = 0;
+    $('article > section, .slides > li').each(function(){
       var matchName = $(this).attr('name');
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;
-      if (((currViewport) >= fullTop) && (currViewport <= fullSize)){
-        $('nav li a').each(function(){
-          $(this).removeClass('active');
-          var navId = $(this).attr('href').replace('#','');
-          if (navId == matchName){
-            $(this).addClass('active');
+      $('nav li a').each(function(){
+        var parEl = $(this).parent();
+        var navId = $(this).attr('href').replace('#','');
+        // $(this).removeClass('active');
+        if (navId == matchName){
+          i++;
+          if (((currViewport) >= fullTop) && (currViewport <= fullSize)){
+            $('header nav > ul > li:nth-of-type(' + i + ') a').addClass('active');
           }
-        });
-      }
+          if (currViewport < fullTop){
+              $('header nav > ul > li:nth-of-type(' + i + ') a').removeClass('active');
+          }
+        }
+      });
     });
   },
 

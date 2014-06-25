@@ -97,7 +97,7 @@ var storyTeller = {
       var src = $(this).attr('href').replace('#','');
       var target = $('[name=' + src + ']').position().top;
       $('body, html').animate({
-        scrollTop: target + 'px'
+        scrollTop: (target + 1) + 'px'
       }, 1000);
       return false;
     });

@@ -7,7 +7,7 @@
       {{ if $gimme->current_list->at_beginning }}
         <ul class="slides">
       {{ /if }}
-          <li name="{{ $gimme->article->number }}" class="{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}">
+          <li name="{{ $gimme->article->number }}" {{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}class="{{ /if }}{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}{{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}"{{ /if }}>
             {{ include file="_tpl/_storyteller/slide.tpl" }}
           </li>
       {{ if $gimme->current_list->at_end }}

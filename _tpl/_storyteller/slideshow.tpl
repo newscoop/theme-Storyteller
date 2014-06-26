@@ -1,5 +1,5 @@
 {{ if $gimme->article->shutter }}
-  <section name="{{ $gimme->article->number }}" class="slideshow full shutter{{ if $gimme->article->dark }} dark{{ /if }}">
+  <section name="{{ $gimme->article->number }}" class="slideshow full shutter{{ if $gimme->article->fade }} fade{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}">
     {{ if $gimme->browser->ua_type != "mobile" }}
       {{ include file="_tpl/_storyteller/ambient.tpl" }}
     {{ /if }}

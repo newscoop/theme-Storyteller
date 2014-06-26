@@ -402,7 +402,7 @@ var storyTeller = {
         $(video).attr('src', $(video).attr('data-video'));
         video.play();
         that.live_assets.push(video);
-        console.log('playing video', video);
+        // console.log('playing video', video);
       } else {
         //console.log('video is already playing');
       }

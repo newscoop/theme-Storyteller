@@ -19,7 +19,7 @@
                     {{ $j = 1 }}
                     {{ list_related_articles }}
                         {{ if $gimme->article->display_title }}
-                            <li class="child"><a href="#{{ $gimme->article->number }}"><span>{{ $i }}.{{ $j }}</span> {{ $gimme->article->display_title }}</a></li>
+                            <li class="child"><a href="#{{ $gimme->article->number }}" title="{{ $gimme->article->display_title }}"><span>{{ $i }}.{{ $j }}</span> {{ $gimme->article->display_title }}</a></li>
                             {{ assign var = $j value = $j++ }}
                         {{ /if }}
                     {{ /list_related_articles }}

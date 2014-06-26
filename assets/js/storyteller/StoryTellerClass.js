@@ -132,7 +132,6 @@ var storyTeller = {
       $('nav li a').each(function(){
         var parEl = $(this).parent();
         var navId = $(this).attr('href').replace('#','');
-        // $(this).removeClass('active');
         if (navId == matchName){
           i++;
           $('header nav > ul > li:nth-of-type(' + i + ') a').addClass('active');

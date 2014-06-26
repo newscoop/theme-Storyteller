@@ -15,7 +15,7 @@
                 <ul>
             {{ /if }}
             {{ if $gimme->article->display_title }}
-                    <li><a href="#{{ $gimme->article->number }}"><span>{{ $i }}</span> {{ $gimme->article->display_title }}</a>
+                    <li><a href="#{{ $gimme->article->number }}" title="{{ $gimme->article->display_title }}"><span>{{ $i }}</span> {{ $gimme->article->display_title }}</a>
                     {{ $j = 1 }}
                     {{ list_related_articles }}
                         {{ if $gimme->article->display_title }}

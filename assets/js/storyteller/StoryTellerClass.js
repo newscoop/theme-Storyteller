@@ -135,9 +135,7 @@ var storyTeller = {
         // $(this).removeClass('active');
         if (navId == matchName){
           i++;
-          if (((currViewport) >= fullTop) && (currViewport <= fullSize)){
-            $('header nav > ul > li:nth-of-type(' + i + ') a').addClass('active');
-          }
+          $('header nav > ul > li:nth-of-type(' + i + ') a').addClass('active');
           if (currViewport < fullTop){
               $('header nav > ul > li:nth-of-type(' + i + ') a').removeClass('active');
           }

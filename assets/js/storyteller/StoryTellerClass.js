@@ -362,7 +362,7 @@ var storyTeller = {
 
   triggerShutter: function(asset) {
     var that = this;
-    $(asset.el).find('video:first-child').each(function(){
+    $(asset.el).find('.lead-video').each(function(){
       var video =  $(this)[0];
 
       if (!that.assetIsLive(video)) {
@@ -374,14 +374,14 @@ var storyTeller = {
         //console.log('video is already playing');
       }
     });
-    $(asset.el).find('video:first-child, figure > img').each(function(){
+    $(asset.el).find('.lead-video, .lead-image').each(function(){
       $(this).addClass('fixed');
     });
   },
 
   stopShutter: function(asset) {
     var that = this;
-    $(asset.el).find('video:first-child').each(function(){
+    $(asset.el).find('.lead-video').each(function(){
       var video =  $(this)[0];
       video.pause();
       // remove it from the live assets list
@@ -389,7 +389,7 @@ var storyTeller = {
         return a.src === video.src;
       }, true);
     });
-    $(asset.el).find('video:first-child, figure > img').each(function(){
+    $(asset.el).find('.lead-video, .lead-image').each(function(){
       $(this).removeClass('fixed');
     });
     $(asset.el).removeClass('fixed');

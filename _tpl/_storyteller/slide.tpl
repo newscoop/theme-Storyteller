@@ -9,7 +9,6 @@
     {{ /if }}
   {{ /list_article_attachments }}
   </video>
-  <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
   <span>
     {{ if $gimme->article->display_title && $gimme->article->show_title }}
       <h2>{{ $gimme->article->display_title }}</h2>
@@ -18,6 +17,7 @@
       {{ $gimme->article->full_text }}
     {{ /if }}
   </span>
+  <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
 {{ else }}
   {{ image rendition="full" }}
     <figure {{ if $gimme->article->type_name == "ST_chaptitle" || $gimme->article->type_name == "ST_slide" }}class='lead-image'{{ /if }}>
@@ -40,4 +40,5 @@
       </figcaption>
     </figure>
   {{ /image }}
+    <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
 {{ /if }}

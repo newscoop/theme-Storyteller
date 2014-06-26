@@ -283,58 +283,25 @@ var storyTeller = {
 
 
   doBackgrounds: function(){
-    $('.chapter-title').each(function(){
-      // do this if there's a video
-      $(this).find('video').each(function(){
-        var video = $(this);
-        if ($(this).attr('poster')){
-          var src = $(this).attr('poster');
-          par = $(this).parent().parent();
-          var bgElem = "<div class='bgContainer'></div>";
-          par.append(bgElem);
-          var bgDiv = par.find('.bgContainer');
-          bgDiv.width(winWidth);
-          bgDiv.height(winHeight);
-          bgDiv.css({
-            'z-index':'-1',
-            'background': 'url("' + src + '") no-repeat',
-            'background-position': 'center center'
-          });
-          if (winHeight > winWidth) {
-            bgDiv.css({
-              'background-size': 'auto 100%'
-            });
-          } else {
-            bgDiv.css({
-              'background-size': '100% auto'
-            });
-          }
-        }
+    $('.bgContainer').each(function(){
+      var bgEl = $(this);
+      bgEl.height(winHeight);
+      bgEl.width(winWidth);
+      bgEl.css({
+        'background-repeat': 'no-repeat',
+        'background-position': 'center center',
+        'position': 'absolute',
+        'z-index': 0
       });
-      // do this if there's an image
-      $(this).find('img').each(function(){
-        var src = $(this).attr('src');
-        var par = $(this).parent().parent().parent();
-        var bgElem = "<div class='bgContainer'></div>";
-        par.append(bgElem);
-        var bgDiv = par.find('.bgContainer');
-        bgDiv.width(winWidth);
-        bgDiv.height(winHeight);
-        bgDiv.css({
-          'background': 'url("' + src + '") no-repeat',
-          'background-position': 'center center',
+      if (winHeight > winWidth) {
+        bgEl.css({
+          'background-size': 'auto 100%'
         });
-        if (winHeight > winWidth) {
-          bgDiv.css({
-            'background-size': 'auto 100%'
-          });
-        } else {
-          bgDiv.css({
-            'background-size': '100% auto'
-          });
-        }
-        $(this).hide();
-      });
+      } else {
+        bgEl.css({
+          'background-size': '100% auto'
+        });
+      }
     });
   },
 

@@ -20,7 +20,7 @@ h2 {
     background: white;
     z-index: 1000;
     padding: 5px 5px 0 90px;
-    box-shadow: 0 0 2px #000;
+    box-shadow: 0 0 3px #000;
     min-height: 47px;
     }
   #home {

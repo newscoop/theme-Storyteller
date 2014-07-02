@@ -1,5 +1,5 @@
-{{ if $gimme->article->video }}
-  <video class="lead-video" {{ if $gimme->article->loop }}loop="loop" {{ /if }} {{ if $gimme->article->preload }}preload="auto" {{ /if }}{{ if $gimme->browser->ua_type == "mobile"}} controls{{ /if }}>
+{{ if $gimme->article->video && $gimme->browser->ua_type != "mobile" }}
+  <video class="lead-video" {{ if $gimme->article->loop }}loop="loop" {{ /if }} {{ if $gimme->article->preload }}preload="auto"{{ /if }}>
   {{ list_article_attachments }}
     {{ if $gimme->attachment->extension == mp4 }}
       <source src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />

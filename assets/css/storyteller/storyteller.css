@@ -193,8 +193,6 @@ h2 {
     box-shadow: none;
     }
     .longform .chapter-title .bgContainer {
-      position: absolute;
-      top: 0;
       }
     .longform .chapter-title .lead-video {
       z-index: 2;
@@ -672,8 +670,9 @@ h2 {
   bottom: auto;
   top: 0;
   }
-  .fixed .bgContainer {
-    background-attachment: fixed;
+  .fixed + .bgContainer,
+  .fixed + span + .bgContainer {
+    background-attachment: fixed!important;
     }
 .slideshow.full.shutter {
   }

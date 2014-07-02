@@ -2,17 +2,18 @@
 var menuHeight = $('header').height();
 
 // add the meu height to the body top
-$('body').css({
-  'padding-top': menuHeight + 'px'
+
+$('body, html').animate({
+  scrollTop: 1
 });
 
 // define global window height and width
-var winHeight = ($(window).height() - menuHeight);
+var winHeight = $(window).height();
 var winWidth = $(window).width();
 
 // set function to refill those values when needed
 var doWinDimensions = function(){
-  winHeight = ($(window).height() - menuHeight);
+  winHeight = $(window).height();
   winWidth = $(window).width();
 };
 
@@ -63,7 +64,7 @@ var storyTeller = {
     // continue event handler
     $('.continue').bind('click', function(){
       if ($(this).parent().parent().next()[0]){
-        var nextObjPos = (($(this).parent().parent().next().position().top) - (menuHeight)) + "px";
+        var nextObjPos = ($(this).parent().parent().next().position().top) + "px";
         $('body, html').animate({
           scrollTop: nextObjPos
         }, 1000);
@@ -104,7 +105,7 @@ var storyTeller = {
     // header nav
     $('header nav a').bind('click', function(){
       var src = $(this).attr('href').replace('#','');
-      var target = (($('[name=' + src + ']').position().top - menuHeight) + 1);
+      var target = ($('[name=' + src + ']').position().top + 1);
       $('body, html').animate({
         scrollTop: target + 'px'
       }, 1000);
@@ -135,7 +136,7 @@ var storyTeller = {
     var i = 0;
     $('article > section, .slides > li').each(function(){
       var matchName = $(this).attr('name');
-      var fullTop = ($(this).position().top - menuHeight);
+      var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;
       $('nav li a').each(function(){

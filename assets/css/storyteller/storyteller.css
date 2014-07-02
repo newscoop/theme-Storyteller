@@ -802,27 +802,25 @@ h2 {
 
 /* iPad */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    /* hide these elements entirely */
-    .lead-video {
-      display: none!important;
-      }
-    /* ipad-portrait */
-    @media screen and (max-width: 896px) {
-      }
-    /* ipad-landscape */
-    @media screen and (min-width: 897px) {
+  body {
+    -webkit-overflow-scrolling : touch;
+    }  
+  .longform .chapter-title .title h1,
+  .longform .chapter-title .title p {
+    width: 75%;
+    }
+  /* ipad-portrait */
+  @media screen and (max-width: 896px) {
+    }
+  /* ipad-landscape */
+  @media screen and (min-width: 897px) {
 
-      }
+    }
   }
 
 /* iPhone */
 @media screen and (max-device-width: 480px) {
-    /* hide these elements entirely */
-    .lead-video {
-      display: none!important;
-    }
     .longform .chapter-title h1 {
-      width: auto;
     }
     .longform > section > article > section h2,
     .longform > section > article > section h3,

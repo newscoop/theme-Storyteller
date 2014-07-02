@@ -670,10 +670,6 @@ h2 {
   bottom: auto;
   top: 0;
   }
-  .fixed + .bgContainer,
-  .fixed + span + .bgContainer {
-    background-attachment: fixed!important;
-    }
 .slideshow.full.shutter {
   }
   .slideshow.full.shutter > .slides {

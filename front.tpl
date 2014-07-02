@@ -1,28 +1,42 @@
 {{ config_load file="{{ $gimme->language->english_name }}.conf" }}
 
-{{ include file="_tpl/_html-head.tpl" }}
+{{ assign var=artNum value=0 }}
 
-	<div id="wrapper">
+{{ list_playlist_articles name="takeover" }}
 
-{{ include file="_tpl/header.tpl" }}
+    {{ $artNum = $gimme->article->number }}
+  
+{{ /list_playlist_articles }}
 
-		<div id="content">
+{{ if $artNum === 0 }}
+  {{ include file="_tpl/_html-head.tpl" }}
 
-{{ include file="_tpl/front-playlist-articles.tpl" }}
+  	<div id="wrapper">
 
-{{ include file="_tpl/front-dynamicmap.tpl" }}
-            
-{{ include file="_tpl/front-three-blocks.tpl" }}
- 
-{{ include file="_tpl/all-sections.tpl" }} 
-        
-        </div><!-- / Content -->
-        
-{{ include file="_tpl/footer.tpl" }}
-    
-    </div><!-- / Wrapper -->
-	
-{{ include file="_tpl/_html-foot.tpl" }}
+  {{ include file="_tpl/header.tpl" }}
 
-</body>
-</html>
+  		<div id="content">
+
+  {{ include file="_tpl/front-playlist-articles.tpl" }}
+
+  {{ include file="_tpl/front-dynamicmap.tpl" }}
+              
+  {{ include file="_tpl/front-three-blocks.tpl" }}
+   
+  {{ include file="_tpl/all-sections.tpl" }} 
+          
+          </div><!-- / Content -->
+          
+  {{ include file="_tpl/footer.tpl" }}
+      
+      </div><!-- / Wrapper -->
+  	
+  {{ include file="_tpl/_html-foot.tpl" }}
+
+  </body>
+  </html>
+{{ else }}
+  {{ list_articles constraints="number is $artNum" }}
+    {{ include file="article.tpl" }}
+  {{ /list_articles }}
+{{ /if }}

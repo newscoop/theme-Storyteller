@@ -22,7 +22,7 @@
       {{ /list_article_attachments }}
       </video>
     {{ /if }}
-    {{ include file="_tpl/img/img_full.tpl" where="article" }}
+    <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
   </article>
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}

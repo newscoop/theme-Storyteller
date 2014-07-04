@@ -562,10 +562,15 @@ var storyTeller = {
 $(document).ready(function(){
 
   // init storyTeller manager
-  storyTeller.init(function() {
+  options = {
+    'ambientAudio': true,
+    'chapterTitleVideo': true,
+    'shutter': true,
+  };
+  storyTeller.init(options, function() {
     // do whatever we want to do after the storyTeller init
-    console.log(storyTeller.assets);
-    console.log('all good');
+    //console.log(storyTeller.assets);
+    console.log('storyTeller loaded');
   });
 
 });

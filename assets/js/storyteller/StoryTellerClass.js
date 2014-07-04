@@ -643,18 +643,29 @@ var storyTeller = {
 
     // nav collapse  event handlers
     $('#collapse').bind('click', function(){
+<<<<<<< HEAD
       $('header nav').animate({
         'opacity': 0
       }, 500, function(){
         that.doMainNav();
         $('header nav').animate({
+=======
+      $('header nav li').animate({
+        'opacity': 0
+      }, 500, function(){
+        that.doMainNav();
+        $('header nav li').animate({
+>>>>>>> 521cd4ff3553b348fbf3b42d729c294b82ece35d
           'opacity': 1
         });
       });
       return false;
     });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 521cd4ff3553b348fbf3b42d729c294b82ece35d
     this.initialized = true;
 
     if (callback) {
@@ -671,7 +682,11 @@ var storyTeller = {
       this.collapsed = false;
       $('header nav').removeClass('active');
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 521cd4ff3553b348fbf3b42d729c294b82ece35d
     // header nav
     $('header nav a').bind('click', function(){
       var src = $(this).attr('href').replace('#','');

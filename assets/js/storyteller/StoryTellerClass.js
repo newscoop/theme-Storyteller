@@ -1,12 +1,6 @@
 // remove this from all height values
 var menuHeight = $('header').height();
 
-// add the meu height to the body top
-
-$('body, html').animate({
-  scrollTop: 1
-});
-
 // define global window height and width
 var winHeight = $(window).height();
 var winWidth = $(window).width();
@@ -16,7 +10,6 @@ var doWinDimensions = function(){
   winHeight = $(window).height();
   winWidth = $(window).width();
 };
-
 
 var storyTeller = {
   options: {},
@@ -160,6 +153,7 @@ var storyTeller = {
       return false;
     });
   },
+
 
   doActiveNav: function(currViewport) {
     var i = 0;

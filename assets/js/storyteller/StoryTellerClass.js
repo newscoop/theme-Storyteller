@@ -44,7 +44,12 @@ var storyTeller = {
 
     // build loader
     var loading = function(){
-      $('body > section').append('<span class="loader"><span class="spinner"></span></span>');
+      var parent = $('body > section');
+      parent.append('<span class="loader"><span class="spinner"></span></span>');
+      parent.height(winHeight);
+      parent.css({
+        'overflow': 'hidden'
+      });
       var loader = $('.loader');
       var spinner = $('.spinner');
       var i = 0;
@@ -61,6 +66,7 @@ var storyTeller = {
 
       // fire this when loading is complete
       var loadingDone = function(){
+        parent.attr('style', null);
         clearInterval(spinMe);
         loader.remove();
       }

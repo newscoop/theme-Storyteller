@@ -3,10 +3,10 @@
 @import url("typography.css");
 
 /* emergency testing stuff - remove before commiting */
-video {
+/*video {
   display: none!important;
   }
-
+*/
 
 .longform a {
   color: #000;

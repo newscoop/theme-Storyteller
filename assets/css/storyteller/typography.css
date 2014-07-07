@@ -1,25 +1,25 @@
 body {
   font-family: 'libertine', serif;
-/*  font-family: 'roboto', sans-serif;*/
   letter-spacing: .05em;
   color: #333;
   }
-.chapter-title h1 {
-/*  font-family: 'libertine', serif;*/
+.title h1 {
   font-family: 'roboto', sans-serif;
   letter-spacing: -1px;
   font-size: 3em;
   }
+.title p {
+  font-family: 'roboto', sans-serif;
+  font-size: 1.5em;
+  }
 h2 {
   font-family: 'roboto', sans-serif;
-/*  font-family: 'libertine', serif;*/
   font-size: 2em;
   line-height: 2em;
   letter-spacing: 0;
   }
 h3 {
   font-family: 'roboto-bold', sans-serif;
-/*  font-family: 'libertine', serif;*/
   text-transform: uppercase;
   line-height: 2em;
   letter-spacing: 0;

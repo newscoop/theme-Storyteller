@@ -8,6 +8,27 @@
   }
 */
 
+/* page loader */
+.loader {
+  background: rgba(0, 0, 0, .75);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  }
+  .spinner {
+    background: url('../../img/icon-spinner.png') center center no-repeat transparent;
+    background-size: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    height: 50px;
+    width: 50px;
+    }
+
 .longform a {
   color: #000;
   text-decoration: none;

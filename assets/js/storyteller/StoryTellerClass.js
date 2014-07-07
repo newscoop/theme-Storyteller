@@ -383,7 +383,7 @@ var storyTeller = {
         //console.log('video is already playing');
       }
     });
-    $(asset.el).find('.lead-video, .lead-image').each(function(){
+    $(asset.el).find('.lead-video, .lead-image, .bgContainer').each(function(){
       $(this).addClass('fixed');
     });
   },
@@ -398,7 +398,7 @@ var storyTeller = {
         return a.src === video.src;
       }, true);
     });
-    $(asset.el).find('.lead-video, .lead-image').each(function(){
+    $(asset.el).find('.lead-video, .lead-image, .bgContainer').each(function(){
       $(this).removeClass('fixed');
     });
     $(asset.el).removeClass('fixed');
@@ -479,7 +479,7 @@ var storyTeller = {
 
   loadChapterTitleAssets: function() {
     var that = this;
-    $('.chapter-title').each(function(){
+    $('.chapter-title, .shutter .slides > li').each(function(){
       var par = null;
       var parPos = $(this).position().top;
       var parHeight = $(this).height();

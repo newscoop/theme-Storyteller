@@ -1,6 +1,12 @@
-@import "reset.css";
-@import "typography.css";
-@import "fonts.css";
+@import url("reset.css");
+@import url("fonts.css");
+@import url("typography.css");
+
+/* emergency testing stuff - remove before commiting */
+video {
+  display: none!important;
+  }
+
 
 .longform a {
   color: #000;
@@ -155,6 +161,7 @@ h2 {
     width: 100%;
     display: block;
     z-index: 3;
+    margin-top: 50px;
     }
   .longform .chapter-title h1 {
     position: relative;
@@ -170,8 +177,6 @@ h2 {
     padding: 0;
     }
     .longform .chapter-title p {
-      font-family: 'roboto', sans-serif;
-      font-size: 2em;
       text-align: center;
       background: none;
       color: #fff;

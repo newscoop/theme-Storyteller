@@ -14,11 +14,11 @@
             <nav>
                 <ul>
             {{ /if }}
-            {{ if $gimme->article->display_title }}
+            {{ if $gimme->article->display_title && $gimme->article->show_in_nav }}
                     <li><a href="#{{ $gimme->article->number }}" title="{{ $gimme->article->display_title }}"><span>{{ $i }}</span> {{ $gimme->article->display_title }}</a>
                     {{ $j = 1 }}
                     {{ list_related_articles }}
-                        {{ if $gimme->article->display_title }}
+                        {{ if $gimme->article->display_title && $gimme->article->show_in_nav }}
                             <li class="child"><a href="#{{ $gimme->article->number }}" title="{{ $gimme->article->display_title }}"><span>{{ $i }}.{{ $j }}</span> {{ $gimme->article->display_title }}</a></li>
                             {{ assign var = $j value = $j++ }}
                         {{ /if }}
@@ -62,11 +62,11 @@
 
 {{ else }}
 
-	<div id="wrapper">
+  <div id="wrapper">
 
 {{ include file="_tpl/header.tpl" }}
 
-		<div id="content" class="clearfix">
+    <div id="content" class="clearfix">
 
             <section class="main entry">
 

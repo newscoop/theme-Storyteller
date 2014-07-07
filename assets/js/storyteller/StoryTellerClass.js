@@ -331,6 +331,7 @@ var storyTeller = {
           that.triggerChapterTitle(asset);
         } else {
           that.stopChapterTitle(asset);
+          $('.fixed').removeClass('fixed');
         }
       }
 
@@ -339,7 +340,7 @@ var storyTeller = {
         if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
           $(asset.el.bgDiv).addClass('fixed');
         } else {
-          $(asset.el.bgDiv).removeClass('fixed');
+          $('.fixed').removeClass('fixed');
         }
       }
 
@@ -349,6 +350,7 @@ var storyTeller = {
           that.triggerAmbientAudio(asset);
         } else  {
           that.stopAmbientAudio(asset);
+          $('.fixed').removeClass('fixed');
         }
       }
 
@@ -361,7 +363,8 @@ var storyTeller = {
             that.stopShutter(asset);
           }
         } else {
-          $(asset).find('.fixed').removeClass('fixed');
+          $(asset.el).find('.fixed').removeClass('fixed');
+          $(asset.el).removeClass('fixed');
         }
       }
 
@@ -413,7 +416,7 @@ var storyTeller = {
 
     //console.log(src, asset);
 
-    if (!that.assetIsLive(asset)) {
+    if (!that.assetIsLive(masterAudio)) {
       if (masterAudio.src !== src) {
         masterAudio.src = src;
       }
@@ -429,11 +432,13 @@ var storyTeller = {
     var audio = asset.el[0];
     var masterAudio = this.audio_master[0];
 
-    masterAudio.pause();
-    // remove it from the live assets list
-    this.live_assets = $.grep(that.live_assets, function(a,i) {
-      return a.src === masterAudio.src;
-    }, true);
+    if (that.assetIsLive(masterAudio)) {
+      masterAudio.pause();
+      // remove it from the live assets list
+      this.live_assets = $.grep(that.live_assets, function(a,i) {
+        return a.src === masterAudio.src;
+      }, true);
+    }
   },
 
   triggerChapterTitle: function(asset) {
@@ -454,13 +459,15 @@ var storyTeller = {
   stopChapterTitle: function(asset) {
     var that = this;
     var video = asset.el[0];
-    video.pause();
-    $(video).removeClass('fixed');
-    $(asset.el.bgDiv).removeClass('fixed');
-    // remove it from the live assets list
-    this.live_assets = $.grep(that.live_assets, function(a,i) {
-      return a.src === video.src;
-    }, true);
+    if (that.assetIsLive(video)) {
+      video.pause();
+      $(video).removeClass('fixed');
+      $(asset.el.bgDiv).removeClass('fixed');
+      // remove it from the live assets list
+      this.live_assets = $.grep(that.live_assets, function(a,i) {
+        return a.src === video.src;
+      }, true);
+    }
   },
 
   assetIsLive: function(asset) {

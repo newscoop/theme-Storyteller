@@ -49,6 +49,35 @@ var storyTeller = {
 
     //console.log(this.assets);
 
+    // build loader
+    var loading = function(){
+      $('body > section').append('<span class="loader"><span class="spinner"></span></span>');
+      var loader = $('.loader');
+      var spinner = $('.spinner');
+      var i = 0;
+      var spinMe = setInterval(function(){
+        if (i == 360){
+          i = 0;
+        } else {
+          i++;
+        }
+        console.log(i);
+        var iAmt = i * 2;
+        spinner.attr('style', '-webkit-transform: rotate(' + iAmt + 'deg); -moz-transform: rotate(' + iAmt + 'deg); transform: rotate(' + iAmt + 'deg);');
+      }, 10);
+
+      // fire this when loading is complete
+      var loadingDone = function(){
+        clearInterval(spinMe);
+        loader.remove();
+      }
+      loadingDone();
+    };
+    loading();
+
+    // set first nav element to active
+    $('header nav > ul > li:first-child a').addClass('active');
+
     // set resize function
     $(window).resize(function() {
       that.resizeTimer = setTimeout(function() {

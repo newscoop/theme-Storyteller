@@ -7,7 +7,9 @@
         {{ /if }}
       </h1>
       {{ if $gimme->article->deck }}
-        <p>{{ $gimme->article->deck }}</p>
+        <div>
+          {{ $gimme->article->deck }}
+        </div>
       {{ /if }}
     </span>
     {{ if $gimme->article->video && $gimme->browser->ua_type != "mobile" }}

@@ -448,6 +448,7 @@ var storyTeller = {
         //$(video).attr('src', $(video).attr('data-video'));
         console.log('shutter playing ' + videoSrc);
         video.src = videoSrc;
+        video.load();
         video.play();
         that.live_assets.push(video);
         // console.log('playing video', video);
@@ -519,6 +520,7 @@ var storyTeller = {
       //$(video).attr('src', $(video).attr('data-video'));
       console.log('chapter title playing ' + $(video).attr('data-src'));
       video.src = $(video).attr('data-src');
+      video.load();
       video.play();
       that.live_assets.push(video);
       //console.log('starting video');

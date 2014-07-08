@@ -39,7 +39,7 @@
               </figure>
               {{ /image }}
             {{ else }}
-              <video>
+              <video preload="none">
                 {{ if $item->extension == mp4 }}
                   <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
                 {{ /if }}

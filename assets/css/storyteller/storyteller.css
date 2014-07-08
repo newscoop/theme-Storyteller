@@ -229,13 +229,7 @@ h2 {
       margin: 0;
       }
     .longform .chapter-title .lead-image img {
-      padding: 0;
-      border-radius: 0;
-      width: 100%;
-      height: auto;
-      margin: 0;
-      left: 0;
-      z-index: 1;
+      display: none;
       }
     .longform .chapter-title figure {
       position: static!important;
@@ -475,10 +469,6 @@ h2 {
   position: static!important;
   z-index: 0!important;
   }
-  .full .lead-image img,
-  .full .lead-video,
-  .full iframe {
-    }
 
 /* fixed image, text remains in document flow */
 .image.full {
@@ -488,15 +478,7 @@ h2 {
   overflow: hidden;
   }
   .image.full .lead-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    margin: 0!important;
-    box-shadow: none!important;
-    border: none!important;
-    padding: 0!important;
+    display: none;
     }
   .image.full h2 {
     position: relative;
@@ -539,16 +521,7 @@ h2 {
     z-index: -1;
     }
     .masthead-image .lead-image img {
-      position: absolute;
-      left: 0!important;
-      top: 0;
-      width: 100%;
-      height: auto;
-      padding: 0!important;
-      margin: 0!important;
-      border: none!important;
-      border-radius: 0;
-      box-shadow: none;
+      display: none;
       }
     .masthead-image .lead-image figcaption {
       position: absolute;

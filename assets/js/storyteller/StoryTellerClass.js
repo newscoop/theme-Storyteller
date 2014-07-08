@@ -19,11 +19,20 @@ var storyTeller = {
   audio_master: null,
   collasped: false,
   resizeTimer: null,
+  loading: false,
 
   init: function(options, callback) {
     var that = this;
 
+    // build loader
+    this.showLoading();
+
     // async load assets
+    $('source').each(function() {
+      var asset = $(this);
+      $(asset).attr('src', $(asset).attr('data-src'));
+    });
+
     this.asyncLoadVideo();
     this.asyncLoadAudio();
 
@@ -41,38 +50,6 @@ var storyTeller = {
     this.loadAudioAssets();
 
     //console.log(this.assets);
-
-    // build loader
-    var loading = function(){
-      var parent = $('body > section');
-      parent.append('<span class="loader"><span class="spinner"></span></span>');
-      parent.height(winHeight);
-      parent.css({
-        'overflow': 'hidden'
-      });
-      var loader = $('.loader');
-      var spinner = $('.spinner');
-      var i = 0;
-      var spinMe = setInterval(function(){
-        if (i == 360){
-          i = 0;
-        } else {
-          i++;
-        }
-        console.log(i);
-        var iAmt = i * 2;
-        spinner.attr('style', '-webkit-transform: rotate(' + iAmt + 'deg); -moz-transform: rotate(' + iAmt + 'deg); transform: rotate(' + iAmt + 'deg);');
-      }, 10);
-
-      // fire this when loading is complete
-      var loadingDone = function(){
-        parent.attr('style', null);
-        clearInterval(spinMe);
-        loader.remove();
-      }
-      loadingDone();
-    };
-    loading();
 
     // set first nav element to active
     $('header nav > ul > li:first-child a').addClass('active');
@@ -114,10 +91,32 @@ var storyTeller = {
 
 
     this.initialized = true;
+    this.hideLoading();
 
     if (callback) {
       callback();
     }
+  },
+
+  showLoading: function() { 
+    $('body > section').append('<span class="loader"><span class="spinner"></span></span>');
+    var spinner = $('.spinner');
+    var i = 0;
+    this.loading = setInterval(function(){
+      if (i == 360){
+        i = 0;
+      } else {
+        i++;
+      }
+      //console.log(i);
+      var iAmt = i * 2;
+      spinner.attr('style', '-webkit-transform: rotate(' + iAmt + 'deg); -moz-transform: rotate(' + iAmt + 'deg); transform: rotate(' + iAmt + 'deg);');
+    }, 10);
+  },
+
+  hideLoading: function() {
+    clearInterval(this.loading);
+    $('.loader').remove();
   },
 
   doMainNav: function() {
@@ -285,9 +284,13 @@ var storyTeller = {
           }
         }
       });
-      video.attr('data-video', src);
+
+      video.prop('src', false);
       $(this).find('source').remove();
+      video.attr('src', src);
+      video.load();
     });
+
   },
 
   asyncLoadAudio: function() {
@@ -300,14 +303,13 @@ var storyTeller = {
         var par = $(this).parent().get(0).tagName.toLowerCase();
 
         if (par == 'figure'){
-          $(this).parent().parent().attr('data-audiosrc', src);
+          $(this).parent().parent().attr('data-src', src);
         } else {
-          $(this).parent().attr('data-audiosrc', src);
+          $(this).parent().attr('data-src', src);
         }
-        $(this).remove();
+        //$(this).remove();
       });
     }
-
   },
 
   doZindex: function() {
@@ -360,7 +362,8 @@ var storyTeller = {
           that.triggerChapterTitle(asset);
         } else {
           that.stopChapterTitle(asset);
-          $('.fixed').removeClass('fixed');
+          $(asset.el).find('.fixed').removeClass('fixed');
+          $(asset.el).removeClass('fixed');
         }
       }
 
@@ -369,7 +372,8 @@ var storyTeller = {
         if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
           $(asset.el.bgDiv).addClass('fixed');
         } else {
-          $('.fixed').removeClass('fixed');
+          $(asset.el).find('.fixed').removeClass('fixed');
+          $(asset.el).removeClass('fixed');
         }
       }
 
@@ -379,7 +383,8 @@ var storyTeller = {
           that.triggerAmbientAudio(asset);
         } else  {
           that.stopAmbientAudio(asset);
-          $('.fixed').removeClass('fixed');
+          $(asset.el).find('.fixed').removeClass('fixed');
+          $(asset.el).removeClass('fixed');
         }
       }
 
@@ -407,7 +412,8 @@ var storyTeller = {
       var video =  $(this)[0];
 
       if (!that.assetIsLive(video)) {
-        $(video).attr('src', $(video).attr('data-video'));
+        //$(video).attr('src', $(video).attr('data-video'));
+        console.log('shutter playing ' + $(video).attr('src'));
         video.play();
         that.live_assets.push(video);
         // console.log('playing video', video);
@@ -440,7 +446,7 @@ var storyTeller = {
     var that = this;
     var audio = asset.el[0];
 
-    var src = src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('data-audiosrc');
+    var src = src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('data-src');
     var masterAudio = this.audio_master[0];
 
     //console.log(src, asset);
@@ -476,7 +482,8 @@ var storyTeller = {
     if (!that.assetIsLive(video)) {
       $(asset.bgDiv).addClass('fixed');
       $(asset.el).addClass('fixed');
-      $(video).attr('src', $(video).attr('data-video'));
+      //$(video).attr('src', $(video).attr('data-video'));
+      console.log('chapter title playing ' + $(video).attr('src'));
       video.play();
       that.live_assets.push(video);
       //console.log('starting video');
@@ -573,7 +580,7 @@ var storyTeller = {
   loadAudioAssets: function() {
     var that = this;
     $('section, li').each(function(){
-      if ($(this).attr('data-audiosrc')) {
+      if ($(this).attr('data-src')) {
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;

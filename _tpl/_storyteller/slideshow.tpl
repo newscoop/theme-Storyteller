@@ -41,10 +41,10 @@
             {{ else }}
               <video>
                 {{ if $item->extension == mp4 }}
-                  <source src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
                 {{ /if }}
                 {{ if $item->extension == webm }}
-                  <source src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
                 {{ /if }}
               </video>
             {{ /if }}

@@ -11,7 +11,7 @@
       {{ /if }}
     </span>
     {{ if $gimme->article->video && $gimme->browser->ua_type != "mobile" }}
-      <video class="lead-video" {{ if $gimme->article->loop }}loop="loop" {{ /if }} {{ if $gimme->article->preload }}preload="none" {{ /if }}>
+      <video class="lead-video" {{ if $gimme->article->loop }}loop="loop" {{ /if }} {{ if $gimme->article->preload }}preload="auto" {{ /if }}>
       {{ list_article_attachments }}
         {{ if $gimme->attachment->extension == mp4 }}
           <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />

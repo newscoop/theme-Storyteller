@@ -221,7 +221,7 @@ h2 {
     .longform .chapter-title .bgContainer {
       }
     .longform .chapter-title .lead-video {
-      z-index: 2;
+      z-index: 0;
       }
     .longform .chapter-title .lead-image {
       position: absolute!important;
@@ -654,6 +654,9 @@ h2 {
   bottom: auto;
   top: 0;
   }
+.lead-video.fixed {
+  z-index: 1;
+  }
 .slideshow.full.shutter {
   }
   .slideshow.full.shutter > .slides {
@@ -704,7 +707,7 @@ h2 {
           position: absolute;
           width: 50%;
           bottom: 12.5%;
-          z-index: 1;
+          z-index: 2;
           }
           .slideshow.full.shutter .left-text figure figcaption {
             width: 25%;

@@ -666,6 +666,12 @@ h2 {
       padding: 0;
       overflow: hidden;
       }
+      .slideshow.full.shutter li.fixed.end .bgContainer {
+        bottom: auto;
+        }
+      .slideshow.full.shutter li.end .bgContainer {
+        bottom: 0;
+        }
       .slideshow.full.shutter dl {
         position: absolute;
         top: 0;

@@ -240,14 +240,17 @@ var storyTeller = {
     });
 
     // full screen shutter slides
-    $('.slideshow.full.shutter').each(function(){
-      $(this).find('figure, li').each(function(){
+    $('.shutter.full .slides').each(function(){
+      var listItems = $(this).children('li');
+      var lastListItem = $(this).children('li').last();
+      lastListItem.addClass('end');
+      listItems.find('figure, li').each(function(){
         $(this).css({
           'min-height' : winHeight
         });
       });
       var i = 0;
-      $(this).find('li').each(function(){
+      listItems.each(function(){
         $(this).css({
           'z-index': ++i
         });

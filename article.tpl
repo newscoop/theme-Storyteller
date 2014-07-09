@@ -33,9 +33,9 @@
         {{ /list_related_articles }}
         {{ /if }}
         <a href="#" class="mute">Mute</a>
-        {{ search_form template="search.tpl" html_code="class=\"search-box\"" button_html_code="class=\"button\"" }}
+        {{* search_form template="search.tpl" html_code="class=\"search-box\"" button_html_code="class=\"button\"" }}
             {{ camp_edit object="search" attribute="keywords" html_code="placeholder=\"input search\"" }}
-        {{ /search_form }}
+        {{ /search_form *}}
     </header>
 
     {{ list_related_articles }}

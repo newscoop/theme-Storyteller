@@ -362,12 +362,6 @@ var storyTeller = {
       var bgEl = $(this);
       bgEl.height(winHeight);
       bgEl.width(winWidth);
-      bgEl.css({
-        'background-repeat': 'no-repeat',
-        'background-position': 'center center',
-        'position': 'absolute',
-        'z-index': 1
-      });
       if (winHeight > winWidth) {
         bgEl.css({
           'background-size': 'auto 100%'

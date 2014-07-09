@@ -280,7 +280,7 @@ var storyTeller = {
 
   doFullScreenObjects: function() {
     $('.full').each(function(){
-      $(this).find('.lead-image img, .lead-video').each(function(){
+      $(this).find('.lead-video').each(function(){
         $(this).removeClass('fixed');
         if (winHeight > winWidth){
           $(this).width('auto');
@@ -363,7 +363,7 @@ var storyTeller = {
         'background-repeat': 'no-repeat',
         'background-position': 'center center',
         'position': 'absolute',
-        'z-index': 0
+        'z-index': 1
       });
       if (winHeight > winWidth) {
         bgEl.css({
@@ -456,7 +456,7 @@ var storyTeller = {
         //console.log('video is already playing');
       }
     });
-    $(asset.el).find('.lead-video, .lead-image, .bgContainer').each(function(){
+    $(asset.el).find('.lead-video, .bgContainer').each(function(){
       $(this).addClass('fixed');
     });
   },
@@ -471,7 +471,7 @@ var storyTeller = {
         return a.src === video.src;
       }, true);
     });
-    $(asset.el).find('.lead-video, .lead-image, .bgContainer').each(function(){
+    $(asset.el).find('.lead-video, .bgContainer').each(function(){
       $(this).removeClass('fixed');
     });
     $(asset.el).removeClass('fixed');
@@ -579,16 +579,6 @@ var storyTeller = {
         that.assets.push(asset);
       });
 
-      // images
-      $(this).find('.lead-image').each(function(){
-        var asset = {
-          type: 'chapter-title-image',
-          el: $(this),
-          top: parPos,
-          bottom: parBot
-        };
-        that.assets.push(asset);
-      });
     });
   },
 

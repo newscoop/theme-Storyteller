@@ -542,21 +542,6 @@ h2 {
                      0 0 2px #000,
                      0 0 2px #000;
         }
-/* masthead with video */
-.masthead-video {
-  position: relative;
-  overflow: hidden;
-  }
-  .masthead-video .lead-video {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    padding: 0;
-    margin: 0!important;
-    border-radius: 0;
-    box-shadow: none;
-    }
 /* full screen background video */
 .video.full {
   background: none!important;

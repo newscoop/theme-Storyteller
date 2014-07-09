@@ -208,6 +208,7 @@ h2 {
                    0 0 2px #000;
       }
   .longform .chapter-title video {
+    background: transparent;
     position: absolute;
     top: 0;
     left: 0;
@@ -218,9 +219,8 @@ h2 {
     border-radius: 0;
     box-shadow: none;
     }
-    .longform .chapter-title .bgContainer {
-      }
     .longform .chapter-title .lead-video {
+      background: transparent;
       z-index: 0;
       }
     .longform .chapter-title .lead-image {

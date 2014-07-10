@@ -511,37 +511,7 @@ h2 {
     .image.full figcaption dd {
       display: inline;
       }
-/* masthead with image */
-.masthead-image {
-  }
-  .masthead-image .lead-image {
-    width: 100%!important;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    }
-    .masthead-image .lead-image img {
-      display: none;
-      }
-    .masthead-image .lead-image figcaption {
-      position: absolute;
-      top: 10px;
-      width: 100%;
-      text-align: right;
-      }
-      .masthead-image .lead-image figcaption dl {
-        width: 100%;
-        margin: 0!important;
-        font-size: 10px;
-        color: #fff;
-        text-shadow: 0 0 2px #000,
-                     0 0 2px #000,
-                     0 0 2px #000,
-                     0 0 2px #000,
-                     0 0 2px #000,
-                     0 0 2px #000,
-                     0 0 2px #000;
-        }
+
 /* full screen background video */
 .video.full {
   background: none!important;

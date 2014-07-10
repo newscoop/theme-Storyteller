@@ -519,6 +519,7 @@ h2 {
   overflow: hidden;
   }
   .video.full .lead-video {
+    background: transparent;
     top: 0;
     width: 100%;
     z-index: -1;
@@ -698,6 +699,7 @@ h2 {
             margin: 10px 0 20px;
             }
       .slideshow.full.shutter video {
+        background: transparent;
         padding: 0;
         border-radius: 0;
         border: 0;

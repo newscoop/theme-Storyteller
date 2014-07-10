@@ -244,7 +244,10 @@ var storyTeller = {
       var listItems = $(this).children('li');
       var lastListItem = $(this).children('li').last();
       lastListItem.addClass('end');
-      listItems.find('figure, li').each(function(){
+      listItems.css({
+        'height': winHeight
+      });
+      listItems.find('figure').each(function(){
         $(this).css({
           'min-height' : winHeight
         });

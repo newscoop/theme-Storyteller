@@ -41,7 +41,6 @@ var storyTeller = {
     this.doSlideShows();
     this.doChapterTitleText();
     this.doZindex();
-    this.doBackgrounds();
     this.doFullScreenObjects();
 
     // TODO: check options to see if we should skip certain asset types
@@ -356,24 +355,6 @@ var storyTeller = {
       $(this).css({
         'z-index': ++i
       });
-    });
-  },
-
-
-  doBackgrounds: function(){
-    $('.bgContainer').each(function(){
-      var bgEl = $(this);
-      bgEl.height(winHeight);
-      bgEl.width(winWidth);
-      if (winHeight > winWidth) {
-        bgEl.css({
-          'background-size': 'auto 100%'
-        });
-      } else {
-        bgEl.css({
-          'background-size': '100% auto'
-        });
-      }
     });
   },
 

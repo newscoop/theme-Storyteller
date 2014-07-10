@@ -7,4 +7,8 @@
 
   {{ $gimme->article->full_text }}
 
+  {{ if $gimme->browser->ua_type != "mobile" }}
+    {{ include file="_tpl/_storyteller/ambient.tpl" }}
+  {{ /if }}
+
 </section>

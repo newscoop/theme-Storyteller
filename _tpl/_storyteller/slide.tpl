@@ -18,6 +18,9 @@
     {{ /if }}
   </span>
   <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+  {{ if $gimme->browser->ua_type != "mobile" }}
+    {{ include file="_tpl/_storyteller/ambient.tpl" }}
+  {{ /if }}
 {{ else }}
   {{ image rendition="full" }}
     <figure {{ if $gimme->article->type_name == "ST_chaptitle" || $gimme->article->type_name == "ST_slide" }}class='lead-image'{{ /if }}>
@@ -41,4 +44,7 @@
     </figure>
   {{ /image }}
     <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+    {{ if $gimme->browser->ua_type != "mobile" }}
+      {{ include file="_tpl/_storyteller/ambient.tpl" }}
+    {{ /if }}
 {{ /if }}

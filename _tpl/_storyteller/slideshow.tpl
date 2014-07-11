@@ -39,14 +39,14 @@
               </figure>
               {{ /image }}
             {{ else }}
-              <video preload="none">
+              <div class="slideshow-video video-container" preload="none">
                 {{ if $item->extension == mp4 }}
                   <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
                 {{ /if }}
                 {{ if $item->extension == webm }}
                   <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
                 {{ /if }}
-              </video>
+              </div>
             {{ /if }}
           </li>
       {{ if $smarty.foreach.insideslideshow.last }}

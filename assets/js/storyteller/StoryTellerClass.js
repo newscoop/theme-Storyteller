@@ -269,7 +269,7 @@ var storyTeller = {
         paddingBottom = paddingBottom.replace('px','');
         var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
         $(this).css({
-          'min-height': (winHeight - paddingVertical) + 'px',
+          'min-height': winHeight + 'px',
           'width': winWidth
         });
       }

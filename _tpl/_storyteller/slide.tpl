@@ -17,7 +17,9 @@
       {{ $gimme->article->full_text }}
     {{ /if }}
   </span>
+  {{ if $gimme->article->type_name == "ST_chaptitle" }}
   <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+  {{ /if }}
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}
@@ -43,7 +45,9 @@
       </figcaption>
     </figure>
   {{ /image }}
+    {{ if $gimme->article->type_name == "ST_chaptitle" }}
     <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+    {{ /if }}
     {{ if $gimme->browser->ua_type != "mobile" }}
       {{ include file="_tpl/_storyteller/ambient.tpl" }}
     {{ /if }}

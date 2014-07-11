@@ -549,6 +549,14 @@ h2 {
     box-shadow: none;
     left: 0;
     }
+    .slideshow .bx-controls .bx-pager {
+      z-index: 1000;
+      }
+    .slideshow .bx-wrapper .bx-pager-item a {
+      border: solid 1px #fff;
+      box-shadow: 0 0 2px #000;
+      background: #333!important;
+      }
     .slideshow .bx-wrapper figure h3 {
       margin: 0 0 20px;
       }

@@ -1,5 +1,5 @@
 {{ if $gimme->article->shutter }}
-  <section name="{{ $gimme->article->number }}" class="slideshow full shutter{{ if $gimme->article->fade }} fade{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}">
+  <section name="{{ $gimme->article->number }}" class="slideshow {{ if $gimme->article->fullscreen }}full {{ /if }}{{ if $gimme->article->shutter }}shutter full {{ /if}}{{ if $gimme->article->fade }} fade{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}">
     {{ if $gimme->browser->ua_type != "mobile" }}
       {{ include file="_tpl/_storyteller/ambient.tpl" }}
     {{ /if }}
@@ -17,6 +17,23 @@
   </section>
 {{ else }}
   <section class="slideshow{{ if $gimme->article->fade && not $gimme->article->horizontal }} fade{{ /if }}{{ if $gimme->article->horizontal && not $gimme->article->fade }} horizontal{{ /if }}{{ if $gimme->article->fullscreen }} full{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
+
+  {{ if $gimme->browser->ua_type != "mobile" }}
+    {{ include file="_tpl/_storyteller/ambient.tpl" }}
+  {{ /if }}
+  {{ list_related_articles }}
+    {{ if $gimme->current_list->at_beginning }}
+      <ul class="slides">
+    {{ /if }}
+        <li name="{{ $gimme->article->number }}" {{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}class="{{ /if }}{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}{{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}"{{ /if }}>
+          {{ include file="_tpl/_storyteller/slide.tpl" }}
+        </li>
+    {{ if $gimme->current_list->at_end }}
+      </ul>
+    {{ /if }}
+  {{ /list_related_articles }}
+
+  {{*
   {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
     {{ foreach $slideshow->items as $item name=insideslideshow }}
       {{ if $smarty.foreach.insideslideshow.first }}
@@ -54,5 +71,7 @@
       {{ /if }}
     {{ /foreach }}
   {{ /foreach }}
+  *}}
+
   </section>
 {{ /if }}

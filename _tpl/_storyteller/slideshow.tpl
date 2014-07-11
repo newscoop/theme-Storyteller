@@ -32,8 +32,32 @@
       {{ if $gimme->current_list->at_beginning }}
         <ul class="slides">
       {{ /if }}
-          <li name="{{ $gimme->article->number }}" {{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}class="{{ /if }}{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}{{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}"{{ /if }}>
-            {{ include file="_tpl/_storyteller/slide.tpl" }}
+          <li name="{{ $gimme->article->number }}">
+            {{ if $item->is_image }}
+              {{ image rendition="full" }}
+              <figure>
+                <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
+                <figcaption>
+                  {{ if !(empty($item->image->photographer)) }}
+                  <dl>
+                    <dt>{{ #photo# }}</dt>
+                      <dd>{{ $item->image->photographer }}</dd>
+                  </dl>
+                  {{ /if }}
+                  <p>{{ $item->caption }}</p>
+                </figcaption>
+              </figure>
+              {{ /image }}
+            {{ else }}
+              <div class="slideshow-video video-container" preload="none">
+                {{ if $item->extension == mp4 }}
+                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                {{ /if }}
+                {{ if $item->extension == webm }}
+                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                {{ /if }}
+              </div>
+            {{ /if }}
           </li>
       {{ if $gimme->current_list->at_end }}
         </ul>

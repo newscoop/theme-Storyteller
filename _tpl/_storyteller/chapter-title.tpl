@@ -13,7 +13,7 @@
       {{ /if }}
     </span>
     {{ if $gimme->article->video && $gimme->browser->ua_type != "mobile" }}
-      <video class="lead-video" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="none">
+      <div class="lead-video video-container" {{ if $gimme->article->loop }}data-loop="loop" {{ /if }}data-preload="none">
       {{ list_article_attachments }}
         {{ if $gimme->attachment->extension == mp4 }}
           <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
@@ -22,7 +22,7 @@
           <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
         {{ /if }}
       {{ /list_article_attachments }}
-      </video>
+      </div>
     {{ /if }}
     <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
   </article>

@@ -299,12 +299,12 @@ var storyTeller = {
   },
 
   asyncLoadVideo: function() {
-    $('video').each(function(){
-      var video = $(this);
-      var vidPar = video.parent();
+    $('.video-container').each(function(){
+      var container = $(this);
       var src = null;
-      video.find('source').each(function(){
-        src = $(this).attr('src');
+      $(container).children('source').each(function(){
+        src = $(this).attr('data-src');
+        console.log('found ' + src);
         // check for mp4 or webm capability
         if (Modernizr.video) {
           // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
@@ -321,11 +321,11 @@ var storyTeller = {
           }
         }
       });
-      video.prop('src', false);
-      $(this).find('source').remove();
-      video.attr('src', null);
-      video.attr('data-src', src);
-      video.load();
+      //video.prop('src', false);
+      //$(this).find('source').remove();
+      //video.attr('src', null);
+      $(container).attr('data-src', src);
+      //video.load();
     });
 
   },
@@ -422,40 +422,55 @@ var storyTeller = {
   triggerShutter: function(asset) {
     var that = this;
     $(asset.el).find('.lead-video').each(function(){
-      var video =  $(this)[0];
-      var videoSrc = $(video).attr('data-src');
+      var container = $(this).get(0);
+      var video = $(container).find('video').get(0);
 
-      if (!that.assetIsLive(video)) {
-        //$(video).attr('src', $(video).attr('data-video'));
-        console.log('shutter playing ' + videoSrc);
-        video.src = videoSrc;
+      if (!that.assetIsLive(container)) {
+        console.log('shutter playing ' + $(container).attr('data-src'));
+
+        $(container).addClass('fixed');
+        $(container).attr('src',  $(container).attr('data-src'));
+
+        var video = that.createVideoElement(container);
         video.load();
         video.play();
-        that.live_assets.push(video);
-        // console.log('playing video', video);
+        that.live_assets.push(container);
+
+        console.log('playing shutter video', $(video).attr('src'));
       } else {
-        //console.log('video is already playing');
+        console.log('shutter video is already playing');
       }
     });
     $(asset.el).find('.lead-video, .bgContainer').each(function(){
       $(this).addClass('fixed');
     });
+    $(asset.el).find('.lead-video').css('z-index', 9999);
   },
 
   stopShutter: function(asset) {
     var that = this;
     $(asset.el).find('.lead-video').each(function(){
-      var video =  $(this)[0];
-      video.pause();
-      // remove it from the live assets list
-      that.live_assets = $.grep(that.live_assets, function(a,i) {
-        return a.src === video.src;
-      }, true);
+      var container = $(this).get(0);
+      var video = $(container).find('video').get(0);
+      if (that.assetIsLive(container)) {
+        console.log($(container).attr('data-src'));
+        video.pause();
+        // remove it from the live assets list
+        that.live_assets = $.grep(that.live_assets, function(a,i) {
+          return $(a).attr('src') === $(video).attr('src');
+        }, true);
+
+        // we need to set video src = '' and remove video element
+        // due to known bug with chrome
+        video.src = '';
+        $(video).remove();
+      }
     });
     $(asset.el).find('.lead-video, .bgContainer').each(function(){
       $(this).removeClass('fixed');
     });
     $(asset.el).removeClass('fixed');
+    $(asset.el).find('.lead-video').css('z-index', 0);
   },
 
   triggerAmbientAudio: function(asset) {
@@ -494,41 +509,57 @@ var storyTeller = {
 
   triggerChapterTitle: function(asset) {
     var that = this;
-    var video = asset.el[0];
-    if (!that.assetIsLive(video)) {
+    var container = $(asset.el).get(0);
+    var video = $(container).find('video').get(0);
+
+    if (!that.assetIsLive(container)) {
       $(asset.bgDiv).addClass('fixed');
-      $(asset.el).addClass('fixed');
-      //$(video).attr('src', $(video).attr('data-video'));
-      console.log('chapter title playing ' + $(video).attr('data-src'));
-      video.src = $(video).attr('data-src');
+      $(container).addClass('fixed');
+      $(container).attr('src',  $(container).attr('data-src'));
+      
+      console.log('chapter title playing ' + $(container).attr('src'));
+
+      var video = this.createVideoElement(container);
       video.load();
       video.play();
-      that.live_assets.push(video);
-      //console.log('starting video');
+
+      that.live_assets.push(container);
     } else {
-      //console.log('video is already playing');
+      console.log('video is already playing');
     }
   },
 
   stopChapterTitle: function(asset) {
     var that = this;
-    var video = asset.el[0];
-    if (that.assetIsLive(video)) {
+    var container = asset.el.get(0);
+    var video = $(container).find('video').get(0);
+
+    if (that.assetIsLive(container)) {
       video.pause();
       $(video).removeClass('fixed');
       $(asset.el.bgDiv).removeClass('fixed');
+
       // remove it from the live assets list
       this.live_assets = $.grep(that.live_assets, function(a,i) {
-        return a.src === video.src;
+        return $(a).attr('src') === $(video).attr('src');
       }, true);
+
+      // we need to set video src = '' and remove video element
+      // due to known bug with chrome
+      video.src = '';
+      $(video).remove();
     }
+  },
+
+  createVideoElement: function(container) {
+    $(container).html('<video class="fixed" loop="loop" preload="none" src="' + $(container).attr('data-src') + '" ></video>"');
+    return video = $(container).find('video').get(0);
   },
 
   assetIsLive: function(asset) {
     var results = $.grep(this.live_assets, function(a) {
-        return a.src === asset.src;
+        return $(a).attr('src') === $(asset).attr('src');
     });
-    //console.log(results.length);
 
     if (results.length === 0) {
       return false;
@@ -540,7 +571,7 @@ var storyTeller = {
 
   loadChapterTitleAssets: function() {
     var that = this;
-    $('.chapter-title, .shutter .slides > li').each(function(){
+    $('.chapter-title').each(function(){
       var par = null;
       var parPos = $(this).position().top;
       var parHeight = $(this).height();

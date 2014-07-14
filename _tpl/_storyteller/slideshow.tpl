@@ -21,57 +21,66 @@
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}
+  {{ assign var="i" value="0" }}
   {{ list_related_articles }}
     {{ if $gimme->current_list->at_beginning }}
-      <ul class="slides">
-    {{ /if }}
-        <li name="{{ $gimme->article->number }}" {{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}class="{{ /if }}{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}{{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}"{{ /if }}>
-          {{ include file="_tpl/_storyteller/slide.tpl" }}
-        </li>
-    {{ if $gimme->current_list->at_end }}
-      </ul>
+      {{ $i = $i + 1 }}
     {{ /if }}
   {{ /list_related_articles }}
-
-  {{*
-  {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
-    {{ foreach $slideshow->items as $item name=insideslideshow }}
-      {{ if $smarty.foreach.insideslideshow.first }}
+  {{ if $i > 0 }}
+    {{ list_related_articles }}
+      {{ if $gimme->current_list->at_beginning }}
         <ul class="slides">
       {{ /if }}
-          <li name="{{ $gimme->article->number }}">
-            {{ if $item->is_image }}
-              {{ image rendition="full" }}
-              <figure>
-                <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
-                <figcaption>
-                  {{ if !(empty($item->image->photographer)) }}
-                  <dl>
-                    <dt>{{ #photo# }}</dt>
-                      <dd>{{ $item->image->photographer }}</dd>
-                  </dl>
-                  {{ /if }}
-                  <p>{{ $item->caption }}</p>
-                </figcaption>
-              </figure>
-              {{ /image }}
-            {{ else }}
-              <div class="slideshow-video video-container" preload="none">
-                {{ if $item->extension == mp4 }}
-                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
-                {{ /if }}
-                {{ if $item->extension == webm }}
-                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
-                {{ /if }}
-              </div>
-            {{ /if }}
+          <li name="{{ $gimme->article->number }}" {{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}class="{{ /if }}{{ if $gimme->article->dark }}dark{{ /if }}{{if $gimme->article->left_text}} left-text{{ /if }}{{if $gimme->article->right_text}} right-text{{ /if }}{{ if $gimme->article->dark || $gimme->article->left_text || $gimme->article->right_text }}"{{ /if }}>
+            {{ include file="_tpl/_storyteller/slide.tpl" }}
           </li>
-      {{ if $smarty.foreach.insideslideshow.last }}
+      {{ if $gimme->current_list->at_end }}
         </ul>
       {{ /if }}
+    {{ /list_related_articles }}
+  {{ else }}
+    {{ assign var="j" value="0" }}
+    {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
+      {{ foreach $slideshow->items as $item name=insideslideshow }}
+        {{ if $smarty.foreach.insideslideshow.first }}
+          {{ $j = $j + 1 }}
+          <ul class="slides">
+        {{ /if }}
+            <li name="{{ $gimme->article->number }}">
+              {{ if $item->is_image }}
+                {{ image rendition="full" }}
+                <figure>
+                  <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
+                  <figcaption>
+                    {{ if !(empty($item->image->photographer)) }}
+                    <dl>
+                      <dt>{{ #photo# }}</dt>
+                        <dd>{{ $item->image->photographer }}</dd>
+                    </dl>
+                    {{ /if }}
+                    <p>{{ $item->caption }}</p>
+                  </figcaption>
+                </figure>
+                {{ /image }}
+              {{ else }}
+                <div class="slideshow-video video-container" preload="none">
+                  {{ if $item->extension == mp4 }}
+                    <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                  {{ /if }}
+                  {{ if $item->extension == webm }}
+                    <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                  {{ /if }}
+                </div>
+              {{ /if }}
+            </li>
+        {{ if $smarty.foreach.insideslideshow.last }}
+          </ul>
+        {{ /if }}
+      {{ /foreach }}
     {{ /foreach }}
-  {{ /foreach }}
-  *}}
+    <!-- {{* $j *}} -->
+  {{ /if }}
 
   </section>
 {{ /if }}

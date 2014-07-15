@@ -53,38 +53,6 @@ var storyTeller = {
     // set first nav element to active
     $('header nav > ul > li:first-child a').addClass('active');
 
-    // build loader
-    var loading = function(){
-      var parent = $('body > section');
-      parent.append('<span class="loader"><span class="spinner"></span></span>');
-      parent.height(winHeight);
-      parent.css({
-        'overflow': 'hidden'
-      });
-      var loader = $('.loader');
-      var spinner = $('.spinner');
-      var i = 0;
-      var spinMe = setInterval(function(){
-        if (i == 360){
-          i = 0;
-        } else {
-          i++;
-        }
-        console.log(i);
-        var iAmt = i * 2;
-        spinner.attr('style', '-webkit-transform: rotate(' + iAmt + 'deg); -moz-transform: rotate(' + iAmt + 'deg); transform: rotate(' + iAmt + 'deg);');
-      }, 10);
-
-      // fire this when loading is complete
-      var loadingDone = function(){
-        parent.attr('style', null);
-        clearInterval(spinMe);
-        loader.remove();
-      }
-      loadingDone();
-    };
-    loading();
-
     // set resize function
     $(window).resize(function() {
       that.resizeTimer = setTimeout(function() {
@@ -123,6 +91,7 @@ var storyTeller = {
 
     this.initialized = true;
     this.hideLoading();
+    this.onScroll();
 
     if (callback) {
       callback();

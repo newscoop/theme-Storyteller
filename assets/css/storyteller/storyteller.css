@@ -332,14 +332,14 @@ h2 {
          o-border-radius: 3px;
            border-radius: 3px;
     background: #fff;
-    margin: 0 auto!important 30px;
+    margin: 0 auto 30px!important ;
     padding: 20px!important;
     box-shadow: 0 0 4px #999;
     text-align: center;
     }
   .longform .dark blockquote {
     background: #333;
-    margin: 0 auto!important 30px;
+    margin: 0 30px auto!important;
     padding: 20px!important;
     box-shadow: 0 0 4px #000;
     text-align: center;

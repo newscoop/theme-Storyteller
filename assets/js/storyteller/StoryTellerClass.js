@@ -245,7 +245,7 @@ var storyTeller = {
       if ($(this).hasClass('chapter-title')){
         var title = $(this).find('.title');
         title.css({
-          'bottom': ((winHeight / 2) - 60) + 'px'
+          'margin-top': (menuHeight * 2) + 'px'
         });
         title.after('<span class="continue">Click here to continue</span>');
       }

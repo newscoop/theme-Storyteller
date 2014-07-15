@@ -163,7 +163,7 @@ var storyTeller = {
   doActiveNav: function(currViewport) {
     var i = 0;
     $('article > section, .slides > li').each(function(){
-      var matchName = $(this).attr('name');
+      var matchName = $(this).not('.bx-clone').attr('name');
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;

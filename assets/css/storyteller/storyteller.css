@@ -775,6 +775,7 @@ table {
   empty-cells: hide;
   border-collapse: initial;
   border-spacing: 1px;
+  box-shadow: 0 0 2px #000;
   }
   .dark table {
     border: solid 1px rgba(255, 255, 255, .5);

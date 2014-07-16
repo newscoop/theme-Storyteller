@@ -391,7 +391,8 @@ h2 {
       position: relative;
       left: -10px;
       max-width: 100%;
-      max-height: auto;
+      height: auto;
+      max-height: 100%;
       background: #fff;
       padding: 20px;
       margin: 20px auto;

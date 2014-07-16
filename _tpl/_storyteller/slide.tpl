@@ -1,6 +1,6 @@
 <!-- {{ $shutter }} -->
 {{ if $gimme->article->video && $shutter == 'false' }}
-  <video class="lead-video video-container" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="true" controls>
+  <div class="lead-video video-container" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="true" controls>
   {{ list_article_attachments }}
     {{ if $gimme->attachment->extension == mp4 }}
       <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
@@ -9,7 +9,7 @@
       <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
     {{ /if }}
   {{ /list_article_attachments }}
-  </video>
+  </div>
   <span>
     {{ if $gimme->article->display_title && $gimme->article->show_title }}
       <h2>{{ $gimme->article->display_title }}</h2>

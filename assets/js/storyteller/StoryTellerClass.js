@@ -187,7 +187,6 @@ var storyTeller = {
   doSlideShows: function() {
     $('.slideshow').each(function(){
       var childrenCount = ($(this).children('ul').children('li').length);
-      console.log(childrenCount);
       if (childrenCount > 1) {
         if ($(this).hasClass('shutter')){
           // nothing

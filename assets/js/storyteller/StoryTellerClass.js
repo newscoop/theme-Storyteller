@@ -186,20 +186,26 @@ var storyTeller = {
 
   doSlideShows: function() {
     $('.slideshow').each(function(){
-      if ($(this).hasClass('shutter')){
-        // nothing
-      } else {
-        if ($(this).hasClass('fade')){
-          $(this).find('.slides').bxSlider({
-            loop: true,
-            controls: false,
-            mode: 'fade'
-          });
+      var childrenCount = ($(this).children('ul').children('li').length);
+      console.log(childrenCount);
+      if (childrenCount > 1) {
+        if ($(this).hasClass('shutter')){
+          // nothing
         } else {
-          $(this).find('.slides').bxSlider({
-            loop: true,
-            controls: false,
-          });
+          if ($(this).hasClass('fade')){
+            $(this).find('.slides').bxSlider({
+              loop: true,
+              minSlides: 2,
+              controls: false,
+              mode: 'fade'
+            });
+          } else {
+            $(this).find('.slides').bxSlider({
+              loop: true,
+              minSlides: 2,
+              controls: false
+            });
+          }
         }
       }
     });

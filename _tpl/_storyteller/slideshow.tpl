@@ -21,54 +21,66 @@
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}
-  {{ assign var="i" value="0" }}
-  {{ list_related_articles }}
-    {{ if $gimme->current_list->at_beginning }}
-      {{ $i = $i + 1 }}
-    {{ /if }}
-  {{ /list_related_articles }}
-  {{ if $i > 0 }}
-    {{ list_related_articles }}
-      {{ if $gimme->current_list->at_beginning }}
-        <ul class="slides">
-      {{ /if }}
-          <li name="{{ $gimme->article->number }}">
-            {{ if $item->is_image }}
-              {{ image rendition="full" }}
-              <figure>
-                <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
-                <figcaption>
-                  {{ if !(empty($item->image->photographer)) }}
-                  <dl>
-                    <dt>{{ #photo# }}</dt>
-                      <dd>{{ $item->image->photographer }}</dd>
-                  </dl>
-                  {{ /if }}
-                  <p>{{ $item->caption }}</p>
-                </figcaption>
-              </figure>
-              {{ /image }}
-            {{ else }}
-              <div class="slideshow-video video-container" preload="none">
-                {{ if $item->extension == mp4 }}
-                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
-                {{ /if }}
-                {{ if $item->extension == webm }}
-                  <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
-                {{ /if }}
-              </div>
-            {{ /if }}
-          </li>
-      {{ if $gimme->current_list->at_end }}
-        </ul>
-      {{ /if }}
-    {{ /list_related_articles }}
-  {{ else }}
-    {{ assign var="j" value="0" }}
+
+  {{* check for an attached slideshow *}}
+  {{ assign var="j" value="0" }}
+  {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
+    {{ foreach $slideshow->items as $item name=insideslideshow }}
+      {{ $j = $j + 1 }}
+    {{ /foreach }}
+  {{ /foreach }}
+
+  {{ if $j > 0 }}
+    <!-- it's a normal slideshow  -->
     {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
       {{ foreach $slideshow->items as $item name=insideslideshow }}
         {{ if $smarty.foreach.insideslideshow.first }}
-          {{ $j = $j + 1 }}
+          <ul class="slides">
+        {{ /if }}
+            <li>
+              {{ if $item->is_image }}
+                {{ image rendition="full" }}
+                <figure>
+                  <img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
+                  <figcaption>
+                    {{ if !(empty($item->image->photographer)) }}
+                    <dl>
+                      <dt>{{ #photo# }}</dt>
+                        <dd>{{ $item->image->photographer }}</dd>
+                    </dl>
+                    {{ /if }}
+                    <p>{{ $item->caption }}</p>
+                  </figcaption>
+                </figure>
+                {{ /image }}
+              {{ else }}
+                <div class="slideshow-video video-container" preload="none">
+                  <!-- default slideshow video -->
+                  {{ if $item->extension == mp4 }}
+                    <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                  {{ /if }}
+                  {{ if $item->extension == webm }}
+                    <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
+                  {{ /if }}
+                </div>
+              {{ /if }}
+            </li>
+        {{ if $smarty.foreach.insideslideshow.last }}
+          </ul>
+        {{ /if }}
+      {{ /foreach }}
+    {{ /foreach }}
+  {{ else }}
+    {{ assign var="i" value="0" }}
+    {{ list_related_articles }}
+      {{ if $gimme->current_list->at_beginning }}
+        {{ $i = $i + 1 }}
+      {{ /if }}
+    {{ /list_related_articles }}
+    {{ if $i > 0 }}
+      <!-- it's a custom slideshow -->
+      {{ list_related_articles }}
+        {{ if $gimme->current_list->at_beginning }}
           <ul class="slides">
         {{ /if }}
             <li name="{{ $gimme->article->number }}">
@@ -89,6 +101,7 @@
                 {{ /image }}
               {{ else }}
                 <div class="slideshow-video video-container" preload="none">
+                  <!-- custom slideshow -->
                   {{ if $item->extension == mp4 }}
                     <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
                   {{ /if }}
@@ -98,12 +111,13 @@
                 </div>
               {{ /if }}
             </li>
-        {{ if $smarty.foreach.insideslideshow.last }}
+        {{ if $gimme->current_list->at_end }}
           </ul>
         {{ /if }}
-      {{ /foreach }}
-    {{ /foreach }}
-    <!-- {{* $j *}} -->
+      {{ /list_related_articles }}
+    {{ else }}
+      <!-- there's no slideshow -->
+    {{ /if }}
   {{ /if }}
 
   </section>

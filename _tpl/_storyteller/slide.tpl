@@ -1,5 +1,6 @@
-{{ if $gimme->article->video && $gimme->browser->ua_type != "mobile" }}
-  <div class="lead-video video-container" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="none">
+<!-- {{ $shutter }} -->
+{{ if $gimme->article->video && $shutter == 'false' }}
+  <video class="lead-video video-container" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="true" controls>
   {{ list_article_attachments }}
     {{ if $gimme->attachment->extension == mp4 }}
       <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
@@ -8,7 +9,7 @@
       <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
     {{ /if }}
   {{ /list_article_attachments }}
-  </div>
+  </video>
   <span>
     {{ if $gimme->article->display_title && $gimme->article->show_title }}
       <h2>{{ $gimme->article->display_title }}</h2>
@@ -17,9 +18,6 @@
       {{ $gimme->article->full_text }}
     {{ /if }}
   </span>
-  {{ if $gimme->article->type_name == "ST_chaptitle" }}
-  <div class="bgContainer" style="background: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
-  {{ /if }}
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}
@@ -45,10 +43,8 @@
       </figcaption>
     </figure>
   {{ /image }}
-    {{ if $gimme->article->type_name == "ST_chaptitle" }}
-    <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
-    {{ /if }}
-    {{ if $gimme->browser->ua_type != "mobile" }}
-      {{ include file="_tpl/_storyteller/ambient.tpl" }}
-    {{ /if }}
+  {{ if $gimme->browser->ua_type != "mobile" }}
+    {{ include file="_tpl/_storyteller/ambient.tpl" }}
+  {{ /if }}
 {{ /if }}
+<div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>

@@ -363,7 +363,7 @@ h2 {
     position: relative;
     z-index: 1;
     background: #fff;
-    padding: 30px 0;
+    padding: 0;
     }
   .longform > section > article > section.dark {
     background: #1c1c1c;

@@ -20,6 +20,7 @@ var storyTeller = {
   collasped: false,
   resizeTimer: null,
   loading: false,
+  loopCheck: false,
 
   init: function(options, callback) {
     var that = this;
@@ -403,6 +404,7 @@ var storyTeller = {
         var video = that.createVideoElement(container);
         video.load();
         video.play();
+        that.startVideoLoop(video);
         that.live_assets.push(container);
 
         console.log('playing shutter video', $(video).attr('src'));
@@ -424,6 +426,7 @@ var storyTeller = {
       if (that.assetIsLive(container)) {
         console.log($(container).attr('data-src'));
         video.pause();
+        that.stopVideoLoop(video);
         // remove it from the live assets list
         that.live_assets = $.grep(that.live_assets, function(a,i) {
           return $(a).attr('src') === $(video).attr('src');
@@ -490,8 +493,10 @@ var storyTeller = {
 
       var video = this.createVideoElement(container);
       video.load();
+      that.loopEnd = video.duration;
       video.play();
-
+      that.startVideoLoop(video);
+ 
       that.live_assets.push(container);
     } else {
       console.log('video is already playing');
@@ -505,6 +510,7 @@ var storyTeller = {
 
     if (that.assetIsLive(container)) {
       video.pause();
+      that.stopVideoLoop(video);
       $(video).removeClass('fixed');
       $(asset.el.bgDiv).removeClass('fixed');
 
@@ -512,12 +518,28 @@ var storyTeller = {
       this.live_assets = $.grep(that.live_assets, function(a,i) {
         return $(a).attr('src') === $(video).attr('src');
       }, true);
-
       // we need to set video src = '' and remove video element
       // due to known bug with chrome
       video.src = '';
       $(video).remove();
     }
+  },
+  
+  startVideoLoop: function(video) {
+    this.stopVideoLoop();
+    this.loopCheck = setInterval(function() {
+      console.log('checking loop', video.currentTime, video.duration);
+      if (video.currentTime >= video.duration) {
+        video.load();
+        video.play();
+      }
+    }, 500);
+    return true;
+  },
+
+  stopVideoLoop: function(video) {
+    clearInterval(this.loopCheck);
+    this.loopCheck = false;
   },
 
   createVideoElement: function(container) {

@@ -1,5 +1,4 @@
-<!-- {{ $shutter }} -->
-{{ if $gimme->article->video && $shutter == 'false' }}
+{{ if $gimme->article->video }}
   <div class="lead-video video-container" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="true" controls>
   {{ list_article_attachments }}
     {{ if $gimme->attachment->extension == mp4 }}

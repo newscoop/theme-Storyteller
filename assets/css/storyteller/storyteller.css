@@ -768,6 +768,31 @@ h2 {
     box-shadow: 0 0 1px #000;
     }
 
+/* tables */
+table {
+  margin: 40px auto;
+  border: solid 1px rgba(0, 0, 0, .5);
+  empty-cells: hide;
+  border-collapse: initial;
+  border-spacing: 1px;
+  }
+  .dark table {
+    border: solid 1px rgba(255, 255, 255, .5);
+    }
+  table tr {
+    }
+    table tr td {
+      font-size: 1em;
+      padding: 20px;
+      border: solid 1px rgba(0, 0, 0, .5);
+      box-shadow: inset 0 0 2px #000;
+      }
+      .dark table tr td {
+        color: #fff;
+        border: solid 1px rgba(255, 255, 255, .5);
+        }
+
+
 /* responsive */
 /* tablets */
 

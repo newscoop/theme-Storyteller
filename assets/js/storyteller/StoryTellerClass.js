@@ -526,9 +526,9 @@ var storyTeller = {
   },
   
   startVideoLoop: function(video) {
+    console.log('starting video loop', video.duration);
     this.stopVideoLoop();
     this.loopCheck = setInterval(function() {
-      console.log('checking loop', video.currentTime, video.duration);
       if (video.currentTime >= video.duration) {
         video.load();
         video.play();

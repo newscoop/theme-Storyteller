@@ -1,5 +1,6 @@
 {{ if $gimme->article->shutter }}
   {{ assign var="shutter" value="true" }}
+  {{ assign var="full" value="true" }}
   <section name="{{ $gimme->article->number }}" class="slideshow {{ if $gimme->article->fullscreen }}full {{ /if }}{{ if $gimme->article->shutter }}shutter full {{ /if}}{{ if $gimme->article->fade }} fade{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}">
     {{ if $gimme->browser->ua_type != "mobile" }}
       {{ include file="_tpl/_storyteller/ambient.tpl" }}
@@ -19,6 +20,9 @@
 {{ else }}
   {{ assign var="shutter" value="false" }}
   <section class="slideshow{{ if $gimme->article->fade && not $gimme->article->horizontal }} fade{{ /if }}{{ if $gimme->article->horizontal && not $gimme->article->fade }} horizontal{{ /if }}{{ if $gimme->article->fullscreen }} full{{ /if }}{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
+  {{ if $gimme->article->fullscreen }}
+    {{ assign var="full" value="true" }}
+  {{ /if }}
 
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}

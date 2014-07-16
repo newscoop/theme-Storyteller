@@ -47,4 +47,6 @@
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}
 {{ /if }}
+{{ if $full == 'true' }}
 <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+{{ /if }}

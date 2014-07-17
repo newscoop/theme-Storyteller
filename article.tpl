@@ -33,6 +33,21 @@
         {{ /list_related_articles }}
         {{ /if }}
         <a href="#" class="mute">Mute</a>
+        {{ assign var="l" value="1" }}
+        {{ list_languages of_publication="true" }}
+            {{ $l = $l + 1 }}
+        {{ /list_languages }}
+        {{ list_languages of_publication="true" }}
+            {{ if $l > 1 }}
+                {{ if $gimme->current_list->at_beginning }}
+                <ul>
+                {{ /if }}
+                <li><a href="{{ uri }}/">{{ $gimme->language->name }}</a></li>
+                {{ if $gimme->current_list->at_end }}
+                </ul>
+                {{ /if }}
+            {{ /if }}
+        {{ /list_languages }}
         {{* search_form template="search.tpl" html_code="class=\"search-box\"" button_html_code="class=\"button\"" }}
             {{ camp_edit object="search" attribute="keywords" html_code="placeholder=\"input search\"" }}
         {{ /search_form *}}

@@ -41,7 +41,7 @@
         {{ list_languages of_publication="true" }}
             {{ if $l > 1 }}
                 {{ if $gimme->current_list->at_beginning }}
-                <ul>
+                <ul id="languages">
                 {{ /if }}
                 <li><a href="{{ uri }}/"{{ if $currLan == $gimme->language->code }} class="active"{{ /if }}>{{ $gimme->language->name }}</a></li>
                 {{ if $gimme->current_list->at_end }}

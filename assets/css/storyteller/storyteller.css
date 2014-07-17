@@ -166,6 +166,14 @@ h2 {
       right: 10px;
       top: 7px;
       }
+    .longform header #languages {
+      position: absolute;
+      right: 30px;
+      top: 18px;
+      }
+      .longform header #languages li {
+        display: inline;
+        }
 
   /* bgContainer */
   .bgContainer {

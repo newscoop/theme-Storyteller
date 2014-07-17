@@ -33,7 +33,8 @@
         {{ /list_related_articles }}
         {{ /if }}
         <a href="#" class="mute">Mute</a>
-        {{ assign var="l" value="1" }}
+        {{ assign var="l" value="0" }}
+        {{ assign var="currLan" value=$gimme->language->code }}
         {{ list_languages of_publication="true" }}
             {{ $l = $l + 1 }}
         {{ /list_languages }}
@@ -42,7 +43,7 @@
                 {{ if $gimme->current_list->at_beginning }}
                 <ul>
                 {{ /if }}
-                <li><a href="{{ uri }}/">{{ $gimme->language->name }}</a></li>
+                <li><a href="{{ uri }}/"{{ if $currLan == $gimme->language->code }} class="active"{{ /if }}>{{ $gimme->language->name }}</a></li>
                 {{ if $gimme->current_list->at_end }}
                 </ul>
                 {{ /if }}

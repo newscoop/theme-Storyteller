@@ -59,7 +59,11 @@
         <section>
             <article>
         {{ /if }}
-
+    {{ /list_related_articles }}
+    {{ if $gimme->browser->ua_type != "mobile" }}
+      {{ include file="_tpl/_storyteller/ambient.tpl" }}
+    {{ /if }}
+    {{ list_related_articles }}
         {{ if $gimme->article->type_name == "ST_chaptitle" }}
             {{ include file="_tpl/_storyteller/chapter-title.tpl" }}
         {{ /if }}

@@ -650,7 +650,7 @@ h2 {
                        0 0 2px #000;
           }
 /* this doesn't really rely on js as much as it does css */
-.fixed {
+/*.fixed {
   position: fixed!important;
   bottom: auto;
   top: 0;
@@ -661,8 +661,8 @@ h2 {
 .end .bgContainer.fixed {
   background-attachment: scroll;
   z-index: 1;
-  }
-.lead-video.fixed {
+  }*/
+.lead-video .fixed {
   z-index: 2!important;
   }
 .slideshow.full.shutter {

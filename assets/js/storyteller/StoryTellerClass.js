@@ -28,12 +28,6 @@ var storyTeller = {
     // build loader
     this.showLoading();
 
-    // async load assets
-    $('source').each(function() {
-      var asset = $(this);
-      $(asset).attr('src', $(asset).attr('data-src'));
-    });
-
     this.asyncLoadVideo();
     this.asyncLoadAudio();
 
@@ -46,6 +40,7 @@ var storyTeller = {
 
     // TODO: check options to see if we should skip certain asset types
     this.loadChapterTitleAssets();
+    this.loadSlideshowAssets();
     this.loadShutterAssets();
     this.loadAudioAssets();
 
@@ -109,7 +104,7 @@ var storyTeller = {
       } else {
         i++;
       }
-      //console.log(i);
+      console.log(i);
       var iAmt = i * 2;
       spinner.attr('style', '-webkit-transform: rotate(' + iAmt + 'deg); -moz-transform: rotate(' + iAmt + 'deg); transform: rotate(' + iAmt + 'deg);');
     }, 10);
@@ -296,11 +291,7 @@ var storyTeller = {
           }
         }
       });
-      //video.prop('src', false);
-      //$(this).find('source').remove();
-      //video.attr('src', null);
       $(container).attr('data-src', src);
-      //video.load();
     });
 
   },
@@ -347,9 +338,20 @@ var storyTeller = {
       // chapter-title-videos
       if (asset.type === 'chapter-title-video') {
         if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
-          that.triggerChapterTitle(asset);
+          that.triggerVideo(asset);
         } else {
-          that.stopChapterTitle(asset);
+          that.stopVideo(asset);
+          $(asset.el).find('.fixed').removeClass('fixed');
+          $(asset.el).removeClass('fixed');
+        }
+      }
+
+      // slideshow-videos
+      if (asset.type === 'slideshow-video') {
+        if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
+          that.triggerVideo(asset);
+        } else {
+          that.stopVideo(asset);
           $(asset.el).find('.fixed').removeClass('fixed');
           $(asset.el).removeClass('fixed');
         }
@@ -484,7 +486,7 @@ var storyTeller = {
     }
   },
 
-  triggerChapterTitle: function(asset) {
+  triggerVideo: function(asset) {
     var that = this;
     var container = $(asset.el).get(0);
     var video = $(container).find('video').get(0);
@@ -508,7 +510,7 @@ var storyTeller = {
     }
   },
 
-  stopChapterTitle: function(asset) {
+  stopVideo: function(asset) {
     var that = this;
     var container = asset.el.get(0);
     var video = $(container).find('video').get(0);
@@ -579,6 +581,31 @@ var storyTeller = {
         $(this).removeClass('fixed');
         var asset = {
           type: 'chapter-title-video',
+          el: $(this),
+          top: parPos,
+          bottom: parBot,
+          bgDiv: bgDiv
+        };
+        that.assets.push(asset);
+      });
+
+    });
+  },
+
+  loadSlideshowAssets: function() {
+    var that = this;
+    $('.slideshow').each(function(){
+      var par = null;
+      var parPos = $(this).position().top;
+      var parHeight = $(this).height();
+      var parBot = ((parPos + parHeight) - 10);
+      var bgDiv = $(this).find('.bgContainer');
+
+      // videos
+      $(this).find('.lead-video').each(function(){
+        $(this).removeClass('fixed');
+        var asset = {
+          type: 'slideshow-video',
           el: $(this),
           top: parPos,
           bottom: parBot,

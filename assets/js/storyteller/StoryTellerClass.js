@@ -190,14 +190,14 @@ var storyTeller = {
             $(this).find('.slides').bxSlider({
               loop: true,
               minSlides: 2,
-              controls: false,
+              controls: true,
               mode: 'fade'
             });
           } else {
             $(this).find('.slides').bxSlider({
               loop: true,
               minSlides: 2,
-              controls: false
+              controls: true
             });
           }
         }

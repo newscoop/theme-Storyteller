@@ -35,10 +35,10 @@
         <a href="#" class="mute">Mute</a>
         {{ assign var="l" value="0" }}
         {{ assign var="currLan" value=$gimme->language->code }}
-        {{ list_languages of_publication="true" }}
+        {{* list_languages of_publication="true" }}
             {{ $l = $l + 1 }}
-        {{ /list_languages }}
-        {{ list_languages of_publication="true" }}
+        {{ /list_languages *}}
+        {{* list_languages of_publication="true" }}
             {{ if $l > 1 }}
                 {{ if $gimme->current_list->at_beginning }}
                 <ul id="languages">
@@ -48,7 +48,7 @@
                 </ul>
                 {{ /if }}
             {{ /if }}
-        {{ /list_languages }}
+        {{ /list_languages *}}
         {{* search_form template="search.tpl" html_code="class=\"search-box\"" button_html_code="class=\"button\"" }}
             {{ camp_edit object="search" attribute="keywords" html_code="placeholder=\"input search\"" }}
         {{ /search_form *}}

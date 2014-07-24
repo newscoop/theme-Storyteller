@@ -278,19 +278,28 @@ var storyTeller = {
         // check for mp4 or webm capability
         if (Modernizr.video) {
           // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
-          if (Modernizr.video.h264) {
+          if (Modernizr.video.webm) {
             // check to see if the last character is a '4'
-            if (src.substr(-1) == '4'){
-              src = src;
-            }
-          } else if (Modernizr.video.webm){
-            // check to see if the last digit is an 'm'
             if (src.substr(-1) == 'm'){
               src = src;
+	      return false;
+            }
+          } else if (Modernizr.video.h264){
+            // check to see if the last digit is an 'm'
+            if (src.substr(-1) == '4'){
+              src = src;
+	      return false;
             }
           }
         }
+
+        //if (src.substr(-1) === '4'){
+	//  console.log("i should be using ", src);
+        //  src = src;
+	//  return false;
+        //}
       });
+      console.log("using source ", src);
       $(container).attr('data-src', src);
     });
 
@@ -408,7 +417,7 @@ var storyTeller = {
         $(container).addClass('fixed');
         $(container).attr('src',  $(container).attr('data-src'));
 
-        var video = that.createVideoElement(container);
+        var video = that.createVideoElement(asset, container);
         video.load();
         video.play();
         that.startVideoLoop(video);
@@ -431,7 +440,10 @@ var storyTeller = {
       var container = $(this).get(0);
       var video = $(container).find('video').get(0);
       if (that.assetIsLive(container)) {
+
         console.log($(container).attr('data-src'));
+	console.log(video);
+
         video.pause();
         that.stopVideoLoop(video);
         // remove it from the live assets list
@@ -498,7 +510,7 @@ var storyTeller = {
       
       console.log('chapter title playing ' + $(container).attr('src'));
 
-      var video = this.createVideoElement(container);
+      var video = this.createVideoElement(asset, container);
       video.load();
       that.loopEnd = video.duration;
       video.play();
@@ -515,7 +527,7 @@ var storyTeller = {
     var container = asset.el.get(0);
     var video = $(container).find('video').get(0);
 
-    if (that.assetIsLive(container)) {
+    if ((typeof video !== "undefined") && (that.assetIsLive(container))) {
       video.pause();
       that.stopVideoLoop(video);
       $(video).removeClass('fixed');
@@ -549,8 +561,21 @@ var storyTeller = {
     this.loopCheck = false;
   },
 
-  createVideoElement: function(container) {
-    $(container).html('<video class="fixed" loop="loop" preload="none" src="' + $(container).attr('data-src') + '" ></video>"');
+  createVideoElement: function(asset, container) {
+    var src = $(container).attr('data-src');
+    var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
+
+    // need to adjust video tag for browser
+    if (Modernizr.video) {
+      if (Modernizr.video.webm) {
+	// chrome and firefox
+        $(container).html('<video class="fixed" loop="loop" preload="none" src="' + src + '" ' + controls + '></video>"');
+      } else if (Modernizr.video.h264){
+	// safari
+	var autoplay = (asset.type === 'slideshow-video') ? '' : ' autoplay ';
+        $(container).html('<video class="fixed" loop="loop" ' + autoplay + controls + '><source src="' + src + '" /></video>"');
+      }
+    }
     return video = $(container).find('video').get(0);
   },
 

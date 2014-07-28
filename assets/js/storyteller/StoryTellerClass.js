@@ -564,6 +564,11 @@ var storyTeller = {
   createVideoElement: function(asset, container) {
     var src = $(container).attr('data-src');
     var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
+    var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+    
+    if (iOS) {
+      controls = ' controls ';
+    }
 
     // need to adjust video tag for browser
     if (Modernizr.video) {

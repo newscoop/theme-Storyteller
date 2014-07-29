@@ -1,6 +1,6 @@
 body {
-  font-family: 'libertine', serif;
-  letter-spacing: .05em;
+  font-family: 'roboto', serif;
+  letter-spacing: .02em;
   color: #333;
   }
 .title h1 {
@@ -30,5 +30,5 @@ cite {
   font-size: 1.2em;
   }
 cite {
-  font-family: 'libertine-italic', serif;
+  font-family: 'roboto-italic', serif;
   }

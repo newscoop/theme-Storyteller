@@ -596,6 +596,24 @@ h2 {
       right: 40px;
       }
 
+.bx-wrapper .bx-controls-direction a {
+	width: 52px !important;
+	height: 52px !important;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background-color: #333;
+	}
+	.bx-wrapper .bx-controls-direction a:hover {
+	background-color: #000;
+	}
+	.bx-wrapper .bx-prev {
+		background-position: -2px 0px !important;
+	}
+	.bx-wrapper .bx-next {
+		background-position: -65px 0px !important;
+	}
+
 .slideshow.full {
   padding: 0!important;
   }

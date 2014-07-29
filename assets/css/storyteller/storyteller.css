@@ -371,7 +371,7 @@ h2 {
     position: relative;
     z-index: 1;
     background: #fff;
-    padding: 0;
+    padding: 100px 0px 0px 0px;
     }
   .longform > section > article > section.dark {
     background: #1c1c1c;
@@ -420,6 +420,9 @@ h2 {
         }
       .longform > section > article > section figure figcaption p {
         padding: 20px;
+		font-style: italic;
+		font-size: 18px;
+		margin-bottom: 0px;
         }
   .longform figure {
     position: relative;
@@ -560,6 +563,8 @@ h2 {
     }
     .slideshow .bx-controls .bx-pager {
       z-index: 1000;
+      position: absolute;
+	  top: 0px;
       }
     .slideshow .bx-wrapper .bx-pager-item a {
       border: solid 1px #fff;

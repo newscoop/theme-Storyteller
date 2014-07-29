@@ -420,7 +420,7 @@ h2 {
         }
       .longform > section > article > section figure figcaption p {
         padding: 20px;
-		font-style: italic;
+        font-family: 'roboto-italic';
 		font-size: 18px;
 		margin-bottom: 0px;
         }
@@ -456,11 +456,11 @@ h2 {
     .longform h3,
     .longform p {
       color: #000;
-      text-shadow: 0 0 2px #fff,
-                   0 0 2px #fff,
-                   0 0 2px #fff,
-                   0 0 2px #fff,
-                   0 0 2px #fff;
+      text-shadow: 0 0 6px #fff,
+                   0 0 6px #fff,
+                   0 0 6px #fff,
+                   0 0 6px #fff,
+                   0 0 6px #fff;
       }
     .longform .dark h2 {
       position: relative;

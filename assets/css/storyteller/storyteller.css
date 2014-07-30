@@ -371,7 +371,7 @@ h2 {
     position: relative;
     z-index: 1;
     background: #fff;
-    padding: 100px 0px 0px 0px;
+    padding: 120px 0px 0px 0px;
     }
   .longform > section > article > section.dark {
     background: #1c1c1c;
@@ -456,11 +456,11 @@ h2 {
     .longform h3,
     .longform p {
       color: #000;
-      text-shadow: 0 0 6px #fff,
-                   0 0 6px #fff,
-                   0 0 6px #fff,
-                   0 0 6px #fff,
-                   0 0 6px #fff;
+      text-shadow: 0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff,
+                   0 0 2px #fff;
       }
     .longform .dark h2 {
       position: relative;
@@ -599,6 +599,7 @@ h2 {
 .bx-wrapper .bx-controls-direction a {
 	width: 52px !important;
 	height: 52px !important;
+	margin-top: -52px !important;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;

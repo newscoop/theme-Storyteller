@@ -376,6 +376,12 @@ h2 {
   .longform > section > article > section.dark {
     background: #1c1c1c;
     }
+    .longform > section > article > section.text {
+    padding: 100px 0px 0px 0px;
+    }
+    .longform > section > article > section.slideshow {
+    padding: 180px 0px 0px 0px;
+    }
     .longform > section > article > section h2,
     .longform > section > article > section h3,
     .longform > section > article > section p,
@@ -560,6 +566,8 @@ h2 {
     border: none;
     box-shadow: none;
     left: 0;
+    min-height: inherit !important;
+    display: table;
     }
     .slideshow .bx-controls .bx-pager {
       z-index: 1000;

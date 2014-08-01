@@ -422,7 +422,8 @@ var storyTeller = {
 
         // only play if this is not a slide video
 	//if (asset.type !== 'slideshow-video') {
-	if (!$(container).parents('.bx-wrapper').length > 0) {
+	//if (!$(container).parents('.bx-wrapper').length > 0) {
+	if (!$(container).parents('.slideshow').length > 0) {
           video.play();
 	}
 
@@ -526,7 +527,8 @@ var storyTeller = {
 
       // only play if this is not a slide video
       //if (asset.type !== 'slideshow-video') {
-      if (!$(container).parents('.bx-wrapper').length > 0) {
+      //if (!$(container).parents('.bx-wrapper').length > 0) {
+      if (!$(container).parents('.slideshow').length > 0) {
         video.play();
       }
 
@@ -595,7 +597,8 @@ var storyTeller = {
     }
    
     // do not autoplay videos in bx-slider (or real slideshows) 
-    if ($(container).parents('.bx-wrapper').length > 0) {
+    //if ($(container).parents('.bx-wrapper').length > 0) {
+    if ($(container).parents('.slideshow').length > 0) {
       autoplay = '';
     }
 

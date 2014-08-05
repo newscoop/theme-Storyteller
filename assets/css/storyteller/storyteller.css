@@ -430,6 +430,9 @@ h2 {
 		font-size: 18px;
 		margin-bottom: 0px;
         }
+        .longform > section > article > section.slideshow figure figcaption p {
+        	font-family: 'roboto', sans-serif;
+        }
   .longform figure {
     position: relative;
     }

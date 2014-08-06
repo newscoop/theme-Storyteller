@@ -29,22 +29,24 @@
   <meta name="keywords" content="{{ if $gimme->article->defined }}{{ $gimme->article->keywords }}{{ else }}{{$siteinfo.keywords}}{{ /if }}" />
   <!-- RSS & Pingback -->
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://{{ $gimme->publication->site }}/en/static/rss/" />
-  <link rel="shortcut icon" href="favicon.png">
-  <link rel="apple-touch-icon" href="touch-icon.png">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write("<script src='{{ url static_file="assets/js/libs/jquery.min.js" }}'>\x3C/script>")</script>
+
+  <link rel="apple-touch-icon" href="touch-icon.png">
 
   {{ if $gimme->article->type_name == "storyteller" }}
     <meta name="author" content="Pete Haughie" />
     <meta name="generator" content="Atom 0.92.0" />
     <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css" }}">
     <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/jquery.bxslider.css" }}">
+    <link rel="shortcut icon" href="{{ url static_file="assets/images/storyteller/favicon.ico" }}">
   {{ else }}
     <meta name="author" content="Ljuba Rankovic" >
     <meta name="generator" content="Bluefish 2.0.3" >
     <link rel="stylesheet" href="{{ url static_file="assets/css/main.css" }}">
     <link rel="stylesheet" href="{{ url static_file="assets/css/skin.css" }}">
+    <link rel="shortcut icon" href="favicon.png">
     {{ if $gimme->template->name == "article.tpl" }}
     <!-- styles for fancybox, used on article page -->
     <link rel="stylesheet" href="{{ url static_file='assets/css/fancybox/jquery.fancybox-1.3.4.css' }}" />

@@ -274,7 +274,8 @@ var storyTeller = {
       var src = null;
       $(container).children('source').each(function(){
         src = $(this).attr('data-src');
-        console.log('found ' + src);
+        poster = $(this).attr('data-poster')
+        console.log('found ' + src, poster);
         // check for mp4 or webm capability
         if (Modernizr.video) {
           // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
@@ -299,8 +300,8 @@ var storyTeller = {
 	//  return false;
         //}
       });
-      console.log("using source ", src);
-      $(container).attr('data-src', src);
+      console.log("using source " + src, " with poster " + poster);
+      $(container).attr('data-src', src).attr('data-poster', poster);
     });
 
   },
@@ -415,7 +416,7 @@ var storyTeller = {
         console.log('shutter playing ' + $(container).attr('data-src'));
 
         $(container).addClass('fixed');
-        $(container).attr('src',  $(container).attr('data-src'));
+        $(container).attr('src',  $(container).attr('data-src')).attr('poster', $(container).attr('data-poster'));
 
         var video = that.createVideoElement(asset, container);
         video.load();

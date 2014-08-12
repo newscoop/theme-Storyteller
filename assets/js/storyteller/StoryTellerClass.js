@@ -11,6 +11,9 @@ var doWinDimensions = function(){
   winWidth = $(window).width();
 };
 
+// set muted bool before calling it
+var muted = false;
+
 var storyTeller = {
   options: {},
   assets: [],
@@ -136,7 +139,6 @@ var storyTeller = {
     });
 
     // mute button
-    var muted = false;
     $('.mute').bind('click', function(){
       if (muted === true){
         $(this).removeClass('muted');

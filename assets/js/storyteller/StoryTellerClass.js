@@ -272,10 +272,10 @@ var storyTeller = {
     $('.video-container').each(function(){
       var container = $(this);
       var src = null;
+      var poster = null;
       $(container).children('source').each(function(){
         src = $(this).attr('data-src');
-        poster = $(this).attr('data-poster')
-        console.log('found ' + src, poster);
+        poster = $(this).parent().attr('data-poster');
         // check for mp4 or webm capability
         if (Modernizr.video) {
           // chrome > 30 can handle both mp4 and webm but mp4 is used more widely

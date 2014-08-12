@@ -422,16 +422,21 @@ var storyTeller = {
         video.load();
 
         // only play if this is not a slide video
-	//if (asset.type !== 'slideshow-video') {
-	//if (!$(container).parents('.bx-wrapper').length > 0) {
-	if (!$(container).parents('.slideshow').length > 0) {
+      	// if (asset.type !== 'slideshow-video') {
+      	// if (!$(container).parents('.bx-wrapper').length > 0) {
+      	if (!$(container).parents('.slideshow').length > 0) {
+          if (muted == true){
+            video.volume = 0;
+          } else {
+            video.volume = 1;
+          }
           video.play();
-	}
+      	}
 
-	// only manually loop if this is chrome browser
+      	// only manually loop if this is chrome browser
         if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
           that.startVideoLoop(video);
-	}
+      	}
 
         that.live_assets.push(container);
 
@@ -489,6 +494,11 @@ var storyTeller = {
       if (masterAudio.src !== src) {
         masterAudio.src = src;
       }
+      if (muted == true){
+        masterAudio.volume = 0;
+      } else {
+        masterAudio.volume = 1;
+      }
       masterAudio.play();
       that.live_assets.push(masterAudio);
     } else {
@@ -530,6 +540,11 @@ var storyTeller = {
       //if (asset.type !== 'slideshow-video') {
       //if (!$(container).parents('.bx-wrapper').length > 0) {
       if (!$(container).parents('.slideshow').length > 0) {
+        if (muted == true){
+          video.volume = 0;
+        } else {
+          video.volume = 1;
+        }
         video.play();
       }
 
@@ -572,6 +587,11 @@ var storyTeller = {
     this.loopCheck = setInterval(function() {
       if (video.currentTime >= video.duration) {
         video.load();
+        if (muted == true){
+          video.volume = 0;
+        } else {
+          video.volume = 1;
+        }
         video.play();
       }
     }, 100);

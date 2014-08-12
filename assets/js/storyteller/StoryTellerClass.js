@@ -274,10 +274,8 @@ var storyTeller = {
     $('.video-container').each(function(){
       var container = $(this);
       var src = null;
-      var poster = null;
       $(container).children('source').each(function(){
         src = $(this).attr('data-src');
-        poster = $(this).parent().attr('data-poster');
         // check for mp4 or webm capability
         if (Modernizr.video) {
           // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
@@ -285,25 +283,18 @@ var storyTeller = {
             // check to see if the last character is a '4'
             if (src.substr(-1) == 'm'){
               src = src;
-	      return false;
+      	      return false;
             }
           } else if (Modernizr.video.h264){
             // check to see if the last digit is an 'm'
             if (src.substr(-1) == '4'){
               src = src;
-	      return false;
+      	      return false;
             }
           }
         }
-
-        //if (src.substr(-1) === '4'){
-	//  console.log("i should be using ", src);
-        //  src = src;
-	//  return false;
-        //}
       });
-      // console.log("using source " + src);
-      $(container).attr('data-src', src).find('video').attr('data-poster', poster);
+      $(container).attr('data-src', src);
     });
 
   },
@@ -322,7 +313,6 @@ var storyTeller = {
         } else {
           $(this).parent().attr('data-src', src);
         }
-        //$(this).remove();
       });
     }
   },
@@ -418,7 +408,7 @@ var storyTeller = {
         console.log('shutter playing ' + $(container).attr('data-src'));
 
         $(container).addClass('fixed');
-        $(container).attr('src',  $(container).attr('data-src')).attr('poster', $(container).attr('data-poster'));
+        $(container).attr('src',  $(container).attr('data-src'));
 
         var video = that.createVideoElement(asset, container);
         video.load();
@@ -461,7 +451,6 @@ var storyTeller = {
       if (that.assetIsLive(container)) {
 
         console.log($(container).attr('data-src'));
-	console.log(video);
 
         video.pause();
         that.stopVideoLoop(video);
@@ -556,8 +545,6 @@ var storyTeller = {
       } 
 
       that.live_assets.push(container);
-    } else {
-      //console.log('video is already playing');
     }
   },
 
@@ -607,6 +594,7 @@ var storyTeller = {
 
   createVideoElement: function(asset, container) {
     var src = $(container).attr('data-src');
+    var poster = $(container).attr('data-poster');
     var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
     var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
     var autoplay = '';
@@ -620,7 +608,6 @@ var storyTeller = {
     }
    
     // do not autoplay videos in bx-slider (or real slideshows) 
-    //if ($(container).parents('.bx-wrapper').length > 0) {
     if ($(container).parents('.slideshow').length > 0) {
       autoplay = '';
     }
@@ -628,11 +615,11 @@ var storyTeller = {
     // need to adjust video tag for browser
     if (Modernizr.video) {
       if (Modernizr.video.webm) {
-	// chrome and firefox
-        $(container).html('<video class="fixed" loop="loop" preload="none" src="' + src + '" ' + autoplay + controls + '></video>"');
+    	// chrome and firefox
+        $(container).html('<video class="fixed" loop="loop" preload="none" src="' + src + '" ' + autoplay + controls + ' poster="' + poster + '"></video>"');
       } else if (Modernizr.video.h264){
-	// safari
-        $(container).html('<video class="fixed" loop="loop" ' + autoplay + controls + '><source src="' + src + '" /></video>"');
+      // safari
+        $(container).html('<video class="fixed" loop="loop" ' + autoplay + controls + ' poster="' + poster + '><source src="' + src + '" /></video>"');
       }
     }
     return video = $(container).find('video').get(0);

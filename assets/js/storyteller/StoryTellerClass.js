@@ -302,8 +302,8 @@ var storyTeller = {
 	//  return false;
         //}
       });
-      console.log("using source " + src, " with poster " + poster);
-      $(container).attr('data-src', src).attr('data-poster', poster);
+      // console.log("using source " + src);
+      $(container).attr('data-src', src).find('video').attr('data-poster', poster);
     });
 
   },

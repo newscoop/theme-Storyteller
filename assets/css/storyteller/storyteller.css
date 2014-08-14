@@ -850,6 +850,9 @@ table {
   .longform .chapter-title .title p {
     width: 75%;
     }
+  .bgContainer {
+    background-attachment: local;
+    }
   /* ipad-portrait */
   @media screen and (max-width: 896px) {
     }

@@ -14,7 +14,7 @@
   }
   .spinner {
     background: url('../../img/icon-spinner.png') center center no-repeat transparent;
-    background-size: 100%;
+    background-size: cover;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -52,7 +52,7 @@ h2 {
     left: 52px;
     top: 8px;
     background: url(../../img/icon-unmuted.png) center center no-repeat transparent!important;
-    background-size: 100%!important;
+    background-size: cover;
     display: inline-block;
     text-indent: -1000px;
     overflow: hidden;
@@ -67,7 +67,7 @@ h2 {
     top: 12px;
     left: 15px;
     background: url(../../img/icon-menu.png) center center no-repeat;
-    background-size: 100%!important;
+    background-size: cover;
     text-indent: -10000px;
     overflow: hidden;
     width: 24px;

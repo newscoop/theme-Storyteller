@@ -51,7 +51,7 @@ h2 {
     position: absolute;
     left: 52px;
     top: 8px;
-    background: url(../../img/icon-unmuted.png) center center no-repeat transparent!important;
+    background: url(../../img/icon-unmuted.png) center center no-repeat transparent;
     background-size: cover;
     display: inline-block;
     text-indent: -1000px;
@@ -60,7 +60,8 @@ h2 {
     height: 32px;
     }
     .mute.muted {
-      background-image: url(../../img/icon-muted.png)!important;
+      background-image: url(../../img/icon-muted.png);
+      background-size: cover;
       }
   #collapse {
     position: absolute;
@@ -111,11 +112,6 @@ h2 {
           min-height: 23px;
         }
       }
-  .longform header a {
-    color: #000;
-    background: none;
-    text-decoration: none;
-    }
     .longform header nav {
       margin: 8px 0 10px;
       }
@@ -141,6 +137,11 @@ h2 {
           display: block;
           margin: 0 0 0 34px;
           }
+  .longform header nav a {
+    color: #000;
+    background: none;
+    text-decoration: none;
+    }
     .longform header nav a span {
       position: absolute;
       left: 0;

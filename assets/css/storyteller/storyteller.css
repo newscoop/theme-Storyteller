@@ -742,20 +742,34 @@ h2 {
         .slideshow.full.shutter figure figcaption {
           position: absolute;
           width: 50%;
-          bottom: 12.5%;
+          bottom: 20px;
           z-index: 2;
           }
+          .slideshow.full.shutter .left-text figure figcaption,
+          .slideshow.full.shutter .right-text figure figcaption {
+            top:0;
+            bottom: 0;
+            width: 20%;
+            background: #fff;
+            }
+          .slideshow.full.shutter .dark.left-text figure figcaption,
+          .slideshow.full.shutter .dark.right-text figure figcaption {
+            background: #333;
+            }
           .slideshow.full.shutter .left-text figure figcaption {
-            width: 25%;
-            left: 7%;
+            left: 0;
             }
           .slideshow.full.shutter .right-text figure figcaption {
-            width: 25%;
-            right: 7%;
+            right: 0;
             text-align: right;
             }
           .slideshow.full.shutter figure figcaption h3 {
-            margin: 10px 0 20px;
+            margin: 10px 20px 10px;
+            }
+          .slideshow.full.shutter .left-text figure figcaption p,
+          .slideshow.full.shutter .right-text figure figcaption p {
+            text-shadow: none;
+            margin: 0 20px 10px;
             }
       .slideshow.full.shutter video {
         background: transparent;

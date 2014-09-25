@@ -600,6 +600,7 @@ var storyTeller = {
     var poster = $(container).attr('data-poster');
     var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
     var autoplay = '';
+    var loop = '';
     
     if (iOS) {
       controls = ' controls ';
@@ -607,6 +608,7 @@ var storyTeller = {
 
     if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
       autoplay = ' autoplay ';
+      loop = ' loop="loop" ';
     }
    
     // do not autoplay videos in bx-slider (or real slideshows) 
@@ -618,10 +620,10 @@ var storyTeller = {
     if (Modernizr.video) {
       if (Modernizr.video.webm) {
     	// chrome and firefox
-        $(container).html('<video class="fixed" loop="loop" preload="none" src="' + src + '" ' + autoplay + controls + ' poster="' + poster + '"></video>"');
+        $(container).html('<video class="fixed" ' + loop + ' preload="none" src="' + src + '" ' + autoplay + controls + ' poster="' + poster + '"></video>"');
       } else if (Modernizr.video.h264){
       // safari
-        $(container).html('<video class="fixed" loop="loop" ' + autoplay + controls + ' poster="' + poster + '><source src="' + src + '" /></video>"');
+        $(container).html('<video class="fixed" ' + loop + autoplay + controls + ' poster="' + poster + '><source src="' + src + '" /></video>"');
       }
     }
     return video = $(container).find('video').get(0);

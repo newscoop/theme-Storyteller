@@ -1,0 +1,97 @@
+[
+	{
+		"__description_for_redactor__" : "Microfinance in Africa, Comparison country level",
+		"map"  : {
+			"display"   : "choropleth",
+			"data"      : "microfinance_africa",
+			"legend"    : "Solde brut des prêts aggrégés en million de $",
+			"divide_by" : 1000000,
+			"prepend"   : "$",
+			"append"    : "M"
+		}
+	},
+	{
+		"__description_for_redactor__" : "Congo compared to all African countries",
+		"map"  : {
+			"display"   : "choropleth",
+			"data"      : "microfinance_africa",
+			"tooltip"   : ["Democratic Republic of the Congo"],
+			"legend"    : "Solde brut des prêts aggrégés en million de $",
+			"map_highlight" : ["Democratic Republic of the Congo"],
+			"divide_by" : 1000000,
+			"prepend"   : "$",
+			"append"    : "M"
+		}
+	},
+	{
+		"__description_for_redactor__" : "Geographic spread of microfinance insitutes - Kinshasa",
+		"map"  : {
+			"display"                   : "bubble",
+			"data"                      : "microfinance_geocoded",
+			"bubble_highlight"          : ["Kinshasa"],
+			"bubble_highlight_property" : "région",
+			"map_highlight"             : ["Democratic Republic of the Congo"],
+			"zoom"                      : {"center" : [21.204934597,-5.3317697525], "scale": 3},
+			"name"                      : "Dénomination"
+		}
+	},
+	{
+		"__description_for_redactor__" : "Geographic spread of microfinance insitutes _ Kivus",
+		"map"  : {
+			"display"   : "bubble",
+			"data"      : "microfinance_geocoded",
+			"bubble_highlight"          : ["Nord-Kivu", "Sud-Kivu"],
+			"map_highlight"             : ["Democratic Republic of the Congo"],
+			"bubble_highlight_property" : "région",
+			"zoom"                      : {"center" : [21.204934597,-5.3317697525], "scale": 3},
+			"name"                      : "Dénomination"
+		}
+	},
+	{
+		"__description_for_redactor__" : "Comparaison entre Hekima, Smico et Coopec Kitumaini",
+		"map"  : {
+			"data"      : "microfinance_kivus",
+			"display"   : "bubble",
+			"show_only" : ["Hekima", "Smico", "Coopec Kitumaini"],
+			"zoom"      : {"center" : [28.299435,-3.011658], "scale": 6},
+			"map_highlight"    : ["Democratic Republic of the Congo"],
+			"name"      : "institute",
+			"value"     : "gross loan volume",
+			"legend"    : "Solde brut des prêts en million de $",
+			"divide_by" : 1000000,
+			"prepend"   : "$",
+			"append"    : "M",
+			"colorize"  : true
+
+		}
+	},
+	{
+		"__description_for_redactor__" : "Comparaison entre Hekima, Smico et Coopec Kitumaini",
+		"map"  : {
+			"data"      : "microfinance_kivus",
+			"display"   : "bubble",
+			"show_only" : ["Hekima", "Smico", "Coopec Kitumaini"],
+			"zoom"      : {"center" : [28.299435,-3.011658], "scale": 6},
+			"map_highlight"    : ["Democratic Republic of the Congo"],
+			"name"      : "institute",
+			"value"     : "interest",
+			"legend"    : "Taux d'intérêt annuel pour un crédit professionnel à un individu en %",
+			"colorize"  : true
+		}
+	},
+	{
+		"__description_for_redactor__" : "Comparaison entre Hekima, Smico et Coopec Kitumaini",
+		"map"  : {
+			"data"      : "microfinance_kivus",
+			"display"   : "bubble",
+			"show_only" : ["Hekima", "Smico", "Coopec Kitumaini"],
+			"zoom"      : {"center" : [28.299435,-3.011658], "scale": 6},
+			"map_highlight"    : ["Democratic Republic of the Congo"],
+			"name"      : "institute",
+			"value"     : "average loan",
+			"legend"    : "moyenne des prêts en $",
+			"prepend"   : "$",
+			"colorize"  : true
+		}
+	}
+]

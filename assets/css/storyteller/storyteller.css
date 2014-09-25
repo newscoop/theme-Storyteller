@@ -840,10 +840,43 @@ table {
 
 
 /* responsive */
-/* tablets */
 
-/* iPad */
-@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width : 480px) {
+/* Styles */
+  .longform .chapter-title h1 {
+  }
+  .longform > section > article > section h2,
+  .longform > section > article > section h3,
+  .longform > section > article > section p,
+  .longform > section > article > section figure,
+  .longform > section > article > section blockquote,
+  .longform > section > article > section canvas,
+  .longform > section > article > section audio,
+  .longform > section > article > section dl {
+    width: 80%;
+  }
+  .chapter-title h1 {
+    font-size: 2em;
+    }
+  p {
+    font-size: 1em!important;
+    }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+/* Styles */
   body {
     -webkit-overflow-scrolling : touch;
     }  
@@ -854,57 +887,18 @@ table {
   .bgContainer {
     background-attachment: local;
     }
-  /* ipad-portrait */
-  @media screen and (max-width: 896px) {
-    }
-  /* ipad-landscape */
-  @media screen and (min-width: 897px) {
+}
 
-    }
-  }
+/* iPads (landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
 
-/* iPhone */
-@media screen and (max-device-width: 480px) {
-    .longform .chapter-title h1 {
-    }
-    .longform > section > article > section h2,
-    .longform > section > article > section h3,
-    .longform > section > article > section p,
-    .longform > section > article > section figure,
-    .longform > section > article > section blockquote,
-    .longform > section > article > section canvas,
-    .longform > section > article > section audio,
-    .longform > section > article > section dl {
-      width: 80%;
-    }
-    .chapter-title h1 {
-      font-size: 2em;
-      }
-    p {
-      font-size: 1em!important;
-      }
-    /* iphone-portrait */
-    @media screen and (max-width: 400px) {
-      }
-    /* iphone-landscape */
-    @media screen and (min-width: 401px) {
+/* iPads (portrait) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
 
-      }
-  }
-
-
-/* iOS specific */
-/* iPhone < 5: */
-@media screen and (device-aspect-ratio: 2/3) {
-
-  }
-
-/* iPhone 5: */
-@media screen and (device-aspect-ratio: 40/71) {
-
-  }
-
-/* iPad: */
-@media screen and (device-aspect-ratio: 3/4) {
-
-  }
+/* mobile nav - all devices 959px and fewer */
+@media only screen and (max-width: 959px) {
+}

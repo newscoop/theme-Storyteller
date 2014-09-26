@@ -3,7 +3,7 @@ if (window.microcreditDRC == null) {
 }
 
 microcreditDRC.settings = {
-  show_navigation: true,
+  show_navigation: false,
   background_color: "white",
   text_color: "black",
   storyboard: "static/storyboard.json",

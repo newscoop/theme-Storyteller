@@ -1,4 +1,12 @@
 {{ if $gimme->article->video }}
+  <span>
+    {{ if $gimme->article->display_title && $gimme->article->show_title }}
+      <h2>{{ $gimme->article->display_title }}</h2>
+    {{ /if }}
+    {{ if $gimme->article->full_text }}
+      {{ $gimme->article->full_text }}
+    {{ /if }}
+  </span>
   <div class="lead-video video-container" {{ if $gimme->article->loop }}loop="loop" {{ /if }}preload="true" controls data-poster="{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}">
   {{ list_article_attachments }}
     {{ if $gimme->attachment->extension == mp4 }}
@@ -9,14 +17,6 @@
     {{ /if }}
   {{ /list_article_attachments }}
   </div>
-  <span>
-    {{ if $gimme->article->display_title && $gimme->article->show_title }}
-      <h2>{{ $gimme->article->display_title }}</h2>
-    {{ /if }}
-    {{ if $gimme->article->full_text }}
-      {{ $gimme->article->full_text }}
-    {{ /if }}
-  </span>
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}

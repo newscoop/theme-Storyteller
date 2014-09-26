@@ -353,7 +353,7 @@ var storyTeller = {
 
       // slideshow-videos
       if (asset.type === 'slideshow-video') {
-        if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
+        if ((currViewport >= (asset.top - 10)) && (currViewport <= asset.bottom)) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);

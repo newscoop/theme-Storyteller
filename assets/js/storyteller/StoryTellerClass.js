@@ -110,7 +110,7 @@ var storyTeller = {
       } else {
         i++;
       }
-      console.log(i);
+      //console.log(i);
       var iAmt = i * 2;
       spinner.attr('style', '-webkit-transform: rotate(' + iAmt + 'deg); -moz-transform: rotate(' + iAmt + 'deg); transform: rotate(' + iAmt + 'deg);');
     }, 10);
@@ -312,9 +312,9 @@ var storyTeller = {
         var par = $(this).parent().get(0).tagName.toLowerCase();
 
         if (par == 'figure'){
-          $(this).parent().parent().attr('data-src', src);
+          $(this).parent().parent().attr('audio-src', src);
         } else {
-          $(this).parent().attr('data-src', src);
+          $(this).parent().attr('audio-src', src);
         }
       });
     }
@@ -408,7 +408,7 @@ var storyTeller = {
       var video = $(container).find('video').get(0);
 
       if (!that.assetIsLive(container)) {
-        console.log('shutter playing ' + $(container).attr('data-src'));
+        //console.log('shutter playing ' + $(container).attr('data-src'));
 
         $(container).addClass('fixed');
         $(container).attr('src',  $(container).attr('data-src'));
@@ -453,7 +453,7 @@ var storyTeller = {
       var video = $(container).find('video').get(0);
       if (that.assetIsLive(container)) {
 
-        console.log($(container).attr('data-src'));
+        //console.log($(container).attr('data-src'));
 
         video.pause();
         that.stopVideoLoop(video);
@@ -479,12 +479,11 @@ var storyTeller = {
     var that = this;
     var audio = asset.el[0];
 
-    var src = src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('data-src');
+    var src = src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('audio-src');
     var masterAudio = this.audio_master[0];
 
-    //console.log(src, asset);
-
     if (!that.assetIsLive(masterAudio)) {
+      //console.log("starting ", src);
       if (masterAudio.src !== src) {
         masterAudio.src = src;
       }
@@ -496,7 +495,7 @@ var storyTeller = {
       masterAudio.play();
       that.live_assets.push(masterAudio);
     } else {
-      //console.log('audio is already playing');
+      //console.log('playing ', src);
     }
   },
 
@@ -524,7 +523,7 @@ var storyTeller = {
       $(container).addClass('fixed');
       $(container).attr('src',  $(container).attr('data-src'));
       
-      console.log('chapter title playing ' + $(container).attr('src'));
+      //console.log('chapter title playing ' + $(container).attr('src'));
 
       var video = this.createVideoElement(asset, container);
       video.load();
@@ -574,7 +573,7 @@ var storyTeller = {
   },
   
   startVideoLoop: function(video) {
-    console.log('starting video loop', video.duration);
+    //console.log('starting video loop', video.duration);
     this.stopVideoLoop();
     this.loopCheck = setInterval(function() {
       if (video.currentTime >= video.duration) {
@@ -723,13 +722,14 @@ var storyTeller = {
   loadAudioAssets: function() {
     var that = this;
     $('section, li').each(function(){
-      if ($(this).attr('data-src')) {
+      if ($(this).attr('audio-src')) {
         var fullTop = $(this).position().top;
         var fullBot = $(this).height();
         var fullSize = fullTop + fullBot;
         var asset = {
           type: 'ambient-audio',
           el: $(this),
+	  src: $(this).attr('audio-src'),
           top: fullTop,
           bottom: fullBot,
           fullsize: fullSize

@@ -12,3 +12,4 @@ Thumbs.db
 sftp-config.json
 *.sublime-workspace
 *.sublime-project
+node_modules

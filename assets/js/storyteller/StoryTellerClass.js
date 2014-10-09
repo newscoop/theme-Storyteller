@@ -635,7 +635,7 @@ var storyTeller = {
         return $(a).attr('src') === $(asset).attr('src');
     });
 
-    if (results.length < 0) {
+    if (results.length < 1) {
       return false;
     } else {
       return true;

@@ -922,4 +922,7 @@ table {
 
 /* mobile nav - all devices 959px and fewer */
 @media only screen and (max-width: 959px) {
+  * {
+    box-sizing: content-box
+  }
 }

@@ -479,7 +479,7 @@ var storyTeller = {
     var that = this;
     var audio = asset.el[0];
 
-    var src = src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('audio-src');
+    var src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('audio-src');
     var masterAudio = this.audio_master[0];
 
     if (!that.assetIsLive(masterAudio)) {
@@ -503,8 +503,10 @@ var storyTeller = {
     var that = this;
     var audio = asset.el[0];
     var masterAudio = this.audio_master[0];
+    var src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('audio-src');
+    asset.src = src;
 
-    if (that.assetIsLive(masterAudio)) {
+    if (that.assetIsLive(asset)) {
       masterAudio.pause();
       // remove it from the live assets list
       this.live_assets = $.grep(that.live_assets, function(a,i) {
@@ -633,7 +635,7 @@ var storyTeller = {
         return $(a).attr('src') === $(asset).attr('src');
     });
 
-    if (results.length === 0) {
+    if (results.length < 1) {
       return false;
     } else {
       return true;

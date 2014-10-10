@@ -925,4 +925,13 @@ table {
   * {
     box-sizing: content-box
   }
+  .slideshow.full.shutter figure figcaption {
+    position: absolute!important;
+  }
+  .slideshow.full.shutter .left-text figure figcaption {
+    left: 0;
+  }
+  .slideshow.full.shutter .right-text figure figcaption {
+    right: 0;
+  }
 }

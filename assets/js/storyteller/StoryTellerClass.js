@@ -602,6 +602,7 @@ var storyTeller = {
     var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
     var autoplay = '';
     var loop = '';
+    var canPlayVideo = false;
     
     if (iOS) {
       controls = ' controls ';
@@ -622,11 +623,20 @@ var storyTeller = {
       if (Modernizr.video.webm) {
     	// chrome and firefox
         $(container).html('<video class="fixed" ' + loop + ' preload="none" src="' + src + '" ' + autoplay + controls + ' poster="' + poster + '"></video>"');
+        canPlayVideo = true;
       } else if (Modernizr.video.h264){
       // safari
         $(container).html('<video class="fixed" ' + loop + autoplay + controls + ' poster="' + poster + '><source src="' + src + '" /></video>"');
+        canPlayVideo = true;
       }
     }
+   
+    // if we are able to write the video element, then remove the background image 
+    if (canPlayVideo) {
+      console.log('attempting to remove background image');
+      $(container).parent().find('.bgContainer').attr('style', '');
+    }
+
     return video = $(container).find('video').get(0);
   },
 

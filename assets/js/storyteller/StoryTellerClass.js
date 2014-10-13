@@ -209,9 +209,7 @@ var storyTeller = {
       }
     });
 
-    $('.slideshow.full, .bx-viewport').css({
-      'min-height' : winHeight
-    });
+    $('.slideshow.full, .bx-viewport').attr('min-height', winHeight + ' !important');
 
     // full screen shutter slides
     $('.shutter.full .slides').each(function(){

@@ -751,7 +751,7 @@ h2 {
             top:0;
             bottom: 0;
             width: 50%;
-            background: #fff;
+            background: rgba(255, 255, 255, .8);
             }
           .slideshow.full.shutter .dark.left-text figure figcaption,
           .slideshow.full.shutter .dark.right-text figure figcaption {

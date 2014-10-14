@@ -15,10 +15,10 @@
 <![endif]-->
 
 {{ if $gimme->article->defined }}
-<script src="{{ url static_file='assets/js/article-rating.js' }}"></script>
+<script src="{{ url static_file='assets/js/article-rating.js?v=1.0' }}"></script>
 {{ /if }}
 
-<script src="{{ uri static_file="assets/js/init.js" }}"></script>
-<script src="{{ url static_file='assets/js/plugins.js' }}"></script>
-<script src="{{ url static_file='assets/js/script.js' }}"></script>
+<script src="{{ uri static_file="assets/js/init.js?v=1.0" }}"></script>
+<script src="{{ url static_file='assets/js/plugins.js?v=1.0' }}"></script>
+<script src="{{ url static_file='assets/js/script.js?v=1.0' }}"></script>
 {{ /if }}

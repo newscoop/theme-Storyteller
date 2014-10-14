@@ -219,7 +219,7 @@ var storyTeller = {
       listItems.css({
         'min-height': winHeight
       });
-      listItems.find('figure').each(function(){
+      listItems.find('figcaption').each(function(){
         $(this).css({
           'min-height' : winHeight
         });

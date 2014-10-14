@@ -25,11 +25,17 @@
 
 .longform a {
   color: #000;
-  text-decoration: none;
+  text-decoration: underline;
   }
+  .longform a:hover {
+    color: #333;
+    }
 .longform .dark a {
   color: #fff;
   }
+  .longform .dark a:hover {
+    color: #f0f0f0;
+    }
 h2 {
   margin: 0;
   }
@@ -729,7 +735,7 @@ h2 {
           display: inline;
           }
       .slideshow.full.shutter figure {
-        position: static;
+        position: relative;
         margin-bottom: 0;
         }
         .slideshow.full.shutter figure img {
@@ -748,8 +754,8 @@ h2 {
           .slideshow.full.shutter .left-text figure figcaption,
           .slideshow.full.shutter .right-text figure figcaption {
             position: relative;
-            top:0;
-            bottom: 0;
+            margin: 0 0 -20px;
+            padding: 30px 0;
             width: 50%;
             background: rgba(255, 255, 255, .8);
             }
@@ -761,7 +767,8 @@ h2 {
             left: -50%;
             }
           .slideshow.full.shutter .right-text figure figcaption {
-            right: -50%;
+            left: 100%;
+            margin: 0 0 0 20px;
             text-align: right;
             }
           .slideshow.full.shutter figure figcaption h3 {
@@ -908,7 +915,7 @@ table {
 @media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
 /* Styles */
   table {
-    width: 1000px;
+    max-width: 1000px;
   }
 }
 
@@ -916,7 +923,7 @@ table {
 @media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
 /* Styles */
   table {
-    width: 748px;
+    max-width: 748px;
   }
 }
 

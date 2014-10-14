@@ -38,14 +38,14 @@
   {{ if $gimme->article->type_name == "storyteller" }}
     <meta name="author" content="Pete Haughie" />
     <meta name="generator" content="Atom 0.92.0" />
-    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css" }}">
-    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/jquery.bxslider.css" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css?v=1.0" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/jquery.bxslider.css?v=1.0" }}">
     <link rel="shortcut icon" href="{{ url static_file="assets/images/storyteller/favicon.ico" }}">
   {{ else }}
     <meta name="author" content="Ljuba Rankovic" >
     <meta name="generator" content="Bluefish 2.0.3" >
-    <link rel="stylesheet" href="{{ url static_file="assets/css/main.css" }}">
-    <link rel="stylesheet" href="{{ url static_file="assets/css/skin.css" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/main.css?v=1.0" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/skin.css?v=1.0" }}">
     <link rel="shortcut icon" href="favicon.png">
     {{ if $gimme->template->name == "article.tpl" }}
     <!-- styles for fancybox, used on article page -->

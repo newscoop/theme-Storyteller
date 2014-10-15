@@ -219,10 +219,16 @@ var storyTeller = {
       listItems.css({
         'min-height': winHeight
       });
-      listItems.find('figcaption').each(function(){
-        $(this).css({
-          'min-height' : winHeight
-        });
+      listItems.find('figure').each(function(){
+        if ($(this).hasClass('left-text, right-text')){
+          $(this).find('figcaption').css({
+            'min-height' : winHeight
+          });
+        } else {
+          $(this).css({
+            'min-height' : winHeight
+          });
+        }
       });
       var i = 0;
       listItems.each(function(){
@@ -739,7 +745,7 @@ var storyTeller = {
         var asset = {
           type: 'ambient-audio',
           el: $(this),
-	  src: $(this).attr('audio-src'),
+          src: $(this).attr('audio-src'),
           top: fullTop,
           bottom: fullBot,
           fullsize: fullSize
@@ -765,7 +771,7 @@ $(document).ready(function(){
   };
   storyTeller.init(options, function() {
     // do whatever we want to do after the storyTeller init
-    //console.log(storyTeller.assets);
+    // console.log(storyTeller.assets);
     // console.log('storyTeller loaded');
   });
 

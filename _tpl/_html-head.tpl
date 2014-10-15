@@ -38,9 +38,16 @@
   {{ if $gimme->article->type_name == "storyteller" }}
     <meta name="author" content="Pete Haughie" />
     <meta name="generator" content="Atom 0.92.0" />
-    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css?v=1.1.0" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css?v=1.1.1" }}">
     <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/jquery.bxslider.css?v=1.0" }}">
     <link rel="shortcut icon" href="{{ url static_file="assets/images/storyteller/favicon.ico" }}">
+    <styles>
+      <!--
+       html, body {
+        display: none;
+      }
+      -->
+    </styles>
   {{ else }}
     <meta name="author" content="Ljuba Rankovic" >
     <meta name="generator" content="Bluefish 2.0.3" >

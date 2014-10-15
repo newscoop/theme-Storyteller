@@ -220,12 +220,11 @@ var storyTeller = {
         'min-height': winHeight
       });
       listItems.find('figure').each(function(){
+        $(this).css({
+          'min-height' : winHeight
+        });
         if ($(this).hasClass('left-text, right-text')){
           $(this).find('figcaption').css({
-            'min-height' : winHeight
-          });
-        } else {
-          $(this).css({
             'min-height' : winHeight
           });
         }

@@ -223,7 +223,7 @@ var storyTeller = {
         $(this).css({
           'min-height' : winHeight
         });
-        if ($(this).hasClass('left-text, right-text')){
+        if ($(this).parent().hasClass('left-text') || $(this).parent().hasClass('right-text')){
           $(this).find('figcaption').css({
             'min-height' : winHeight
           });

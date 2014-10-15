@@ -631,7 +631,7 @@ var storyTeller = {
    
     // if we are able to write the video element, then remove the background image 
     if (canPlayVideo) {
-      console.log('attempting to remove background image');
+      // console.log('attempting to remove background image');
       $(container).parent().find('.bgContainer').attr('style', '');
     }
 
@@ -766,7 +766,7 @@ $(document).ready(function(){
   storyTeller.init(options, function() {
     // do whatever we want to do after the storyTeller init
     //console.log(storyTeller.assets);
-    console.log('storyTeller loaded');
+    // console.log('storyTeller loaded');
   });
 
 });

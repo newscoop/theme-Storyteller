@@ -345,7 +345,7 @@ var storyTeller = {
 
       // chapter-title-videos
       if (asset.type === 'chapter-title-video') {
-        if ((currViewport >= asset.top) && (currViewport <= asset.bottom)) {
+        if ((currViewport >= (asset.top - 100)) && (currViewport <= asset.bottom)) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);
@@ -356,7 +356,7 @@ var storyTeller = {
 
       // slideshow-videos
       if (asset.type === 'slideshow-video') {
-        if ((currViewport >= (asset.top - 10)) && (currViewport <= asset.bottom)) {
+        if ((currViewport >= (asset.top - 100)) && ((currViewport - 100) <= asset.bottom)) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);
@@ -535,8 +535,6 @@ var storyTeller = {
       that.loopEnd = video.duration;
 
       // only play if this is not a slide video
-      //if (asset.type !== 'slideshow-video') {
-      //if (!$(container).parents('.bx-wrapper').length > 0) {
       if (!$(container).parents('.slideshow').length > 0) {
         if (muted == true){
           video.volume = 0;
@@ -547,7 +545,7 @@ var storyTeller = {
       }
 
       // only manually loop if this is chrome browser
-      if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+      if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) { 
         that.startVideoLoop(video);
       } 
 
@@ -611,7 +609,8 @@ var storyTeller = {
       controls = ' controls ';
     }
 
-    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+    if ((navigator.userAgent.toLowerCase().indexOf('chrome') > -1) ||
+        (navigator.userAgent.toLowerCase().indexOf('firefox') > -1)) {
       autoplay = ' autoplay ';
       loop = ' loop="loop" ';
     }

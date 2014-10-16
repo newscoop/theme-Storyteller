@@ -345,7 +345,7 @@ var storyTeller = {
 
       // chapter-title-videos
       if (asset.type === 'chapter-title-video') {
-        if ((currViewport >= (asset.top - 100)) && (currViewport <= asset.bottom)) {
+        if (((currViewport + winHeight) >= asset.top) && (currViewport <= (asset.bottom + winHeight))) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);
@@ -356,7 +356,7 @@ var storyTeller = {
 
       // slideshow-videos
       if (asset.type === 'slideshow-video') {
-        if ((currViewport >= (asset.top - 100)) && ((currViewport - 100) <= asset.bottom)) {
+        if (((currViewport + winHeight) >= asset.top) && (currViewport <= (asset.bottom + winHeight))) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);

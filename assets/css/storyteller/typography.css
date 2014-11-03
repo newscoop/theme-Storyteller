@@ -1,25 +1,25 @@
 body {
-  font-family: 'roboto', serif;
+  font-family: 'Roboto Slab', serif;
   letter-spacing: .02em;
   color: #333;
   }
 .title h1 {
-  font-family: 'roboto', sans-serif;
-  letter-spacing: -1px;
+  font-family: 'Roboto Slab', serif;
   font-size: 2em;
   }
 .title p {
-  font-family: 'roboto', sans-serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 1em;
   }
 h2 {
-  font-family: 'roboto', sans-serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 2em;
   line-height: 2em;
   letter-spacing: 0;
   }
 h3 {
-  font-family: 'roboto-bold', sans-serif;
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
   text-transform: uppercase;
   line-height: 2em;
   letter-spacing: 0;
@@ -30,5 +30,5 @@ cite {
   font-size: 1.2em;
   }
 cite {
-  font-family: 'roboto-italic', serif;
+  font-family: 'Roboto Slab', serif;
   }

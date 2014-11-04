@@ -746,7 +746,6 @@ h2 {
           }
         .slideshow.full.shutter figure figcaption {
           position: absolute;
-          width: 50%;
           bottom: 20px;
           z-index: 2;
           }

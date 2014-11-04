@@ -401,6 +401,12 @@ h2 {
       width: 50%;
       margin: 0 auto 30px;
       }
+      .longform > section > article > section .cs_img.float_left {
+        margin: 0 0 0 25%;
+        }
+      .longform > section > article > section .cs_img.float_right {
+        margin: 0 25% 0 0;
+        }
       .longform > section > article > section .cs_img p {
         margin: 0;
         width: 100%;

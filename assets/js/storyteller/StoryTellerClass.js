@@ -47,6 +47,11 @@ var storyTeller = {
     // set resize function
     $(window).resize(function() {
       that.resizeWindow();
+
+      that.doSlideShows();
+      that.doChapterTitleText();
+      that.doFullScreenObjects();
+
       that.resizeTimer = setTimeout(function() {
         that.onScroll();
       }, 100);
@@ -258,6 +263,7 @@ var storyTeller = {
         title.css({
           'margin-top': (that.menuHeight * 2) + 'px'
         });
+        // TODO: only run this once, ceck if it has been added first
         title.after('<span class="continue">Click here to continue</span>');
       }
     });

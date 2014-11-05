@@ -226,7 +226,7 @@ var storyTeller = {
         });
         if ($(this).parent().hasClass('left-text') || $(this).parent().hasClass('right-text')){
           $(this).find('figcaption').css({
-            'min-height' : winHeight
+            'min-height' : that.winHeight
           });
         }
       });

@@ -54,7 +54,7 @@ var storyTeller = {
       that.doChapterTitleText();
       that.doFullScreenObjects();
       that.doBgContainers();
-
+      that.doLeadImages();
       that.resizeTimer = setTimeout(function() {
         that.onScroll();
       }, 100);
@@ -194,6 +194,11 @@ var storyTeller = {
   doBgContainers: function() {
     $('.bgContainer').width(this.winWidth);
     $('.bgContainer').height(this.winHeight);
+  },
+
+  doLeadImages: function() {
+    $('.lead-image').width((this.winWidth / 2));
+    $('.lead-image').parent('li').width(this.winWidth);
   },
 
   doSlideShows: function() {

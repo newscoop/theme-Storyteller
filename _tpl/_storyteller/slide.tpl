@@ -23,7 +23,7 @@
 {{ else }}
   {{ image rendition="full" }}
     <figure {{ if $gimme->article->type_name == "ST_chaptitle" || $gimme->article->type_name == "ST_slide" }}class='lead-image'{{ /if }}>
-      <img src="{{ $image->src }}" width="{{ $image->width }}" height="{{ $image->height }}" rel="resizable" style="max-width: 100%" alt="{{ $image->caption }} ({{ #photo# }} {{ $image->photographer }})" />
+      <img src="{{ $image->src }}" rel="resizable" style="max-width: 100%" alt="{{ $image->caption }} ({{ #photo# }} {{ $image->photographer }})" />
       {{ if $where == "article" }}
         {{ if $image->photographer }}
           <dl>

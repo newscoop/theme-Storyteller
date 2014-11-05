@@ -196,12 +196,14 @@ $(document).ready(function(){
         $(this).find('.slides').bxSlider({
           loop: true,
           controls: false,
-          mode: 'fade'
+          mode: 'fade',
+          video: true,
         });
       } else {
         $(this).find('.slides').bxSlider({
           loop: true,
           controls: false,
+          video: true,
         });
       }
     }

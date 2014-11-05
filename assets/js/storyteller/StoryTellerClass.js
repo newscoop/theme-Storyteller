@@ -33,7 +33,8 @@ var storyTeller = {
     this.doChapterTitleText();
     this.doZindex();
     this.doFullScreenObjects();
-
+    this.doBgContainers();
+    
     // TODO: check options to see if we should skip certain asset types
     this.loadChapterTitleAssets();
     this.loadSlideshowAssets();

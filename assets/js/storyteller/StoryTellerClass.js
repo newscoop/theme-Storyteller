@@ -1,22 +1,3 @@
-// remove this from all height values
-var menuHeight = $('header').height();
-
-// define global window height and width
-var winHeight = $(window).height();
-var winWidth = $(window).width();
-
-// set function to refill those values when needed
-var doWinDimensions = function(){
-  winHeight = $(window).height();
-  winWidth = $(window).width();
-};
-
-// check for iOS
-var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
-
-// set muted bool before calling it
-var muted = false;
-
 var storyTeller = {
   options: {},
   assets: [],
@@ -27,16 +8,24 @@ var storyTeller = {
   resizeTimer: null,
   loading: false,
   loopCheck: false,
-
+  winHeight: null,
+  winWidth: null,
+  menuHeight: null,
+  iOS: null,
+  muted: false,
+  
   init: function(options, callback) {
     var that = this;
 
+    // setup screen stuff
+    this.resizeWindow();
+    this.menuHeight = $('header').height();
+    this.iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+ 
     // build loader
     this.showLoading();
-
     this.asyncLoadVideo();
     this.asyncLoadAudio();
-
     this.doMainNav();
     this.doActiveNav();
     this.doSlideShows();
@@ -57,6 +46,7 @@ var storyTeller = {
 
     // set resize function
     $(window).resize(function() {
+      that.resizeWindow();
       that.resizeTimer = setTimeout(function() {
         that.onScroll();
       }, 100);
@@ -98,6 +88,16 @@ var storyTeller = {
     if (callback) {
       callback();
     }
+  },
+
+  resizeWindow: function() {
+    this.winHeight = $(window).height();
+    this.winWidth = $(window).width();
+    return { height: this.winHeight, width: this.winWidth }
+  },
+
+  getWindowDimensions: function() {
+    return { height: this.winHeight, width: this.winWidth }
   },
 
   showLoading: function() { 
@@ -143,14 +143,14 @@ var storyTeller = {
 
     // mute button
     $('.mute').bind('click', function(){
-      if (muted === true){
+      if (that.muted === true){
         $(this).removeClass('muted');
-        muted = false;
+        that.muted = false;
         $('video, audio').each(function(){
           $(this)[0].volume = 1;
         });
       } else {
-        muted = true;
+        that.muted = true;
         $(this).addClass('muted');
         $('video, audio').each(function(){
           $(this)[0].volume = 0;
@@ -185,6 +185,7 @@ var storyTeller = {
   },
 
   doSlideShows: function() {
+    var that = this;
     $('.slideshow').each(function(){
       var childrenCount = ($(this).children('ul').children('li').length);
       if (childrenCount > 1) {
@@ -209,7 +210,7 @@ var storyTeller = {
       }
     });
 
-    $('.slideshow.full, .bx-viewport').attr('min-height', winHeight + ' !important');
+    $('.slideshow.full, .bx-viewport').attr('min-height', that.winHeight + ' !important');
 
     // full screen shutter slides
     $('.shutter.full .slides').each(function(){
@@ -217,11 +218,11 @@ var storyTeller = {
       var lastListItem = $(this).children('li').last();
       lastListItem.addClass('end');
       listItems.css({
-        'min-height': winHeight
+        'min-height': that.winHeight
       });
       listItems.find('figure').each(function(){
         $(this).css({
-          'min-height' : winHeight
+          'min-height' : that.winHeight
         });
       });
       var i = 0;
@@ -234,6 +235,7 @@ var storyTeller = {
   },
 
   doChapterTitleText: function(){
+    var that = this;
     $('section').each(function(){
       if ($(this).attr('class')){
         var paddingTop = ($(this).css('padding-top'));
@@ -242,14 +244,14 @@ var storyTeller = {
         paddingBottom = paddingBottom.replace('px','');
         var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
         $(this).css({
-          'min-height': winHeight + 'px',
-          'width': winWidth
+          'min-height': that.winHeight + 'px',
+          'width': that.winWidth
         });
       }
       if ($(this).hasClass('chapter-title')){
         var title = $(this).find('.title');
         title.css({
-          'margin-top': (menuHeight * 2) + 'px'
+          'margin-top': (that.menuHeight * 2) + 'px'
         });
         title.after('<span class="continue">Click here to continue</span>');
       }
@@ -257,14 +259,15 @@ var storyTeller = {
   },
 
   doFullScreenObjects: function() {
+    var that = this;
     $('.full').each(function(){
       $(this).find('.lead-video').each(function(){
         $(this).removeClass('fixed');
-        if (winHeight > winWidth){
+        if (that.winHeight > that.winWidth){
           $(this).width('auto');
-          $(this).height(winHeight);
+          $(this).height(that.winHeight);
         } else {
-          $(this).width(winWidth);
+          $(this).width(that.winWidth);
           $(this).height('auto');
         }
       });
@@ -340,7 +343,7 @@ var storyTeller = {
 
       // chapter-title-videos
       if (asset.type === 'chapter-title-video') {
-        if (((currViewport + winHeight) >= asset.top) && (currViewport <= (asset.bottom + winHeight))) {
+        if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= (asset.bottom + that.winHeight))) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);
@@ -351,7 +354,7 @@ var storyTeller = {
 
       // slideshow-videos
       if (asset.type === 'slideshow-video') {
-        if (((currViewport + winHeight) >= asset.top) && (currViewport <= (asset.bottom + winHeight))) {
+        if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= (asset.bottom + that.winHeight))) {
           that.triggerVideo(asset);
         } else {
           that.stopVideo(asset);
@@ -372,7 +375,7 @@ var storyTeller = {
 
       // ambient audio
       if (asset.type === 'ambient-audio') {
-        if (((currViewport + winHeight) >= asset.top) && (currViewport <= asset.fullsize)) {
+        if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= asset.fullsize)) {
           that.triggerAmbientAudio(asset);
         } else  {
           that.stopAmbientAudio(asset);
@@ -383,7 +386,7 @@ var storyTeller = {
 
       // shutters
       if (asset.type === 'shutter') {
-        if (((currViewport + winHeight) >= asset.top) && ((currViewport + winHeight) <= asset.bottom) && (currViewport <= asset.fullsize)) {
+        if (((currViewport + that.winHeight) >= asset.top) && ((currViewport + that.winHeight) <= asset.bottom) && (currViewport <= asset.fullsize)) {
           if (currViewport >= asset.top) {
             that.triggerShutter(asset);
           } else {
@@ -418,7 +421,7 @@ var storyTeller = {
       	// if (asset.type !== 'slideshow-video') {
       	// if (!$(container).parents('.bx-wrapper').length > 0) {
       	if (!$(container).parents('.slideshow').length > 0) {
-          if (muted == true){
+          if (that.muted == true){
             video.volume = 0;
           } else {
             video.volume = 1;
@@ -485,7 +488,7 @@ var storyTeller = {
       if (masterAudio.src !== src) {
         masterAudio.src = src;
       }
-      if (muted == true){
+      if (that.muted == true){
         masterAudio.volume = 0;
       } else {
         masterAudio.volume = 1;
@@ -531,7 +534,7 @@ var storyTeller = {
 
       // only play if this is not a slide video
       if (!$(container).parents('.slideshow').length > 0) {
-        if (muted == true){
+        if (that.muted == true){
           video.volume = 0;
         } else {
           video.volume = 1;
@@ -571,12 +574,13 @@ var storyTeller = {
   },
   
   startVideoLoop: function(video) {
+    var that = this;
     //console.log('starting video loop', video.duration);
     this.stopVideoLoop();
     this.loopCheck = setInterval(function() {
       if (video.currentTime >= video.duration) {
         video.load();
-        if (muted == true){
+        if (that.muted == true){
           video.volume = 0;
         } else {
           video.volume = 1;
@@ -593,6 +597,7 @@ var storyTeller = {
   },
 
   createVideoElement: function(asset, container) {
+    var that = this;
     var src = $(container).attr('data-src');
     var poster = $(container).attr('data-poster');
     var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
@@ -600,7 +605,7 @@ var storyTeller = {
     var loop = '';
     var canPlayVideo = false;
     
-    if (iOS) {
+    if (that.iOS) {
       controls = ' controls ';
     }
 
@@ -660,7 +665,7 @@ var storyTeller = {
       var bgDiv = $(this).find('.bgContainer');
 
       // videos
-      if (iOS == true){
+      if (that.iOS == true){
         if ($(this).find('table')){
           $('lead-video').remove();
         }

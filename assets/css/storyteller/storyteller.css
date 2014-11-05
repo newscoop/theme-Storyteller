@@ -699,14 +699,16 @@ h2 {
                        0 0 2px #000;
           }
 /* this doesn't really rely on js as much as it does css */
-.fixed {
+/*.fixed {
   position: fixed!important;
-  /*bottom: auto;*/
-  /*top: 0;*/
+  bottom: auto;
+  top: 0;
   }
-/*.bgContainer.fixed {
+*/
+.bgContainer.fixed {
   position: absolute!important;
   }
+/*
 .end .bgContainer.fixed {
   background-attachment: scroll;
   z-index: 1;

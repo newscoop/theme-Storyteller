@@ -706,7 +706,7 @@ h2 {
   }
 */
 .bgContainer.fixed {
-  position: absolute!important;
+  position: fixed;
   }
 /*
 .end .bgContainer.fixed {

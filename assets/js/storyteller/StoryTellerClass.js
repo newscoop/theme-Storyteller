@@ -433,6 +433,8 @@ var storyTeller = {
 
   triggerShutter: function(asset) {
     var that = this;
+    var masterAudio = this.audio_master[0];
+
     $(asset.el).find('.lead-video').each(function(){
       var container = $(this).get(0);
       var video = $(container).find('video').get(0);
@@ -455,6 +457,7 @@ var storyTeller = {
           } else {
             video.volume = 1;
           }
+          masterAudio.pause();
           video.play();
       	}
 
@@ -549,6 +552,7 @@ var storyTeller = {
     var that = this;
     var container = $(asset.el).get(0);
     var video = $(container).find('video').get(0);
+    var masterAudio = this.audio_master[0];
 
     if (!that.assetIsLive(container)) {
       $(asset.bgDiv).addClass('fixed');
@@ -568,6 +572,7 @@ var storyTeller = {
         } else {
           video.volume = 1;
         }
+        masterAudio.pause();
         video.play();
       }
 
@@ -633,7 +638,8 @@ var storyTeller = {
     var autoplay = '';
     var loop = '';
     var canPlayVideo = false;
-    
+    var masterAudio = this.audio_master[0];
+  
     if (that.iOS) {
       controls = ' controls ';
     }
@@ -673,6 +679,11 @@ var storyTeller = {
       var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
       that.fullScreenVideo = state;
     });
+
+    $(video).bind('play', function () { 
+      masterAudio.pause();
+    });
+
     return video;
   },
 

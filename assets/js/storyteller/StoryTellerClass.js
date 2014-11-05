@@ -264,7 +264,9 @@ var storyTeller = {
           'margin-top': (that.menuHeight * 2) + 'px'
         });
         // TODO: only run this once, ceck if it has been added first
-        title.after('<span class="continue">Click here to continue</span>');
+        if (!title.next().hasClass('continue')) {
+          title.after('<span class="continue">Click here to continue</span>');
+        }
       }
     });
   },

@@ -13,6 +13,7 @@ var storyTeller = {
   menuHeight: null,
   iOS: null,
   muted: false,
+  fullScreenVideo: false,
   
   init: function(options, callback) {
     var that = this;
@@ -84,7 +85,6 @@ var storyTeller = {
       });
       return false;
     });
-
 
     this.initialized = true;
     this.hideLoading();
@@ -359,7 +359,9 @@ var storyTeller = {
         if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= (asset.bottom + that.winHeight))) {
           that.triggerVideo(asset);
         } else {
-          that.stopVideo(asset);
+          if (!that.fullScreenVideo) {
+            that.stopVideo(asset);
+          }
           $(asset.el).find('.fixed').removeClass('fixed');
           $(asset.el).removeClass('fixed');
         }
@@ -370,7 +372,9 @@ var storyTeller = {
         if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= (asset.bottom + that.winHeight))) {
           that.triggerVideo(asset);
         } else {
-          that.stopVideo(asset);
+          if (!that.fullScreenVideo) {
+            that.stopVideo(asset);
+          }
           $(asset.el).find('.fixed').removeClass('fixed');
           $(asset.el).removeClass('fixed');
         }
@@ -652,7 +656,12 @@ var storyTeller = {
       $(container).parent().find('.bgContainer').attr('style', '');
     }
 
-    return video = $(container).find('video').get(0);
+    var video = $(container).find('video').get(0);
+    $(video).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
+      var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+      that.fullScreenVideo = state;
+    });
+    return video;
   },
 
   assetIsLive: function(asset) {

@@ -227,6 +227,7 @@ var storyTeller = {
       }
     });
 
+    $('.slides').find('li').width(that.winWidth);
     $('.slideshow.full, .bx-viewport').attr('min-height', that.winHeight + ' !important');
 
     // full screen shutter slides

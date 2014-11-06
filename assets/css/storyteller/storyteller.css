@@ -192,7 +192,7 @@ h2 {
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    /* background-size: cover;  sizing done with js now*/
     background-attachment: fixed;
     }
 

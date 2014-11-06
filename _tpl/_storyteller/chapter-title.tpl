@@ -24,7 +24,7 @@
       {{ /list_article_attachments }}
       </div>
     {{ /if }}
-    <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+    <div class="bgContainer" data-background-image="{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}"></div>
   </article>
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}

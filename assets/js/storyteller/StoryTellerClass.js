@@ -192,8 +192,17 @@ var storyTeller = {
   },
 
   doBgContainers: function() {
-    $('.bgContainer').width(this.winWidth);
-    $('.bgContainer').height(this.winHeight);
+    var that = this;
+    $('.bgContainer').each(function() {
+      var imageUrl = $(this).attr('data-background-image');
+
+      $(this).css({
+        "background-image": "url('" + imageUrl + "')",
+        "background-size": "auto " + that.winHeight + "px",
+        "width": that.winWidth,
+        "height": that.winHeight
+      });
+    });
   },
 
   doLeadImages: function() {
@@ -671,7 +680,7 @@ var storyTeller = {
    
     // if we are able to write the video element, then remove the background image 
     if (canPlayVideo) {
-      // console.log('attempting to remove background image');
+      console.log('removing bgContainer styles');
       $(container).parent().find('.bgContainer').attr('style', '');
     }
 

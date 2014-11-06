@@ -897,11 +897,31 @@ table {
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) {
 /* Styles */
+  body {
+    -webkit-overflow-scrolling : touch;
+    }  
+  .longform .chapter-title .title h1,
+  .longform .chapter-title .title p {
+    width: 75%;
+    }
+  .bgContainer {
+    background-attachment: local;
+    }
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
+  body {
+    -webkit-overflow-scrolling : touch;
+    }  
+  .longform .chapter-title .title h1,
+  .longform .chapter-title .title p {
+    width: 75%;
+    }
+  .bgContainer {
+    background-attachment: local;
+    }
 }
 
 /* iPads (portrait and landscape) ----------- */

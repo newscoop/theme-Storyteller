@@ -1,6 +1,6 @@
 @import url("fonts.css");
 @import url("reset.css");
-@import url("typography.css");
+@import url("typography.css?v=1.0");
 
 /* page loader */
 .loader {

@@ -39,7 +39,7 @@
   {{ if $gimme->article->type_name == "storyteller" }}
     <meta name="author" content="Pete Haughie" />
     <meta name="generator" content="Atom 0.92.0" />
-    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css?v=1.1.2" }}">
+    <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/storyteller.css?v=1.1.3" }}">
     <link rel="stylesheet" href="{{ url static_file="assets/css/storyteller/jquery.bxslider.css?v=1.0" }}">
     <link rel="shortcut icon" href="{{ url static_file="assets/images/storyteller/favicon.ico" }}">
     <styles>

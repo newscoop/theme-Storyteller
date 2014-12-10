@@ -553,7 +553,7 @@ var storyTeller = {
     var that = this;
     var container = $(asset.el).get(0);
     var video = $(container).find('video').get(0);
-    var masterAudio = this.audio_master[0];
+    var masterAudio = (this.audio_master) ? this.audio_master[0] : null;
 
     if (!that.assetIsLive(container)) {
       $(asset.bgDiv).addClass('fixed');
@@ -573,7 +573,9 @@ var storyTeller = {
         } else {
           video.volume = 1;
         }
-        masterAudio.pause();
+        if (masterAudio) {
+            masterAudio.pause();
+        }
         video.play();
       }
 
@@ -639,7 +641,7 @@ var storyTeller = {
     var autoplay = '';
     var loop = '';
     var canPlayVideo = false;
-    var masterAudio = this.audio_master[0];
+    var masterAudio = (this.audio_master) ? this.audio_master[0] : null;
   
     if (that.iOS) {
       controls = ' controls ';
@@ -681,8 +683,10 @@ var storyTeller = {
       that.fullScreenVideo = state;
     });
 
-    $(video).bind('play', function () { 
-      masterAudio.pause();
+    $(video).bind('play', function () {
+      if (masterAudio) { 
+        masterAudio.pause();
+      }
     });
 
     return video;

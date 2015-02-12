@@ -12,9 +12,5 @@
 {{ /list_playlist_articles }}
 
 {{ list_articles constraints="number is $artNum" }}
-{{ if $gimme->language->code == "en" }}
-  {{ include file="layout.tpl" }}
-{{ else }}
   {{ include file="article.tpl" }}
-{{ /if }}
 {{ /list_articles }}

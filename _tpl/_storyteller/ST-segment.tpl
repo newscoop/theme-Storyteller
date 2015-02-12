@@ -6,9 +6,9 @@
           {{ $gimme->article->display_title }}
         {{ /if }}
       </h1>
-      {{ if $gimme->article->deck }}
+      {{ if $gimme->article->text_block }}
         <div>
-          {{ $gimme->article->deck }}
+          {{ $gimme->article->text_block }}
         </div>
       {{ /if }}
     </span>

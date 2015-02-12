@@ -44,16 +44,13 @@
       {{ include file="_tpl/_storyteller/ambient.tpl" }}
     {{ /if }}
     {{ list_related_articles }}
-        {{ if $gimme->article->type_name == "ST_chaptitle" }}
-        	{{ include file="_tpl/_storyteller/_edit-article.tpl" }}
-            {{ include file="_tpl/_storyteller/chapter-title.tpl" }}
+        {{ if $gimme->article->type_name == "ST_element" }}
+            {{ include file="_tpl/_storyteller/ST-segment.tpl" }}
         {{ /if }}
         {{ if $gimme->article->type_name == "ST_textblock" }}
-        	{{ include file="_tpl/_storyteller/_edit-article.tpl" }}
             {{ include file="_tpl/_storyteller/text-block.tpl" }}
         {{ /if }}
-        {{ if $gimme->article->type_name == "ST_slideshow" }}
-        	{{ include file="_tpl/_storyteller/_edit-article.tpl" }}
+        {{ if $gimme->article->slideshow }}
             {{ include file="_tpl/_storyteller/slideshow.tpl" }}
         {{ /if }}
 

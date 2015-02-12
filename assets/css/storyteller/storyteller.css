@@ -40,15 +40,16 @@ h2 {
   margin: 0;
   }
   .longform header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    z-index: 1000;
-    padding: 5px 5px 0 90px;
-    box-shadow: 0 0 3px #000;
-    min-height: 47px;
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0px;
+width: 120px;
+background: white;
+z-index: 1000;
+padding: 0px;
+box-shadow: 0 0 3px #000;
+min-height: 47px;
     }
   #home {
     display: none;
@@ -56,7 +57,7 @@ h2 {
   .mute {
     position: absolute;
     left: 52px;
-    top: 8px;
+    bottom: 8px;
     background: url(../../img/icon-unmuted.png) center center no-repeat transparent;
     background-size: cover;
     display: inline-block;
@@ -70,6 +71,7 @@ h2 {
       background-size: cover;
       }
   #collapse {
+  	display: none;
     position: absolute;
     top: 12px;
     left: 15px;

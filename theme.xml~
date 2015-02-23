@@ -19,7 +19,6 @@
   	<rendition name="fullscreen" width="1920" height="1200" specs="crop"/>
     <rendition name="video" width="1920" height="1080" specs="crop"/>
     <rendition name="slideshow" width="1200" height="800" specs="crop"/>
-    <rendition name="sidebar" width="215" height="115" specs="crop"/>
   </renditions>
 </theme>
 

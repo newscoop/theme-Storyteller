@@ -1,14 +1,15 @@
-<section class="chapter-title{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
+<section class="chapter-title{{ if $where == "coverSlide" }} coverSlide{{ /if }}" name="{{ $gimme->article->number }}" >
   <article>
     <span class="title">
       <h1>
         {{ if $gimme->article->display_title }}
+          {{ if $isChapter }}Chapter #{{ $chapterNo }}: {{ /if }}
           {{ $gimme->article->display_title }}
         {{ /if }}
       </h1>
-      {{ if $gimme->article->deck }}
+      {{ if $gimme->article->text_block }}
         <div>
-          {{ $gimme->article->deck }}
+          {{ $gimme->article->text_block }}
         </div>
       {{ /if }}
     </span>

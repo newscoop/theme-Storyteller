@@ -40,15 +40,16 @@ h2 {
   margin: 0;
   }
   .longform header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    z-index: 1000;
-    padding: 5px 5px 0 90px;
-    box-shadow: 0 0 3px #000;
-    min-height: 47px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0px;
+	width: 120px;
+	background: rgba(51, 51, 51, 0.95);
+	z-index: 1000;
+	padding: 0px;
+	box-shadow: 0 0 3px #000;
+	min-height: 47px;
     }
   #home {
     display: none;
@@ -56,7 +57,7 @@ h2 {
   .mute {
     position: absolute;
     left: 52px;
-    top: 8px;
+    bottom: 8px;
     background: url(../../img/icon-unmuted.png) center center no-repeat transparent;
     background-size: cover;
     display: inline-block;
@@ -70,6 +71,7 @@ h2 {
       background-size: cover;
       }
   #collapse {
+  	display: none;
     position: absolute;
     top: 12px;
     left: 15px;
@@ -121,53 +123,84 @@ h2 {
     .longform header nav {
       margin: 8px 0 10px;
       }
+      .longform header nav ul {
+      	float: left;
+      }
       .longform header nav li {
-        position: relative;
-        line-height: 1.7em;
-        text-indent: 34px;
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        overflow: hidden;
-        margin: 0 0 1px;
+			position: relative;
+			line-height: 1.4em;
+			display: block;
+			margin: 0 0 1px;
+			float: left;
+      width: 100%;
         }
-        .longform header nav li.child {
-          display: none;
-          }
+        .longform header nav li a {
+			padding: 5px 10px 5px 0px;
+			display: block;
+			float: left;
+        }
+        .longform header nav li a:hover {
+        	background: rgba(85, 85, 85, 0.95);
+        }
+
       .longform header nav.active li {
         display: block;
         width: auto;
         height: auto;
         }
-        .longform header nav.active li.child {
-          display: block;
-          margin: 0 0 0 34px;
-          }
+        .longform header nav ul li ul {
+        	display: none;
+    			position: absolute;
+    			top: 0px;
+    			right: 119px;
+        	width: 215px;
+        	background: rgba(85, 85, 85, 0.95);
+        	font-weight: 300;
+        }
+        .longform header nav ul li ul li a {
+          padding-left: 20px;
+          float: none;
+        }
+        .longform header nav ul li ul li a:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .longform header nav ul li:hover ul {
+        	display: block;
+        }
+        .longform header nav ul li ul figure {
+          margin-top: 4px;
+          margin-bottom: 0px;
+        }
+        .longform header nav ul li ul figure a {
+          padding: 0px;
+        }
   .longform header nav a {
-    color: #000;
+    color: #fff;
     background: none;
     text-decoration: none;
+    font-size: 14px;
     }
     .longform header nav a span {
-      position: absolute;
-      left: 0;
-      text-align: center;
-      text-indent: 0;
-      width: 24px;
-      height: 24px;
-      background: #999;
-      color: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      line-height: 23px;
-      font-size: .75em;
+	text-align: center;
+	text-indent: 0;
+	width: 24px;
+	color: #999999;
+	overflow: hidden;
+	padding: 10px 4px;
+	float: left;
       }
     .longform header nav a:hover {
-      text-decoration: underline;
+      color: #fff;
       }
     .longform header nav a.active span {
-      background: #333;
+      color: #fff;
       }
+      .longform header nav a p {
+	  text-shadow: none;
+	  float: right;
+	  width: 72px;
+	  margin: 5px 0px 0px 5px;
+	  }
     .longform header .search-box {
       position: absolute;
       right: 10px;
@@ -195,6 +228,22 @@ h2 {
     background-size: cover;
     background-attachment: fixed;
     }
+  
+  /* Cover title */
+  .longform .chapter-title.coverSlide .title {
+  	position: absolute;
+  	bottom: 10%;
+  }
+  .longform .chapter-title.coverSlide .title h1 {
+	margin-bottom: 25px;
+  }
+  .longform .chapter-title.coverSlide .title p {
+  	font-size: 22px;
+  }
+  .longform .chapter-title.coverSlide .continue {
+  	position: absolute;
+  	bottom: 5%;
+  }
 
   /* chapter title */
   .longform .chapter-title {
@@ -206,31 +255,19 @@ h2 {
     position: relative;
     width: 100%;
     display: block;
-    z-index: 3;
+    z-index: 4;
     margin-top: 50px;
     }
   .longform .chapter-title h1 {
     position: relative;
-    text-align: center;
     width: 50%;
-    margin: 0 auto 50px;
+    margin: 0 6% 50px;
     color: #fff;
-    text-shadow: 0px 0px 2px #000,
-                 0px 0px 2px #000,
-                 0px 0px 2px #000,
-                 0px 0px 2px #000,
-                 0px 0px 2px #000;
     padding: 0;
     }
     .longform .chapter-title p {
-      text-align: center;
-      background: none;
       color: #fff;
-      text-shadow: 0 0 2px #000,
-                   0 0 2px #000,
-                   0 0 2px #000,
-                   0 0 2px #000,
-                   0 0 2px #000;
+      margin: 0 6% 50px;
       }
   .longform .chapter-title video {
     background: transparent;
@@ -260,13 +297,13 @@ h2 {
       position: static!important;
       }
     .longform .chapter-title figcaption {
-      position: absolute;
+      /*position: absolute;
       width: 100%;
       margin: 0;
       right: 20px;
       z-index: 1;
       bottom: 0;
-      text-align: right;
+      text-align: right;*/
       }
       .longform .chapter-title figcaption dl {
         margin-top: -28px!important;
@@ -287,20 +324,14 @@ h2 {
   .longform .chapter-title .continue {
     position: relative;
     display: block;
-    left: 50%;
-    z-index: 3;
+    margin-left: 6%;
+    z-index: 4;
     width: 70px;
     height: 70px;
     overflow: hidden;
     text-indent: -10000em;
     border: solid 2px #fff;
     border-radius: 36px;
-    margin: 10px 0 30px -36px ;
-    -webkit-box-shadow: 0 0 2px #000;
-       -moz-box-shadow: 0 0 2px #000;
-        -ms-box-shadow: 0 0 2px #000;
-         -o-box-shadow: 0 0 2px #000;
-            box-shadow: 0 0 2px #000;
     background: rgba(0, 0, 0, .5);
     cursor: pointer;
     }
@@ -374,10 +405,13 @@ h2 {
       .longform blockquote cite:before {
         content: "– ";
         }
+   .longform > section > article {
+   	text-align: left;
+   }
   .longform > section > article > section {
     position: relative;
     z-index: 1;
-    background: #fff;
+    background: #222222;
     padding: 120px 0px 0px 0px;
     }
   .longform > section > article > section.dark {
@@ -387,7 +421,7 @@ h2 {
     padding: 100px 0px 0px 0px;
     }
     .longform > section > article > section.slideshow {
-    padding: 180px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
     }
     .longform > section > article > section h2,
     .longform > section > article > section h3,
@@ -399,7 +433,7 @@ h2 {
     .longform > section > article > section audio,
     .longform > section > article > section dl {
       width: 50%;
-      margin: 0 auto 30px;
+      margin: 0 6% 30px;
       }
       .longform > section > article > section .cs_img.float_left {
         margin: 0 0 0 25%;
@@ -413,6 +447,17 @@ h2 {
         }
       .longform > section > article > section .cs_img_caption {
         }
+.bg_image {
+	position: absolute;
+    background: url(../../img/storyteller/bg_image.png) left top repeat-y transparent;
+    opacity: 0.8;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 3;
+}
+
 /*
     .longform > section > article > section figure img,
     .longform > section > article > section .cs_img {
@@ -449,6 +494,8 @@ h2 {
         }
   .longform figure {
     position: relative;
+    max-width: 310px;
+    margin: 0px 0px 10px;
     }
     .longform figure figcaption dl {
       position: absolute;
@@ -478,12 +525,7 @@ h2 {
       }
     .longform h3,
     .longform p {
-      color: #000;
-      text-shadow: 0 0 2px #fff,
-                   0 0 2px #fff,
-                   0 0 2px #fff,
-                   0 0 2px #fff,
-                   0 0 2px #fff;
+      color: #fff;
       }
     .longform .dark h2 {
       position: relative;
@@ -576,7 +618,11 @@ h2 {
     box-shadow: none;
     }
 /* slideshow */
-.slideshow {
+  .slideshow {
+  
+  }
+  .bx-wrapper {
+  	position: initial !important;
   }
   .slideshow .bx-wrapper .bx-viewport {
     background: none;
@@ -586,15 +632,20 @@ h2 {
     min-height: inherit !important;
     display: table;
     }
+    .slideshow .bx-controls {
+	position: absolute;
+	bottom: 10%;
+	width: 100%;
+	max-width: 1200px;
+    }
     .slideshow .bx-controls .bx-pager {
       z-index: 1000;
       position: absolute;
 	  top: 0px;
       }
     .slideshow .bx-wrapper .bx-pager-item a {
-      border: solid 1px #fff;
       box-shadow: 0 0 2px #000;
-      background: #333!important;
+      background: #fff;
       }
     .slideshow .bx-wrapper figure h3 {
       margin: 0 0 20px;
@@ -620,6 +671,11 @@ h2 {
       left: 40px;
       right: 40px;
       }
+.slideshow .slideshowDescription p {
+  width: auto;
+  max-width: 1200px;
+  margin-top: 20px;
+}
 
 .bx-wrapper .bx-controls-direction a {
 	width: 52px !important;
@@ -628,16 +684,25 @@ h2 {
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	background-color: #333;
 	}
-	.bx-wrapper .bx-controls-direction a:hover {
-	background-color: #000;
-	}
+  .bx-wrapper .bx-controls-direction a:hover {
+    opacity: 0.8;
+  }
 	.bx-wrapper .bx-prev {
 		background-position: -2px 0px !important;
+    left: 0px !important;
 	}
 	.bx-wrapper .bx-next {
 		background-position: -65px 0px !important;
+    right: 0px !important;
+	}
+	.bx-wrapper {
+		max-width: 1200px !important;
+    margin-right: 6% !important;
+		margin-left: 6% !important;
+	}
+	.bx-wrapper .bx-viewport img {
+		height: auto;
 	}
 
 .slideshow.full {
@@ -892,6 +957,22 @@ table {
   p {
     font-size: 1em!important;
     }
+  .longform header {
+  	width: 20px;
+  }
+  .longform header nav li a {
+  	padding: 0px;
+  }
+  .longform header nav a span {
+  	font-size: 16px;
+  	width: 12px;
+  }
+  .longform header nav a p {
+  	display: none;
+  }
+  .longform header nav ul li:hover ul {
+  	display: none;
+  }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -903,6 +984,7 @@ table {
   .longform .chapter-title .title h1,
   .longform .chapter-title .title p {
     width: 75%;
+    max-width: 620px;
     }
   .bgContainer {
     background-attachment: local;
@@ -922,6 +1004,24 @@ table {
   .bgContainer {
     background-attachment: local;
     }
+}
+
+@media only screen and (max-width : 768px) and (orientation : landscape) {
+  .slideshow .slideshowDescription p {
+    position: absolute;
+    bottom: 40px;
+    padding: 10px;
+    z-index: 999;
+    background: rgba(34, 34, 34, 0.8);
+    font-size: 14px;
+  }
+
+  .slideshow .bx-controls {
+    right: 0px;
+    left: 0px;
+    bottom: 20px;
+  }
+  
 }
 
 /* iPads (portrait and landscape) ----------- */

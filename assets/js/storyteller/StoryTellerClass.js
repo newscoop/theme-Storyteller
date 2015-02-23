@@ -11,16 +11,18 @@ var storyTeller = {
   winHeight: null,
   winWidth: null,
   menuHeight: null,
+  menuWidth: null,
+  contentWidth: null,
+  contentHeight: null,
   iOS: null,
   muted: false,
   fullScreenVideo: false,
   
   init: function(options, callback) {
-    var that = this;
+    var self = this;
 
     // setup screen stuff
     this.resizeWindow();
-    this.menuHeight = $('header').height();
     this.iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
  
     // build loader
@@ -48,21 +50,22 @@ var storyTeller = {
 
     // set resize function
     $(window).resize(function() {
-      that.resizeWindow();
+      self.resizeWindow();
 
-      that.doSlideShows();
-      that.doChapterTitleText();
-      that.doFullScreenObjects();
-      that.doBgContainers();
-      that.doLeadImages();
-      that.resizeTimer = setTimeout(function() {
-        that.onScroll();
+      self.doSlideShows();
+      self.doChapterTitleText();
+      self.doChapterTitleVideo();
+      self.doFullScreenObjects();
+      self.doBgContainers();
+      self.doLeadImages();
+      self.resizeTimer = setTimeout(function() {
+        self.onScroll();
       }, 100);
     });
 
     // set scroll function
     $(window).scroll(function() {
-      that.onScroll();
+      self.onScroll();
     });
 
     // continue event handler
@@ -80,7 +83,7 @@ var storyTeller = {
       $('header nav').animate({
         'opacity': 0
       }, 500, function(){
-        that.doMainNav();
+        self.doMainNav();
         $('header nav').animate({
           'opacity': 1
         });
@@ -98,8 +101,20 @@ var storyTeller = {
   },
 
   resizeWindow: function() {
+    this.menuHeight = $('header').height();
+    this.menuWidth = $('header').width();
     this.winHeight = $(window).height();
     this.winWidth = $(window).width();
+	
+    // find out if menu is top nav, or side nav
+    if (this.menuHeight > this.menuWidth) {
+      this.contentWidth = this.winWidth - this.menuWidth;
+      this.contentHeight = this.winHeight;
+    } else {
+      this.contentHeight = this.winHeight - this.menuHeight;
+      this.contentWidth = this.winWidth;
+    }
+
     return { height: this.winHeight, width: this.winWidth }
   },
 
@@ -129,7 +144,7 @@ var storyTeller = {
   },
 
   doMainNav: function() {
-    var that = this;
+    var self = this;
     if (this.collapsed === false){
       this.collapsed = true;
       $('header nav').addClass('active');
@@ -138,26 +153,43 @@ var storyTeller = {
       $('header nav').removeClass('active');
     }
 
-    // header nav
-    $('header nav a').bind('click', function(){
+    // MARK LOOK HERE header nav
+    $('header nav a').bind('click', function(event){
       var src = $(this).attr('href').replace('#','');
       var target = ($('[name=' + src + ']').position().top + 1);
-      $('body, html').animate({
-        scrollTop: target + 'px'
-      }, 1000);
+
+      // fade transition
+      // find section at current scroll top
+      $('section').each(function() {
+        var position = $(this).position().top - $(window).scrollTop();
+	if (position <= 0) {
+	  // fade it
+	  $(this).fadeOut("slow", function() {
+            $('body, html').scrollTop(target);
+	    $(this).fadeIn("slow", function() {
+              console.log('here now');
+	    });
+	  });
+	}
+      });
+
+      // normal transition
+      //$('body, html').animate({
+      //  scrollTop: target + 'px'
+      //}, 1000);
       return false;
     });
 
     // mute button
     $('.mute').bind('click', function(){
-      if (that.muted === true){
+      if (self.muted === true){
         $(this).removeClass('muted');
-        that.muted = false;
+        self.muted = false;
         $('video, audio').each(function(){
           $(this)[0].volume = 1;
         });
       } else {
-        that.muted = true;
+        self.muted = true;
         $(this).addClass('muted');
         $('video, audio').each(function(){
           $(this)[0].volume = 0;
@@ -192,17 +224,17 @@ var storyTeller = {
   },
 
   doBgContainers: function() {
-    $('.bgContainer').width(this.winWidth);
-    $('.bgContainer').height(this.winHeight);
+    $('.bgContainer').width(this.contentWidth);
+    $('.bgContainer').height(this.contentHeight);
   },
 
   doLeadImages: function() {
-    $('.lead-image').width((this.winWidth / 2));
-    $('.lead-image').parent('li').width(this.winWidth);
+    $('.lead-image').width((this.contentWidth / 2));
+    $('.lead-image').parent('li').width(this.contentWidth);
   },
 
   doSlideShows: function() {
-    var that = this;
+    var self = this;
     $('.slideshow').each(function(){
       var childrenCount = ($(this).children('ul').children('li').length);
       if (childrenCount > 1) {
@@ -227,8 +259,22 @@ var storyTeller = {
       }
     });
 
-    $('.slides').find('li').width(that.winWidth);
-    $('.slideshow.full, .bx-viewport').attr('min-height', that.winHeight + ' !important');
+    $('.slides').css('margin', '0 auto');
+    $('.slides').find('li').width('100%');
+    $('.slides').find('li').children().css('margin', 'auto');
+    $('.slideshow.full, .bx-viewport').attr('min-height', self.winHeight + ' !important');
+
+    // apply margins to slideshows if needed
+    if (self.menuWidth < self.menuHeight) {
+      $('.bx-wrapper').css({
+	'margin-left': self.menuWidth,
+	'margin-right': self.menuWidth
+      });
+
+      $('.bx-viewport').css({
+	'margin': '0 auto'
+      });
+    }
 
     // full screen shutter slides
     $('.shutter.full .slides').each(function(){
@@ -236,15 +282,15 @@ var storyTeller = {
       var lastListItem = $(this).children('li').last();
       lastListItem.addClass('end');
       listItems.css({
-        'min-height': that.winHeight
+        'min-height': self.winHeight
       });
       listItems.find('figure').each(function(){
         $(this).css({
-          'min-height' : that.winHeight
+          'min-height' : self.winHeight
         });
         if ($(this).parent().hasClass('left-text') || $(this).parent().hasClass('right-text')){
           $(this).find('figcaption').css({
-            'min-height' : that.winHeight
+            'min-height' : self.winHeight
           });
         }
       });
@@ -258,7 +304,7 @@ var storyTeller = {
   },
 
   doChapterTitleText: function(){
-    var that = this;
+    var self = this;
     $('section').each(function(){
       if ($(this).attr('class')){
         var paddingTop = ($(this).css('padding-top'));
@@ -267,15 +313,20 @@ var storyTeller = {
         paddingBottom = paddingBottom.replace('px','');
         var paddingVertical = parseInt(paddingTop) + parseInt(paddingBottom);
         $(this).css({
-          'min-height': that.winHeight + 'px',
-          'width': that.winWidth
+          'min-height': self.contentHeight + 'px',
+          'width': self.contentWidth
         });
       }
       if ($(this).hasClass('chapter-title')){
         var title = $(this).find('.title');
-        title.css({
-          'margin-top': (that.menuHeight * 2) + 'px'
-        });
+
+	// this is only need with menu on top
+	if (self.menuWidth > self.menuHeight) {
+	  title.css({
+	    'margin-top': (self.menuHeight * 2) + 'px'
+	  });
+	}
+
         // TODO: only run this once, ceck if it has been added first
         if (!title.next().hasClass('continue')) {
           title.after('<span class="continue">Click here to continue</span>');
@@ -284,16 +335,30 @@ var storyTeller = {
     });
   },
 
+  doChapterTitleVideo: function(){
+    var self = this;
+    $('.video').each(function(){
+      if (self.winHeight > self.winWidth){
+        $(this).width('auto');
+        $(this).height(self.contentHeight);
+      } else {
+        $(this).width(self.contentWidth);
+        $(this).height('auto');
+      }
+
+    });
+  },
+
   doFullScreenObjects: function() {
-    var that = this;
+    var self = this;
     $('.full').each(function(){
       $(this).find('.lead-video').each(function(){
         $(this).removeClass('fixed');
-        if (that.winHeight > that.winWidth){
+        if (self.winHeight > self.winWidth){
           $(this).width('auto');
-          $(this).height(that.winHeight);
+          $(this).height(self.contentHeight);
         } else {
-          $(this).width(that.winWidth);
+          $(this).width(self.contentWidth);
           $(this).height('auto');
         }
       });
@@ -330,10 +395,10 @@ var storyTeller = {
   },
 
   asyncLoadAudio: function() {
-    var that = this;
+    var self = this;
     if ($('audio.ambient')[0]){
       $('body').append('<audio id="audioMaster" loop src="null" />');
-      that.audio_master = $('#audioMaster');
+      self.audio_master = $('#audioMaster');
       $('.ambient').each(function(){
         var src = $(this).attr('src');
         var par = $(this).parent().get(0).tagName.toLowerCase();
@@ -357,23 +422,23 @@ var storyTeller = {
   },
 
   onScroll: function() {
-    var that = this;
+    var self = this;
     currViewport = this.getViewport();
 
     // activeNav
     this.doActiveNav(currViewport);
 
-    // trigger assets that come into view
+    // trigger assets self come into view
     for (var a in this.assets) {
       var asset = this.assets[a];
 
       // chapter-title-videos
       if (asset.type === 'chapter-title-video') {
-        if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= (asset.bottom + that.winHeight))) {
-          that.triggerVideo(asset);
+        if (((currViewport + self.contentHeight) >= asset.top) && (currViewport <= (asset.bottom + self.contentHeight))) {
+          self.triggerVideo(asset);
         } else {
-          if (!that.fullScreenVideo) {
-            that.stopVideo(asset);
+          if (!self.fullScreenVideo) {
+            self.stopVideo(asset);
           }
           $(asset.el).find('.fixed').removeClass('fixed');
           $(asset.el).removeClass('fixed');
@@ -382,11 +447,11 @@ var storyTeller = {
 
       // slideshow-videos
       if (asset.type === 'slideshow-video') {
-        if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= (asset.bottom + that.winHeight))) {
-          that.triggerVideo(asset);
+        if (((currViewport + self.contentHeight) >= asset.top) && (currViewport <= (asset.bottom + self.contentHeight))) {
+          self.triggerVideo(asset);
         } else {
-          if (!that.fullScreenVideo) {
-            that.stopVideo(asset);
+          if (!self.fullScreenVideo) {
+            self.stopVideo(asset);
           }
           $(asset.el).find('.fixed').removeClass('fixed');
           $(asset.el).removeClass('fixed');
@@ -405,10 +470,10 @@ var storyTeller = {
 
       // ambient audio
       if (asset.type === 'ambient-audio') {
-        if (((currViewport + that.winHeight) >= asset.top) && (currViewport <= asset.fullsize)) {
-          that.triggerAmbientAudio(asset);
+        if (((currViewport + self.contentHeight) >= asset.top) && (currViewport <= asset.fullsize)) {
+          self.triggerAmbientAudio(asset);
         } else  {
-          that.stopAmbientAudio(asset);
+          self.stopAmbientAudio(asset);
           $(asset.el).find('.fixed').removeClass('fixed');
           $(asset.el).removeClass('fixed');
         }
@@ -416,11 +481,11 @@ var storyTeller = {
 
       // shutters
       if (asset.type === 'shutter') {
-        if (((currViewport + that.winHeight) >= asset.top) && ((currViewport + that.winHeight) <= asset.bottom) && (currViewport <= asset.fullsize)) {
+        if (((currViewport + self.contentHeight) >= asset.top) && ((currViewport + self.contentHeight) <= asset.bottom) && (currViewport <= asset.fullsize)) {
           if (currViewport >= asset.top) {
-            that.triggerShutter(asset);
+            self.triggerShutter(asset);
           } else {
-            that.stopShutter(asset);
+            self.stopShutter(asset);
           }
         } else {
           $(asset.el).find('.fixed').removeClass('fixed');
@@ -433,27 +498,27 @@ var storyTeller = {
   },
 
   triggerShutter: function(asset) {
-    var that = this;
+    var self = this;
     var masterAudio = this.audio_master[0];
 
     $(asset.el).find('.lead-video').each(function(){
       var container = $(this).get(0);
       var video = $(container).find('video').get(0);
 
-      if (!that.assetIsLive(container)) {
+      if (!self.assetIsLive(container)) {
         //console.log('shutter playing ' + $(container).attr('data-src'));
 
         $(container).addClass('fixed');
         $(container).attr('src',  $(container).attr('data-src'));
 
-        var video = that.createVideoElement(asset, container);
+        var video = self.createVideoElement(asset, container);
         video.load();
 
         // only play if this is not a slide video
       	// if (asset.type !== 'slideshow-video') {
       	// if (!$(container).parents('.bx-wrapper').length > 0) {
       	if (!$(container).parents('.slideshow').length > 0) {
-          if (that.muted == true){
+          if (self.muted == true){
             video.volume = 0;
           } else {
             video.volume = 1;
@@ -464,10 +529,10 @@ var storyTeller = {
 
       	// only manually loop if this is chrome browser
         if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-          that.startVideoLoop(video);
+          self.startVideoLoop(video);
       	}
 
-        that.live_assets.push(container);
+        self.live_assets.push(container);
 
         //console.log('playing shutter video', $(video).attr('src'));
       } else {
@@ -481,18 +546,18 @@ var storyTeller = {
   },
 
   stopShutter: function(asset) {
-    var that = this;
+    var self = this;
     $(asset.el).find('.lead-video').each(function(){
       var container = $(this).get(0);
       var video = $(container).find('video').get(0);
-      if (that.assetIsLive(container)) {
+      if (self.assetIsLive(container)) {
 
         //console.log($(container).attr('data-src'));
 
         video.pause();
-        that.stopVideoLoop(video);
+        self.stopVideoLoop(video);
         // remove it from the live assets list
-        that.live_assets = $.grep(that.live_assets, function(a,i) {
+        self.live_assets = $.grep(self.live_assets, function(a,i) {
           return $(a).attr('src') === $(video).attr('src');
         }, true);
 
@@ -510,52 +575,52 @@ var storyTeller = {
   },
 
   triggerAmbientAudio: function(asset) {
-    var that = this;
+    var self = this;
     var audio = asset.el[0];
 
     var src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('audio-src');
     var masterAudio = this.audio_master[0];
 
-    if (!that.assetIsLive(masterAudio)) {
+    if (!self.assetIsLive(masterAudio)) {
       //console.log("starting ", src);
       if (masterAudio.src !== src) {
         masterAudio.src = src;
       }
-      if (that.muted == true){
+      if (self.muted == true){
         masterAudio.volume = 0;
       } else {
         masterAudio.volume = 1;
       }
       masterAudio.play();
-      that.live_assets.push(masterAudio);
+      self.live_assets.push(masterAudio);
     } else {
       //console.log('playing ', src);
     }
   },
 
   stopAmbientAudio: function(asset) {
-    var that = this;
+    var self = this;
     var audio = asset.el[0];
     var masterAudio = this.audio_master[0];
     var src = location.protocol + '//' + window.location.hostname + '/' + $(audio).attr('audio-src');
     asset.src = src;
 
-    if (that.assetIsLive(asset)) {
+    if (self.assetIsLive(asset)) {
       masterAudio.pause();
       // remove it from the live assets list
-      this.live_assets = $.grep(that.live_assets, function(a,i) {
+      this.live_assets = $.grep(self.live_assets, function(a,i) {
         return a.src === masterAudio.src;
       }, true);
     }
   },
 
   triggerVideo: function(asset) {
-    var that = this;
+    var self = this;
     var container = $(asset.el).get(0);
     var video = $(container).find('video').get(0);
     var masterAudio = (this.audio_master) ? this.audio_master[0] : null;
 
-    if (!that.assetIsLive(container)) {
+    if (!self.assetIsLive(container)) {
       $(asset.bgDiv).addClass('fixed');
       $(container).addClass('fixed');
       $(container).attr('src',  $(container).attr('data-src'));
@@ -564,11 +629,11 @@ var storyTeller = {
 
       var video = this.createVideoElement(asset, container);
       video.load();
-      that.loopEnd = video.duration;
+      self.loopEnd = video.duration;
 
       // only play if this is not a slide video
       if (!$(container).parents('.slideshow').length > 0) {
-        if (that.muted == true){
+        if (self.muted == true){
           video.volume = 0;
         } else {
           video.volume = 1;
@@ -581,26 +646,26 @@ var storyTeller = {
 
       // only manually loop if this is chrome browser
       if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) { 
-        that.startVideoLoop(video);
+        self.startVideoLoop(video);
       } 
 
-      that.live_assets.push(container);
+      self.live_assets.push(container);
     }
   },
 
   stopVideo: function(asset) {
-    var that = this;
+    var self = this;
     var container = asset.el.get(0);
     var video = $(container).find('video').get(0);
 
-    if ((typeof video !== "undefined") && (that.assetIsLive(container))) {
+    if ((typeof video !== "undefined") && (self.assetIsLive(container))) {
       video.pause();
-      that.stopVideoLoop(video);
+      self.stopVideoLoop(video);
       $(video).removeClass('fixed');
       $(asset.el.bgDiv).removeClass('fixed');
 
       // remove it from the live assets list
-      this.live_assets = $.grep(that.live_assets, function(a,i) {
+      this.live_assets = $.grep(self.live_assets, function(a,i) {
         return $(a).attr('src') === $(video).attr('src');
       }, true);
       // we need to set video src = '' and remove video element
@@ -611,13 +676,13 @@ var storyTeller = {
   },
   
   startVideoLoop: function(video) {
-    var that = this;
+    var self = this;
     //console.log('starting video loop', video.duration);
     this.stopVideoLoop();
     this.loopCheck = setInterval(function() {
       if (video.currentTime >= video.duration) {
         video.load();
-        if (that.muted == true){
+        if (self.muted == true){
           video.volume = 0;
         } else {
           video.volume = 1;
@@ -634,7 +699,7 @@ var storyTeller = {
   },
 
   createVideoElement: function(asset, container) {
-    var that = this;
+    var self = this;
     var src = $(container).attr('data-src');
     var poster = $(container).attr('data-poster');
     var controls = (asset.type === 'slideshow-video') ? ' controls ' : '';
@@ -643,7 +708,7 @@ var storyTeller = {
     var canPlayVideo = false;
     var masterAudio = (this.audio_master) ? this.audio_master[0] : null;
   
-    if (that.iOS) {
+    if (self.iOS) {
       controls = ' controls ';
     }
 
@@ -675,12 +740,18 @@ var storyTeller = {
     if (canPlayVideo) {
       // console.log('attempting to remove background image');
       $(container).parent().find('.bgContainer').attr('style', '');
+      // size the video
+      if (self.winHeight > self.winWidth){
+        $(container).find('video').height(self.winHeight);
+      } else {
+        $(container).find('video').width(self.winWidth);
+      }
     }
 
     var video = $(container).find('video').get(0);
     $(video).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
       var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
-      that.fullScreenVideo = state;
+      self.fullScreenVideo = state;
     });
 
     $(video).bind('play', function () {
@@ -706,7 +777,7 @@ var storyTeller = {
   },
 
   loadChapterTitleAssets: function() {
-    var that = this;
+    var self = this;
     $('.chapter-title').each(function(){
       var par = null;
       var parPos = $(this).position().top;
@@ -715,7 +786,7 @@ var storyTeller = {
       var bgDiv = $(this).find('.bgContainer');
 
       // videos
-      if (that.iOS == true){
+      if (self.iOS == true){
         if ($(this).find('table')){
           $('lead-video').remove();
         }
@@ -729,7 +800,7 @@ var storyTeller = {
             bottom: parBot,
             bgDiv: bgDiv
           };
-          that.assets.push(asset);
+          self.assets.push(asset);
         });
       }
 
@@ -737,7 +808,7 @@ var storyTeller = {
   },
 
   loadSlideshowAssets: function() {
-    var that = this;
+    var self = this;
     $('.slideshow').each(function(){
       var par = null;
       var parPos = $(this).position().top;
@@ -755,14 +826,14 @@ var storyTeller = {
           bottom: parBot,
           bgDiv: bgDiv
         };
-        that.assets.push(asset);
+        self.assets.push(asset);
       });
 
     });
   },
 
   loadShutterAssets: function() {
-    var that = this;
+    var self = this;
     $('.shutter').each(function(){
       var parPos = $(this).position().top;
       var parHeight = $(this).height();
@@ -778,13 +849,13 @@ var storyTeller = {
           bottom: parBot,
           fullsize: fullSize
         };
-        that.assets.push(asset);
+        self.assets.push(asset);
       });
     });
   },
 
   loadAudioAssets: function() {
-    var that = this;
+    var self = this;
     $('section, li').each(function(){
       if ($(this).attr('audio-src')) {
         var fullTop = $(this).position().top;
@@ -798,7 +869,7 @@ var storyTeller = {
           bottom: fullBot,
           fullsize: fullSize
         };
-        that.assets.push(asset);
+        self.assets.push(asset);
       }
     });
   },
@@ -807,6 +878,10 @@ var storyTeller = {
     var currViewport = window.pageYOffset;
     return currViewport;
   },
+
+  scrollTo: function(hash) {
+    location.hash = '#' + hash;
+  }
 };
 
 $(document).ready(function(){

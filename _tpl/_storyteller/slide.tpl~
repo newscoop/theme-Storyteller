@@ -46,8 +46,6 @@
     {{ include file="_tpl/_storyteller/ambient.tpl" }}
   {{ /if }}
 {{ /if }}
-
-{{* we need solution for fullscreen slideshows - this was used with slides as articles *}}
-{{* if $full == 'true' }}
+{{ if $full == 'true' }}
 <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='fullscreen' }}{{ $image->src }}{{ /image }}')"></div>
-{{ /if *}}
+{{ /if }}

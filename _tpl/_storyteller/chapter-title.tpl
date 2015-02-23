@@ -12,6 +12,7 @@
         </div>
       {{ /if }}
     </span>
+    <div class="bg_image"></div>
     {{ if $gimme->article->video && $gimme->browser->ua_type != "mobile" }}
       <div class="lead-video video-container" {{ if $gimme->article->loop }}data-loop="loop" {{ /if }}data-preload="none" data-poster="{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}">
       {{ list_article_attachments }}
@@ -24,7 +25,7 @@
       {{ /list_article_attachments }}
       </div>
     {{ /if }}
-    <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
+    <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='fullscreen' }}{{ $image->src }}{{ /image }}')"></div>
   </article>
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}

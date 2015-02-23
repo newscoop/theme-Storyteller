@@ -1,15 +1,14 @@
-<section class="chapter-title{{ if $where == "coverSlide" }} coverSlide{{ /if }}" name="{{ $gimme->article->number }}" >
+<section class="chapter-title{{ if $gimme->article->dark }} dark{{ /if }}" name="{{ $gimme->article->number }}">
   <article>
     <span class="title">
       <h1>
         {{ if $gimme->article->display_title }}
-          {{ if $isChapter }}Chapter #{{ $chapterNo }}: {{ /if }}
           {{ $gimme->article->display_title }}
         {{ /if }}
       </h1>
-      {{ if $gimme->article->text_block }}
+      {{ if $gimme->article->deck }}
         <div>
-          {{ $gimme->article->text_block|replace:"<p></p>":"" }}
+          {{ $gimme->article->deck }}
         </div>
       {{ /if }}
     </span>
@@ -26,7 +25,7 @@
       {{ /list_article_attachments }}
       </div>
     {{ /if }}
-    <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='fullscreen' }}{{ $image->src }}{{ /image }}')"></div>
+    <div class="bgContainer" style="background-image: url('{{ $gimme->url->base }}{{ image rendition='full' }}{{ $image->src }}{{ /image }}')"></div>
   </article>
   {{ if $gimme->browser->ua_type != "mobile" }}
     {{ include file="_tpl/_storyteller/ambient.tpl" }}

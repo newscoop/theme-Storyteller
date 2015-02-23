@@ -16,12 +16,10 @@
   </output>
 
   <renditions>
-    <rendition name="full" width="1024" height="683" specs="crop"/>
-    <rendition name="video" width="1280" height="720" specs="crop"/>
-    <rendition name="big" width="600" height="400" specs="crop"/>
-    <rendition name="onethird" width="290" height="190" specs="crop"/>
-    <rendition name="onehalf" width="450" height="295" specs="crop"/>
-    <rendition name="square" width="130" height="130" specs="crop"/>
+  	<rendition name="fullscreen" width="1920" height="1200" specs="crop"/>
+    <rendition name="video" width="1920" height="1080" specs="crop"/>
+    <rendition name="slideshow" width="1200" height="800" specs="crop"/>
+    <rendition name="sidebar" width="215" height="115" specs="crop"/>
   </renditions>
 </theme>
 

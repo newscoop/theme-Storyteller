@@ -105,7 +105,7 @@ var storyTeller = {
     this.menuWidth = $('header').width();
     this.winHeight = $(window).height();
     this.winWidth = $(window).width();
-	
+  
     // find out if menu is top nav, or side nav
     if (this.menuHeight > this.menuWidth) {
       this.contentWidth = this.winWidth - this.menuWidth;
@@ -144,57 +144,60 @@ var storyTeller = {
   },
 
   doMainNav: function() {
-    var self = this;
-    if (this.collapsed === false){
-      this.collapsed = true;
-      $('header nav').addClass('active');
-    } else {
-      this.collapsed = false;
-      $('header nav').removeClass('active');
-    }
 
-    // MARK LOOK HERE header nav
     $('header nav a').bind('click', function(event){
       var src = $(this).attr('href').replace('#','');
-      var target = ($('[name=' + src + ']').position().top + 1);
-
+      var target = ($('[name=' + src + ']').position().top);
       // fade transition
       // find section at current scroll top
       $('section').each(function() {
         var position = $(this).position().top - $(window).scrollTop();
-	if (position <= 0) {
-	  // fade it
-	  $(this).fadeOut("slow", function() {
+        if ($(this).position().top <= 0) {
+          console.log('below threshhold', $(this).attr('name'));
+          $('header nav')
+        } else {
+          console.log('above threshhold', $(this).attr('name'));
+        }
+        if (position <= 0) {
+          // fade it
+          $(this).fadeOut("slow", function() {
             $('body, html').scrollTop(target);
-	    $(this).fadeIn("slow", function() {
-              console.log('here now');
-	    });
-	  });
-	}
+            $(this).fadeIn("slow", function() {
+              // console.log($(this).attr('name')/*, $(this).attr('data-name'), $(this).position().top*/);
+            });
+          });
+        }
       });
-
-      // normal transition
-      //$('body, html').animate({
-      //  scrollTop: target + 'px'
-      //}, 1000);
       return false;
     });
 
     // mute button
+    // check to see what the value of the mute status is and apply the state on load
+    if (localStorage.getItem('muted')) {
+      self.muted = true;
+      $('.mute').addClass('muted');
+      $('video, audio').each(function(){
+        $(this)[0].volume = 0;
+      });
+      console.log('muted = ', localStorage.getItem('muted'));
+    }
     $('.mute').bind('click', function(){
       if (self.muted === true){
         $(this).removeClass('muted');
         self.muted = false;
+        localStorage.removeItem('muted');
         $('video, audio').each(function(){
           $(this)[0].volume = 1;
         });
       } else {
         self.muted = true;
+        localStorage.setItem('muted', true);
         $(this).addClass('muted');
         $('video, audio').each(function(){
           $(this)[0].volume = 0;
         });
       }
+      console.log('muted = ', localStorage.getItem('muted'));
       return false;
     });
   },
@@ -202,25 +205,20 @@ var storyTeller = {
 
   doActiveNav: function(currViewport) {
     var i = 0;
+    var j = 0;
     $('article > section, .slides > li').each(function(){
       var matchName = $(this).not('.bx-clone').attr('name');
       var fullTop = $(this).position().top;
       var fullBot = $(this).height();
       var fullSize = fullTop + fullBot;
-      $('nav li a').each(function(){
-        var parEl = $(this).parent();
-        var navId = $(this).attr('href').replace('#','');
-        if (navId == matchName){
-          i++;
-          if (currViewport > 0){
-            $('header nav > ul > li:nth-of-type(' + i + ') a').addClass('active');
-          }
-          if (currViewport < fullTop){
-              $('header nav > ul > li:nth-of-type(' + i + ') a').removeClass('active');
-          }
-        }
-      });
+      ++i;
     });
+    $('nav li a').each(function(){
+      var parEl = $(this).parent();
+      var navId = $(this).attr('href').replace('#','');
+      ++j;
+    });
+    console.log(i, j);
   },
 
   doBgContainers: function() {
@@ -267,12 +265,12 @@ var storyTeller = {
     // apply margins to slideshows if needed
     if (self.menuWidth < self.menuHeight) {
       $('.bx-wrapper').css({
-	'margin-left': self.menuWidth,
-	'margin-right': self.menuWidth
+  'margin-left': self.menuWidth,
+  'margin-right': self.menuWidth
       });
 
       $('.bx-viewport').css({
-	'margin': '0 auto'
+  'margin': '0 auto'
       });
     }
 
@@ -320,12 +318,12 @@ var storyTeller = {
       if ($(this).hasClass('chapter-title')){
         var title = $(this).find('.title');
 
-	// this is only need with menu on top
-	if (self.menuWidth > self.menuHeight) {
-	  title.css({
-	    'margin-top': (self.menuHeight * 2) + 'px'
-	  });
-	}
+  // this is only need with menu on top
+  if (self.menuWidth > self.menuHeight) {
+    title.css({
+      'margin-top': (self.menuHeight * 2) + 'px'
+    });
+  }
 
         // TODO: only run this once, ceck if it has been added first
         if (!title.next().hasClass('continue')) {
@@ -378,13 +376,13 @@ var storyTeller = {
             // check to see if the last character is a '4'
             if (src.substr(-1) == 'm'){
               src = src;
-      	      return false;
+              return false;
             }
           } else if (Modernizr.video.h264){
             // check to see if the last digit is an 'm'
             if (src.substr(-1) == '4'){
               src = src;
-      	      return false;
+              return false;
             }
           }
         }
@@ -515,9 +513,9 @@ var storyTeller = {
         video.load();
 
         // only play if this is not a slide video
-      	// if (asset.type !== 'slideshow-video') {
-      	// if (!$(container).parents('.bx-wrapper').length > 0) {
-      	if (!$(container).parents('.slideshow').length > 0) {
+        // if (asset.type !== 'slideshow-video') {
+        // if (!$(container).parents('.bx-wrapper').length > 0) {
+        if (!$(container).parents('.slideshow').length > 0) {
           if (self.muted == true){
             video.volume = 0;
           } else {
@@ -525,12 +523,12 @@ var storyTeller = {
           }
           masterAudio.pause();
           video.play();
-      	}
+        }
 
-      	// only manually loop if this is chrome browser
+        // only manually loop if this is chrome browser
         if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
           self.startVideoLoop(video);
-      	}
+        }
 
         self.live_assets.push(container);
 
@@ -726,7 +724,7 @@ var storyTeller = {
     // need to adjust video tag for browser
     if (Modernizr.video) {
       if (Modernizr.video.webm) {
-    	// chrome and firefox
+      // chrome and firefox
         $(container).html('<video class="fixed" ' + loop + ' preload="none" src="' + src + '" ' + autoplay + controls + ' poster="' + poster + '"></video>"');
         canPlayVideo = true;
       } else if (Modernizr.video.h264){

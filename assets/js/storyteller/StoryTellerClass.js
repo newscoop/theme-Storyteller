@@ -176,9 +176,6 @@ var storyTeller = {
     if (localStorage.getItem('muted')) {
       self.muted = true;
       $('.mute').addClass('muted');
-      $('video, audio').each(function(){
-        $(this)[0].volume = 0;
-      });
       console.log('muted = ', localStorage.getItem('muted'));
     }
     $('.mute').bind('click', function(){
@@ -197,7 +194,6 @@ var storyTeller = {
           $(this)[0].volume = 0;
         });
       }
-      console.log('muted = ', localStorage.getItem('muted'));
       return false;
     });
   },
@@ -218,7 +214,6 @@ var storyTeller = {
       var navId = $(this).attr('href').replace('#','');
       ++j;
     });
-    console.log(i, j);
   },
 
   doBgContainers: function() {
@@ -265,12 +260,12 @@ var storyTeller = {
     // apply margins to slideshows if needed
     if (self.menuWidth < self.menuHeight) {
       $('.bx-wrapper').css({
-  'margin-left': self.menuWidth,
-  'margin-right': self.menuWidth
+        'margin-left': self.menuWidth,
+        'margin-right': self.menuWidth
       });
 
       $('.bx-viewport').css({
-  'margin': '0 auto'
+        'margin': '0 auto'
       });
     }
 
@@ -318,12 +313,12 @@ var storyTeller = {
       if ($(this).hasClass('chapter-title')){
         var title = $(this).find('.title');
 
-  // this is only need with menu on top
-  if (self.menuWidth > self.menuHeight) {
-    title.css({
-      'margin-top': (self.menuHeight * 2) + 'px'
-    });
-  }
+        // this is only need with menu on top
+        if (self.menuWidth > self.menuHeight) {
+          title.css({
+            'margin-top': (self.menuHeight * 2) + 'px'
+          });
+        }
 
         // TODO: only run this once, ceck if it has been added first
         if (!title.next().hasClass('continue')) {
@@ -589,6 +584,10 @@ var storyTeller = {
       } else {
         masterAudio.volume = 1;
       }
+      // check to see what the value of the mute status is and apply the state on load
+      if (localStorage.getItem('muted')) {
+        video.volume = 0;
+      }
       masterAudio.play();
       self.live_assets.push(masterAudio);
     } else {
@@ -638,6 +637,10 @@ var storyTeller = {
         }
         if (masterAudio) {
             masterAudio.pause();
+        }
+        // check to see what the value of the mute status is and apply the state on load
+        if (localStorage.getItem('muted')) {
+          video.volume = 0;
         }
         video.play();
       }

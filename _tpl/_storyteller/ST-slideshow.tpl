@@ -4,7 +4,7 @@
 
     {{ foreach $gimme->article->slideshows as $slideshow name=slideshowlist }}
     {{ if $smarty.foreach.slideshowlist.first }}
-		<section class="slideshow fade{{* full horizontal *}}" name="{{ $gimme->article->number }}">  
+		<section class="slideshow fade{{ if $gimme->article->full }} full{{ /if }}" name="{{ $gimme->article->number }}">  
 	{{ /if }}  
 	
       {{ foreach $slideshow->items as $item name=insideslideshow }}
@@ -13,7 +13,9 @@
         {{ /if }}
             <li>
             	<img src="{{ $item->image->src }}" width="{{ $item->image->width }}" height="{{ $item->image->height }}" alt="{{ $item->caption }}" />
-            	<!--p class="fullscreenSlideCaption">{{ $item->image->caption }}{{ if $item->image->photographer }} (Photo: {{ $item->image->photographer }}){{ /if }}</p-->
+            	{{ if $gimme->article->full }}
+            	<p class="fullscreenSlideCaption">{{ $item->image->caption }}{{ if $item->image->photographer }} (Photo: {{ $item->image->photographer }}){{ /if }}</p>
+            	{{ /if }}
             </li>
         {{ if $smarty.foreach.insideslideshow.last }}
           </ul>

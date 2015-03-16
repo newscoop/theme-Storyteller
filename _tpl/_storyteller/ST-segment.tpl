@@ -7,6 +7,10 @@
           {{ $gimme->article->display_title }}
         {{ /if }}
       </h1>
+      {{ if $gimme->article->youtube_shortcode }}
+	  {{ assign var="videoNumber" value=$gimme->article->youtube_shortcode|replace:"http://youtu.be/":""|replace:"https://youtu.be/":"" }}
+      	<iframe width="800" height="500" src="//www.youtube.com/embed/{{ $videoNumber }}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+      {{ /if }}
       {{ if $gimme->article->text_block }}
         <div>
           {{ $gimme->article->text_block|replace:"<p></p>":"" }}

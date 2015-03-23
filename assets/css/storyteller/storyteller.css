@@ -598,7 +598,7 @@ h2 {
   
   }
   .bx-wrapper {
-  	position: initial !important;
+  	/*position: initial !important;*/
   }
   .slideshow .bx-wrapper .bx-viewport {
     background: none;
@@ -617,7 +617,7 @@ h2 {
     .slideshow .bx-controls .bx-pager {
       z-index: 1000;
       position: absolute;
-	  top: 0px;
+  	  top: 0px;
       }
     .slideshow .bx-wrapper .bx-pager-item a {
       box-shadow: 0 0 2px #000;
@@ -690,7 +690,7 @@ h2 {
     }
     .slideshow.full .bx-wrapper .bx-controls {
       position: absolute;
-      right: 20px;
+      left: 20px;
       top: 0;
       height: 100%;
       width: 20px;

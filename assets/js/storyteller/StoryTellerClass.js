@@ -742,8 +742,7 @@ var storyTeller = {
       // console.log('attempting to remove background image');
       $(container).parent().find('.bgContainer').attr('style', '');
       // size the video
-      $(container).find('video').attr('min-height', self.winHeight);
-      $(container).find('video').attr('min-width', self.winWidth);
+      $(container).find('video').attr('style', 'min-height:' + self.winHeight + 'px; min-width:' + self.winWidth + 'px;');
     }
 
     var video = $(container).find('video').get(0);

@@ -1,25 +1,45 @@
-{{ config_load file="{{ $gimme->language->english_name }}.conf" }}
-
 {{ include file="_tpl/_html-head.tpl" }}
 
-	<div id="wrapper">
+<body>
 
-{{ include file="_tpl/header.tpl" }}
+{{list_articles constraints="type is storyteller" length="1"}}
 
-		<div id="content">
+  <!-- todo: navigation -->
+  {{include file="_tpl/_storyteller/nav.tpl"}}
+  <!-- todo: ambient audio -->
+  {{include file="_tpl/_storyteller/ambient-audio.tpl"}}
 
-{{ include file="_tpl/section-cont.tpl" }}
-            
-{{ include file="_tpl/section-two-blocks.tpl" }} 
-            
-{{ include file="_tpl/all-sections.tpl" }} 
-        
-        </div><!-- / Content -->
-        
-{{ include file="_tpl/footer.tpl" }}
-    
-    </div><!-- / Wrapper -->
-	
+
+  <!-- we don't show content of wrapper article here. It is there for playlists, frontpage etc. -->
+
+  <article>
+
+
+    {{ list_related_articles }}
+      <!-- background image -->
+
+      <!-- background video -->
+
+      <!-- parallax image with possible header text -->
+
+      <!-- slideshow -->
+
+      <!-- parallax slideshow -->
+
+      <!-- horizontal slideshow (still ugly) -->
+
+      <!-- full page header with possible background -->
+
+      <!-- no effects/regular block -->
+
+
+    {{ /list_related_articles }}
+
+  </article>
+
+{{/list_articles}}
+
+
 {{ include file="_tpl/_html-foot.tpl" }}
 
 </body>

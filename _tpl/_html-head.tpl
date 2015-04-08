@@ -1,5 +1,4 @@
-{{ assign var="curThemeVer" value = "1"}}
-{{ assign var="curLongformVer" value = "1"}}
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -11,7 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <title>{{ if $gimme->article->defined }}{{ $gimme->article->name }} | {{ elseif $gimme->section->defined }}{{ $gimme->section->name }} | {{ /if }}{{ $gimme->publication->name }}</title>
-  <meta name="author" content="Ljuba Rankovic" >
+  <meta name="author" content="{{$gimme->publication->name}}" >
+
+
 {{ if empty($siteinfo) }}{{ $siteinfo=['description' => '', 'keywords' => ''] }}{{ /if }}
   {{* if an article is active, meta-description of web page will be article's intro, otherwise it will pull site's description from System Preferences (/Configure/System Preferences) *}}
   <meta name="description" content="{{ if $gimme->article->defined }}{{ $gimme->article->deck|strip_tags:false|strip|escape:'html':'utf-8' }}{{ else }}{{ $siteinfo.description }}{{ /if }}">
@@ -32,33 +33,25 @@
 {{ /list_article_images }}
 {{ /if }}
 
+
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="apple-touch-icon" href="touch-icon.png">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/touch-icon.png">
 
-    <link rel="stylesheet" href='{{ url static_file="assets/css/main.css?v=$curVer" }}'>
-    <link rel="stylesheet" href='{{ url static_file="assets/css/skin.css?v=$curVer" }}'>
-    <link rel="stylesheet" href='{{ url static_file="assets/css/jquery.bxslider.css" }}' />
 
-    <!-- longform styles  -->
-    {{ if $gimme->article->longform }}
-      <link rel="stylesheet" type="text/css" href='{{ url static_file="assets/css/longform.css?v=$curLongformVer" }}' />
-    {{ /if }}
-    <!-- /longform -->
 
-{{ if $gimme->template->name == "article.tpl" }}  
-  <!-- styles for fancybox, used on article page -->
-  <link rel="stylesheet" href="{{ url static_file='assets/css/fancybox/jquery.fancybox-1.3.4.css' }}" />    
-{{ /if }}
+    <!-- grunt boilerplate -->
+      <!-- assets versioning -->
+      {{ assign var="VER_ENV" value="0.1" scope="global" }}
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write("<script src='{{ url static_file="assets/js/libs/jquery.min.js" }}'>\x3C/script>")</script>
-        
-    <script src="{{ url static_file="assets/js/libs/modernizr-2.0.6.js" }}"></script>
-    
-  {{ if not $gimme->article->longform }}
-  <!-- Video.js -->
-  <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-  <script src="http://vjs.zencdn.net/c/video.js"></script>
-  {{ /if }}
+      <link href="{{ url static_file="assets/css/style.css?v=$VER_ENV" }}" rel="stylesheet">
+
+      <!-- remember to put jquery in header. It is used by newscoop maps -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+    <!-- /grunt boilerplate -->
 </head>

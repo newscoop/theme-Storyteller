@@ -1,28 +1,17 @@
-{{ config_load file="{{ $gimme->language->english_name }}.conf" }}
-
 {{ include file="_tpl/_html-head.tpl" }}
+<body>
 
-	<div id="wrapper">
+list of sections. Each section contains one longform.<br />
 
-{{ include file="_tpl/header.tpl" }}
+{{ list_sections  }}
 
-		<div id="content">
+    <a href="{{url options="section"}}" >{{$gimme->section->name}}</a>
 
-{{ include file="_tpl/front-playlist-articles.tpl" }}
+{{ /list_sections }}
 
-{{ include file="_tpl/front-dynamicmap.tpl" }}
-            
-{{ include file="_tpl/front-three-blocks.tpl" }}
- 
-{{ include file="_tpl/all-sections.tpl" }} 
-        
-        </div><!-- / Content -->
-        
-{{ include file="_tpl/footer.tpl" }}
-    
-    </div><!-- / Wrapper -->
-	
+
 {{ include file="_tpl/_html-foot.tpl" }}
 
 </body>
 </html>
+

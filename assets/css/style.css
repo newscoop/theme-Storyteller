@@ -6831,6 +6831,12 @@ a.nextPart:hover {
   padding-top: 10vh;
   padding-bottom: 10vh;
 }
+.no-effects .content .text {
+  background: none;
+  padding: 0 30vh;
+  font-size: 1.4em;
+  line-height: 1.8em;
+}
 .slideshow .bg-image {
   width: 100%;
   height: 100vh;

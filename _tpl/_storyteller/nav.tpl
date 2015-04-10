@@ -1,4 +1,3 @@
-{{*
 
 
 <header{{ if $gimme->article->nav }} class="nav"{{ /if }}>
@@ -70,4 +69,3 @@
 
    </header>
 
-   *}}

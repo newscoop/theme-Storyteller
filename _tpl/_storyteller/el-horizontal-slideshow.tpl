@@ -1,20 +1,110 @@
-<div class="part slideshow-horizontal">
+
 
        {{ foreach $gimme->article->slideshows as $slideshow  name=slideshowlist}}
+         {{ if $smarty.foreach.slideshowlist.first }}
+
+         <script>
+         if(galleryLinksContainer===undefined){
+           var galleryLinksContainer = [];
+           var galleryLinks = [];
+
+         }
+         </script>
+
+          <div class="slideshow-horizontal">
+
+            <div class="blueimp-gallery blueimp-gallery-carousel blueimp-gallery-controls">
+              <div class="slides"></div>
+
+              <a class="prev">&lsaquo;</a>
+              <a class="next">&rsaquo;</a>
+
+              <div class="slide-caption"></div>
+            </div>
+
+         {{/if}}
+
+
            {{ foreach $slideshow->items as $item  name=insideslideshow }}
-             {{ if $item->is_image }}
+              {{ if $smarty.foreach.insideslideshow.first }}
+                <script>
+              {{ /if }}
 
-               <div class="bg-image" data-src="{{ $item->image->src }}"  >
-                 <div class="caption">
-                   <h3>{{$item->caption}}</h3>
-                   <p>{{ $item->image->photographer}}</p>
-                 </div>
-               </div>
+                 {{ if $item->is_image }}
 
-             {{/if}}
+
+                     galleryLinks.push({
+
+                      title: '{{$item->caption|strip_tags:false|escape:javascript:'UTF-8' }}',
+                      photographer: '{{ $item->image->photographer|escape:javascript:'UTF-8' }}',
+                      href: '{{ $item->image->src }}',
+                      original_id: '{{ $item->image->id }}',
+                      type: 'image/jpeg'
+
+                    });
+
+                 {{ else }}
+
+                 videoNumber = youtube_parser("{{ $item->video->url }}");
+               //youtube
+               if( videoNumber ){
+                galleryLinks.push({
+                 title: '{{$item->caption|strip_tags:false|escape }}',
+                 href: '{{$item->video->url}}',
+                 type: 'text/html',
+                 youtube: videoNumber,
+                 poster: 'http://img.youtube.com/vi/'+videoNumber+'/0.jpg',
+                 photographer: '{{ $item->image->photographer }}'
+
+               });
+
+
+
+              }else{
+
+
+
+               videoNumber = vimeo_parser("{{ $item->video->url }}");
+
+                   //vimeo
+                   if (videoNumber){
+
+
+
+                     var vimeoObj = new Object();
+                     vimeoObj.title = '{{$item->caption|strip_tags:false|escape }}';
+                     vimeoObj.href = '{{$item->video->url}}';
+                     vimeoObj.type = 'text/html';
+                     vimeoObj.vimeo = videoNumber;
+                     vimeoObj.poster = vimeo_thumb(videoNumber);
+                     vimeoObj.photographer = '{{ $item->image->photographer }}';
+
+
+
+
+                     galleryLinks.push(vimeoObj);
+
+
+                   }
+
+                 }
+
+                 {{ /if }}
+
+                 {{ if $smarty.foreach.insideslideshow.last }}
+                 galleryLinksContainer.push(galleryLinks);
+
+                 </script>
+
+                 {{/if}}
+
            {{ /foreach }}
+
+           {{ if $smarty.foreach.slideshowlist.last }}
+            </div>
+           {{/if}}
+
          {{ /foreach }}
 
 
 
-</div>

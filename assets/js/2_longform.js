@@ -81,15 +81,7 @@ window.longform = {
             $(this).css('background-image', 'url(' + $(this).data("src") + ')');
         });
 
-        counter = 0;
-        $('.slideshow-horizontal').each(function() {
-            $(this).attr('id', 'slideshow-horizontal' + counter++);
 
-            $(this).find('.bg-image').each(function(){
-                $(this).attr('id', 'slideshowHorizontalImage' + counter++);
-            });
-
-        });
 
     },
 

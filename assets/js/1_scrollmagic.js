@@ -10,7 +10,7 @@ window.sm = {
 
         this.initStickyImages();
         this.initSlideshows();
-        this.initHorizontalSlideshows();
+
         this.initParallaxes();
         this.initVideos();
     },
@@ -85,44 +85,7 @@ window.sm = {
 
     },
 
-    initHorizontalSlideshows: function() {
 
-
-
-
-
-        $('.slideshow-horizontal').each(function() {
-            var thisId = '#' + $(this).attr("id");
-
-
-            // build tween
-            var tween = new TimelineMax();
-
-            $(this).find('.bg-image:not([data-animate="no"])').each(function() {
-                var elemId = '#' + $(this).attr("id");
-                tween.add(TweenMax.to(elemId, 9, {
-                    transform: "translateX(0)"
-                }));
-            });
-
-
-
-            var scene = new ScrollMagic.Scene({
-                    triggerElement: thisId,
-                    duration: '100%'
-
-                })
-                .setTween(tween)
-                .setPin(thisId, {
-                    pushFollowers: true
-                })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
-                .addTo(sm.controller);
-        });
-
-    },
 
 
     initParallaxes: function() {

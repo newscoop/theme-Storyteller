@@ -10,7 +10,7 @@ window.sm = {
 
         this.initStickyImages();
         this.initSlideshows();
-        this.initHorizontalSlideshows();
+
         this.initParallaxes();
         this.initVideos();
     },
@@ -85,44 +85,7 @@ window.sm = {
 
     },
 
-    initHorizontalSlideshows: function() {
 
-
-
-
-
-        $('.slideshow-horizontal').each(function() {
-            var thisId = '#' + $(this).attr("id");
-
-
-            // build tween
-            var tween = new TimelineMax();
-
-            $(this).find('.bg-image:not([data-animate="no"])').each(function() {
-                var elemId = '#' + $(this).attr("id");
-                tween.add(TweenMax.to(elemId, 9, {
-                    transform: "translateX(0)"
-                }));
-            });
-
-
-
-            var scene = new ScrollMagic.Scene({
-                    triggerElement: thisId,
-                    duration: '100%'
-
-                })
-                .setTween(tween)
-                .setPin(thisId, {
-                    pushFollowers: true
-                })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
-                .addTo(sm.controller);
-        });
-
-    },
 
 
     initParallaxes: function() {
@@ -235,15 +198,7 @@ window.longform = {
             $(this).css('background-image', 'url(' + $(this).data("src") + ')');
         });
 
-        counter = 0;
-        $('.slideshow-horizontal').each(function() {
-            $(this).attr('id', 'slideshow-horizontal' + counter++);
 
-            $(this).find('.bg-image').each(function(){
-                $(this).attr('id', 'slideshowHorizontalImage' + counter++);
-            });
-
-        });
 
     },
 
@@ -261,6 +216,96 @@ window.longform = {
     }
 
 };
+function youtube_parser(url) {
+      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+      var match = url.match(regExp);
+      if (match && match[7].length == 11) {
+          return match[7];
+      } else {
+          return false;
+      }
+  }
+
+  function vimeo_parser(url) {
+
+      var regExp = /http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+
+      var match = url.match(regExp);
+
+      if (match) {
+          return match[2];
+
+
+      } else {
+          return false;
+      }
+
+  }
+
+  function vimeo_thumb(vNumber) {
+     var res;
+     $.ajax({
+          url: 'http://vimeo.com/api/v2/video/' + vNumber + '.json',
+          success: function(result) {
+
+              res = result[0].thumbnail_large;
+          },
+          error: function(result) {
+              res  = false;
+          },
+          async:false
+      });
+     return res;
+
+  }
+$(document).ready(function() {
+
+    if (typeof galleryLinksContainer !== 'undefined') {
+
+        var galleries = [];
+
+        // gallery id update in case if we more than one gallery
+        if (galleryLinksContainer.length > 0) {
+            $(".slideshow-horizontal").each(function(i, item) {
+                $(item).find(".blueimp-gallery-carousel").attr('id', 'blueimp-image-carousel_' + i);
+                $(item).find('*[data-gallery]').attr('data-gallery', i);
+
+            });
+        }
+
+        $.each(galleryLinksContainer, function(i, item) {
+
+
+            var gallery = blueimp.Gallery(item, {
+                container: '#blueimp-image-carousel_' + i,
+                carousel: true,
+                startSlideshow: false,
+                stretchImages: 'cover',
+
+                onslide: function(index, slide) {
+
+                    var galleryContainer = this.options.container;
+
+                    var caption = '';
+                    caption += this.list[index].title;
+
+                    if (this.list[index].photographer.length > 0) {
+                        caption += '<span>(photo: ';
+                        caption += this.list[index].photographer;
+                        caption += ')</span>';
+                    }
+
+                    $(galleryContainer).parent().find(".slide-caption").html(caption);
+
+                }
+            });
+
+            galleries.push(gallery);
+
+        }); // each end
+    }
+
+});
 
 $(document).ready(function(){
   longform.init();

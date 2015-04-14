@@ -2,7 +2,18 @@
 
 <body>
 
+
+
+
 {{list_articles constraints="type is storyteller" length="1"}}
+
+<div id="loader-wrapper" >
+  {{image rendition="fullscreen"}}
+    <div id="loader-image" data-src="{{ $image->src }}" ></div>
+  {{/image}}
+
+      <div id="loader"></div>
+    </div>
 
   <!-- todo: navigation -->
   {{* include file="_tpl/_storyteller/nav.tpl" *}}
@@ -38,7 +49,7 @@
 
 
       {{elseif $gimme->article->horizontal_slideshow}}
-      <!-- horizontal slideshow (still ugly) -->
+      <!-- horizontal slideshow -->
         {{include file="_tpl/_storyteller/el-horizontal-slideshow.tpl"}}
 
 

@@ -13,8 +13,10 @@
           {{/if}}
             >
             <div class="caption">
-              <h3>{{$item->caption}}</h3>
-              <p>{{ $item->image->photographer}}</p>
+              {{$item->caption}}
+              {{if $item->image->photographer}}
+              <span>(photo: {{ $item->image->photographer}})</span>
+              {{/if}}
             </div>
           </div>
 

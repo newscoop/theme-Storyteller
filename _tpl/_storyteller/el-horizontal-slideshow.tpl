@@ -11,7 +11,7 @@
          }
          </script>
 
-          <div class="slideshow-horizontal">
+          <div class="part slideshow-horizontal">
 
             <div class="blueimp-gallery blueimp-gallery-carousel blueimp-gallery-controls">
               <div class="slides"></div>

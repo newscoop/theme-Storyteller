@@ -7338,6 +7338,7 @@ a.nextPart:hover {
   width: 100%;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 .slideshow-horizontal .slide-caption {
   position: absolute;

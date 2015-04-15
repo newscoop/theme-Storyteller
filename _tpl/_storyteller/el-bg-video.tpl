@@ -1,7 +1,20 @@
 <div class="st-video part">
     {{ if $gimme->browser->ua_type != "mobile" }}
-      <div class="video-container" {{ if $gimme->article->loop }}data-loop="loop" {{ /if }}data-preload="none" data-poster="{{ $gimme->url->base }}{{ image rendition='fullscreen' }}{{ $image->src }}{{ /image }}">
+      <div class="video-container" {{ if $gimme->article->loop }}data-loop="loop" {{ /if }}data-preload="none" data-poster="{{ $gimme->url->base }}{{ image rendition='fullscreen' }}{{ $image->src }}{{ /image }}"
 
+        {{* temporary thing *}}
+        {{ list_article_attachments }}
+          {{ if $gimme->attachment->extension == mp4 }}
+            data-src="{{ uri options="articleattachment" }}"
+          {{ /if }}
+
+        {{ /list_article_attachments }}
+
+        >
+
+{{*
+
+  that is the proper way
         {{ list_article_attachments }}
           {{ if $gimme->attachment->extension == mp4 }}
             <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
@@ -10,6 +23,8 @@
             <source data-src="{{ uri options="articleattachment" }}" type='{{ $gimme->attachment->mime_type }}' />
           {{ /if }}
         {{ /list_article_attachments }}
+
+        *}}
       </div>
     {{ /if }}
 

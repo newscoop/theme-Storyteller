@@ -13,6 +13,8 @@ window.sm = {
 
         this.initParallaxes();
         this.initVideos();
+
+
     },
 
     initVideos: function() {

@@ -1,24 +1,18 @@
+$(document).ready(function() {
 
-$(document).ready(function(){
-  longform.init();
+    preloader.init();
 
-  sm.init();
+    longform.init();
 
-
-// preloading image for preloader :)
-  var img = new Image();
-  $(img).on('load', function() {
-      $("#loader-image").css("backgroundImage", "url(" + this.src + ")" ).fadeIn("slow");
-  });
-
-  var loaderImgSrc = $("#loader-image").data("src");
-  if(loaderImgSrc) img.src = loaderImgSrc;
+    blueimpGallery.init();
 
 });
 
-window.onload = function(){
-  console.log("document loaded");
-  $("#loader-wrapper").fadeOut("fast", function(){
-    $(this).remove();
-  });
+window.onload = function() {
+    console.log("document loaded");
+
+    sm.init();
+
+    preloader.destroy();
+
 };

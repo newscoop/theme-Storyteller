@@ -13,6 +13,8 @@ window.sm = {
 
         this.initParallaxes();
         this.initVideos();
+
+
     },
 
     initVideos: function() {
@@ -216,117 +218,143 @@ window.longform = {
     }
 
 };
-function youtube_parser(url) {
-      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-      var match = url.match(regExp);
-      if (match && match[7].length == 11) {
-          return match[7];
-      } else {
-          return false;
-      }
-  }
+window.blueimpGallery = {
 
-  function vimeo_parser(url) {
+    init: function() {
 
-      var regExp = /http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
-
-      var match = url.match(regExp);
-
-      if (match) {
-          return match[2];
+        if (typeof galleryLinksContainer !== 'undefined') {
 
 
-      } else {
-          return false;
-      }
 
-  }
+            // gallery id update in case if we more than one gallery
+            if (galleryLinksContainer.length > 0) {
 
-  function vimeo_thumb(vNumber) {
-     var res;
-     $.ajax({
-          url: 'http://vimeo.com/api/v2/video/' + vNumber + '.json',
-          success: function(result) {
+                console.log(galleryLinksContainer);
+                $(".slideshow-horizontal").each(function(i, item) {
+                    $(item).find(".blueimp-gallery-carousel").attr('id', 'blueimp-image-carousel_' + i);
+                    $(item).find('*[data-gallery]').attr('data-gallery', i);
 
-              res = result[0].thumbnail_large;
-          },
-          error: function(result) {
-              res  = false;
-          },
-          async:false
-      });
-     return res;
+                });
+            }
 
-  }
-$(document).ready(function() {
+            $.each(galleryLinksContainer, function(i, item) {
 
-    if (typeof galleryLinksContainer !== 'undefined') {
 
-        var galleries = [];
+                var gallery = blueimp.Gallery(item, {
+                    container: '#blueimp-image-carousel_' + i,
+                    carousel: true,
+                    startSlideshow: false,
+                    stretchImages: 'cover',
 
-        // gallery id update in case if we more than one gallery
-        if (galleryLinksContainer.length > 0) {
-            $(".slideshow-horizontal").each(function(i, item) {
-                $(item).find(".blueimp-gallery-carousel").attr('id', 'blueimp-image-carousel_' + i);
-                $(item).find('*[data-gallery]').attr('data-gallery', i);
+                    onslide: function(index, slide) {
 
-            });
+                        var galleryContainer = this.options.container;
+
+                        var caption = '';
+                        caption += this.list[index].title;
+
+                        if (this.list[index].photographer.length > 0) {
+                            caption += '<span>(photo: ';
+                            caption += this.list[index].photographer;
+                            caption += ')</span>';
+                        }
+
+                        $(galleryContainer).parent().find(".slide-caption").html(caption);
+
+                    }
+                });
+
+
+
+            }); // each end
         }
 
-        $.each(galleryLinksContainer, function(i, item) {
+    },
 
 
-            var gallery = blueimp.Gallery(item, {
-                container: '#blueimp-image-carousel_' + i,
-                carousel: true,
-                startSlideshow: false,
-                stretchImages: 'cover',
+    youtube_parser : function(url) {
+          var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+          var match = url.match(regExp);
+          if (match && match[7].length == 11) {
+              return match[7];
+          } else {
+              return false;
+          }
+      },
 
-                onslide: function(index, slide) {
+      vimeo_parser : function(url) {
 
-                    var galleryContainer = this.options.container;
+          var regExp = /http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
 
-                    var caption = '';
-                    caption += this.list[index].title;
+          var match = url.match(regExp);
 
-                    if (this.list[index].photographer.length > 0) {
-                        caption += '<span>(photo: ';
-                        caption += this.list[index].photographer;
-                        caption += ')</span>';
-                    }
+          if (match) {
+              return match[2];
 
-                    $(galleryContainer).parent().find(".slide-caption").html(caption);
 
-                }
-            });
+          } else {
+              return false;
+          }
 
-            galleries.push(gallery);
+      },
 
-        }); // each end
+      vimeo_thumb : function(vNumber) {
+         var res;
+         $.ajax({
+              url: 'http://vimeo.com/api/v2/video/' + vNumber + '.json',
+              success: function(result) {
+
+                  res = result[0].thumbnail_large;
+              },
+              error: function(result) {
+                  res  = false;
+              },
+              async:false
+          });
+         return res;
+
+      }
+
+}
+window.preloader = {
+
+    init: function() {
+
+        // preloading image for preloader :)
+        var img = new Image();
+        $(img).on('load', function() {
+            $("#loader-image").css("backgroundImage", "url(" + this.src + ")").fadeIn("slow");
+        });
+
+        var loaderImgSrc = $("#loader-image").data("src");
+        if (loaderImgSrc) img.src = loaderImgSrc;
+
+    },
+
+    destroy: function() {
+
+        //preloader remove
+        $("#loader-wrapper").fadeOut("fast", function() {
+            $(this).remove();
+        });
+
     }
+}
+$(document).ready(function() {
+
+    preloader.init();
+
+    longform.init();
+
+    blueimpGallery.init();
 
 });
 
-$(document).ready(function(){
-  longform.init();
+window.onload = function() {
+    console.log("document loaded");
 
-  sm.init();
+    sm.init();
 
+    preloader.destroy();
 
-// preloading image for preloader :)
-  var img = new Image();
-  $(img).on('load', function() {
-      $("#loader-image").css("backgroundImage", "url(" + this.src + ")" ).fadeIn("slow");
-  });
-
-  var loaderImgSrc = $("#loader-image").data("src");
-  if(loaderImgSrc) img.src = loaderImgSrc;
-
-});
-
-window.onload = function(){
-  console.log("document loaded");
-  $("#loader-wrapper").fadeOut("fast", function(){
-    $(this).remove();
-  });
 };

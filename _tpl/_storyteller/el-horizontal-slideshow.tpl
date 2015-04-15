@@ -6,7 +6,7 @@
          <script>
          if(galleryLinksContainer===undefined){
            var galleryLinksContainer = [];
-           var galleryLinks = [];
+
 
          }
          </script>
@@ -28,6 +28,7 @@
            {{ foreach $slideshow->items as $item  name=insideslideshow }}
               {{ if $smarty.foreach.insideslideshow.first }}
                 <script>
+                var galleryLinks = [];
               {{ /if }}
 
                  {{ if $item->is_image }}
@@ -45,7 +46,7 @@
 
                  {{ else }}
 
-                 videoNumber = youtube_parser("{{ $item->video->url }}");
+                 videoNumber = blueimpGallery.youtube_parser("{{ $item->video->url }}");
                //youtube
                if( videoNumber ){
                 galleryLinks.push({
@@ -64,7 +65,7 @@
 
 
 
-               videoNumber = vimeo_parser("{{ $item->video->url }}");
+               videoNumber = blueimpGallery.vimeo_parser("{{ $item->video->url }}");
 
                    //vimeo
                    if (videoNumber){
@@ -76,7 +77,7 @@
                      vimeoObj.href = '{{$item->video->url}}';
                      vimeoObj.type = 'text/html';
                      vimeoObj.vimeo = videoNumber;
-                     vimeoObj.poster = vimeo_thumb(videoNumber);
+                     vimeoObj.poster = blueimpGallery.vimeo_thumb(videoNumber);
                      vimeoObj.photographer = '{{ $item->image->photographer }}';
 
 

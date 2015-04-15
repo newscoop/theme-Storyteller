@@ -25,6 +25,8 @@ window.sm = {
             var contentHeight = $(this).parent().find(".content").outerHeight();
             var duration = contentHeight > longform.wh ? contentHeight - longform.wh : longform.wh;
 
+            console.log(duration+' '+thisId);
+
             var scene = new ScrollMagic.Scene({
                     triggerElement: thisId,
                     duration: duration
@@ -132,6 +134,19 @@ window.longform = {
         this.prepareNavAnchors();
 
         this.prepareVideos();
+
+        this.setupSnapping();
+    },
+
+    setupSnapping : function(){
+
+        $(document).scrollsnap({
+                snaps: '.snap',
+                proximity: longform.wh/4,
+                latency : 150,
+                easing: 'swing'
+            });
+
     },
 
     playVideo: function(e) {
@@ -229,7 +244,6 @@ window.blueimpGallery = {
             // gallery id update in case if we more than one gallery
             if (galleryLinksContainer.length > 0) {
 
-                console.log(galleryLinksContainer);
                 $(".slideshow-horizontal").each(function(i, item) {
                     $(item).find(".blueimp-gallery-carousel").attr('id', 'blueimp-image-carousel_' + i);
                     $(item).find('*[data-gallery]').attr('data-gallery', i);

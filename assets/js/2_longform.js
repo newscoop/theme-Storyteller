@@ -13,6 +13,19 @@ window.longform = {
         this.prepareNavAnchors();
 
         this.prepareVideos();
+
+        this.setupSnapping();
+    },
+
+    setupSnapping : function(){
+
+        $(document).scrollsnap({
+                snaps: '.snap',
+                proximity: longform.wh/4,
+                latency : 150,
+                easing: 'swing'
+            });
+
     },
 
     playVideo: function(e) {

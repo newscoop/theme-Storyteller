@@ -7299,7 +7299,10 @@ a.nextPart:hover {
 }
 .no-effects {
   min-height: 0px;
+  background-color: #fff;
   color: #222;
+  position: relative;
+  z-index: 10;
 }
 .no-effects .content {
   padding-top: 10vh;

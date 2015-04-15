@@ -9,7 +9,6 @@ window.blueimpGallery = {
             // gallery id update in case if we more than one gallery
             if (galleryLinksContainer.length > 0) {
 
-                console.log(galleryLinksContainer);
                 $(".slideshow-horizontal").each(function(i, item) {
                     $(item).find(".blueimp-gallery-carousel").attr('id', 'blueimp-image-carousel_' + i);
                     $(item).find('*[data-gallery]').attr('data-gallery', i);

@@ -25,6 +25,8 @@ window.sm = {
             var contentHeight = $(this).parent().find(".content").outerHeight();
             var duration = contentHeight > longform.wh ? contentHeight - longform.wh : longform.wh;
 
+            console.log(duration+' '+thisId);
+
             var scene = new ScrollMagic.Scene({
                     triggerElement: thisId,
                     duration: duration

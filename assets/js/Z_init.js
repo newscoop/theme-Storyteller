@@ -6,6 +6,8 @@ $(document).ready(function() {
 
     blueimpGallery.init();
 
+    nav.init();
+
 });
 
 window.onload = function() {

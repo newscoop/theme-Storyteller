@@ -35,11 +35,6 @@ window.sm = {
                 .setPin(thisId, {
                     pushFollowers: false
                 })
-                .on("enter", longform.playVideo)
-                .on("leave", longform.stopVideo)
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -60,9 +55,6 @@ window.sm = {
                 .setPin(thisId, {
                     pushFollowers: false
                 })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -81,9 +73,6 @@ window.sm = {
                 .setPin(thisId, {
                     pushFollowers: false
                 })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -106,9 +95,6 @@ window.sm = {
                     top: "20%",
                     ease: Linear.easeNone
                 })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 

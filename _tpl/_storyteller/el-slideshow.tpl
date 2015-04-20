@@ -1,5 +1,5 @@
 
-<div class="part slideshow">
+<div class="part slideshow" name="{{ $gimme->article->number }}">
 
 
   {{ foreach $gimme->article->slideshows as $slideshow  name=slideshowlist}}

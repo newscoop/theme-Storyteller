@@ -1,11 +1,9 @@
 {{ include file="_tpl/_html-head.tpl" }}
 
-<body>
-
-
-
 
 {{list_articles constraints="type is storyteller" length="1"}}
+
+<body class="longform">
 
 <div id="loader-wrapper" >
   {{image rendition="fullscreen"}}
@@ -15,10 +13,10 @@
       <div id="loader"></div>
     </div>
 
-  <!-- todo: navigation -->
-  {{* include file="_tpl/_storyteller/nav.tpl" *}}
+  <!-- navigation -->
+  {{ include file="_tpl/_storyteller/nav.tpl" }}
   <!-- todo: ambient audio -->
-  {{* include file="_tpl/_storyteller/ambient-audio.tpl" *}}
+  {{ include file="_tpl/_storyteller/ambient-audio.tpl" }}
 
 
   <!-- we don't show content of wrapper article here. It is there for playlists, frontpage etc. -->

@@ -7090,50 +7090,53 @@ body:last-child .blueimp-gallery > .slides > .slide > .video-content:not(.video-
 .part {
   min-height: 100vh;
 }
-.header {
+article {
+  position: relative;
+}
+article .header {
   text-align: center;
   font-weight: 200;
   margin-bottom: 5vh;
 }
-.header h1 {
+article .header h1 {
   margin: 0;
   font-size: 3em;
   line-height: 1.4em;
 }
-.header h2 {
+article .header h2 {
   margin: 0;
   font-size: 1.6em;
   line-height: 1.2em;
   font-style: italic;
 }
-.header-fullpage {
+article .header-fullpage {
   text-align: center;
   font-weight: 200;
   height: 100vh;
   margin: -10vh auto 0 auto;
   display: table;
 }
-.header-fullpage .middle {
+article .header-fullpage .middle {
   vertical-align: middle;
   display: table-cell;
 }
-.header-fullpage h1 {
+article .header-fullpage h1 {
   margin: 0;
   font-size: 5em;
   line-height: 1.4em;
 }
-.header-fullpage h2 {
+article .header-fullpage h2 {
   margin: 0;
   font-size: 2.2em;
   line-height: 1.2em;
 }
-a.nextPart {
+article a.nextPart {
   display: inline-block;
   padding: 3px 6px;
   background: #333;
   color: #fff;
 }
-a.nextPart:hover {
+article a.nextPart:hover {
   color: #7fc8e8;
   text-decoration: none;
 }
@@ -7143,7 +7146,7 @@ a.nextPart:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 99999999;
+  z-index: 1000;
   background: #333;
 }
 #loader-image {
@@ -7241,9 +7244,207 @@ a.nextPart:hover {
     /* Firefox 16+, IE 10+, Opera */
   }
 }
+.longform .menu_open {
+  position: fixed;
+  right: 15px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s;
+}
+.longform .menu_open .sticks_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.longform .menu_open .sticks_wrapper .stick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -50%;
+  width: 100%;
+  height: 2px;
+  background: #868585;
+  transition: all 0.3s;
+}
+.longform .menu_open .sticks_wrapper .stick.-first {
+  margin-top: -6px;
+  border-radius: 1px 1px 2px 2px;
+}
+.longform .menu_open .sticks_wrapper .stick.-second {
+  top: 50%;
+  border-radius: 2px;
+}
+.longform .menu_open .sticks_wrapper .stick.-third {
+  margin-top: 6px;
+  border-radius: 2px 2px 1px 1px;
+}
+.longform.paneOpen .menu_open .sticks_wrapper .stick.-first {
+  margin-top: 0px;
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.longform.paneOpen .menu_open .sticks_wrapper .stick.-second {
+  opacity: 0;
+}
+.longform.paneOpen .menu_open .sticks_wrapper .stick.-third {
+  margin-top: 0px;
+  -ms-transform: rotate(-45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.longform .nav {
+  position: fixed;
+  top: 0;
+  bottom: 0px;
+  width: 150px;
+  background: rgba(51, 51, 51, 0.95);
+  z-index: 9999;
+  padding: 0px;
+  box-shadow: 0 0 3px #000;
+  right: -150px;
+  height: 100%;
+  transition: all 0.3s;
+  z-index: 99;
+}
+.longform .nav nav {
+  margin: 60px 0 10px;
+}
+.longform .nav nav ul {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.longform .nav nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 149px;
+  width: 215px;
+  background: rgba(85, 85, 85, 0.95);
+  font-weight: 300;
+}
+.longform .nav nav ul li ul li a {
+  padding-left: 20px;
+  float: none;
+}
+.longform .nav nav ul li ul li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.longform .nav nav ul li ul figure {
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+.longform .nav nav ul li ul figure a {
+  padding: 0px;
+}
+.longform .nav nav ul li:hover ul {
+  display: block;
+}
+.longform .nav nav li {
+  position: relative;
+  line-height: 1.4em;
+  display: block;
+  margin: 0 0 1px;
+  float: left;
+  width: 100%;
+}
+.longform .nav nav li a {
+  padding: 5px 10px 5px 0px;
+  display: block;
+  width: 100%;
+  float: left;
+}
+.longform .nav nav li a:hover {
+  background: rgba(85, 85, 85, 0.95);
+}
+.longform .nav nav a {
+  color: #fff;
+  background: none;
+  text-decoration: none;
+  font-size: 14px;
+}
+.longform .nav nav a span {
+  text-align: center;
+  text-indent: 0;
+  width: 24px;
+  color: #999999;
+  overflow: hidden;
+  padding: 5px 4px;
+  float: left;
+}
+.longform .nav nav a p {
+  text-shadow: none;
+  float: right;
+  width: 110px;
+  margin: 5px 0px 0px 5px;
+}
+.longform .nav nav a:hover {
+  color: #fff;
+}
+.longform .nav nav a.active span {
+  color: #fff;
+}
+.longform .nav nav.active li {
+  display: block;
+  width: auto;
+  height: auto;
+}
+.longform .nav #languages {
+  position: absolute;
+  right: 30px;
+  top: 18px;
+}
+.longform .nav #languages li {
+  display: inline;
+}
+.longform .chapter-title.coverSlide .title {
+  position: absolute;
+  bottom: 10%;
+}
+.longform .chapter-title.coverSlide .title h1 {
+  margin-bottom: 25px;
+}
+.longform .chapter-title.coverSlide .title p {
+  font-size: 22px;
+}
+.longform .chapter-title.coverSlide .continue {
+  position: absolute;
+  bottom: 5%;
+}
+.paneOpen .nav {
+  right: 0;
+}
+.mute {
+  position: fixed;
+  right: 47px;
+  top: 6px;
+  z-index: 100;
+  background: url(../img/icon-unmuted.png) center center no-repeat transparent;
+  background-size: cover;
+  display: inline-block;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 32px;
+  height: 32px;
+}
+.mute.muted {
+  background-image: url(../img/icon-muted.png);
+  background-size: cover;
+}
 .sticky-image {
   position: relative;
   color: #fff;
+  overflow: hidden;
 }
 .sticky-image .bg-image {
   width: 100%;
@@ -7258,7 +7459,7 @@ a.nextPart:hover {
 }
 .sticky-image .content {
   position: relative;
-  z-index: 9999;
+  z-index: 10;
   padding-top: 10vh;
   padding-bottom: 10vh;
 }
@@ -7272,6 +7473,7 @@ a.nextPart:hover {
 .st-video {
   position: relative;
   color: #fff;
+  overflow: hidden;
 }
 .st-video .video-container {
   width: 100%;
@@ -7286,7 +7488,7 @@ a.nextPart:hover {
 }
 .st-video .content {
   position: relative;
-  z-index: 9999;
+  z-index: 10;
   padding-top: 10vh;
   padding-bottom: 10vh;
 }

@@ -1,4 +1,4 @@
-<section class="part sticky-image">
+<section class="part sticky-image" name="{{ $gimme->article->number }}">
   {{image rendition="fullscreen"}}
     <div class="bg-image" data-src="{{ $image->src }}"></div>
   {{/image}}

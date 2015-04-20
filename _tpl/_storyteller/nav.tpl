@@ -1,30 +1,25 @@
 
+{{ if $gimme->article->nav }}
 
-<header{{ if $gimme->article->nav }} class="nav"{{ /if }}>
-       <a href="/" id="home">Home</a>
-       {{ if $gimme->article->nav }}
-       <!-- a href="#" id="collapse"></a-->
+<div class="menu_open">
+        <div class="sticks_wrapper">
+            <div class="stick -first" id="stick1"></div>
+            <div class="stick -second" id="stick2"></div>
+            <div class="stick -third" id="stick3"></div>
+        </div>
+    </div>
+
+<div class="nav">
+
        {{ $cover = 0 }}
    <nav>
      <ul>
-           {{ if $gimme->article->display_title }}
-             {{ assign var="artTitle" value=$gimme->article->display_title }}
-           {{ else }}
-             {{ assign var="artTitle" value=$gimme->article->name }}
-           {{ /if }}
-           {{ if !$gimme->article->dont_show_in_nav }}
-             <li ><a href="#{{ $gimme->article->number }}" title="{{ $artTitle }}"> <p class="cover">{{ $artTitle }}</p></a></li>
-             {{ $cover = 1 }}
-           {{ /if }}
+
 
        {{ $i = 1 }}
        {{ $j = 0 }}
 
        {{ list_related_articles }}
-           {{ if $gimme->current_list->at_beginning && !$cover }}
-           <nav>
-               <ul>
-           {{ /if }}
 
            {{ if $gimme->article->display_title }}
              {{ assign var="artTitle" value=$gimme->article->display_title }}
@@ -62,10 +57,11 @@
            </nav>
            {{ /if }}
        {{ /list_related_articles }}
-       {{ /if }}
-       <a href="#" class="mute">Mute</a>
+
+
        {{ assign var="l" value="0" }}
        {{ assign var="currLan" value=$gimme->language->code }}
 
-   </header>
+   </div>
 
+{{/if}}

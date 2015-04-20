@@ -35,11 +35,6 @@ window.sm = {
                 .setPin(thisId, {
                     pushFollowers: false
                 })
-                .on("enter", longform.playVideo)
-                .on("leave", longform.stopVideo)
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -60,9 +55,6 @@ window.sm = {
                 .setPin(thisId, {
                     pushFollowers: false
                 })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -81,9 +73,6 @@ window.sm = {
                 .setPin(thisId, {
                     pushFollowers: false
                 })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -106,9 +95,6 @@ window.sm = {
                     top: "20%",
                     ease: Linear.easeNone
                 })
-                .addIndicators({
-                    name: thisId
-                }) // add indicators (requires plugin)
                 .addTo(sm.controller);
         });
 
@@ -121,6 +107,7 @@ window.sm = {
 };
 window.longform = {
     wh: null,
+    muted: false,
 
     init: function() {
         this.wh = $(window).height();
@@ -133,37 +120,44 @@ window.longform = {
 
         this.prepareNavAnchors();
 
+        this.setupSnapping();
+
         this.prepareVideos();
 
-        this.setupSnapping();
+        this.bindVideoEvents();
     },
 
-    setupSnapping : function(){
+
+
+
+
+    setupSnapping: function() {
 
         $(document).scrollsnap({
-                snaps: '.snap',
-                proximity: longform.wh/4,
-                latency : 150,
-                easing: 'swing'
-            });
+            snaps: '.snap',
+            proximity: longform.wh / 4,
+            latency: 150,
+            easing: 'swing'
+        });
 
     },
 
     playVideo: function(e) {
-        var element = e.target.triggerElement();
-        var elementId = $(element).attr('id');
-        var container = $('#'+elementId);
 
-
+        var element = $(e.target).find(".video-container");
+        var elementId = element.attr('id');
+        var container = $('#' + elementId);
         var src = container.data("src");
+
+
 
         container.html('<video  loop="loop" preload="none" src="' + src + '" autoplay ></video>"');
         container.css("background-image", 'none');
     },
     stopVideo: function(e) {
-        var element = e.target.triggerElement();
+        var element = $(e.target).find(".video-container");
         var elementId = $(element).attr('id');
-        var container = $('#'+elementId);
+        var container = $('#' + elementId);
         container.html('');
         container.css('background-image', 'url(' + container.data("poster") + ')');
 
@@ -172,11 +166,29 @@ window.longform = {
     prepareVideos: function() {
 
         var counter = 0;
-        $('.video-container').each(function() {
+        $('.st-video .video-container').each(function() {
             $(this).attr("id", "video" + counter++);
             $(this).css('background-image', 'url(' + $(this).data("poster") + ')');
 
         });
+
+    },
+
+    bindVideoEvents : function(){
+
+        // setting offset so playVideo() will be fired one screen height before it is in view
+        $('.st-video').attr('data-offset', longform.wh);
+
+        $('.st-video').bind('inview', function (event, visible) {
+           if (visible) {
+            console.log("video visible");
+             longform.playVideo(event);
+           } else {
+
+            console.log("video NOT visible");
+            longform.stopVideo(event);
+           }
+         });
 
     },
 
@@ -208,6 +220,7 @@ window.longform = {
             $(this).css('background-image', 'url(' + $(this).data("src") + ')');
         });
     },
+
     prepareSlideshows: function() {
         var counter = 0;
         $('.slideshow .bg-image, .slideshow-horizontal .bg-image').each(function() {
@@ -354,6 +367,49 @@ window.preloader = {
 
     }
 }
+window.nav = {
+
+    init: function() {
+
+        $(".menu_open").on("click.menu", function() {
+            $("body").toggleClass("paneOpen");
+        });
+
+
+        // mute button
+
+        $('.mute').on('click', function(e) {
+            e.preventDefault();
+
+            if (longform.muted === true) {
+                $(this).removeClass('muted');
+                longform.muted = false;
+                $('video, audio').each(function() {
+                    $(this)[0].volume = 1;
+                });
+            } else {
+                longform.muted = true;
+                $(this).addClass('muted');
+                $('video, audio').each(function() {
+                    $(this)[0].volume = 0;
+                });
+            }
+
+        });
+
+        $(".longform .nav a").on("click.nav", function(e) {
+            e.preventDefault();
+
+            var src = $(this).attr('href').replace('#', '');
+            var target = ($('[name=' + src + ']').position().top + 1);
+
+            $('body, html').animate({
+                scrollTop: target + 'px'
+            }, 1000);
+
+        });
+    }
+}
 $(document).ready(function() {
 
     preloader.init();
@@ -361,6 +417,8 @@ $(document).ready(function() {
     longform.init();
 
     blueimpGallery.init();
+
+    nav.init();
 
 });
 

@@ -1,0 +1,56 @@
+.part {
+    min-height: 100vh;
+}
+
+
+
+article {
+  position:relative;
+    .header {
+        text-align: center;
+        font-weight: 200;
+        margin-bottom: 5vh;
+        h1 {
+            margin: 0;
+            font-size: 3em;
+            line-height: 1.4em;
+        }
+        h2 {
+            margin: 0;
+            font-size: 1.6em;
+            line-height: 1.2em;
+            font-style: italic;
+        }
+    }
+    .header-fullpage {
+        text-align: center;
+        font-weight: 200;
+        height: 100vh;
+        margin: -10vh auto 0 auto;
+        display: table;
+        .middle {
+            vertical-align: middle;
+            display: table-cell;
+        }
+        h1 {
+            margin: 0;
+            font-size: 5em;
+            line-height: 1.4em;
+        }
+        h2 {
+            margin: 0;
+            font-size: 2.2em;
+            line-height: 1.2em;
+        }
+    }
+    a.nextPart {
+        display: inline-block;
+        padding: 3px 6px;
+        background: #333;
+        color: #fff;
+        &:hover {
+            color: #7fc8e8;
+            text-decoration: none;
+        }
+    }
+}

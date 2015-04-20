@@ -2,7 +2,7 @@ window.nav = {
 
     init: function() {
 
-        $(".menu_open").on("click.menu", function() {
+        $(".menu_open").on("click.nav", function() {
             $("body").toggleClass("paneOpen");
         });
 

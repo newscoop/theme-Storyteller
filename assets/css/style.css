@@ -7245,6 +7245,8 @@ article a.nextPart:hover {
   }
 }
 .longform .menu_open {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   position: fixed;
   right: 15px;
   top: 10px;
@@ -7303,6 +7305,10 @@ article a.nextPart:hover {
   transform: rotate(-45deg);
 }
 .longform .nav {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
   position: fixed;
   top: 0;
   bottom: 0px;
@@ -7456,6 +7462,10 @@ article a.nextPart:hover {
   top: 0;
   left: 0;
   right: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 .sticky-image .content {
   position: relative;
@@ -7485,6 +7495,10 @@ article a.nextPart:hover {
   top: 0;
   left: 0;
   right: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 .st-video .content {
   position: relative;
@@ -7523,6 +7537,10 @@ article a.nextPart:hover {
   background-size: cover;
   z-index: 1;
   position: relative;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 .slideshow .caption {
   position: absolute;
@@ -7571,6 +7589,10 @@ article a.nextPart:hover {
   z-index: 1;
   position: relative;
   top: -100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 .parallax .content {
   position: relative;

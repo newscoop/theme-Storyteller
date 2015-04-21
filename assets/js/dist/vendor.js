@@ -2212,21 +2212,12 @@ s=f[n][2],this._initialRotations[n]=this._func[s]?this._func[s].call(this._targe
 
     function checkInView() {
         var viewportTop = getScrollTop(),
-            viewportBottom = viewportTop + getViewportHeight(),
-            elems = '.inview';
-
-        // I had to change that because it wasn;t working with jquery 2.1
+            viewportBottom = viewportTop + getViewportHeight();
 
 
-        // $.each($._data, function() {
-        //     console.log(this);
 
-        //     if (this.events && this.events.inview) {
-        //         elems.push(this.handle.elem);
-        //     }
-        // });
 
-        $(elems).each(function() {
+        $('.inview').each(function() {
             var $el = $(this),
                 elTop = offsetTop(this),
                 elHeight = $el.height(),

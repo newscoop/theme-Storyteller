@@ -151,7 +151,7 @@ window.longform = {
 
 
 
-        container.html('<video  loop="loop" preload="none" src="' + src + '" autoplay ></video>"');
+        container.html('<video src="' + src + '" autoplay ></video>"');
         container.css("background-image", 'none');
     },
     stopVideo: function(e) {

@@ -5,9 +5,7 @@ window.longform = {
     init: function() {
         this.wh = $(window).height();
 
-        this.prepareStickyBgImages();
-
-        this.prepareSlideshows();
+        this.prepareBgImages();
 
         this.prepareParallaxes();
 
@@ -67,21 +65,21 @@ window.longform = {
 
     },
 
-    bindVideoEvents : function(){
+    bindVideoEvents: function() {
 
         // setting offset so playVideo() will be fired one screen height before it is in view
         $('.st-video').attr('data-offset', longform.wh);
 
-        $('.st-video').bind('inview', function (event, visible) {
-           if (visible) {
-            console.log("video visible");
-             longform.playVideo(event);
-           } else {
+        $('.st-video').bind('inview', function(event, visible) {
+            if (visible) {
+                console.log("video visible");
+                longform.playVideo(event);
+            } else {
 
-            console.log("video NOT visible");
-            longform.stopVideo(event);
-           }
-         });
+                console.log("video NOT visible");
+                longform.stopVideo(event);
+            }
+        });
 
     },
 
@@ -106,24 +104,16 @@ window.longform = {
 
     },
 
-    prepareStickyBgImages: function() {
+    prepareBgImages: function() {
         var counter = 0;
-        $('.sticky-image .bg-image').each(function() {
-            $(this).attr('id', 'stickyBgImage' + counter++);
+        $('.bg-image').each(function() {
+            $(this).attr('id', 'BgImage' + counter++);
             $(this).css('background-image', 'url(' + $(this).data("src") + ')');
         });
     },
 
-    prepareSlideshows: function() {
-        var counter = 0;
-        $('.slideshow .bg-image, .slideshow-horizontal .bg-image').each(function() {
-            $(this).attr('id', 'slideshowImage' + counter++);
-            $(this).css('background-image', 'url(' + $(this).data("src") + ')');
-        });
 
 
-
-    },
 
     prepareParallaxes: function() {
         var counter = 0;
@@ -132,9 +122,7 @@ window.longform = {
         });
 
 
-        $('.parallax .bg-image').each(function() {
-            $(this).css('background-image', 'url(' + $(this).data("src") + ')');
-        });
+
 
     }
 

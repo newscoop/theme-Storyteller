@@ -84,7 +84,7 @@
                 return;
             }
             shouldRun = false;
-            fn();
+            window.requestAnimationFrame(fn);
             timer = setTimeout(function() {
                 timer = null;
                 if (shouldRun) {

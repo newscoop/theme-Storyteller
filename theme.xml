@@ -17,9 +17,12 @@
 
   <renditions>
   	<rendition name="fullscreen" width="1920" height="1200" specs="crop"/>
-    <rendition name="video" width="1920" height="1080" specs="crop"/>
-    <rendition name="slideshow" width="1200" height="800" specs="crop"/>
+    <rendition name="fullscreen_medium" width="1024" height="768" specs="crop"/>
+    <rendition name="fullscreen_phone" width="600" height="736" specs="crop"/>
     <rendition name="sidebar" width="215" height="115" specs="crop"/>
+
+    <rendition name="video" width="1920" height="1080" specs="crop"/>
+
   </renditions>
 </theme>
 

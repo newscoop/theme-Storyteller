@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    preloader.init();
+   // preloader.init();
 
     longform.init();
 
@@ -17,4 +17,5 @@ window.onload = function() {
 
     preloader.destroy();
 
+    $(window).trigger('checkInView');
 };

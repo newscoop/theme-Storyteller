@@ -1,7 +1,19 @@
 <div class="part parallax" name="{{ $gimme->article->number }}">
-          {{image rendition="fullscreen"}}
-            <div class="bg-image" data-src="{{ $image->src }}"></div>
-          {{/image}}
+
+            <div class="bg-image"
+              {{image rendition="fullscreen"}}
+                data-src="{{ $image->src }}"
+              {{/image}}
+
+              {{image rendition="fullscreen_medium"}}
+                data-srcMedium="{{ $image->src }}"
+              {{/image}}
+
+              {{image rendition="fullscreen_phone"}}
+                data-srcPhone="{{ $image->src }}"
+              {{/image}}
+            ></div>
+
 
            <div class="content container">
               {{if $gimme->article->display_title }}

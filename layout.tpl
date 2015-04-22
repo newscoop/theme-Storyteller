@@ -79,6 +79,9 @@
         {{ if $gimme->current_list->at_beginning }}
         <section>
             <article>
+        {{ if $gimme->browser->ua_type != "mobile" }}
+          {{ include file="_tpl/_storyteller/ambient-audio.tpl" }}
+        {{ /if }}
         {{ /if }}    
         {{ if $gimme->article->slideshow }}
             {{ include file="_tpl/_storyteller/ST-slideshow.tpl" }}

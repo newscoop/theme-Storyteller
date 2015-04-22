@@ -114,8 +114,6 @@ window.longform = {
     },
 
 
-
-
     prepareParallaxes: function() {
         var counter = 0;
         $('.parallax').each(function() {

@@ -38,14 +38,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/img/favicon.png">
-    <link rel="apple-touch-icon" href="assets/img/touch-icon.png">
+    <link rel="shortcut icon" href="{{uri static_file="assets/img/favicon.ico"}}">
+    <link rel="apple-touch-icon" href="{{uri static_file="assets/img/touch-icon.png" }}">
 
 
 
     <!-- grunt boilerplate -->
       <!-- assets versioning -->
-      {{ assign var="VER_ENV" value="0.40000000000000024" scope="global" }}
+      {{ assign var="VER_ENV" value="0.41000000000000025" scope="global" }}
 
       <link href="{{ url static_file="assets/css/style.css?v=$VER_ENV" }}" rel="stylesheet">
 

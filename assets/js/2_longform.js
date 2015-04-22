@@ -110,6 +110,33 @@ window.longform = {
 
         });
 
+        // select appropriate src for browser/device
+        $('.video-container').each(function(){
+            var container = $(this);
+            var src = null;
+            $(container).children('source').each(function(){
+                src = $(this).attr('data-src');
+                // check for mp4 or webm capability
+                if (Modernizr.video) {
+                    // chrome > 30 can handle both mp4 and webm but mp4 is used more widely
+                    if (Modernizr.video.webm) {
+                        // check to see if the last character is a '4'
+                        if (src.substr(-1) == 'm'){
+                            src = src;
+                            return false;
+                        }
+                    } else if (Modernizr.video.h264){
+                        // check to see if the last digit is an 'm'
+                        if (src.substr(-1) == '4'){
+                            src = src;
+                            return false;
+                        }
+                    }
+                }
+            });
+            $(container).attr('data-src', src);
+        });
+
     },
 
     bindVideoEvents : function(){

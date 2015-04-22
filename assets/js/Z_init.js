@@ -17,4 +17,5 @@ window.onload = function() {
 
     preloader.destroy();
 
+    $(window).trigger('checkInView');
 };

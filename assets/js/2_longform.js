@@ -109,6 +109,7 @@ window.longform = {
         $('.bg-image').each(function() {
             $(this).attr('id', 'BgImage' + counter++);
             $(this).css('background-image', 'url(' + $(this).data("src") + ')');
+
         });
     },
 

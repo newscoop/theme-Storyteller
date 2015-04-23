@@ -11,7 +11,7 @@ module.exports = function(grunt){
                       search: '{{ assign var="VER_ENV" value="[^\']*" scope="global" }}',
                       replace: function(result){
                         var ver = result.match(/(\d\.?)+/gi);
-                        var newVer = parseFloat(ver) + 0.01;
+                        var newVer = parseFloat(ver) + parseFloat('0.01');
 
                         return '{{ assign var="VER_ENV" value="'+newVer+'" scope="global" }}';
                       },

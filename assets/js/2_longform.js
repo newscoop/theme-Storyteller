@@ -186,17 +186,17 @@ window.longform = {
         if (!longform.playingAudio) {
             audio.src = location.protocol + '//' + window.location.hostname + src;
             audio.play();
-            longform.playingAudio = true; 
+            longform.playingAudio = true;
         }
 
     },
 
     stopAudio: function (e) {
         var audio = $('#master-audio')[0];
-       
-        if (longform.playingAudio) { 
+
+        if (longform.playingAudio) {
             audio.pause();
-            longform.playingAudio = false; 
+            longform.playingAudio = false;
         }
     },
 
@@ -285,10 +285,6 @@ window.longform = {
         $('.parallax').each(function() {
             $(this).attr('id', 'parallax' + counter++);
         });
-
-
-
-
     }
 
 };

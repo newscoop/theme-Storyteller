@@ -13,10 +13,13 @@
       <div id="loader"></div>
     </div>
 
+  <!-- main audio -->
+  <audio id="master-audio" preload="none" autoplay="autoplay" loop="loop"></audio>
+  <a href="#" class="mute">Mute</a>
+
   <!-- navigation -->
   {{ include file="_tpl/_storyteller/nav.tpl" }}
-  <!-- todo: ambient audio -->
-  {{ include file="_tpl/_storyteller/ambient-audio.tpl" }}
+  {{ include file="_tpl/_storyteller/ambient-audio.tpl" container="article" }}
 
 
   <!-- we don't show content of wrapper article here. It is there for playlists, frontpage etc. -->
@@ -25,14 +28,14 @@
 
 
     {{ list_related_articles }}
-
+  
       {{if $gimme->article->background_image}}
       <!-- background image -->
         {{include file="_tpl/_storyteller/el-bg-image.tpl"}}
 
 
       {{elseif $gimme->article->background_video}}
-      <!-- background video TODO!!!!!!! -->
+      <!-- background video -->
         {{include file="_tpl/_storyteller/el-bg-video.tpl"}}
 
 
@@ -56,6 +59,9 @@
         {{include file="_tpl/_storyteller/el-no-effects.tpl"}}
 
       {{/if}}
+
+      <!-- ambient audio -->
+      {{ include file="_tpl/_storyteller/ambient-audio.tpl" container="section" }}
 
 
     {{ /list_related_articles }}

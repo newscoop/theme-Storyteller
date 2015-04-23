@@ -5,6 +5,7 @@ window.longform = {
     muted: false,
     playingVideo: false,
     loopingVideo: false,
+    playingAudio: false,
 
     init: function() {
 
@@ -25,7 +26,11 @@ window.longform = {
 
         this.prepareVideos();
 
+        this.prepareAudios();
+
         this.bindVideoEvents();
+
+        this.bindAudioEvents();
     },
 
 
@@ -148,6 +153,53 @@ window.longform = {
 
     },
 
+    prepareAudios: function() {
+
+        var counter = 0;
+        $('.ambient').each(function() {
+            var articleContainer = $(this).next('article');
+            var sectionContainer = $(this).prev('section');
+            var containerType = $(this).data('container');
+
+            $(this).attr("id", "audio" + counter++);
+
+            if (containerType === 'article') {
+                articleContainer.addClass('ambient-container');
+                articleContainer.addClass('inview');
+                articleContainer.attr('ambient-src', $(this).data('src'));
+            } else {
+                sectionContainer.addClass('ambient-container');
+                sectionContainer.addClass('inview');
+                sectionContainer.attr('data-ambient-src', $(this).data('src'));
+            }
+
+        });
+
+    },
+
+    playAudio: function(e) {
+
+        var element = $(e.target);
+        var src = $(element).data("ambient-src");
+        var audio = $('#master-audio')[0];
+
+        if (!longform.playingAudio) {
+            audio.src = location.protocol + '//' + window.location.hostname + src;
+            audio.play();
+            longform.playingAudio = true; 
+        }
+
+    },
+
+    stopAudio: function (e) {
+        var audio = $('#master-audio')[0];
+       
+        if (longform.playingAudio) { 
+            audio.pause();
+            longform.playingAudio = false; 
+        }
+    },
+
     bindVideoEvents: function() {
 
         // setting offset so playVideo() will be fired one screen height before it is in view
@@ -160,6 +212,18 @@ window.longform = {
                 longform.stopVideo(event);
             }
         });
+
+    },
+
+    bindAudioEvents : function(){
+
+        $('.ambient-container').bind('inview', function (event, visible) {
+            if (visible) {
+                longform.playAudio(event);
+            } else {
+                longform.stopAudio(event);
+            }
+         });
 
     },
 

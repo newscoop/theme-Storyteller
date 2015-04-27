@@ -7,7 +7,10 @@
   </div>
 </div>
 {{/if}}
+
+{{if $gimme->article->include_next_section_button}}
 <a href="#" class="nextPart">Next Section</a>
+{{/if}}
 
 </div>
 

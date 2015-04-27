@@ -11,5 +11,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', ['watch']);
 
-    grunt.registerTask('build', ['less:build', 'autoprefixer:build', 'concat', 'regex-replace:build']);
+    grunt.registerTask('build', ['less:build', 'autoprefixer:build', 'concat', 'uglify', 'regex-replace:build']);
 };

@@ -1,77 +1,49 @@
 {{ include file="_tpl/_html-head.tpl" }}
-
-
-{{list_articles constraints="type is storyteller" length="1"}}
-
 <body class="longform">
+<article>
 
-<div id="loader-wrapper" >
-  {{image rendition="fullscreen"}}
-    <div id="loader-image" data-src="{{ $image->src }}" ></div>
-  {{/image}}
+{{ list_articles  constraints="type is storyteller"}}
+  <div class="landingpage" >
 
-      <div id="loader"></div>
-    </div>
+      <div class="bg-image"
+        {{image rendition="fullscreen"}}
+          data-src="{{ $image->src }}"
+        {{/image}}
 
-  <!-- main audio -->
-  <audio id="master-audio" preload="none" autoplay="autoplay" loop="loop"></audio>
-  <a href="#" class="mute">Mute</a>
+        {{image rendition="fullscreen_medium"}}
+          data-srcMedium="{{ $image->src }}"
+        {{/image}}
 
-  <!-- navigation -->
-  {{ include file="_tpl/_storyteller/nav.tpl" }}
-  {{ include file="_tpl/_storyteller/ambient-audio.tpl" container="article" }}
-
-
-  <!-- we don't show content of wrapper article here. It is there for playlists, frontpage etc. -->
-
-  <article>
+        {{image rendition="fullscreen_phone"}}
+          data-srcPhone="{{ $image->src }}"
+        {{/image}}
+      >
+      </div>
 
 
-    {{ list_related_articles }}
-  
-      {{if $gimme->article->background_image}}
-      <!-- background image -->
-        {{include file="_tpl/_storyteller/el-bg-image.tpl"}}
+    <div class="content container">
+      <div class="row">
+
+          <div class="col-lg-12 header-fullpage">
+              <div class="middle">
+                  <h1>{{$gimme->article->name}}</h1>
 
 
-      {{elseif $gimme->article->background_video}}
-      <!-- background video -->
-        {{include file="_tpl/_storyteller/el-bg-video.tpl"}}
+                  <a href="{{url options="article"}}" class="startButton" >open</a>
 
+              </div>
+          </div>
 
-      {{elseif $gimme->article->parallax_image}}
-      <!-- parallax image with possible header text -->
-        {{include file="_tpl/_storyteller/el-parallax-image.tpl"}}
+     </div>
+   </div>
 
+  </div>
 
-      {{elseif $gimme->article->slideshow}}
-      <!-- slideshow -->
-        {{include file="_tpl/_storyteller/el-slideshow.tpl"}}
+{{ /list_articles }}
 
-
-      {{elseif $gimme->article->horizontal_slideshow}}
-      <!-- horizontal slideshow -->
-        {{include file="_tpl/_storyteller/el-horizontal-slideshow.tpl"}}
-
-
-      {{else}}
-      <!-- no effects/regular block -->
-        {{include file="_tpl/_storyteller/el-no-effects.tpl"}}
-
-      {{/if}}
-
-      <!-- ambient audio -->
-      {{ include file="_tpl/_storyteller/ambient-audio.tpl" container="section" }}
-
-
-    {{ /list_related_articles }}
-
-  </article>
-
-{{/list_articles}}
-
-
+</article>
 {{ include file="_tpl/_html-foot.tpl" }}
 
 </body>
 </html>
+

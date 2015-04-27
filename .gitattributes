@@ -1,0 +1,4 @@
+# cat .gitattributes
+style.css binary
+all.js binary
+all.js.map binary

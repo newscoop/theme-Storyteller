@@ -1,11 +1,13 @@
-.part {
-    min-height: 100vh;
+iframe{
+    max-width:100% !important;
 }
 
 
-
 article {
-  position:relative;
+    position: relative;
+    .part {
+        min-height: 100vh;
+    }
     .header {
         text-align: center;
         font-weight: 200;
@@ -46,8 +48,8 @@ article {
     a.nextPart {
         display: inline-block;
         padding: 3px 6px;
-        background: #333;
-        color: #fff;
+        background: @dark_color;
+        color: @light_color;
         &:hover {
             color: #7fc8e8;
             text-decoration: none;

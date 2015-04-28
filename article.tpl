@@ -3,7 +3,7 @@
 
 {{list_articles constraints="type is storyteller" length="1"}}
 
-<body class="longform">
+<body class="longform {{ if !$gimme->article->nav }}no-nav{{/if}}">
 
 <div id="loader-wrapper" >
   {{image rendition="fullscreen"}}
@@ -23,6 +23,8 @@
 
 
   <!-- we don't show content of wrapper article here. It is there for playlists, frontpage etc. -->
+
+
 
   <article>
 

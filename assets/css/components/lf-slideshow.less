@@ -8,7 +8,6 @@
         position: relative;
         transform: translateZ(0);
         backface-visibility: hidden;
-
     }
     .caption {
         position: absolute;
@@ -17,12 +16,11 @@
         z-index: 9999;
         padding: 30px;
         background: rgba(0, 0, 0, 0.4);
-        color: #fff;
+        color: @light_color;
         font-size: 1.4em;
-
-        span{
-            display:block;
-            font-size:0.6em;
+        span {
+            display: block;
+            font-size: 0.6em;
         }
     }
 }
@@ -32,8 +30,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-    z-index:1;
-
+    z-index: 1;
     .slide-caption {
         position: absolute;
         left: 40px;
@@ -41,13 +38,50 @@
         z-index: 9999;
         padding: 30px;
         background: rgba(0, 0, 0, 0.4);
-        color: #fff;
+        color: @light_color;
         font-size: 1.4em;
-
-
-        span{
-            display:block;
-            font-size:0.6em;
+        span {
+            display: block;
+            font-size: 0.6em;
         }
+    }
+}
+
+.mobile {
+    .slideshow {
+        .bg-image {
+            height: 50vh;
+        }
+        .caption {
+            left: 20px;
+            top: 20px;
+            z-index: 9999;
+            padding: 10px;
+            font-size: 1em;
+            span {
+                font-size: 0.8em;
+            }
+        }
+    }
+    .slideshow-horizontal {
+        height: 50vh;
+        .slide-caption {
+            left: 20px;
+            bottom: 20px;
+            padding: 10px;
+            font-size: 1em;
+            span {
+                font-size: 0.8em;
+            }
+        }
+    }
+}
+
+@media all and (orientation: landscape) {
+    .mobile .slideshow .bg-image {
+        height: 110vh;
+    }
+    .mobile .slideshow-horizontal {
+        height: 100vh;
     }
 }

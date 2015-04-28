@@ -8,14 +8,29 @@ $(document).ready(function() {
 
     nav.init();
 
+
 });
 
-window.onload = function() {
-    console.log("document loaded");
+// on iOS mobile devices there is no onload event
+if (isMobile.any) {
 
-    sm.init();
+  $(document).ready(function() {
+
+    $("body").addClass("mobile");
 
     preloader.destroy();
 
     $(window).trigger('checkInView');
-};
+
+  });
+
+
+} else {
+    $(window).load(function() {
+      sm.init();
+
+      preloader.destroy();
+
+      $(window).trigger('checkInView');
+    });
+}

@@ -11,29 +11,24 @@ $(document).ready(function() {
 
 });
 
-// on touch/mobile devices there is no onload event
-if (Modernizr.touch) {
+// on iOS mobile devices there is no onload event
+if (isMobile.any) {
 
   $(document).ready(function() {
 
-     sm.init();
+    preloader.destroy();
 
-     preloader.destroy();
-
-     $(window).trigger('checkInView');
-
+    $(window).trigger('checkInView');
 
   });
 
 
 } else {
     $(window).load(function() {
+      sm.init();
 
+      preloader.destroy();
 
-        sm.init();
-
-        preloader.destroy();
-
-        $(window).trigger('checkInView');
+      $(window).trigger('checkInView');
     });
 }

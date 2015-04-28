@@ -27,6 +27,8 @@
                 data-animate="no"
               {{/if}}
                 >
+
+                {{if $gimme->slideshow_item->caption OR $gimme->slideshow_item->image->photographer}}
                 <div class="caption">
                   {{$gimme->slideshow_item->caption}}
 
@@ -35,6 +37,7 @@
                   {{/if}}
 
                 </div>
+                {{/if}}
               </div>
 
 

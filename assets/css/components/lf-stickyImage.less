@@ -1,6 +1,6 @@
 .sticky-image {
     position: relative;
-    color: #fff;
+    color: @light_color;
     overflow:hidden;
     .bg-image {
         width: 100%;
@@ -32,5 +32,35 @@
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.4);
         }
+    }
+}
+
+.mobile{
+
+
+    .sticky-image {
+        color: @dark_color;
+        .bg-image {
+            height: 50vh;
+            position: static;
+
+        }
+        .content {
+            padding-top: 3vh;
+            padding-bottom:3vh;
+
+
+            .text {
+
+                background: none;
+            }
+        }
+    }
+
+}
+
+@media all and (orientation: landscape) {
+    .mobile .sticky-image .bg-image {
+        height: 100vh;
     }
 }

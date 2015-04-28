@@ -16,6 +16,8 @@ if (isMobile.any) {
 
   $(document).ready(function() {
 
+    $("body").addClass("mobile");
+
     preloader.destroy();
 
     $(window).trigger('checkInView');

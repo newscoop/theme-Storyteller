@@ -7087,11 +7087,14 @@ body:last-child .blueimp-gallery > .slides > .slide > .video-content:not(.video-
   display: inline;
 }
 
-.part {
-  min-height: 100vh;
+iframe {
+  max-width: 100% !important;
 }
 article {
   position: relative;
+}
+article .part {
+  min-height: 100vh;
 }
 article .header {
   text-align: center;
@@ -7133,12 +7136,41 @@ article .header-fullpage h2 {
 article a.nextPart {
   display: inline-block;
   padding: 3px 6px;
-  background: #333;
-  color: #fff;
+  background: #333333;
+  color: #ffffff;
 }
 article a.nextPart:hover {
   color: #7fc8e8;
   text-decoration: none;
+}
+.mobile article .part {
+  min-height: 0;
+}
+.mobile article .header {
+  text-align: center;
+  font-weight: 200;
+  margin-bottom: 1em;
+}
+.mobile article .header h1 {
+  font-size: 2em;
+}
+.mobile article .header h2 {
+  font-size: 1.2em;
+  font-style: normal;
+}
+.mobile article .header-fullpage {
+  text-align: center;
+  font-weight: 200;
+  height: auto;
+  margin: 1em auto;
+}
+.mobile article .header-fullpage h1 {
+  font-size: 2em;
+  line-height: 1.4em;
+}
+.mobile article .header-fullpage h2 {
+  font-size: 1.2em;
+  line-height: 1.2em;
 }
 #loader-wrapper {
   position: fixed;
@@ -7292,6 +7324,12 @@ article a.nextPart:hover {
   font-weight: 300;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.4);
+}
+.mobile .landingpage .content {
+  height: 100vh;
+}
+.mobile .landingpage .content .header-fullpage {
+  height: 100vh;
 }
 .longform .menu_open {
   -webkit-backface-visibility: hidden;
@@ -7501,7 +7539,7 @@ article a.nextPart:hover {
 }
 .sticky-image {
   position: relative;
-  color: #fff;
+  color: #ffffff;
   overflow: hidden;
 }
 .sticky-image .bg-image {
@@ -7532,9 +7570,28 @@ article a.nextPart:hover {
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.mobile .sticky-image {
+  color: #333333;
+}
+.mobile .sticky-image .bg-image {
+  height: 50vh;
+  position: static;
+}
+.mobile .sticky-image .content {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+.mobile .sticky-image .content .text {
+  background: none;
+}
+@media all and (orientation: landscape) {
+  .mobile .sticky-image .bg-image {
+    height: 100vh;
+  }
+}
 .st-video {
   position: relative;
-  color: #fff;
+  color: #ffffff;
   overflow: hidden;
 }
 .st-video .video-container {
@@ -7569,10 +7626,33 @@ article a.nextPart:hover {
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.mobile .st-video {
+  color: #333333;
+}
+.mobile .st-video .video-container {
+  height: 50vh;
+  position: static;
+}
+.mobile .st-video .video-container video {
+  min-width: 80%;
+  min-height: 40vh;
+}
+.mobile .st-video .content {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+.mobile .st-video .content .text {
+  background: none;
+}
+@media all and (orientation: landscape) {
+  .mobile .st-video .video-container {
+    height: 100vh;
+  }
+}
 .no-effects {
   min-height: 0px;
-  background-color: #fff;
-  color: #222;
+  background-color: #ffffff;
+  color: #333333;
   position: relative;
   z-index: 10;
 }
@@ -7604,7 +7684,7 @@ article a.nextPart:hover {
   z-index: 9999;
   padding: 30px;
   background: rgba(0, 0, 0, 0.4);
-  color: #fff;
+  color: #ffffff;
   font-size: 1.4em;
 }
 .slideshow .caption span {
@@ -7625,12 +7705,45 @@ article a.nextPart:hover {
   z-index: 9999;
   padding: 30px;
   background: rgba(0, 0, 0, 0.4);
-  color: #fff;
+  color: #ffffff;
   font-size: 1.4em;
 }
 .slideshow-horizontal .slide-caption span {
   display: block;
   font-size: 0.6em;
+}
+.mobile .slideshow .bg-image {
+  height: 50vh;
+}
+.mobile .slideshow .caption {
+  left: 20px;
+  top: 20px;
+  z-index: 9999;
+  padding: 10px;
+  font-size: 1em;
+}
+.mobile .slideshow .caption span {
+  font-size: 0.8em;
+}
+.mobile .slideshow-horizontal {
+  height: 50vh;
+}
+.mobile .slideshow-horizontal .slide-caption {
+  left: 20px;
+  bottom: 20px;
+  padding: 10px;
+  font-size: 1em;
+}
+.mobile .slideshow-horizontal .slide-caption span {
+  font-size: 0.8em;
+}
+@media all and (orientation: landscape) {
+  .mobile .slideshow .bg-image {
+    height: 110vh;
+  }
+  .mobile .slideshow-horizontal {
+    height: 100vh;
+  }
 }
 .parallax {
   height: 100vh;
@@ -7654,11 +7767,36 @@ article a.nextPart:hover {
   z-index: 2;
   margin-top: -150vh;
   height: 100vh;
-  color: #fff;
+  color: #ffffff;
+}
+.mobile .parallax {
+  height: auto;
+}
+.mobile .parallax .bg-image {
+  height: 50vh;
+  top: 0;
+}
+.mobile .parallax .content {
+  margin-top: 0;
+  height: auto;
+  color: #333333;
+}
+@media all and (orientation: landscape) {
+  .mobile .parallax .bg-image {
+    height: 100vh;
+  }
 }
 .blueimp-gallery-carousel {
   margin: 0;
   padding: 0;
   box-shadow: none;
   height: 100vh;
+}
+.mobile .blueimp-gallery-carousel {
+  height: 50vh;
+}
+@media all and (orientation: landscape) {
+  .mobile .blueimp-gallery-carousel {
+    height: 100vh;
+  }
 }

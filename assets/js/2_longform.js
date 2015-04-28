@@ -31,6 +31,8 @@ window.longform = {
         this.bindVideoEvents();
 
         this.bindAudioEvents();
+
+
     },
 
 
@@ -286,5 +288,4 @@ window.longform = {
             $(this).attr('id', 'parallax' + counter++);
         });
     }
-
 };

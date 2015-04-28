@@ -8,14 +8,32 @@ $(document).ready(function() {
 
     nav.init();
 
+
 });
 
-window.onload = function() {
-    console.log("document loaded");
+// on touch/mobile devices there is no onload event
+if (Modernizr.touch) {
 
-    sm.init();
+  $(document).ready(function() {
 
-    preloader.destroy();
+     sm.init();
 
-    $(window).trigger('checkInView');
-};
+     preloader.destroy();
+
+     $(window).trigger('checkInView');
+
+
+  });
+
+
+} else {
+    $(window).load(function() {
+
+
+        sm.init();
+
+        preloader.destroy();
+
+        $(window).trigger('checkInView');
+    });
+}

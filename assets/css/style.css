@@ -7492,6 +7492,9 @@ article a.nextPart:hover {
   width: 32px;
   height: 32px;
 }
+.no-nav .mute {
+  right: 10px;
+}
 .mute.muted {
   background-image: url(../img/icon-muted.png);
   background-size: cover;

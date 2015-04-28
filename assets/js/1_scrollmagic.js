@@ -22,7 +22,7 @@ window.sm = {
             var thisId = '#' + $(this).attr("id");
 
             var contentHeight = $(this).parent().find(".content").outerHeight();
-            var duration = contentHeight > longform.wHeight ? contentHeight - longform.wHeight : longform.wHeight;
+            var duration = contentHeight > longform.wHeight*2 ? contentHeight : longform.wHeight*2;
 
             var scene = new ScrollMagic.Scene({
                     triggerElement: thisId,
@@ -42,7 +42,9 @@ window.sm = {
         $('.sticky-image .bg-image').each(function() {
             var thisId = '#' + $(this).attr("id");
             var contentHeight = $(this).parent().find(".content").outerHeight();
-            var duration = contentHeight > longform.wHeight ? contentHeight - longform.wHeight : longform.wHeight;
+            var duration = contentHeight > longform.wHeight*2 ? contentHeight : longform.wHeight*2;
+
+
 
             var scene = new ScrollMagic.Scene({
                     triggerElement: thisId,

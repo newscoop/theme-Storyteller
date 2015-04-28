@@ -2224,21 +2224,24 @@ s=f[n][2],this._initialRotations[n]=this._func[s]?this._func[s].call(this._targe
                 elBottom = elTop + elHeight,
                 wasInView = $el.data('inview') || false,
                 offset = $el.data('offset') || 0,
-                inView = elTop > viewportTop && elBottom < viewportBottom,
-                isBottomVisible = elBottom + offset > viewportTop && elTop < viewportTop,
-                isTopVisible = elTop - offset < viewportBottom && elBottom > viewportBottom,
+                inView = elTop >= viewportTop && elBottom <= viewportBottom,
+                isBottomVisible = elBottom + offset >= viewportTop && elTop <= viewportTop,
+                isTopVisible = elTop - offset <= viewportBottom && elBottom >= viewportBottom,
                 inViewWithOffset = inView || isBottomVisible || isTopVisible ||
-                    (elTop < viewportTop && elBottom > viewportBottom);
+                    (elTop <= viewportTop && elBottom >= viewportBottom);
+
 
             if (inViewWithOffset) {
                 var visPart = (isTopVisible) ? 'top' : (isBottomVisible) ? 'bottom' : 'both';
                 if (!wasInView || wasInView !== visPart) {
                     $el.data('inview', visPart);
                     $el.trigger('inview', [true, visPart]);
+
                 }
             } else if (!inView && wasInView) {
                 $el.data('inview', false);
                 $el.trigger('inview', [false]);
+
             }
         });
     }

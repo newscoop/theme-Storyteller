@@ -39,11 +39,13 @@
     .st-video {
         color: @dark_color;
         .video-container {
-            height: 50vh;
+            height: auto;
             position: static;
             video {
-                min-width: 80%;
-                min-height: 40vh;
+                min-width: 0;
+                min-height: 0;
+                width: 100%;
+                height: auto;
             }
         }
         .content {

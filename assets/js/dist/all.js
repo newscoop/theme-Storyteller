@@ -7381,13 +7381,16 @@ window.longform = {
 
         this.setupSnapping();
 
-        this.prepareVideos();
-
         this.prepareAudios();
 
-        this.bindVideoEvents();
-
         this.bindAudioEvents();
+
+        if (!isMobile.any){
+
+            this.prepareVideos();
+            this.bindVideoEvents();
+
+        }
 
 
     },
@@ -7425,10 +7428,10 @@ window.longform = {
             if (Modernizr.video) {
                 if (Modernizr.video.webm) {
                     // chrome & firefox
-                    container.html('<video style="display:none" preload="none" src="' + src + '"></video>"');
+                    container.html('<video style="display:none" preload="none" src="' + src + '" ></video>"');
                 } else if (Modernizr.video.h264) {
                     // safari
-                    container.html('<video style="display:none" ><source src="' + src + '" /></video>"');
+                    container.html('<video style="display:none"><source src="' + src + '" /></video>"');
                 }
 
                 // TODO: pause ambient audio here so video audio doesn't play over it
@@ -7844,8 +7847,6 @@ if (isMobile.any) {
     $("body").addClass("mobile");
 
     preloader.destroy();
-
-
 
   });
 

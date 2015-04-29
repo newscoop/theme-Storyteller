@@ -20,8 +20,6 @@ if (isMobile.any) {
 
     preloader.destroy();
 
-
-
   });
 
 

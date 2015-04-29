@@ -1,3 +1,3 @@
-<div class="no-effects part" name="{{ $gimme->article->number }}">
+<div class="no-effects part {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
            {{include file="_tpl/_storyteller/content.tpl"}}
 </div>

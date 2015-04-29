@@ -7537,6 +7537,11 @@ article a.nextPart:hover {
   background-image: url(../img/icon-muted.png);
   background-size: cover;
 }
+@media (max-width: 767px) {
+  .longform .nav nav ul li:hover ul {
+    display: none;
+  }
+}
 .sticky-image {
   position: relative;
   color: #ffffff;
@@ -7630,12 +7635,14 @@ article a.nextPart:hover {
   color: #333333;
 }
 .mobile .st-video .video-container {
-  height: 50vh;
+  height: auto;
   position: static;
 }
 .mobile .st-video .video-container video {
-  min-width: 80%;
-  min-height: 40vh;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: auto;
 }
 .mobile .st-video .content {
   padding-top: 3vh;
@@ -7799,4 +7806,8 @@ article a.nextPart:hover {
   .mobile .blueimp-gallery-carousel {
     height: 100vh;
   }
+}
+.dark_bg {
+  background: #444;
+  color: #fff;
 }

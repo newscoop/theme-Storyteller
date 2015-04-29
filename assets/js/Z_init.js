@@ -20,8 +20,6 @@ if (isMobile.any) {
 
     preloader.destroy();
 
-    $(window).trigger('checkInView');
-
   });
 
 
@@ -31,6 +29,6 @@ if (isMobile.any) {
 
       preloader.destroy();
 
-      $(window).trigger('checkInView');
+
     });
 }

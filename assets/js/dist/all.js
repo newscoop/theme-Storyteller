@@ -7562,7 +7562,7 @@ window.longform = {
     bindVideoEvents: function() {
 
         $('.st-video').each(function() {
-            $('#' + $(this).attr("id")).bind('inview', function(event, visible) {
+            $(this).bind('inview', function(event, visible) {
                 if (visible) {
                     longform.playVideo(event);
                 } else {
@@ -7576,12 +7576,15 @@ window.longform = {
 
     bindAudioEvents: function() {
 
-        $('.ambient-container').bind('inview', function(event, visible) {
-            if (visible) {
-                longform.playAudio(event);
-            } else {
-                longform.stopAudio(event);
-            }
+        $('.ambient-container').each(function() {
+
+            $(this).bind('inview', function(event, visible) {
+                if (visible) {
+                    longform.playAudio(event);
+                } else {
+                    longform.stopAudio(event);
+                }
+            });
         });
 
     },

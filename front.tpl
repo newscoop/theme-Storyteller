@@ -3,14 +3,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-12">
       <h1>Each section contains one longform.</h1>
     </div>
   </div>
 
   <div class="row">
 {{ list_articles  constraints="type is storyteller"}}
-  <div class="col-lg-6">
+  <div class="col-md-6">
     {{image rendition="fullscreen"}}
     <a href="{{url options="section"}}">
       <img src="{{ $image->src }}" />

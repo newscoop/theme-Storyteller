@@ -7800,3 +7800,7 @@ article a.nextPart:hover {
     height: 100vh;
   }
 }
+.dark_bg {
+  background: #444;
+  color: #fff;
+}

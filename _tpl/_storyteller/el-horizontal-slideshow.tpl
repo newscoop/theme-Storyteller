@@ -11,7 +11,7 @@
          }
          </script>
 
-          <div class="part slideshow-horizontal snap" name="{{ $gimme->article->number }}">
+          <div class="part slideshow-horizontal snap {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
             <div class="blueimp-gallery blueimp-gallery-carousel blueimp-gallery-controls">
               <div class="slides"></div>

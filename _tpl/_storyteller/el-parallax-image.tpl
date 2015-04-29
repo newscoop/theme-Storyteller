@@ -1,4 +1,4 @@
-<div class="part parallax" name="{{ $gimme->article->number }}">
+<div class="part parallax {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
             <div class="bg-image"
               {{image rendition="fullscreen"}}

@@ -1,4 +1,4 @@
-<div class="st-video part inview" name="{{ $gimme->article->number }}">
+<div class="st-video part inview {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
     {{ if $gimme->browser->ua_type != "mobile" }}
       <div class="video-container"
         {{ if $gimme->article->loop }}data-loop="loop" {{ /if }}

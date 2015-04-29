@@ -62,17 +62,16 @@ window.longform = {
         var video = null;
 
         if (!longform.playingVideo) {
-            // hide background image
-            container.css("background-image", 'none');
+
 
             //determine best format based on browser / device
             if (Modernizr.video) {
                 if (Modernizr.video.webm) {
                     // chrome & firefox
-                    container.html('<video preload="none" src="' + src + '"></video>"');
+                    container.html('<video style="display:none" preload="none" src="' + src + '"></video>"');
                 } else if (Modernizr.video.h264) {
                     // safari
-                    container.html('<video><source src="' + src + '" /></video>"');
+                    container.html('<video style="display:none" ><source src="' + src + '" /></video>"');
                 }
 
                 // TODO: pause ambient audio here so video audio doesn't play over it
@@ -91,7 +90,16 @@ window.longform = {
                     $(video).attr('loop', 'loop');
                 }
                 video.load();
-                video.play();
+
+
+                video.oncanplay = function() {
+                    video.play();
+
+                    // hide background image
+                    container.css("background-image", 'none');
+                    $(video).fadeIn();
+                };
+
 
                 longform.playingVideo = true;
             }
@@ -207,9 +215,11 @@ window.longform = {
         $('.st-video').each(function() {
             $(this).bind('inview', function(event, visible) {
                 if (visible) {
+
                     longform.playVideo(event);
                 } else {
                     longform.stopVideo(event);
+
                 }
             });
         });

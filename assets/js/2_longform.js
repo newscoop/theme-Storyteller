@@ -193,7 +193,7 @@ window.longform = {
 
     },
 
-    stopAudio: function (e) {
+    stopAudio: function(e) {
         var audio = $('#master-audio')[0];
 
         if (longform.playingAudio) {
@@ -204,28 +204,28 @@ window.longform = {
 
     bindVideoEvents: function() {
 
-        // setting offset so playVideo() will be fired one screen height before it is in view
-        $('.st-video').attr('data-offset', longform.wHeight);
-
-        $('.st-video').bind('inview', function(event, visible) {
-            if (visible) {
-                longform.playVideo(event);
-            } else {
-                longform.stopVideo(event);
-            }
+        $('.st-video').each(function() {
+            $('#' + $(this).attr("id")).bind('inview', function(event, visible) {
+                if (visible) {
+                    longform.playVideo(event);
+                } else {
+                    longform.stopVideo(event);
+                }
+            });
         });
+
 
     },
 
-    bindAudioEvents : function(){
+    bindAudioEvents: function() {
 
-        $('.ambient-container').bind('inview', function (event, visible) {
+        $('.ambient-container').bind('inview', function(event, visible) {
             if (visible) {
                 longform.playAudio(event);
             } else {
                 longform.stopAudio(event);
             }
-         });
+        });
 
     },
 

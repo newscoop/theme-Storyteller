@@ -2279,111 +2279,140 @@ s=f[n][2],this._initialRotations[n]=this._func[s]?this._func[s].call(this._targe
 
 })(this);
 /**
- * author Remy Sharp
- * url http://remysharp.com/2009/01/26/element-in-view-event-plugin/
- * fork https://github.com/zuk/jquery.inview
+ * author Christopher Blum
+ *    - based on the idea of Remy Sharp, http://remysharp.com/2009/01/26/element-in-view-event-plugin/
+ *    - forked from http://github.com/zuk/jquery.inview/
  */
-(function($) {
-    'use strict';
+(function ($) {
+  var inviewObjects = {}, viewportSize, viewportOffset,
+      d = document, w = window, documentElement = d.documentElement, expando = $.expando, timer;
 
-    function getScrollTop() {
-        return window.pageYOffset ||
-            document.documentElement.scrollTop ||
-            document.body.scrollTop;
+  $.event.special.inview = {
+    add: function(data) {
+      inviewObjects[data.guid + "-" + this[expando]] = { data: data, $element: $(this) };
+
+      // Use setInterval in order to also make sure this captures elements within
+      // "overflow:scroll" elements or elements that appeared in the dom tree due to
+      // dom manipulation and reflow
+      // old: $(window).scroll(checkInView);
+      //
+      // By the way, iOS (iPad, iPhone, ...) seems to not execute, or at least delays
+      // intervals while the user scrolls. Therefore the inview event might fire a bit late there
+      //
+      // Don't waste cycles with an interval until we get at least one element that
+      // has bound to the inview event.
+      if (!timer && !$.isEmptyObject(inviewObjects)) {
+         timer = setInterval(checkInView, 250);
+      }
+    },
+
+    remove: function(data) {
+      try { delete inviewObjects[data.guid + "-" + this[expando]]; } catch(e) {}
+
+      // Clear interval when we no longer have any elements listening
+      if ($.isEmptyObject(inviewObjects)) {
+         clearInterval(timer);
+         timer = null;
+      }
+    }
+  };
+
+  function getViewportSize() {
+    var mode, domObject, size = { height: w.innerHeight, width: w.innerWidth };
+
+    // if this is correct then return it. iPad has compat Mode, so will
+    // go into check clientHeight/clientWidth (which has the wrong value).
+    if (!size.height) {
+      mode = d.compatMode;
+      if (mode || !$.support.boxModel) { // IE, Gecko
+        domObject = mode === 'CSS1Compat' ?
+          documentElement : // Standards
+          d.body; // Quirks
+        size = {
+          height: domObject.clientHeight,
+          width:  domObject.clientWidth
+        };
+      }
     }
 
-    function getViewportHeight() {
-        var height = window.innerHeight; // Safari, Opera
-        // if this is correct then return it. iPad has compat Mode, so will
-        // go into check clientHeight (which has the wrong value).
-        if (height) {
-            return height;
-        }
-        var mode = document.compatMode;
+    return size;
+  }
 
-        if ((mode || !$.support.boxModel)) { // IE, Gecko
-            height = (mode === 'CSS1Compat') ?
-                document.documentElement.clientHeight : // Standards
-                document.body.clientHeight; // Quirks
-        }
+  function getViewportOffset() {
+    return {
+      top:  w.pageYOffset || documentElement.scrollTop   || d.body.scrollTop,
+      left: w.pageXOffset || documentElement.scrollLeft  || d.body.scrollLeft
+    };
+  }
 
-        return height;
-    }
+  function checkInView() {
+    var $elements = [], elementsLength, i = 0;
 
-    function offsetTop(debug) {
-        // Manually calculate offset rather than using jQuery's offset
-        // This works-around iOS < 4 on iPad giving incorrect value
-        // cf http://bugs.jquery.com/ticket/6446#comment:9
-        var curtop = 0;
-        for (var obj = debug; obj; obj = obj.offsetParent) {
-            curtop += obj.offsetTop;
-        }
-        return curtop;
-    }
+    $.each(inviewObjects, function(i, inviewObject) {
+      var selector  = inviewObject.data.selector,
+          $element  = inviewObject.$element;
+      $elements.push(selector ? $element.find(selector) : $element);
+    });
 
-    function checkInView() {
-        var viewportTop = getScrollTop(),
-            viewportBottom = viewportTop + getViewportHeight();
+    elementsLength = $elements.length;
+    if (elementsLength) {
+      viewportSize   = viewportSize   || getViewportSize();
+      viewportOffset = viewportOffset || getViewportOffset();
 
-
-
-
-        $('.inview').each(function() {
-            var $el = $(this),
-                elTop = offsetTop(this),
-                elHeight = $el.height(),
-                elBottom = elTop + elHeight,
-                wasInView = $el.data('inview') || false,
-                offset = $el.data('offset') || 0,
-                inView = elTop >= viewportTop && elBottom <= viewportBottom,
-                isBottomVisible = elBottom + offset >= viewportTop && elTop <= viewportTop,
-                isTopVisible = elTop - offset <= viewportBottom && elBottom >= viewportBottom,
-                inViewWithOffset = inView || isBottomVisible || isTopVisible ||
-                    (elTop <= viewportTop && elBottom >= viewportBottom);
-
-
-            if (inViewWithOffset) {
-                var visPart = (isTopVisible) ? 'top' : (isBottomVisible) ? 'bottom' : 'both';
-                if (!wasInView || wasInView !== visPart) {
-                    $el.data('inview', visPart);
-                    $el.trigger('inview', [true, visPart]);
-
-                }
-            } else if (!inView && wasInView) {
-                $el.data('inview', false);
-                $el.trigger('inview', [false]);
-
-            }
-        });
-    }
-
-    function createFunctionLimitedToOneExecutionPerDelay(fn, delay) {
-        var shouldRun = false;
-        var timer = null;
-
-        function runOncePerDelay() {
-            if (timer !== null) {
-                shouldRun = true;
-                return;
-            }
-            shouldRun = false;
-            window.requestAnimationFrame(fn);
-            timer = setTimeout(function() {
-                timer = null;
-                if (shouldRun) {
-                    runOncePerDelay();
-                }
-            }, delay);
+      for (; i<elementsLength; i++) {
+        // Ignore elements that are not in the DOM tree
+        if (!$.contains(documentElement, $elements[i][0])) {
+          continue;
         }
 
-        return runOncePerDelay;
+        var $element      = $($elements[i]),
+            elementSize   = { height: $element.height(), width: $element.width() },
+            elementOffset = $element.offset(),
+            inView        = $element.data('inview'),
+            visiblePartX,
+            visiblePartY,
+            visiblePartsMerged;
+
+        // Don't ask me why because I haven't figured out yet:
+        // viewportOffset and viewportSize are sometimes suddenly null in Firefox 5.
+        // Even though it sounds weird:
+        // It seems that the execution of this function is interferred by the onresize/onscroll event
+        // where viewportOffset and viewportSize are unset
+        if (!viewportOffset || !viewportSize) {
+          return;
+        }
+
+        if (elementOffset.top + elementSize.height > viewportOffset.top &&
+            elementOffset.top < viewportOffset.top + viewportSize.height &&
+            elementOffset.left + elementSize.width > viewportOffset.left &&
+            elementOffset.left < viewportOffset.left + viewportSize.width) {
+          visiblePartX = (viewportOffset.left > elementOffset.left ?
+            'right' : (viewportOffset.left + viewportSize.width) < (elementOffset.left + elementSize.width) ?
+            'left' : 'both');
+          visiblePartY = (viewportOffset.top > elementOffset.top ?
+            'bottom' : (viewportOffset.top + viewportSize.height) < (elementOffset.top + elementSize.height) ?
+            'top' : 'both');
+          visiblePartsMerged = visiblePartX + "-" + visiblePartY;
+          if (!inView || inView !== visiblePartsMerged) {
+            $element.data('inview', visiblePartsMerged).trigger('inview', [true, visiblePartX, visiblePartY]);
+          }
+        } else if (inView) {
+          $element.data('inview', false).trigger('inview', [false]);
+        }
+      }
     }
+  }
 
-    // ready.inview kicks the event to pick up any elements already in view.
-    // note however, this only works if the plugin is included after the elements are bound to 'inview'
-    var runner = createFunctionLimitedToOneExecutionPerDelay(checkInView, 100);
-    $(window).on('checkInView.inview click.inview ready.inview scroll.inview resize.inview', runner);
+  $(w).bind("scroll resize scrollstop", function() {
+    viewportSize = viewportOffset = null;
+  });
 
+  // IE < 9 scrolls to focused elements without firing the "scroll" event
+  if (!documentElement.addEventListener && documentElement.attachEvent) {
+    documentElement.attachEvent("onfocusin", function() {
+      viewportOffset = null;
+    });
+  }
 })(jQuery);
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-csscolumns-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-applicationcache-canvas-canvastext-draganddrop-hashchange-history-audio-video-indexeddb-input-inputtypes-localstorage-postmessage-sessionstorage-websockets-websqldatabase-webworkers-geolocation-inlinesvg-smil-svg-svgclippaths-touch-webgl-shiv-cssclasses-addtest-prefixed-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-load
@@ -7521,7 +7550,7 @@ window.longform = {
 
     },
 
-    stopAudio: function (e) {
+    stopAudio: function(e) {
         var audio = $('#master-audio')[0];
 
         if (longform.playingAudio) {
@@ -7532,28 +7561,28 @@ window.longform = {
 
     bindVideoEvents: function() {
 
-        // setting offset so playVideo() will be fired one screen height before it is in view
-        $('.st-video').attr('data-offset', longform.wHeight);
-
-        $('.st-video').bind('inview', function(event, visible) {
-            if (visible) {
-                longform.playVideo(event);
-            } else {
-                longform.stopVideo(event);
-            }
+        $('.st-video').each(function() {
+            $('#' + $(this).attr("id")).bind('inview', function(event, visible) {
+                if (visible) {
+                    longform.playVideo(event);
+                } else {
+                    longform.stopVideo(event);
+                }
+            });
         });
+
 
     },
 
-    bindAudioEvents : function(){
+    bindAudioEvents: function() {
 
-        $('.ambient-container').bind('inview', function (event, visible) {
+        $('.ambient-container').bind('inview', function(event, visible) {
             if (visible) {
                 longform.playAudio(event);
             } else {
                 longform.stopAudio(event);
             }
-         });
+        });
 
     },
 
@@ -7617,7 +7646,6 @@ window.longform = {
         });
     }
 };
-
 window.blueimpGallery = {
 
     init: function() {

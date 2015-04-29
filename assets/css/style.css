@@ -7537,6 +7537,11 @@ article a.nextPart:hover {
   background-image: url(../img/icon-muted.png);
   background-size: cover;
 }
+@media (max-width: 767px) {
+  .longform .nav nav ul li:hover ul {
+    display: none;
+  }
+}
 .sticky-image {
   position: relative;
   color: #ffffff;

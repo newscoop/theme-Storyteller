@@ -1,5 +1,5 @@
 <!-- grunt boilerplate -->
 
-<script src="{{ url static_file="assets/js/dist/all.js?v=$VER_ENV" }}"></script>
+<!-- moved to _html-head.tpl -->
 
 <!-- /grunt boilerplate -->

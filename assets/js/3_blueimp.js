@@ -38,7 +38,11 @@ window.blueimpGallery = {
                             caption += ')</span>';
                         }
 
-                        $(galleryContainer).parent().find(".slide-caption").html(caption);
+                        if(caption){
+                          $(galleryContainer).parent().find(".slide-caption").html(caption).fadeIn();
+                        }else{
+                          $(galleryContainer).parent().find(".slide-caption").fadeOut();
+                        }
 
                     }
                 });

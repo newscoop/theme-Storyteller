@@ -7849,6 +7849,29 @@ window.nav = {
             }, 1000);
 
         });
+
+        //active navigation listener. Listen only when there is a navigation
+
+        if ($('.nav').length) {
+
+            $('.part').each(function() {
+                var that = this;
+                $(this).bind('inview', function(event, visible) {
+                    if (visible) {
+                        var artNumber = $(that).attr("name");
+
+                        $('.nav a').removeClass("active");
+
+                        var elem = $('.nav a[data-articleNumber="' + artNumber + '"]');
+                        elem.addClass("active");
+
+                        elem.parents('li.first-level').children('a').addClass('active')
+
+
+                    }
+                });
+            });
+        }
     }
 }
 $(document).ready(function() {

@@ -51,8 +51,6 @@
 
       <!-- remember to put jquery in header. It is used by newscoop maps -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="{{ url static_file="assets/js/dist/all.js?v=$VER_ENV" }}"></script>
-
 
     <!-- /grunt boilerplate -->
 </head>

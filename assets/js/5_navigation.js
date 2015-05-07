@@ -9,8 +9,22 @@ window.nav = {
 
         // mute button
 
+        if (localStorage.getItem('muted')) {
+          $('video, audio').each(function() {
+              $(this)[0].volume = 0;
+          });
+          longform.muted = true;
+          $('.mute').addClass('muted');
+        }
+
         $('.mute').on('click', function(e) {
             e.preventDefault();
+
+            if (localStorage.getItem('muted')) {
+              localStorage.removeItem('muted');
+            } else {
+              localStorage.setItem('muted', true);
+            }
 
             if (longform.muted === true) {
                 $(this).removeClass('muted');

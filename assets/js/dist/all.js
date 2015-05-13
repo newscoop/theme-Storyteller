@@ -7680,10 +7680,31 @@ window.blueimpGallery = {
                 });
             }
 
-            $.each(galleryLinksContainer, function(i, item) {
+            $.each(galleryLinksContainer, function(i, galleryLinks) {
+
+              $.each(galleryLinks, function(j, item){
 
 
-                var gallery = blueimp.Gallery(item, {
+                if(item.hasOwnProperty('video_url')){
+
+                  var videoNumber = blueimpGallery.youtube_parser(item.video_url)
+
+                  if(videoNumber){
+                    item.youtube = videoNumber;
+                    item.poster = 'http://img.youtube.com/vi/'+videoNumber+'/0.jpg';
+                  }else{
+                    videoNumber = blueimpGallery.vimeo_parser(item.video_url);
+
+                    item.vimeo = videoNumber;
+                    item.poster = blueimpGallery.vimeo_thumb(videoNumber);
+                  }
+
+                }
+
+              });
+
+
+                var gallery = blueimp.Gallery(galleryLinks, {
                     container: '#blueimp-image-carousel_' + i,
                     carousel: true,
                     startSlideshow: false,
@@ -7731,12 +7752,12 @@ window.blueimpGallery = {
 
       vimeo_parser : function(url) {
 
-          var regExp = /http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+          var regExp = /.*(vimeo.com)\/([a-z\/]*)(\d+)($|\/)/;
 
           var match = url.match(regExp);
 
           if (match) {
-              return match[2];
+              return match[3];
 
 
           } else {
@@ -7828,6 +7849,29 @@ window.nav = {
             }, 1000);
 
         });
+
+        //active navigation listener. Listen only when there is a navigation
+
+        if ($('.nav').length) {
+
+            $('.part').each(function() {
+                var that = this;
+                $(this).bind('inview', function(event, visible) {
+                    if (visible) {
+                        var artNumber = $(that).attr("name");
+
+                        $('.nav a').removeClass("active");
+
+                        var elem = $('.nav a[data-articleNumber="' + artNumber + '"]');
+                        elem.addClass("active");
+
+                        elem.parents('li.first-level').children('a').addClass('active')
+
+
+                    }
+                });
+            });
+        }
     }
 }
 $(document).ready(function() {

@@ -2953,7 +2953,8 @@ article a.nextPart:hover {
   padding-left: 20px;
   float: none;
 }
-.longform .nav nav ul li ul li a:hover {
+.longform .nav nav ul li ul li a:hover,
+.longform .nav nav ul li ul li a.active {
   background: rgba(255, 255, 255, 0.1);
 }
 .longform .nav nav ul li ul figure {
@@ -2983,6 +2984,9 @@ article a.nextPart:hover {
 .longform .nav nav li a:hover {
   background: rgba(85, 85, 85, 0.95);
 }
+.longform .nav nav li a:hover span {
+  background: none;
+}
 .longform .nav nav a {
   color: #fff;
   background: none;
@@ -3009,11 +3013,7 @@ article a.nextPart:hover {
 }
 .longform .nav nav a.active span {
   color: #fff;
-}
-.longform .nav nav.active li {
-  display: block;
-  width: auto;
-  height: auto;
+  background: rgba(255, 255, 255, 0.1);
 }
 .longform .nav #languages {
   position: absolute;

@@ -31,7 +31,7 @@
                 var galleryLinks = [];
               {{ /if }}
 
-                 {{ if $item->is_image }}
+                {{ if $item->is_image }}
 
 
                      galleryLinks.push({
@@ -44,53 +44,22 @@
 
                     });
 
-                 {{ else }}
-
-                 videoNumber = blueimpGallery.youtube_parser("{{ $item->video->url }}");
-               //youtube
-               if( videoNumber ){
-                galleryLinks.push({
-                 title: '{{$item->caption|strip_tags:false|escape }}',
-                 href: '{{$item->video->url}}',
-                 type: 'text/html',
-                 youtube: videoNumber,
-                 poster: 'http://img.youtube.com/vi/'+videoNumber+'/0.jpg',
-                 photographer: '{{ $item->image->photographer }}'
-
-               });
+                {{ else }}
 
 
+                    galleryLinks.push({
+                     title: '{{$item->caption|strip_tags:false|escape }}',
+                     href: '{{$item->video->url}}',
+                     type: 'text/html',
+                     video_url: "{{ $item->video->url }}",
+                     photographer: '{{ $item->image->photographer }}'
 
-              }else{
-
-
-
-               videoNumber = blueimpGallery.vimeo_parser("{{ $item->video->url }}");
-
-                   //vimeo
-                   if (videoNumber){
-
-
-
-                     var vimeoObj = new Object();
-                     vimeoObj.title = '{{$item->caption|strip_tags:false|escape }}';
-                     vimeoObj.href = '{{$item->video->url}}';
-                     vimeoObj.type = 'text/html';
-                     vimeoObj.vimeo = videoNumber;
-                     vimeoObj.poster = blueimpGallery.vimeo_thumb(videoNumber);
-                     vimeoObj.photographer = '{{ $item->image->photographer }}';
+                });
 
 
 
 
-                     galleryLinks.push(vimeoObj);
-
-
-                   }
-
-                 }
-
-                 {{ /if }}
+                {{ /if }}
 
                  {{ if $smarty.foreach.insideslideshow.last }}
                  galleryLinksContainer.push(galleryLinks);

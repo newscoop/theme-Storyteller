@@ -5,16 +5,11 @@ window.blueimpGallery = {
         if (typeof galleryLinksContainer !== 'undefined') {
 
 
-
-            // gallery id update in case if we more than one gallery
-            if (galleryLinksContainer.length > 0) {
-
                 $(".slideshow-horizontal").each(function(i, item) {
                     $(item).find(".blueimp-gallery-carousel").attr('id', 'blueimp-image-carousel_' + i);
-                    $(item).find('*[data-gallery]').attr('data-gallery', i);
 
                 });
-            }
+
 
             $.each(galleryLinksContainer, function(i, galleryLinks) {
 
@@ -39,12 +34,18 @@ window.blueimpGallery = {
 
               });
 
+              var stretch = 'cover';
+
+              if (isMobile.any){
+                stretch = false;
+              }
+
 
                 var gallery = blueimp.Gallery(galleryLinks, {
                     container: '#blueimp-image-carousel_' + i,
                     carousel: true,
                     startSlideshow: false,
-                    stretchImages: 'cover',
+                    stretchImages: stretch,
 
                     onslide: function(index, slide) {
 

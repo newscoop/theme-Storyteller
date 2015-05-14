@@ -7408,7 +7408,8 @@ window.longform = {
             snaps: '.snap',
             proximity: longform.wHeight / 4,
             latency: 150,
-            easing: 'swing'
+            easing: 'swing',
+            offset : 1
         });
 
     },

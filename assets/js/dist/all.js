@@ -7408,7 +7408,8 @@ window.longform = {
             snaps: '.snap',
             proximity: longform.wHeight / 4,
             latency: 150,
-            easing: 'swing'
+            easing: 'swing',
+            offset : 1
         });
 
     },
@@ -7426,6 +7427,7 @@ window.longform = {
 
             //determine best format based on browser / device
             if (Modernizr.video) {
+
                 if (Modernizr.video.webm) {
                     // chrome & firefox
                     container.html('<video style="display:none" preload="none" src="' + src + '" ></video>"');
@@ -7451,15 +7453,21 @@ window.longform = {
                 }
                 video.load();
 
+                // set the audio state before we start playing
+                if (localStorage.getItem('muted')) {
+                    video.volume = 0;
+                } else {
+                    video.volume = 1;
+                }
 
                 video.oncanplay = function() {
+
                     video.play();
 
                     // hide background image
                     container.css("background-image", 'none');
                     $(video).fadeIn();
                 };
-
 
                 longform.playingVideo = true;
             }
@@ -7819,8 +7827,22 @@ window.nav = {
 
         // mute button
 
+        if (localStorage.getItem('muted')) {
+          $('video, audio').each(function() {
+              $(this)[0].volume = 0;
+          });
+          longform.muted = true;
+          $('.mute').addClass('muted');
+        }
+
         $('.mute').on('click', function(e) {
             e.preventDefault();
+
+            if (localStorage.getItem('muted')) {
+              localStorage.removeItem('muted');
+            } else {
+              localStorage.setItem('muted', true);
+            }
 
             if (longform.muted === true) {
                 $(this).removeClass('muted');

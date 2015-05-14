@@ -69,6 +69,7 @@ window.longform = {
 
             //determine best format based on browser / device
             if (Modernizr.video) {
+
                 if (Modernizr.video.webm) {
                     // chrome & firefox
                     container.html('<video style="display:none" preload="none" src="' + src + '" ></video>"');
@@ -94,15 +95,21 @@ window.longform = {
                 }
                 video.load();
 
+                // set the audio state before we start playing
+                if (localStorage.getItem('muted')) {
+                    video.volume = 0;
+                } else {
+                    video.volume = 1;
+                }
 
                 video.oncanplay = function() {
+
                     video.play();
 
                     // hide background image
                     container.css("background-image", 'none');
                     $(video).fadeIn();
                 };
-
 
                 longform.playingVideo = true;
             }

@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700);
 .transitions {
   transition: all 0.3s;
 }
@@ -2607,6 +2608,9 @@ body:last-child .blueimp-gallery > .slides > .slide > .video-content:not(.video-
   display: inline;
 }
 
+body {
+  font-family: 'Roboto Slab', serif;
+}
 iframe {
   max-width: 100% !important;
 }
@@ -2617,7 +2621,6 @@ article .part {
   min-height: 100vh;
 }
 article .header {
-  text-align: center;
   font-weight: 200;
   margin-bottom: 5vh;
 }
@@ -2633,15 +2636,15 @@ article .header h2 {
   font-style: italic;
 }
 article .header-fullpage {
-  text-align: center;
   font-weight: 200;
   height: 100vh;
   margin: -10vh auto 0 auto;
   display: table;
 }
 article .header-fullpage .middle {
-  vertical-align: middle;
+  vertical-align: bottom;
   display: table-cell;
+  padding-bottom: 10vw;
 }
 article .header-fullpage h1 {
   margin: 0;
@@ -3093,7 +3096,6 @@ article a.nextPart:hover {
   line-height: 1.8em;
   font-weight: 300;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.4);
 }
 .mobile .sticky-image {
   color: #333333;
@@ -3149,7 +3151,6 @@ article a.nextPart:hover {
   line-height: 1.8em;
   font-weight: 300;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.4);
 }
 .mobile .st-video {
   color: #333333;

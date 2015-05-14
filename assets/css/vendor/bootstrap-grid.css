@@ -739,8 +739,10 @@ address {
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+/*  padding-left: 15px;
+  padding-right: 15px;*/
+  padding-left: 6vw;
+  padding-right: 6vw;
 }
 .row {
   margin-left: -15px;

@@ -7,10 +7,26 @@ article {
     position: relative;
     .part {
         min-height: 100vh;
+        .background_gradient {
+            background: rgba(0,0,0,0.6);
+            background: -moz-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,0.6)), color-stop(100%, rgba(0,0,0,0)));
+            background: -webkit-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+            background: -o-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+            background: -ms-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1 );
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            width: 60%;
+            z-index: 1;
+        }
     }
     .header {
         font-weight: 200;
-        margin-bottom: 5vh;
+        z-index: 2;
+        margin-bottom: 2vh;
         h1 {
             margin: 0;
             font-size: 3em;
@@ -35,13 +51,15 @@ article {
         }
         h1 {
             margin: 0;
+            margin-bottom: 10px;
             font-size: 5em;
-            line-height: 1.4em;
+            line-height: 1.2em;
         }
         h2 {
             margin: 0;
             font-size: 2.2em;
             line-height: 1.2em;
+            font-weight: 300;
         }
     }
     a.nextPart {

@@ -1306,8 +1306,10 @@ address {
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+/*  padding-left: 15px;
+  padding-right: 15px;*/
+  padding-left: 6vw;
+  padding-right: 6vw;
 }
 .row {
   margin-left: -15px;
@@ -2620,9 +2622,21 @@ article {
 article .part {
   min-height: 100vh;
 }
+article .part .background_gradient {
+  background: rgba(0, 0, 0, 0.6);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0, 0, 0, 0.6)), color-stop(100%, rgba(0, 0, 0, 0)));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=1);
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 60%;
+  z-index: 1;
+}
 article .header {
   font-weight: 200;
-  margin-bottom: 5vh;
+  z-index: 2;
+  margin-bottom: 2vh;
 }
 article .header h1 {
   margin: 0;
@@ -2648,18 +2662,20 @@ article .header-fullpage .middle {
 }
 article .header-fullpage h1 {
   margin: 0;
+  margin-bottom: 10px;
   font-size: 5em;
-  line-height: 1.4em;
+  line-height: 1.2em;
 }
 article .header-fullpage h2 {
   margin: 0;
   font-size: 2.2em;
   line-height: 1.2em;
+  font-weight: 300;
 }
 article a.nextPart {
   display: inline-block;
   padding: 3px 6px;
-  background: #333333;
+  background: #222222;
   color: #ffffff;
 }
 article a.nextPart:hover {
@@ -3095,10 +3111,9 @@ article a.nextPart:hover {
   font-size: 1.4em;
   line-height: 1.8em;
   font-weight: 300;
-  padding: 20px;
 }
 .mobile .sticky-image {
-  color: #333333;
+  color: #222222;
 }
 .mobile .sticky-image .bg-image {
   height: 50vh;
@@ -3153,7 +3168,7 @@ article a.nextPart:hover {
   padding: 20px;
 }
 .mobile .st-video {
-  color: #333333;
+  color: #222222;
 }
 .mobile .st-video .video-container {
   height: auto;
@@ -3179,8 +3194,8 @@ article a.nextPart:hover {
 }
 .no-effects {
   min-height: 0px;
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #222222;
+  color: #ffffff;
   position: relative;
   z-index: 10;
 }
@@ -3192,6 +3207,7 @@ article a.nextPart:hover {
   background: none;
   font-size: 1.4em;
   line-height: 1.8em;
+  z-index: 2;
 }
 .slideshow .bg-image {
   width: 100%;
@@ -3228,13 +3244,17 @@ article a.nextPart:hover {
 }
 .slideshow-horizontal .slide-caption {
   position: absolute;
-  left: 40px;
-  bottom: 40px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
   z-index: 9999;
-  padding: 30px;
-  background: rgba(0, 0, 0, 0.4);
+  padding: 80px 30px 30px 30px;
   color: #ffffff;
   font-size: 1.4em;
+  background: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.6)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
 }
 .slideshow-horizontal .slide-caption span {
   display: block;
@@ -3307,7 +3327,7 @@ article a.nextPart:hover {
 .mobile .parallax .content {
   margin-top: 0;
   height: auto;
-  color: #333333;
+  color: #222222;
 }
 @media all and (orientation: landscape) {
   .mobile .parallax .bg-image {
@@ -3328,7 +3348,7 @@ article a.nextPart:hover {
     height: 100vh;
   }
 }
-.dark_bg {
-  background: #444;
-  color: #fff;
+.white_background {
+  background: #ffffff;
+  color: #222222;
 }

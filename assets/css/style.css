@@ -2685,6 +2685,9 @@ article a.nextPart:hover {
 .mobile article .part {
   min-height: 0;
 }
+.mobile article .part .background_gradient {
+  display: none;
+}
 .mobile article .header {
   text-align: center;
   font-weight: 200;
@@ -3247,7 +3250,7 @@ article a.nextPart:hover {
   right: 0px;
   left: 0px;
   bottom: 0px;
-  z-index: 9999;
+  z-index: 10;
   padding: 80px 30px 30px 30px;
   color: #ffffff;
   font-size: 1.4em;
@@ -3274,12 +3277,9 @@ article a.nextPart:hover {
   font-size: 0.8em;
 }
 .mobile .slideshow-horizontal {
-  height: 50vh;
+  height: 100vh;
 }
 .mobile .slideshow-horizontal .slide-caption {
-  left: 20px;
-  bottom: 20px;
-  padding: 10px;
   font-size: 1em;
 }
 .mobile .slideshow-horizontal .slide-caption span {
@@ -3341,7 +3341,7 @@ article a.nextPart:hover {
   height: 100vh;
 }
 .mobile .blueimp-gallery-carousel {
-  height: 50vh;
+  height: 100vh;
 }
 @media all and (orientation: landscape) {
   .mobile .blueimp-gallery-carousel {

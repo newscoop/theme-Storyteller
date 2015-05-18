@@ -1,5 +1,5 @@
 
-<div class="part slideshow {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
+<section class="part slideshow {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
 
 
@@ -49,5 +49,5 @@
 
 
 
-</div>
+</section>
 

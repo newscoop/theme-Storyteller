@@ -3205,6 +3205,8 @@ article a.nextPart:hover {
 .no-effects .content {
   padding-top: 10vh;
   padding-bottom: 10vh;
+  z-index: 2;
+  position: relative;
 }
 .no-effects .content .text {
   background: none;
@@ -3351,4 +3353,7 @@ article a.nextPart:hover {
 .white_background {
   background: #ffffff;
   color: #222222;
+}
+.white_background .background_gradient {
+  display: none;
 }

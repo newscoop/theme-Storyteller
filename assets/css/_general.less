@@ -1,21 +1,28 @@
-iframe{
-    max-width:100% !important;
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+
+    background-color:@dark_color;
+    color:@light_color;
 }
 
+iframe {
+    max-width: 100% !important;
+}
 
 article {
     position: relative;
     .part {
         min-height: 100vh;
         .background_gradient {
-            background: rgba(0,0,0,0.6);
-            background: -moz-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,0.6)), color-stop(100%, rgba(0,0,0,0)));
-            background: -webkit-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-            background: -o-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-            background: -ms-linear-gradient(left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1 );
+            background: rgba(0, 0, 0, 0.6);
+            background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0, 0, 0, 0.6)), color-stop(100%, rgba(0, 0, 0, 0)));
+            background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+            background: -o-linear-gradient(left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+            background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
             position: absolute;
             top: 0px;
             bottom: 0px;
@@ -72,4 +79,72 @@ article {
             text-decoration: none;
         }
     }
+}
+
+// content
+blockquote {
+    border-left: 3px solid @light_color;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    font-size: 1.2em;
+    font-weight: 200;
+    font-style: italic;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+pre {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    display: block;
+    padding: 9.5px;
+    margin: 0px 0px 10px;
+    font-size: 1em;
+    line-height: 1.4em;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: rgb(51, 51, 51);
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px;
+}
+
+u {
+    text-decoration: underline;
+}
+
+s {
+    text-decoration: line-through;
+}
+
+.cms-image {
+    margin: 10px 0;
+    figcaption {
+        display: block;
+        text-align: left;
+        padding: 6px 8px;
+        cursor: text;
+        font-family: @content_images_captions_font;
+        font-size: 0.8em;
+        overflow: hidden;
+        line-height: 1.4em;
+        .photographer {
+            display: block;
+            font-family: @content_images_captions_font;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+    }
+}
+
+.cms-image.middle {
+    margin: 10px auto;
+}
+
+.cms-image.left {
+    float: left;
+    margin: 10px 15px 10px 0;
+}
+
+.cms-image.right {
+    float: right;
+    margin: 10px 0 10px 15px;
 }

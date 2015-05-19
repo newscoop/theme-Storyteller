@@ -851,13 +851,7 @@ html {
   font-size: 10px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333333;
-  background-color: #ffffff;
-}
+
 input,
 button,
 select,
@@ -2611,7 +2605,21 @@ body:last-child .blueimp-gallery > .slides > .slide > .video-content:not(.video-
 }
 
 body {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Slab', arial, serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto Slab', arial, serif;
+}
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+  background-color: #222222;
+  color: #ffffff;
 }
 iframe {
   max-width: 100% !important;
@@ -2681,6 +2689,65 @@ article a.nextPart {
 article a.nextPart:hover {
   color: #7fc8e8;
   text-decoration: none;
+}
+blockquote {
+  border-left: 3px solid #ffffff;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  font-size: 1.2em;
+  font-weight: 200;
+  font-style: italic;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+pre {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  display: block;
+  padding: 9.5px;
+  margin: 0px 0px 10px;
+  font-size: 1em;
+  line-height: 1.4em;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #333333;
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+u {
+  text-decoration: underline;
+}
+s {
+  text-decoration: line-through;
+}
+.cms-image {
+  margin: 10px 0;
+}
+.cms-image figcaption {
+  display: block;
+  text-align: left;
+  padding: 6px 8px;
+  cursor: text;
+  font-family: arial, sans-serif;
+  font-size: 0.8em;
+  overflow: hidden;
+  line-height: 1.4em;
+}
+.cms-image figcaption .photographer {
+  display: block;
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  margin-top: 3px;
+}
+.cms-image.middle {
+  margin: 10px auto;
+}
+.cms-image.left {
+  float: left;
+  margin: 10px 15px 10px 0;
+}
+.cms-image.right {
+  float: right;
+  margin: 10px 0 10px 15px;
 }
 .mobile article .part {
   min-height: 0;
@@ -3086,7 +3153,6 @@ article a.nextPart:hover {
 }
 .sticky-image {
   position: relative;
-  color: #ffffff;
   overflow: hidden;
 }
 .sticky-image .bg-image {
@@ -3115,9 +3181,6 @@ article a.nextPart:hover {
   line-height: 1.8em;
   font-weight: 300;
 }
-.mobile .sticky-image {
-  color: #222222;
-}
 .mobile .sticky-image .bg-image {
   height: 50vh;
   position: static;
@@ -3136,7 +3199,6 @@ article a.nextPart:hover {
 }
 .st-video {
   position: relative;
-  color: #ffffff;
   overflow: hidden;
 }
 .st-video .video-container {
@@ -3170,9 +3232,6 @@ article a.nextPart:hover {
   font-weight: 300;
   padding: 20px;
 }
-.mobile .st-video {
-  color: #222222;
-}
 .mobile .st-video .video-container {
   height: auto;
   position: static;
@@ -3197,8 +3256,6 @@ article a.nextPart:hover {
 }
 .no-effects {
   min-height: 0px;
-  background-color: #222222;
-  color: #ffffff;
   position: relative;
   z-index: 10;
 }
@@ -3214,6 +3271,9 @@ article a.nextPart:hover {
   line-height: 1.8em;
   z-index: 2;
 }
+.slideshow {
+  font-family: 'Roboto Slab', arial, serif;
+}
 .slideshow .bg-image {
   width: 100%;
   height: 100vh;
@@ -3228,13 +3288,16 @@ article a.nextPart:hover {
 }
 .slideshow .caption {
   position: absolute;
-  left: 40px;
-  top: 40px;
-  z-index: 9999;
-  padding: 30px;
-  background: rgba(0, 0, 0, 0.4);
-  color: #ffffff;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 30px 30px 80px 30px;
   font-size: 1.4em;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(left bottom, left top, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.6)));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
 }
 .slideshow .caption span {
   display: block;
@@ -3246,6 +3309,7 @@ article a.nextPart:hover {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  font-family: 'Roboto Slab', arial, serif;
 }
 .slideshow-horizontal .slide-caption {
   position: absolute;
@@ -3254,7 +3318,6 @@ article a.nextPart:hover {
   bottom: 0px;
   z-index: 10;
   padding: 80px 30px 30px 30px;
-  color: #ffffff;
   font-size: 1.4em;
   background: rgba(0, 0, 0, 0);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.6)));
@@ -3269,10 +3332,6 @@ article a.nextPart:hover {
   height: 50vh;
 }
 .mobile .slideshow .caption {
-  left: 20px;
-  top: 20px;
-  z-index: 9999;
-  padding: 10px;
   font-size: 1em;
 }
 .mobile .slideshow .caption span {
@@ -3317,23 +3376,27 @@ article a.nextPart:hover {
   z-index: 2;
   margin-top: -150vh;
   height: 100vh;
-  color: #ffffff;
 }
 .mobile .parallax {
-  height: auto;
+  height: 50vh;
 }
 .mobile .parallax .bg-image {
   height: 50vh;
   top: 0;
 }
 .mobile .parallax .content {
-  margin-top: 0;
+  margin-top: -30vh;
   height: auto;
-  color: #222222;
 }
 @media all and (orientation: landscape) {
+  .mobile .parallax {
+    height: 100vh;
+  }
   .mobile .parallax .bg-image {
     height: 100vh;
+  }
+  .mobile .parallax .content {
+    margin-top: -50vh;
   }
 }
 .blueimp-gallery-carousel {
@@ -3350,10 +3413,28 @@ article a.nextPart:hover {
     height: 100vh;
   }
 }
-.white_background {
+article .part.reverse_colors {
   background: #ffffff;
   color: #222222;
 }
-.white_background .background_gradient {
-  display: none;
+article .part.reverse_colors .background_gradient {
+  background: rgba(255, 255, 255, 0.6);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 255, 255, 0.6)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+}
+article .part.reverse_colors blockquote {
+  border-color: #222222;
+}
+article .part.reverse_colors .caption {
+  background: rgba(255, 255, 255, 0);
+  background: -webkit-gradient(left bottom, left top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0.6)));
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
+}
+article .part.reverse_colors .slide-caption {
+  background: rgba(255, 255, 255, 0);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0.6)));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
 }

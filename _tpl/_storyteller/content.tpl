@@ -13,4 +13,6 @@
 {{/if}}
 </div>
 
-<div class="background_gradient"></div>
+{{if $gimme->article->display_title != "" && $gimme->article->text_block != ""}}
+  <div class="background_gradient"></div>
+{{/if}}

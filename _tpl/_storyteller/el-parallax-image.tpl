@@ -1,4 +1,4 @@
-<div class="part parallax {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
+<section class="part parallax {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
             <div class="bg-image"
               {{image rendition="fullscreen"}}
@@ -29,4 +29,4 @@
                 </div>
               {{/if}}
           </div>
-</div>
+</section>

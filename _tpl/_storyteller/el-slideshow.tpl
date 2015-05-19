@@ -1,5 +1,5 @@
 
-<div class="part slideshow {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
+<section class="part slideshow {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
 
 
@@ -10,10 +10,10 @@
 
 
 
-     {{ list_slideshows }}
+   {{ foreach $gimme->article->slideshows as $slideshow }}
 
 
-         {{ $currentSlideshowId = $gimme->slideshow->id }}
+         {{ $currentSlideshowId = $slideshow->slideshow->getId() }}
          {{ list_slideshow_items  constraints="slideshow is $currentSlideshowId type is image" }}
 
 
@@ -42,12 +42,12 @@
 
 
          {{ /list_slideshow_items }}
-     {{ /list_slideshows }}
+     {{ /foreach}}
 
 
 
 
 
 
-</div>
+</section>
 

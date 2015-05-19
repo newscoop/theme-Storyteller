@@ -91,3 +91,39 @@ article .part.header_align-right .header-fullpage{
 article .part.header_align-center .header-fullpage{
     text-align:center;
 }
+
+
+// default styles for xs
+article .part.text_align-center{
+  .background_gradient{
+    display:none;
+  }
+
+  .header{
+    text-align:center;
+  }
+  .text{
+    margin-left: 0;
+  }
+}
+
+//sm
+@media (min-width: 992px) {
+  article .part.text_align-center .text{
+      margin-left: 16.66666667%;
+  }
+}
+
+//md
+@media (min-width: 768px) {
+  article .part.text_align-center .text{
+      margin-left: 8.33333333%;
+  }
+}
+
+//lg
+@media (min-width: 1200px) {
+  article .part.text_align-center .text{
+      margin-left: 25%;
+  }
+}

@@ -3236,6 +3236,7 @@ s {
 }
 .no-effects {
   min-height: 0px;
+  background: #222222;
   position: relative;
   z-index: 10;
 }

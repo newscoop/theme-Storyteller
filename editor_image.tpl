@@ -1,12 +1,8 @@
 {{ dynamic }}
 
 
-<figure class="cms-image {{ $imageDetails['align']  }}" style="max-width: {{$imageDetails['width']}};">
-
-
-<img src="{{ $uri->uri }}" style="max-width: 100%" rel="resizable" alt="{{ $imageDetails['alt'] }}" />
-
-
+<figure class="cms-image {{ $imageDetails['align']  }}" style="max-width: {{$imageDetails['width']}}px;">
+  <img src="{{ $uri->uri }}" style="max-width: 100%" rel="resizable" alt="{{ $imageDetails['alt'] }}" />
 
 {{ if $gimme->image->photographer|strip !== "" OR $gimme->image->description|strip !== "" }}
   <figcaption>{{ $gimme->image->description }}

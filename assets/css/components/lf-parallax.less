@@ -17,27 +17,32 @@
         z-index: 2;
         margin-top: -150vh;
         height: 100vh;
-        color: @light_color;
     }
 }
 
 .mobile {
     .parallax {
-        height: auto;
+        height: 50vh;
+
         .bg-image {
             height: 50vh;
             top: 0;
         }
         .content {
-            margin-top: 0;
+            margin-top: -30vh;
             height: auto;
-            color: @dark_color;
         }
     }
 }
 
 @media all and (orientation: landscape) {
-    .mobile .parallax .bg-image {
-        height: 100vh;
+    .mobile .parallax {
+        height:100vh;
+        .bg-image {
+            height: 100vh;
+        }
+        .content{
+            margin-top:-50vh;
+        }
     }
 }

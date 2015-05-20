@@ -1,4 +1,5 @@
 .slideshow {
+    font-family: @slideshow_captions_font;
     .bg-image {
         width: 100%;
         height: 100vh;
@@ -11,13 +12,20 @@
     }
     .caption {
         position: absolute;
-        left: 40px;
-        top: 40px;
-        z-index: 9999;
-        padding: 30px;
-        background: rgba(0, 0, 0, 0.4);
-        color: @light_color;
+        left: 0;
+        top: 0;
+        right: 0;
+        padding: 30px 30px 80px 30px;
         font-size: 1.4em;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0);
+        background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: -webkit-gradient(left bottom, left top, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.6)));
+        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0);
         span {
             display: block;
             font-size: 0.6em;
@@ -31,6 +39,7 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    font-family: @slideshow_captions_font;
     .slide-caption {
         position: absolute;
         right: 0px;
@@ -38,16 +47,15 @@
         bottom: 0px;
         z-index: 10;
         padding: 80px 30px 30px 30px;
-        color: @light_color;
         font-size: 1.4em;
-        background: rgba(0,0,0,0);
-        background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.6)));
-        background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-        background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-        background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+        background: rgba(0, 0, 0, 0);
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.6)));
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0);
         span {
             display: block;
             font-size: 0.6em;
@@ -57,15 +65,11 @@
 
 .mobile {
     .slideshow {
-
         .bg-image {
             height: 50vh;
         }
         .caption {
-            left: 20px;
-            top: 20px;
-            z-index: 9999;
-            padding: 10px;
+
             font-size: 1em;
             span {
                 font-size: 0.8em;
@@ -74,9 +78,7 @@
     }
     .slideshow-horizontal {
         height: 100vh;
-
         .slide-caption {
-
             font-size: 1em;
             span {
                 font-size: 0.8em;

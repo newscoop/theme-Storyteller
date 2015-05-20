@@ -1,15 +1,6 @@
 
 <section class="part slideshow {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
-
-
-
-
-
-
-
-
-
    {{ foreach $gimme->article->slideshows as $slideshow }}
 
 

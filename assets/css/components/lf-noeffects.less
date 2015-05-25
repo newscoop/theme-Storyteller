@@ -1,12 +1,14 @@
 .no-effects {
   min-height:0px;
-  background-color:@dark_color;
-  color:@light_color;
+
+  background: @dark_color;
   position:relative;
   z-index:10;
     .content {
         padding-top: 10vh;
         padding-bottom: 10vh;
+        z-index: 2;
+        position: relative;
 
         .text{
           background:none;

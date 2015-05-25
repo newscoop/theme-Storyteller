@@ -38,7 +38,7 @@
                    <li class="first-level"><a href="#{{ $gimme->article->number }}" data-articleNumber="{{ $gimme->article->number }}" title="{{ $artTitle }}"><span>{{ $i }}</span> <p>{{ $artTitle }}</p></a>
                    {{ $i = $i+1 }}
                    {{ capture name="chapImage" assign="chapImage" }}{{ strip }}
-                   {{ image rendition="sidebar" }}<figure><a href="#{{ $gimme->article->number }}" title="{{ $artTitle }}"><img src="{{ $image->src }}" width="{{ $image->width }}" height="{{ $image->height }}" /></a></figure>{{ /image }}
+                   {{ image rendition="sidebar" }}<li><figure><a href="#{{ $gimme->article->number }}" title="{{ $artTitle }}"><img src="{{ $image->src }}" width="{{ $image->width }}" height="{{ $image->height }}" /></a></figure></li>{{ /image }}
                    {{ /strip }}{{ /capture }}
 
            {{ elseif !$gimme->article->dont_show_in_nav }}

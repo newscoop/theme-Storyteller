@@ -1,4 +1,4 @@
-<div class="part parallax {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
+<section class="part parallax {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
 
             <div class="bg-image"
               {{image rendition="fullscreen"}}
@@ -19,7 +19,7 @@
               {{if $gimme->article->display_title }}
                 <div class="row">
 
-                  <div class="col-lg-12 header-fullpage">
+                  <div class="col-sm-12 header-fullpage">
                     <h1>{{$gimme->article->display_title}}</h1>
                     {{if $gimme->article->subtitle}}
                       <h2>{{$gimme->article->subtitle}}</h2>
@@ -29,4 +29,4 @@
                 </div>
               {{/if}}
           </div>
-</div>
+</section>

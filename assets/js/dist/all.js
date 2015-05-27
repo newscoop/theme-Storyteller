@@ -7494,7 +7494,9 @@ window.longform = {
 
                     // hide background image
                     container.css("background-image", 'none');
-                    $(video).fadeIn();
+                    $(video).fadeIn("fast", function(){
+
+                    });
                 };
 
                 longform.playingVideo = true;

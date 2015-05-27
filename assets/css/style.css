@@ -3232,11 +3232,6 @@ s {
 .mobile .st-video .content .text {
   background: none;
 }
-@media all and (orientation: landscape) {
-  .mobile .st-video .video-container {
-    height: 100vh;
-  }
-}
 .st-content-video {
   position: relative;
   overflow: hidden;
@@ -3299,6 +3294,28 @@ s {
 }
 .st-content-video .caption .text h3 {
   margin-top: 0;
+}
+.mobile .st-content-video .video-container {
+  height: auto;
+  position: static;
+}
+.mobile .st-content-video .video-container video {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: auto;
+}
+.mobile .st-content-video .caption {
+  position: static;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  background: none;
+}
+.mobile .st-content-video .caption .button-container {
+  display: none;
+}
+.mobile .st-content-video .caption .text {
+  padding-left: 0;
 }
 .no-effects {
   min-height: 0px;

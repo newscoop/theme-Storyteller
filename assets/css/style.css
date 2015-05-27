@@ -2615,6 +2615,10 @@ h5,
 h6 {
   font-family: 'Roboto Slab', arial, serif;
 }
+a,
+button {
+  outline: none;
+}
 body {
   font-size: 14px;
   line-height: 1.42857143;
@@ -3110,7 +3114,7 @@ s {
   right: 47px;
   top: 6px;
   z-index: 100;
-  background: url(../img/icon-unmuted.png) center center no-repeat transparent;
+  background: url('../img/icon-unmuted.png') center center no-repeat transparent;
   background-size: cover;
   display: inline-block;
   text-indent: -1000px;
@@ -3122,7 +3126,7 @@ s {
   right: 10px;
 }
 .mute.muted {
-  background-image: url(../img/icon-muted.png);
+  background-image: url('../img/icon-muted.png');
   background-size: cover;
 }
 @media (max-width: 767px) {
@@ -3232,6 +3236,69 @@ s {
   .mobile .st-video .video-container {
     height: 100vh;
   }
+}
+.st-content-video {
+  position: relative;
+  overflow: hidden;
+}
+.st-content-video .video-container {
+  width: 100%;
+  height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+.st-content-video .video-container video {
+  min-width: 100%;
+  min-height: 100vh;
+}
+.st-content-video .caption {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  z-index: 10;
+  padding: 80px 30px 30px 30px;
+  font-size: 1.4em;
+  background: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.6)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
+  display: table;
+  width: 100%;
+}
+.st-content-video .caption .button-container {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width: 70px;
+}
+.st-content-video .caption .button-container .pauseplay {
+  width: 70px;
+  height: 70px;
+  border: none;
+  background: transparent url('../img/play.png') center center no-repeat;
+}
+.st-content-video .caption .button-container .pauseplay.playing {
+  background-image: url('../img/pause.png');
+}
+.st-content-video .caption .text {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  padding-left: 50px;
+  font-size: 0.9em;
+}
+.st-content-video .caption .text h3 {
+  margin-top: 0;
 }
 .no-effects {
   min-height: 0px;

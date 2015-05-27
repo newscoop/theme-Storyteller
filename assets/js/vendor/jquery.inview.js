@@ -9,7 +9,10 @@
 
   $.event.special.inview = {
     add: function(data) {
-      inviewObjects[data.guid + "-" + this[expando]] = { data: data, $element: $(this) };
+
+
+
+      inviewObjects[data.guid + "-" + this[expando]] = { data: data, $element: $(this)};
 
       // Use setInterval in order to also make sure this captures elements within
       // "overflow:scroll" elements or elements that appeared in the dom tree due to
@@ -71,6 +74,8 @@
     $.each(inviewObjects, function(i, inviewObject) {
       var selector  = inviewObject.data.selector,
           $element  = inviewObject.$element;
+
+
       $elements.push(selector ? $element.find(selector) : $element);
     });
 
@@ -85,6 +90,8 @@
           continue;
         }
 
+
+
         var $element      = $($elements[i]),
             elementSize   = { height: $element.height(), width: $element.width() },
             elementOffset = $element.offset(),
@@ -92,6 +99,8 @@
             visiblePartX,
             visiblePartY,
             visiblePartsMerged;
+
+            var delayOffset = $element.data('inviewoffset') ? $element.data('inviewoffset') : 0;
 
         // Don't ask me why because I haven't figured out yet:
         // viewportOffset and viewportSize are sometimes suddenly null in Firefox 5.
@@ -102,16 +111,17 @@
           return;
         }
 
-        if (elementOffset.top + elementSize.height > viewportOffset.top &&
-            elementOffset.top < viewportOffset.top + viewportSize.height &&
-            elementOffset.left + elementSize.width > viewportOffset.left &&
-            elementOffset.left < viewportOffset.left + viewportSize.width) {
+        if (elementOffset.top + elementSize.height + delayOffset >= viewportOffset.top &&
+            elementOffset.top + delayOffset <= viewportOffset.top + viewportSize.height &&
+            elementOffset.left + elementSize.width >= viewportOffset.left &&
+            elementOffset.left <= viewportOffset.left + viewportSize.width) {
           visiblePartX = (viewportOffset.left > elementOffset.left ?
             'right' : (viewportOffset.left + viewportSize.width) < (elementOffset.left + elementSize.width) ?
             'left' : 'both');
-          visiblePartY = (viewportOffset.top > elementOffset.top ?
-            'bottom' : (viewportOffset.top + viewportSize.height) < (elementOffset.top + elementSize.height) ?
+          visiblePartY = (viewportOffset.top >= elementOffset.top ?
+            'bottom' : (viewportOffset.top + viewportSize.height) <= (elementOffset.top + elementSize.height + delayOffset) ?
             'top' : 'both');
+
           visiblePartsMerged = visiblePartX + "-" + visiblePartY;
           if (!inView || inView !== visiblePartsMerged) {
             $element.data('inview', visiblePartsMerged).trigger('inview', [true, visiblePartX, visiblePartY]);

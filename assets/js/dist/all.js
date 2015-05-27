@@ -2391,15 +2391,15 @@ s=f[n][2],this._initialRotations[n]=this._func[s]?this._func[s].call(this._targe
           return;
         }
 
-        if (elementOffset.top + elementSize.height + delayOffset> viewportOffset.top &&
-            elementOffset.top + delayOffset < viewportOffset.top + viewportSize.height &&
-            elementOffset.left + elementSize.width > viewportOffset.left &&
-            elementOffset.left < viewportOffset.left + viewportSize.width) {
+        if (elementOffset.top + elementSize.height + delayOffset >= viewportOffset.top &&
+            elementOffset.top + delayOffset <= viewportOffset.top + viewportSize.height &&
+            elementOffset.left + elementSize.width >= viewportOffset.left &&
+            elementOffset.left <= viewportOffset.left + viewportSize.width) {
           visiblePartX = (viewportOffset.left > elementOffset.left ?
             'right' : (viewportOffset.left + viewportSize.width) < (elementOffset.left + elementSize.width) ?
             'left' : 'both');
-          visiblePartY = (viewportOffset.top > elementOffset.top ?
-            'bottom' : (viewportOffset.top + viewportSize.height) < (elementOffset.top + elementSize.height + delayOffset) ?
+          visiblePartY = (viewportOffset.top >= elementOffset.top ?
+            'bottom' : (viewportOffset.top + viewportSize.height) <= (elementOffset.top + elementSize.height + delayOffset) ?
             'top' : 'both');
 
           visiblePartsMerged = visiblePartX + "-" + visiblePartY;
@@ -7395,7 +7395,7 @@ window.longform = {
 
         this.bindAudioEvents();
 
-        if (!isMobile.any){
+        if (!isMobile.any) {
 
             this.prepareVideos();
             this.bindVideoEvents();
@@ -7419,21 +7419,31 @@ window.longform = {
             proximity: longform.wHeight / 4,
             latency: 150,
             easing: 'swing',
-            offset : 1
+            offset: 1
         });
 
     },
 
-    playVideo: function(e) {
 
-        var element = $(e.target).find(".video-container");
+    ////   trzeba obczaić eventy i podpiać pod button i przekazać targety
+
+
+
+    playVideo: function($target) {
+
+        var element = $target.find(".video-container");
         var elementId = element.attr('id');
         var container = $('#' + elementId);
+        var loop = container.data("loop");
         var src = container.data("src");
         var video = null;
+        var $playButton = $target.find(".pauseplay");
+
 
         if (!longform.playingVideo) {
 
+            // pause/play button state
+            $playButton.addClass("playing");
 
             //determine best format based on browser / device
             if (Modernizr.video) {
@@ -7451,15 +7461,23 @@ window.longform = {
 
                 $(video).attr('autoplay', 'autoplay');
 
-                // chrome has issue with loop which causes constant video loading
-                // manually loop if this is chrome
-                if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+
+                if(loop){
+                    // chrome has issue with loop which causes constant video loading
+                    // manually loop if this is chrome
+                    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+                        $(video).bind('ended', function() {
+                            this.currentTime = 0.1;
+                            this.play();
+                        });
+                    } else {
+                        $(video).attr('loop', 'loop');
+                    }
+                }else{
                     $(video).bind('ended', function() {
-                        this.currentTime = 0.1;
-                        this.play();
+                        $playButton.removeClass("playing");
                     });
-                } else {
-                    $(video).attr('loop', 'loop');
+
                 }
                 video.load();
 
@@ -7476,7 +7494,9 @@ window.longform = {
 
                     // hide background image
                     container.css("background-image", 'none');
-                    $(video).fadeIn();
+                    $(video).fadeIn("fast", function(){
+
+                    });
                 };
 
                 longform.playingVideo = true;
@@ -7485,12 +7505,17 @@ window.longform = {
 
     },
 
-    stopVideo: function(e) {
-        var element = $(e.target).find(".video-container");
+    stopVideo: function($target) {
+        var element = $target.find(".video-container");
         var elementId = $(element).attr('id');
         var container = $('#' + elementId);
+        var $playButton = $target.find(".pauseplay");
 
         if (longform.playingVideo) {
+
+            // pause/play button state
+            $playButton.removeClass("playing");
+
             video = $(container).find('video').get(0);
             video.pause();
             video.src = '';
@@ -7506,7 +7531,14 @@ window.longform = {
     prepareVideos: function() {
 
         var counter = 0;
-        $('.st-video .video-container').each(function() {
+        $('.video-container').each(function() {
+
+            // setting data-target for pause/play buttons
+            var $part = $(this).parent(".part");
+            var partId = $part.attr("id");
+            $part.find('.pauseplay').attr('data-target', "#"+partId);
+
+
             $(this).attr("id", "video" + counter++);
             $(this).css('background-image', 'url(' + $(this).data("poster") + ')');
 
@@ -7593,13 +7625,52 @@ window.longform = {
         $('.st-video').each(function() {
             $(this).bind('inview', function(event, visible) {
                 if (visible) {
-
-                    longform.playVideo(event);
+                    longform.playVideo($(event.target));
                 } else {
-                    longform.stopVideo(event);
+                    longform.stopVideo($(event.target));
+                }
+            });
+        });
+
+
+        $('.st-content-video').each(function() {
+            $(this).bind('inview', function(event, visible, visiblePartX, visiblePartY) {
+
+                if (visible) {
+
+                    if (visiblePartY == 'bottom')
+                        longform.playVideo($(event.target));
+
+                } else {
+                    longform.stopVideo($(event.target));
 
                 }
             });
+        });
+
+
+        //pause play buttons events
+        $('.pauseplay').on('click', function() {
+            var target = $(this).data("target");
+            var $target = $(target);
+            var playing = $(this).hasClass("playing");
+            var paused = $(this).hasClass("paused");
+            var video = $target.find('video').get(0);
+
+            if(playing){
+                //is currently playing
+                $(this).removeClass("playing").addClass("paused");
+                video.pause();
+            } else if(paused) {
+                // is paused
+                video.play();
+                $(this).removeClass("paused").addClass("playing");
+            }else{
+                // not playing, not paused, ended
+                video.currentTime = 0.01;
+                video.play();
+                $(this).addClass("playing");
+            }
         });
 
 

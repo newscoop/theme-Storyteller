@@ -41,6 +41,11 @@
         {{include file="_tpl/_storyteller/el-bg-image.tpl"}}
 
 
+        {{elseif $gimme->article->content_video}}
+        <!-- content fullscreen video -->
+          {{include file="_tpl/_storyteller/el-content-video.tpl"}}
+
+
       {{elseif $gimme->article->background_video}}
       <!-- background video -->
         {{include file="_tpl/_storyteller/el-bg-video.tpl"}}

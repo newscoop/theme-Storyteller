@@ -4,6 +4,11 @@ window.nav = {
 
         $(".menu_open").on("click.nav", function() {
             $("body").toggleClass("paneOpen");
+            if ($('body').hasClass('mobile')){
+              $(".longform .nav").find('ul.active').each(function(){
+                $(this).removeClass('active');
+              });
+            }
         });
 
 
@@ -47,10 +52,28 @@ window.nav = {
 
             var src = $(this).attr('href').replace('#', '');
             var target = ($('[name=' + src + ']').position().top + 1);
+            var moveTo = function(){
+              $('body, html').animate({
+                  scrollTop: target + 'px'
+              }, 1000);
+            };
 
-            $('body, html').animate({
-                scrollTop: target + 'px'
-            }, 1000);
+            if ($('body').hasClass('mobile')){
+              if ($(this).parent().parent().parent().is('nav')){
+                // traverse the nav and remove all active classes
+                var parSibEl = $(this).parent().siblings().find('ul.active');
+                parSibEl.removeClass('active');
+                var parEl = $(this).parent().find('ul');
+                if (parEl.hasClass('active')){
+                  parEl.removeClass('active');
+                } else {
+                  parEl.addClass('active');
+                }
+              }
+              moveTo();
+            } else {
+              moveTo();
+            }
 
         });
 

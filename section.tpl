@@ -1,5 +1,5 @@
 {{ include file="_tpl/_html-head.tpl" }}
-<body class="longform">
+<body class="longform"{{ if $gimme->browser->ua_type == "mobile" }} mobile{{ /if }}>
 <article>
 
 {{ list_articles  constraints="type is storyteller"}}

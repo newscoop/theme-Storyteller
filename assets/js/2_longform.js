@@ -52,7 +52,7 @@ window.longform = {
             proximity: longform.wHeight / 4,
             latency: 150,
             easing: 'swing',
-            offset: 1
+            offset: 0
         });
 
     },

@@ -3,7 +3,7 @@
 
 {{list_articles constraints="type is storyteller" length="1"}}
 
-<body class="longform {{ if !$gimme->article->nav }}no-nav{{/if}}">
+<body class="longform{{ if !$gimme->article->nav }} no-nav{{/if}}{{ if $gimme->browser->ua_type == "mobile" }} mobile{{ /if }}" name="top">
 
 <div id="loader-wrapper" >
   {{image rendition="fullscreen"}}
@@ -20,7 +20,9 @@
 
   <!-- main audio -->
   <audio id="master-audio" preload="none" autoplay="autoplay" loop="loop"></audio>
+    {{ if $gimme->browser->ua_type != "mobile" }}
   <a href="#" class="mute">Mute</a>
+    {{ /if }}
 
   <!-- navigation -->
   {{ include file="_tpl/_storyteller/nav.tpl" }}
@@ -39,6 +41,11 @@
       {{if $gimme->article->background_image}}
       <!-- background image -->
         {{include file="_tpl/_storyteller/el-bg-image.tpl"}}
+
+
+        {{elseif $gimme->article->content_video}}
+        <!-- content fullscreen video -->
+          {{include file="_tpl/_storyteller/el-content-video.tpl"}}
 
 
       {{elseif $gimme->article->background_video}}

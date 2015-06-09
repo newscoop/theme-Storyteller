@@ -1,7 +1,7 @@
-<section class="st-video part inview {{$gimme->article->css_class}}" name="{{ $gimme->article->number }}">
+<section class="st-content-video part inview snap {{$gimme->article->css_class}}"  name="{{ $gimme->article->number }}">
     {{ if $gimme->browser->ua_type != "mobile" }}
       <div class="video-container"
-        data-loop="loop"
+
         data-preload="none"
         data-poster="{{ $gimme->url->base }}{{ image rendition='fullscreen' }}{{ $image->src }}{{ /image }}" >
 
@@ -29,5 +29,16 @@
   </div>
     {{ /if }}
 
-    {{include file="_tpl/_storyteller/content.tpl"}}
+
+    <div class="caption">
+      <div class="button-container">
+        <button class="pauseplay"></button>
+      </div>
+
+      <div class="text">
+        <h3>{{$gimme->article->display_title}}</h3>
+        <p>{{$gimme->article->subtitle}}</p>
+      </div>
+    </div>
+
 </section>

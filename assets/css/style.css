@@ -3052,6 +3052,9 @@ s {
 .longform .nav nav li a:hover span {
   background: none;
 }
+.longform .nav nav li:first-child a {
+	padding-left: 10px;
+}
 .longform .nav nav a {
   color: #fff;
   background: none;
@@ -3079,6 +3082,15 @@ s {
 .longform .nav nav a.active span {
   color: #fff;
   background: rgba(255, 255, 255, 0.1);
+}
+.longform .nav .social-buttons {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+}
+.longform .nav .fb_iframe_widget {
+	float: left;
+	margin-right: 10px;
 }
 .longform .nav #languages {
   position: absolute;
@@ -3393,6 +3405,14 @@ s {
     height: 100vh;
   }
 }
+
+.blueimp-gallery>.prev, .blueimp-gallery>.next {
+font-family: Tahoma,Arial,sans-serif;
+font-size: 70px;
+border: none;
+background: none;
+}
+
 article .part.reverse_colors {
   background: #ffffff;
   color: #222222;
@@ -3452,6 +3472,10 @@ article .part.text_align-center .header {
 }
 article .part.text_align-center .text {
   margin-left: 0;
+}
+.closing_credits {
+  font-size: 12px;
+  padding-top: 10vw;
 }
 @media (min-width: 768px) {
   article .part.text_align-center .text {

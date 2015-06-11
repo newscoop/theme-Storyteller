@@ -3498,3 +3498,17 @@ article .part.text_align-center .text {
     margin-left: 25%;
   }
 }
+
+/* added direclty */
+	
+.social-buttons.credits {
+bottom: 170px;
+position: relative;
+z-index: 999;
+text-align: center;
+}
+
+.social-buttons.credits .fb-share-button {
+bottom: 5px;
+margin-right: 10px;
+}

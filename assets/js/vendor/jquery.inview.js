@@ -69,6 +69,7 @@
   }
 
   function checkInView() {
+
     var $elements = [], elementsLength, i = 0;
 
     $.each(inviewObjects, function(i, inviewObject) {
@@ -123,10 +124,14 @@
             'top' : 'both');
 
           visiblePartsMerged = visiblePartX + "-" + visiblePartY;
+
+
           if (!inView || inView !== visiblePartsMerged) {
+
             $element.data('inview', visiblePartsMerged).trigger('inview', [true, visiblePartX, visiblePartY]);
           }
         } else if (inView) {
+
           $element.data('inview', false).trigger('inview', [false]);
         }
       }

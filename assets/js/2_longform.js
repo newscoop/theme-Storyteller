@@ -28,11 +28,13 @@ window.longform = {
 
         this.bindAudioEvents();
 
+        var that = this;
         if (!isMobile.any) {
+            that.prepareVideos();
 
-            this.prepareVideos();
-            this.bindVideoEvents();
-
+            $(window).load(function() {
+                that.bindVideoEvents();
+            });
         }
 
 
@@ -204,82 +206,85 @@ window.longform = {
             $(container).attr('data-src', src);
         });
 
-    },
+},
 
-    prepareAudios: function() {
+prepareAudios: function() {
 
-        var counter = 0;
-        $('.ambient').each(function() {
-            var articleContainer = $(this).next('article');
-            var sectionContainer = $(this).prev('section');
-            var containerType = $(this).data('container');
+    var counter = 0;
+    $('.ambient').each(function() {
+        var articleContainer = $(this).next('article');
+        var sectionContainer = $(this).prev('section');
+        var containerType = $(this).data('container');
 
-            $(this).attr("id", "audio" + counter++);
+        $(this).attr("id", "audio" + counter++);
 
-            if (containerType === 'article') {
-                articleContainer.addClass('ambient-container');
-                articleContainer.addClass('inview');
-                articleContainer.attr('ambient-src', $(this).data('src'));
+        if (containerType === 'article') {
+            articleContainer.addClass('ambient-container');
+            articleContainer.addClass('inview');
+            articleContainer.attr('ambient-src', $(this).data('src'));
+        } else {
+            sectionContainer.addClass('ambient-container');
+            sectionContainer.addClass('inview');
+            sectionContainer.attr('data-ambient-src', $(this).data('src'));
+        }
+
+    });
+
+},
+
+playAudio: function(e) {
+
+    var element = $(e.target);
+    var src = $(element).data("ambient-src");
+    var audio = $('#master-audio')[0];
+
+    if (!longform.playingAudio) {
+        audio.src = location.protocol + '//' + window.location.hostname + src;
+        audio.play();
+        longform.playingAudio = true;
+    }
+
+},
+
+stopAudio: function(e) {
+    var audio = $('#master-audio')[0];
+
+    if (longform.playingAudio) {
+        audio.pause();
+        longform.playingAudio = false;
+    }
+},
+
+bindVideoEvents: function() {
+
+    $('.st-video').each(function() {
+        $(this).bind('inview', function(event, visible) {
+
+            if (visible) {
+                longform.playVideo($(event.target));
             } else {
-                sectionContainer.addClass('ambient-container');
-                sectionContainer.addClass('inview');
-                sectionContainer.attr('data-ambient-src', $(this).data('src'));
+                longform.stopVideo($(event.target));
             }
-
         });
+        $(this).data('inview', false);
+    });
 
-    },
 
-    playAudio: function(e) {
+    $('.st-content-video').each(function() {
+        $(this).bind('inview', function(event, visible, visiblePartX, visiblePartY) {
 
-        var element = $(e.target);
-        var src = $(element).data("ambient-src");
-        var audio = $('#master-audio')[0];
+            if (visible) {
 
-        if (!longform.playingAudio) {
-            audio.src = location.protocol + '//' + window.location.hostname + src;
-            audio.play();
-            longform.playingAudio = true;
-        }
-
-    },
-
-    stopAudio: function(e) {
-        var audio = $('#master-audio')[0];
-
-        if (longform.playingAudio) {
-            audio.pause();
-            longform.playingAudio = false;
-        }
-    },
-
-    bindVideoEvents: function() {
-
-        $('.st-video').each(function() {
-            $(this).bind('inview', function(event, visible) {
-                if (visible) {
+                if (visiblePartY == 'bottom')
                     longform.playVideo($(event.target));
-                } else {
-                    longform.stopVideo($(event.target));
-                }
-            });
+
+            } else {
+                longform.stopVideo($(event.target));
+
+            }
         });
-
-
-        $('.st-content-video').each(function() {
-            $(this).bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-
-                if (visible) {
-
-                    if (visiblePartY == 'bottom')
-                        longform.playVideo($(event.target));
-
-                } else {
-                    longform.stopVideo($(event.target));
-
-                }
-            });
-        });
+        $(this).data('inview', false);
+    });
 
 
         //pause play buttons events

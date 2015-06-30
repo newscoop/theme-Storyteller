@@ -143,25 +143,56 @@ s {
     margin: 10px auto;
 }
 
-.cms-image.left {
+
+.cms-image{
+  &.left {
     float: left;
     margin: 10px 15px 10px 0;
-}
-
-.cms-image.right {
+  }
+  &.right {
     float: right;
     margin: 10px 0 10px 15px;
+  }
 }
 
-
-.social-buttons.credits {
+.social-buttons{
+  &.credits {
     bottom: 170px;
     position: relative;
     z-index: 999;
     text-align: center;
     .fb-share-button {
-        bottom: 5px;
-        margin-right: 10px;
+      bottom: 5px;
+      margin-right: 10px;
     }
+  }
 }
 
+.no_credits {
+  .credits {
+    display: none;
+  }
+}
+
+article {
+  .part {
+    // no background gradients
+    &.no_gradient_background {
+      &.background_gradient {
+        display: none;
+      }
+      // make sure there are no gradients in the slideshows either
+      .slide_caption {
+        background: none;
+      }
+    } 
+  }
+  .part{
+    &.box_text{
+      p {
+        background: rgba(0, 0, 0, 0.3);
+        display: inline;
+      }
+    }
+  }
+}

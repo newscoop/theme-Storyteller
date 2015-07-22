@@ -88,19 +88,28 @@ window.sm = {
             var scene = new ScrollMagic.Scene({
                     triggerHook: "onEnter",
                     triggerElement: thisId,
-                    duration: '200%'
+                    duration: '100%'
                 })
                 .setTween(thisId + ' > .bg-image', {
-                    top: "20%",
+                    top: "60%",
                     ease: Linear.easeNone
                 })
                 .addTo(sm.controller);
+
+                scene = new ScrollMagic.Scene({
+                        triggerHook: "onEnter",
+                        triggerElement: thisId,
+                        duration: '100%'
+                    })
+                    .setTween(thisId + ' > .content', {
+                        top: "50%",
+                        ease: Linear.easeNone
+                    })
+                    .addTo(sm.controller);
+
+
         });
 
     }
-
-
-
-
 
 };

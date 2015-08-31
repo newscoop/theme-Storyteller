@@ -7409,6 +7409,8 @@ window.longform = {
 
         this.bindAudioEvents();
 
+        this.bindEmbedEvents();
+
         var that = this;
         if (!isMobile.any) {
             that.prepareVideos();
@@ -7767,6 +7769,29 @@ bindVideoEvents: function() {
         var counter = 0;
         $('.parallax').each(function() {
             $(this).attr('id', 'parallax' + counter++);
+        });
+    },
+
+    bindEmbedEvents: function() {
+
+        $('.embed').each(function() {
+            var _that = $(this);
+            _that.bind('inview', function(event, visible) {
+
+                if (visible) {
+                    _that.find('iframe').fadeIn();
+                } else {
+                    _that.find('iframe').fadeOut();
+                    _that.find('.embed_overlay').show();
+                }
+            });
+            $(this).data('inview', false);
+        });
+
+
+        $('.embed_overlay').on('mousedown', function(){
+            $(this).hide();
+            console.log("mouse down");
         });
     }
 };

@@ -2,12 +2,6 @@
 <body>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Each section contains one longform.</h1>
-    </div>
-  </div>
-
 
 {{ list_articles  constraints="type is storyteller"}}
 {{if $gimme->current_list->index%2==1}}

@@ -1,3 +1,6 @@
+{{ $lang = $gimme->issue->language->code }}
+{{ config_load file="strings-{{ $lang }}.tpl" }}
+
 {{ include file="_tpl/_html-head.tpl" }}
 <body class="longform"{{ if $gimme->browser->ua_type == "mobile" }} mobile{{ /if }}>
 <article>
@@ -29,7 +32,7 @@
                   <h1>{{$gimme->article->name}}</h1>
 
 
-                  <a href="{{url options="article"}}" class="startButton" >open</a>
+                  <a href="{{url options="article"}}" class="startButton" >{{ #open# }}</a>
 
               </div>
           </div>

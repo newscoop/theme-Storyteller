@@ -59,7 +59,7 @@
       {{ assign var="l" value="0" }}
       {{ assign var="currLan" value=$gimme->language->code }}
 
-  </nav>
+  </div>
   
 <div class="social-buttons">
   <div class="fb-share-button" data-href="{{ url }}" data-layout="button"></div>

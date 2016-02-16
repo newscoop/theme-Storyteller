@@ -21,9 +21,9 @@
               
               {{ assign var="disqus" value={{ #disqus# }} }}
               {{ if $disqus == "" }}
-              s.src = '//SAMPLE.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+              s.src = '//SAMPLE.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname. You can either hardcode the disqus value here
               {{ else }}
-              s.src = '//{{ $disqus }}.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+              s.src = '//{{ $disqus }}.disqus.com/embed.js'; // or edit the string in the _conf/setting.tpl file
               {{ /if }}              
               s.setAttribute('data-timestamp', +new Date());
               (d.head || d.body).appendChild(s);

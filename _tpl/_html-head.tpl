@@ -1,4 +1,4 @@
-{{ config_load file="settings-{{ $gimme->article->language->code }}.tpl" }}
+{{ config_load file="settings-en.tpl" }}
 {{ assign var="lang" value="{{ $gimme->article->language->code }}" }}
 
 <!DOCTYPE html>

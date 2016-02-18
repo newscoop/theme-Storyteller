@@ -51,7 +51,7 @@
 
           {{ if $gimme->current_list->at_end }}
           </li>
-          {{ if $gimme->article->comments }}
+          {{ if $gimme->article->comments != "" }}
           <li><a href="#comments">{{ #Comments# }}</a></li>
           {{ /if }}
           </ul>

@@ -1,5 +1,5 @@
 {{ assign var="lang" value="{{ $gimme->article->language->code }}" }}
-{{ config_load file="strings-en.tpl" }}
+{{ config_load file="strings-" | cat: $lang | cat: ".tpl" }}
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="{{ $lang }}" class="no-js ie6"> <![endif]-->

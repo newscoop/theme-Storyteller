@@ -1,7 +1,7 @@
 {{ config_load file="settings.tpl" }}
 {{ assign var="disqus" value={{ #disqus# }} }}
-<!-- {{ $disqus }} -->
-<div class="content container-fluid">
+
+<div class="comments content container-fluid">
  
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 text">

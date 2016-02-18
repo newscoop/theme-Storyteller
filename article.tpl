@@ -1,6 +1,5 @@
 {{ include file="_tpl/_html-head.tpl" }}
 
-
 {{ list_articles constraints="type is storyteller" length="1" }}
 
 <body class="longform{{ if !$gimme->article->nav }} no-nav{{/if}}{{ if $gimme->browser->ua_type == "mobile" }} mobile{{ /if }}" name="top">

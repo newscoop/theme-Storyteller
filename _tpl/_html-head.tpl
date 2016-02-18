@@ -1,5 +1,4 @@
-{{ assign var="lang" value=$gimme->article->language->code }}
-{{ config_load file="strings"$lang".tpl" }}
+{{ assign var="lang" value="{{ $gimme->article->language->code }}" }}
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="{{ $lang }}}" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="{{ $lang }}}" class="no-js ie7"> <![endif]-->
@@ -7,6 +6,7 @@
 <!--[if IE 9 ]>    <html lang="{{ $lang }}}" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="{{ $lang }}}" id="modernizrcom" class="no-js"> <!--<![endif]-->
 <head>
+    <!--{{ $lang }}-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 

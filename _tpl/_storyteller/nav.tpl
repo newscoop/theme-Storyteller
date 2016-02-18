@@ -49,12 +49,15 @@
 
            {{ /if }}
 
-           {{ if $gimme->current_list->at_end }}
-               </li>
-               </ul>
-           </nav>
-           {{ /if }}
-       {{ /list_related_articles }}
+          {{ if $gimme->current_list->at_end }}
+          </li>
+          {{ if $gimme->article->comments }}
+          <li><a href="#comments">{{ #Comments# }}</a></li>
+          {{ /if }}
+          </ul>
+          </nav>
+          {{ /if }}
+          {{ /list_related_articles }}
 
       {{ assign var="l" value="0" }}
       {{ assign var="currLan" value=$gimme->language->code }}

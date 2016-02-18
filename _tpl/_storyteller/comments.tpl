@@ -1,5 +1,6 @@
 {{ config_load file="settings.tpl" }}
-
+{{ assign var="disqus" value={{ #disqus# }} }}
+<!-- {{ $disqus }} -->
 <div class="content container-fluid">
  
   <div class="row">
@@ -19,14 +20,15 @@
           (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
               var d = document, s = d.createElement('script');
               
-              {{ assign var="disqus" value={{ #disqus# }} }}
               {{ if $disqus == "" }}
+
               s.src = '//SAMPLE.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname. You can either hardcode the disqus value here
               {{ else }}
               s.src = '//{{ $disqus }}.disqus.com/embed.js'; // or edit the string in the _conf/setting.tpl file
               {{ /if }}              
               s.setAttribute('data-timestamp', +new Date());
               (d.head || d.body).appendChild(s);
+
           })();
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>      

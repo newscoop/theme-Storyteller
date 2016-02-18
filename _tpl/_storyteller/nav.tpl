@@ -52,9 +52,9 @@
 
   {{ if $gimme->current_list->at_end }}
       </li>
+      <li><!-- {{ #comments# }} --></li>
     </ul>
   </nav>
-  <!-- does this work? -->
   {{ /if }}
 {{ /list_related_articles }}
 

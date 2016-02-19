@@ -1,5 +1,5 @@
-
 {{ if $gimme->article->nav }}
+
 <div class="menu_open">
   <div class="sticks_wrapper">
     <div class="stick -first" id="stick1"></div>

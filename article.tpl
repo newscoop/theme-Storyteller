@@ -33,7 +33,7 @@
   {{ /if }}
 
   <!-- navigation -->
-  {{ include file="_tpl/_storyteller/nav.tpl" }}
+  {{* include file="_tpl/_storyteller/nav.tpl" *}}
   {{ include file="_tpl/_storyteller/ambient-audio.tpl" container="article" }}
 
   <!-- we don't show content of wrapper article here. It is there for playlists, frontpage etc. -->

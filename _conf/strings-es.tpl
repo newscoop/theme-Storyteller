@@ -2,3 +2,4 @@
 
 # global strings
 open = "Entrar"
+comments = "Comentarios"

@@ -1,3 +1,3 @@
 ### Site info strings ###
 
-disqus="SAMPLE"
+disqus="newscoop-pro"

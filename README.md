@@ -15,6 +15,7 @@ Features include:
 - Fullscreen background video with descriptive titles text
 - Horizontal slideshows
 - Background audio
+- Disqus comments
 
 Documentation
 -------------
@@ -26,5 +27,3 @@ Demo with our Story "Gradac to the People"
 ----
 
 http://storyteller-dev.lab.sourcefabric.org/en/longform/story1/281/Gradac-to-the-People.htm
-
-

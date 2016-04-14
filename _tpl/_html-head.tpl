@@ -1,5 +1,5 @@
 {{ assign var="lang" value="{{ $gimme->language->code }}" }}
-{{ config_load file="strings-{{ $lang }}.tpl" }}
+
 
 <!DOCTYPE html>
 <!--{{ #comments# }}-->

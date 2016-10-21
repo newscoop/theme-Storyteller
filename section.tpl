@@ -1,5 +1,6 @@
+
 {{ $lang = $gimme->issue->language->code }}
-{{ config_load file="strings-{{ $lang }}.tpl" }}
+
 
 {{ include file="_tpl/_html-head.tpl" }}
 <body class="longform"{{ if $gimme->browser->ua_type == "mobile" }} mobile{{ /if }}>
